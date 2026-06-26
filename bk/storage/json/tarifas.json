@@ -1,0 +1,19 @@
+{
+    "tarifas": [
+        {
+            "id": 1,
+            "nombre": "Colectivo",
+            "valor": 0
+        },
+        {
+            "id": 2,
+            "nombre": "Tren",
+            "valor": 0
+        },
+        {
+            "id": 3,
+            "nombre": "Subte",
+            "valor": 0
+        }
+    ]
+}

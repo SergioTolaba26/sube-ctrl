@@ -1,0 +1,15 @@
+{
+    "saldo": 0,
+
+    "tarifas": {
+
+        "colectivo": 620,
+
+        "tren": 340,
+
+        "subte": 560
+
+    },
+
+    "movimientos":[]
+}

@@ -1,5 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entorno virtual
 backend/.venv/
 
-__pycache__/
+# Variables de entorno
+backend/.env
 
-*.pyc
+# Logs
+backend/logs/
+*.log
+
+# VSCode
+.vscode/
+
+# Sistema operativo
+.DS_Store
+Thumbs.dbcd

@@ -12,9 +12,7 @@ class TarifaRepository:
 
     def obtener_todas(self) -> list[Tarifa]:
 
-        datos = self.repository.read()
-
         return [
             Tarifa(**tarifa)
-            for tarifa in datos["tarifas"]
+            for tarifa in self.repository.read_list("tarifas")
         ]

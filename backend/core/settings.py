@@ -1,14 +1,13 @@
-PROJECT_NAME = "SUBE Control"
-
 from pathlib import Path
 
 
 class Settings:
-    """Configuración global del proyecto."""
 
     BASE_DIR = Path(__file__).resolve().parent.parent
 
-    STORAGE_PATH = BASE_DIR / "storage" / "json"
+    DATA_PATH = BASE_DIR / "data"
+
+    LOG_PATH = BASE_DIR / "logs"
 
 
 settings = Settings()

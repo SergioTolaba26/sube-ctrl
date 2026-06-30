@@ -1,18 +1,28 @@
+from persistence.json_storage import JsonStorage
+
 from core.settings import settings
+
 from models.tarifa import Tarifa
-from repositories.base.json_repository import JsonRepository
+
+from repositories.base.base_repository import BaseRepository
+from repositories.base.repository_config import RepositoryConfig
 
 
-class TarifaRepository:
+class TarifaRepository(BaseRepository[Tarifa]):
 
     def __init__(self):
-        self.repository = JsonRepository(
-            settings.STORAGE_PATH / "tarifas.json"
+
+        super().__init__(
+
+            RepositoryConfig(
+
+                storage=JsonStorage(
+                    settings.DATA_PATH / "tarifas.json"
+                ),
+
+                key="tarifas",
+
+                model=Tarifa
+
+            )
         )
-
-    def obtener_todas(self) -> list[Tarifa]:
-
-        return [
-            Tarifa(**tarifa)
-            for tarifa in self.repository.read_list("tarifas")
-        ]

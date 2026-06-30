@@ -4,8 +4,18 @@ from repositories.tarifa_repository import TarifaRepository
 
 class TarifaService:
 
-    def __init__(self, repository: TarifaRepository):
+    def __init__(
+        self,
+        repository: TarifaRepository
+    ):
         self.repository = repository
 
-    def obtener_todas(self) -> list[Tarifa]:
-        return self.repository.obtener_todas()
+    def list(self) -> list[Tarifa]:
+        return self.repository.list()
+
+    def get_by_id(
+        self,
+        id: int
+    ) -> Tarifa | None:
+
+        return self.repository.get_by_id(id)

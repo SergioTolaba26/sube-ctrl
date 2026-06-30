@@ -2,9 +2,9 @@
 
 Aplicación PWA para gestionar el saldo de la tarjeta SUBE.
 
-## Tecnologías
+## Tecnologías y comandos bash
 
-- FastAPI
+- FastAPI $ uvicorn main:app --reload
 - Python
 - HTML
 - CSS

@@ -1,21 +1,20 @@
-from pathlib import Path
-
-from repositories.json_repository import JsonRepository
+from core.settings import settings
+from models.tarifa import Tarifa
+from repositories.base.json_repository import JsonRepository
 
 
 class TarifaRepository:
 
     def __init__(self):
-        base_path = Path(__file__).resolve().parent.parent
         self.repository = JsonRepository(
-            base_path / "data" / "tarifas.json"
+            settings.STORAGE_PATH / "tarifas.json"
         )
 
-    def obtener_todas(self):
-        datos = self.repository.read()
-        return datos["tarifas"]
+    def obtener_todas(self) -> list[Tarifa]:
 
-    def guardar(self, tarifas):
-        self.repository.write({
-            "tarifas": tarifas
-        })
+        datos = self.repository.read()
+
+        return [
+            Tarifa(**tarifa)
+            for tarifa in datos["tarifas"]
+        ]

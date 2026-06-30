@@ -1,17 +1,17 @@
 from fastapi import FastAPI
 
-from routes.tarifa_routes import router as tarifa_router
+from routes.tarifa_router import router as tarifa_router
 
 app = FastAPI(
-    title="SUBE Control API",
-    version="0.1.0"
+    title="Transporte Control API",
+    version="1.0.0"
 )
 
 app.include_router(tarifa_router)
 
 
 @app.get("/")
-def inicio():
+def root():
     return {
-        "mensaje": "API SUBE Control funcionando"
+        "mensaje": "Transporte Control API funcionando"
     }

@@ -1,11 +1,21 @@
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from models.base.entity import Entity
 
 
-class Tarifa(BaseModel):
-    id: int = Field(..., gt=0)
-    nombre: str = Field(..., min_length=1, max_length=50)
-    valor: float = Field(..., ge=0)
+class Tarifa(Entity):
+
+    nombre: str
+
+    valor: float = Field(
+        ...,
+        ge=0
+    )
 
 
-class TarifaUpdate(BaseModel):
-    valor: float = Field(..., ge=0)
+class TarifaUpdate(Entity):
+
+    valor: float = Field(
+        ...,
+        ge=0
+    )

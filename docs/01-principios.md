@@ -126,4 +126,10 @@ Documentado.
 
 Preparado para crecer.
 
-** COMO VAMOS A TRABAJAR
+\*\* COMO VAMOS A TRABAJAR
+
+14. El núcleo del dominio debe cambiar lo menos posible.
+    ¿Esta funcionalidad ya estaba prevista por el núcleo?" y no al reves "Necesitamos agregar una funcionalidad
+    Los cambios en el nucleo (base el modelo conceptual) son poco frecuentes , los cambios en funcionalidades son frecuentes
+    El nucle casi no se modifica en mas de 5 años si cambias las capacidades
+    A medida que entendemos mejor la realidad que queremos representar, vamos descubriendo el nucleo que es la escencia de la ingenieria de software

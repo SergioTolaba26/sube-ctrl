@@ -2,6 +2,8 @@ from pydantic import Field
 
 from domain.base.entity import Entity
 
+from domain.enums.tipo_cuenta import TipoCuenta
+
 
 class Cuenta(Entity):
     """
@@ -25,10 +27,8 @@ class Cuenta(Entity):
         description="Nombre descriptivo de la cuenta."
     )
 
-    tipo: str = Field(
+    tipo: TipoCuenta = Field(
         ...,
-        min_length=1,
-        max_length=30,
         description="Tipo de cuenta."
     )
 

@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Entity(BaseModel):
@@ -7,4 +7,6 @@ class Entity(BaseModel):
     Todas las entidades persistentes deben heredar de esta clase.
     """
 
-    id: int
+    model_config = ConfigDict(validate_assignment=True)
+
+    id: int | None = None

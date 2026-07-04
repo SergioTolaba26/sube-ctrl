@@ -1,26 +1,20 @@
-from pydantic import Field
+from __future__ import annotations
 
-from domain.base.entity import Entity
+from dataclasses import dataclass
+from decimal import Decimal
+
+from domain.entities.cuenta import Cuenta
 
 
-class LineaMovimiento(Entity):
+@dataclass(slots=True)
+class LineaMovimiento:
     """
-    Representa el efecto de un Movimiento sobre una Cuenta.
+    Representa el efecto de un Movimiento sobre una única Cuenta.
     """
 
-    cuenta_id: int = Field(
-        ...,
-        gt=0,
-        description="Identificador de la cuenta afectada."
-    )
+    cuenta: Cuenta
+    importe: Decimal
 
-    importe: float = Field(
-        ...,
-        description="Importe aplicado sobre la cuenta."
-    )
-
-    def es_debito(self) -> bool:
-        return self.importe < 0
-
-    def es_credito(self) -> bool:
-        return self.importe > 0
+    def __post_init__(self) -> None:
+        if self.importe == Decimal("0"): #1er Regla:Una línea de movimiento sin efecto económico no tiene sentido.
+            raise ValueError("El importe no puede ser cero.")

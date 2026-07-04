@@ -181,3 +181,11 @@ Cada Sprint entrega una versión estable, aunque todavía no sea la versión fin
 Principio 22
 
 Cada objeto es el experto en su propio estado y en las reglas que lo gobiernan.
+
+Principio 23
+
+Dentro del dominio preferimos relaciones entre objetos antes que referencias técnicas de persistencia.
+
+Principio 24
+
+La plataforma debe ser tan útil para crear software como para aprender a diseñarlo.

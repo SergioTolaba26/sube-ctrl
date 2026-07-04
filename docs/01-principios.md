@@ -133,3 +133,51 @@ Preparado para crecer.
     Los cambios en el nucleo (base el modelo conceptual) son poco frecuentes , los cambios en funcionalidades son frecuentes
     El nucle casi no se modifica en mas de 5 años si cambias las capacidades
     A medida que entendemos mejor la realidad que queremos representar, vamos descubriendo el nucleo que es la escencia de la ingenieria de software
+
+Principio 18 – Crecimiento Orgánico del Dominio
+
+Las entidades deben comenzar con el comportamiento mínimo necesario y evolucionar únicamente cuando el conocimiento del dominio lo justifique.
+
+Principio 19 – Cada Sprint debe dejar el sistema un poco más comprensible, no solo un poco más grande.
+
+/////// Pasamos de un Proyecto a una PLATAFORMA que puede ser la base de muchas aplicaciones
+Principio 1
+
+El dominio es el centro del sistema.
+
+Principio 2
+
+La infraestructura sirve al dominio, nunca al revés.
+
+Principio 3
+
+Toda regla del negocio vive dentro del dominio.
+
+Principio 4
+
+Las entidades evolucionan cuando el conocimiento evoluciona.
+
+No antes.
+
+Principio 5
+
+Cada Sprint debe dejar el sistema mejor de lo que estaba.
+
+No solamente con más funcionalidades.
+
+Principio 6
+
+La simplicidad inicial es una fortaleza, no una limitación.
+
+
+Principio 20
+
+Toda entidad existe para proteger la consistencia de su propio estado.
+
+Principio 21
+
+Cada Sprint entrega una versión estable, aunque todavía no sea la versión final.
+
+Principio 22
+
+Cada objeto es el experto en su propio estado y en las reglas que lo gobiernan.

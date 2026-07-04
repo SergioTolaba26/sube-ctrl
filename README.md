@@ -21,3 +21,7 @@ scripts/
 ## Estado
 
 🚧 En desarrollo
+
+Misión del proyecto
+
+Construir un Core de negocio independiente de cualquier tecnología, capaz de ser reutilizado por distintos módulos y diferentes interfaces de usuario.

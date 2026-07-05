@@ -202,3 +202,7 @@ Toda modificación que pueda afectar la consistencia de un hecho económico debe
 Principio del Core N.º 26
 
 Toda nueva capacidad debe enriquecer el modelo existente, nunca reemplazarlo.
+
+Principio contable
+
+Un asiento confirmado nunca se modifica. Si hay un error, se registra otro asiento que lo corrija o lo revierta.

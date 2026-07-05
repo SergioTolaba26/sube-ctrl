@@ -319,3 +319,166 @@ def test_no_se_puede_confirmar_un_movimiento_desbalanceado():
         match="movimiento no está balanceado"
     ):
         movimiento.confirmar()
+
+def test_cambiar_descripcion():
+    """
+    Un movimiento en borrador debe permitir
+    cambiar su descripción.
+    """
+
+    movimiento = Movimiento(
+        id=None,
+        fecha=date.today(),
+        descripcion="Compra"
+    )
+
+    movimiento.cambiar_descripcion(
+        "Compra de medicamentos"
+    )
+
+    assert movimiento.descripcion == "Compra de medicamentos"
+
+def test_no_se_puede_cambiar_descripcion_de_un_movimiento_confirmado():
+    """
+    Una vez confirmado, un movimiento no puede
+    modificar su descripción.
+    """
+
+    movimiento = Movimiento(
+        id=None,
+        fecha=date.today(),
+        descripcion="Compra"
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento.debito(
+            cuenta=crear_cuenta(),
+            importe=Decimal("1000")
+        )
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento.credito(
+            cuenta=crear_cuenta(),
+            importe=Decimal("1000")
+        )
+    )
+
+    movimiento.confirmar()
+
+    with pytest.raises(
+        ValueError,
+        match="movimiento confirmado"
+    ):
+        movimiento.cambiar_descripcion(
+            "Nueva descripción"
+        )
+
+def test_anular_movimiento():
+    """
+    Un movimiento confirmado puede anularse.
+    """
+
+    movimiento = Movimiento(
+        id=None,
+        fecha=date.today(),
+        descripcion="Compra"
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento.debito(
+            cuenta=crear_cuenta(),
+            importe=Decimal("1000")
+        )
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento.credito(
+            cuenta=crear_cuenta(),
+            importe=Decimal("1000")
+        )
+    )
+
+    movimiento.confirmar()
+
+    movimiento.anular()
+
+    assert movimiento.estado == EstadoMovimiento.ANULADO        
+
+def test_no_se_puede_anular_un_movimiento_en_borrador():
+    """
+    Solo un movimiento confirmado puede anularse.
+    """
+
+    movimiento = Movimiento(
+        id=None,
+        fecha=date.today(),
+        descripcion="Compra"
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="Solo un movimiento confirmado puede anularse"
+    ):
+        movimiento.anular()
+
+def test_no_se_puede_confirmar_un_movimiento_anulado():
+    """
+    Un movimiento anulado no puede volver
+    a confirmarse.
+    """
+
+    movimiento = Movimiento(
+        id=None,
+        fecha=date.today(),
+        descripcion="Compra"
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento.debito(
+            cuenta=crear_cuenta(),
+            importe=Decimal("1000")
+        )
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento.credito(
+            cuenta=crear_cuenta(),
+            importe=Decimal("1000")
+        )
+    )
+
+    movimiento.confirmar()
+    movimiento.anular()
+
+    with pytest.raises(
+        ValueError,
+        match="Solo un movimiento en borrador puede confirmarse"
+    ):
+        movimiento.confirmar()
+
+def test_no_se_puede_agregar_una_linea_con_cuenta_inactiva():
+    """
+    Un movimiento no puede recibir líneas
+    asociadas a cuentas inactivas.
+    """
+
+    cuenta = crear_cuenta()
+    cuenta.desactivar()
+
+    movimiento = Movimiento(
+        id=None,
+        fecha=date.today(),
+        descripcion="Compra"
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="cuenta está inactiva"
+    ):
+        movimiento.agregar_linea(
+            LineaMovimiento.debito(
+                cuenta=cuenta,
+                importe=Decimal("1000")
+            )
+        )

@@ -45,7 +45,13 @@ class Movimiento(Entity):
         """
         Agrega una línea al movimiento.
         """
-        self.lineas.append(linea) 
+
+        if not self.esta_en_borrador():
+            raise ValueError(
+                "No se pueden agregar líneas a un movimiento confirmado."
+            )
+
+        self.lineas.append(linea)
 
     def cantidad_lineas(self) -> int:
         """
@@ -123,13 +129,49 @@ class Movimiento(Entity):
             )
 
         self.estado = EstadoMovimiento.CONFIRMADO
+
+    def cambiar_descripcion(self, descripcion: str) -> None:
+        """
+        Cambia la descripción del movimiento.
+
+        Solo puede modificarse mientras el movimiento
+        permanezca en estado BORRADOR.
+        """
+        if not self.esta_en_borrador():
+            raise ValueError(
+                "No se puede modificar un movimiento confirmado."
+            )
+
+        self.descripcion = descripcion
     def agregar_linea(self, linea: LineaMovimiento) -> None:
+        """
+        Agrega una línea al movimiento.
+        """
 
         if not self.esta_en_borrador():
             raise ValueError(
                 "No se pueden agregar líneas a un movimiento confirmado."
             )
 
+        if not linea.cuenta.esta_activa():
+            raise ValueError(
+                "La cuenta está inactiva."
+            )
+
         self.lineas.append(linea)
+
+    # def anular(self) -> None:
+    #     """
+    #     Anula un movimiento previamente confirmado.
+    #     """
+    #     self.estado = EstadoMovimiento.ANULADO
+
+    def anular(self) -> None:
+        if self.estado != EstadoMovimiento.CONFIRMADO:
+            raise ValueError(
+                "Solo un movimiento confirmado puede anularse."
+            )
+
+        self.estado = EstadoMovimiento.ANULADO
 
     

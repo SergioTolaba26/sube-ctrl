@@ -189,3 +189,16 @@ Dentro del dominio preferimos relaciones entre objetos antes que referencias té
 Principio 24
 
 La plataforma debe ser tan útil para crear software como para aprender a diseñarlo.
+
+Principio del Core N.º 25
+
+Un hecho económico es indivisible.
+El Movimiento representa esa unidad indivisible y garantiza la consistencia de todas las afectaciones que produce.
+
+Principio del Aggregate Root
+
+Toda modificación que pueda afectar la consistencia de un hecho económico debe pasar por Movimiento.
+
+Principio del Core N.º 26
+
+Toda nueva capacidad debe enriquecer el modelo existente, nunca reemplazarlo.

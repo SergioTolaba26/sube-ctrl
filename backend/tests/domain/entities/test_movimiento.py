@@ -3,6 +3,7 @@ from decimal import Decimal
 
 import pytest
 
+from domain.enums.tipo_afectacion import TipoAfectacion
 from domain.enums.estado_movimiento import EstadoMovimiento
 from domain.entities.cuenta import Cuenta
 from domain.entities.linea_movimiento import LineaMovimiento
@@ -28,11 +29,13 @@ def test_agregar_una_linea():
         id=None,
         fecha=date.today(),
         descripcion="Compra de medicamentos"
+        
     )
 
     linea = LineaMovimiento(
         cuenta=crear_cuenta(),
-        importe=Decimal("1000")
+        importe=Decimal("1000"),
+        tipo_afectacion=TipoAfectacion.DEBITO
     )
 
     movimiento.agregar_linea(linea)
@@ -57,7 +60,8 @@ def test_cantidad_lineas():
     movimiento.agregar_linea(
         LineaMovimiento(
             cuenta=crear_cuenta(),
-            importe=Decimal("1000")
+            importe=Decimal("1000"),
+            tipo_afectacion=TipoAfectacion.DEBITO
         )
     )
 
@@ -75,7 +79,8 @@ def test_movimiento_tiene_lineas():
     movimiento.agregar_linea(
         LineaMovimiento(
             cuenta=crear_cuenta(),
-            importe=Decimal("1000")
+            importe=Decimal("1000"),
+            tipo_afectacion=TipoAfectacion.DEBITO
         )
     )
 
@@ -105,7 +110,8 @@ def test_confirmar_movimiento():
     movimiento.agregar_linea(
         LineaMovimiento(
             cuenta=crear_cuenta(),
-            importe=Decimal("1000")
+            importe=Decimal("1000"),
+            tipo_afectacion=TipoAfectacion.DEBITO
         )
     )
 
@@ -134,7 +140,8 @@ def test_no_se_pueden_agregar_lineas_a_un_movimiento_confirmado():
     movimiento.agregar_linea(
         LineaMovimiento(
             cuenta=crear_cuenta(),
-            importe=Decimal("1000")
+            importe=Decimal("1000"),
+            tipo_afectacion=TipoAfectacion.DEBITO
         )
     )
 
@@ -144,6 +151,7 @@ def test_no_se_pueden_agregar_lineas_a_un_movimiento_confirmado():
         movimiento.agregar_linea(
             LineaMovimiento(
                 cuenta=crear_cuenta(),
-                importe=Decimal("500")
+                importe=Decimal("500"),
+                tipo_afectacion=TipoAfectacion.DEBITO   
             )
         )        

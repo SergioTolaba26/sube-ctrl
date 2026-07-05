@@ -75,3 +75,12 @@ class Movimiento(Entity):
             )
 
         self.estado = EstadoMovimiento.CONFIRMADO
+
+    def agregar_linea(self, linea: LineaMovimiento) -> None:
+
+        if not self.esta_en_borrador():
+            raise ValueError(
+                "No se pueden agregar líneas a un movimiento confirmado."
+            )
+
+        self.lineas.append(linea)

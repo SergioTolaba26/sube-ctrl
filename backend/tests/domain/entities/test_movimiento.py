@@ -122,3 +122,28 @@ def test_no_se_puede_confirmar_un_movimiento_sin_lineas():
 
     with pytest.raises(ValueError):
         movimiento.confirmar()
+
+
+def test_no_se_pueden_agregar_lineas_a_un_movimiento_confirmado():
+    movimiento = Movimiento(
+        id=None,
+        fecha=date.today(),
+        descripcion="Compra"
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento(
+            cuenta=crear_cuenta(),
+            importe=Decimal("1000")
+        )
+    )
+
+    movimiento.confirmar()
+
+    with pytest.raises(ValueError):
+        movimiento.agregar_linea(
+            LineaMovimiento(
+                cuenta=crear_cuenta(),
+                importe=Decimal("500")
+            )
+        )        

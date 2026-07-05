@@ -57,3 +57,37 @@ def test_linea_movimiento_tiene_tipo_afectacion():
     )
 
     assert linea.tipo_afectacion == TipoAfectacion.DEBITO
+
+def test_crear_linea_debito():
+    """
+    Debe poder crearse una línea de débito
+    mediante el método de fábrica.
+    """
+
+    cuenta = crear_cuenta()
+
+    linea = LineaMovimiento.debito(
+        cuenta=cuenta,
+        importe=Decimal("1000")
+    )
+
+    assert linea.cuenta == cuenta
+    assert linea.importe == Decimal("1000")
+    assert linea.tipo_afectacion == TipoAfectacion.DEBITO
+
+def test_crear_linea_credito():
+    """
+    Debe poder crearse una línea de crédito
+    mediante el método de fábrica.
+    """
+
+    cuenta = crear_cuenta()
+
+    linea = LineaMovimiento.credito(
+        cuenta=cuenta,
+        importe=Decimal("1000")
+    )
+
+    assert linea.cuenta == cuenta
+    assert linea.importe == Decimal("1000")
+    assert linea.tipo_afectacion == TipoAfectacion.CREDITO

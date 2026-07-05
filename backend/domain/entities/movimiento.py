@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 from datetime import date
+from decimal import Decimal
 
 
 from pydantic import Field
 
 
+from domain.enums.tipo_afectacion import TipoAfectacion
 from domain.base.entity import Entity
 from domain.entities.linea_movimiento import LineaMovimiento
 
@@ -56,7 +58,41 @@ class Movimiento(Entity):
         Indica si el movimiento posee al menos una línea.
         """
         return self.cantidad_lineas() > 0
+    
+    def total_debitos(self) -> Decimal:
+        """
+        Calcula la suma de todos los débitos
+        del movimiento.
+        """
 
+        total = Decimal("0")
+
+        for linea in self.lineas:
+            if linea.tipo_afectacion == TipoAfectacion.DEBITO:
+                total += linea.importe
+
+        return total
+    def total_creditos(self) -> Decimal:
+        """
+        Calcula la suma de todos los créditos
+        del movimiento.
+        """
+
+        total = Decimal("0")
+
+        for linea in self.lineas:
+            if linea.tipo_afectacion == TipoAfectacion.CREDITO:
+                total += linea.importe
+
+        return total
+    
+    def esta_balanceado(self) -> bool:
+        """
+        Indica si el movimiento se encuentra
+        contablemente balanceado.
+        """
+
+        return self.total_debitos() == self.total_creditos()
 
     def esta_en_borrador(self) -> bool:
         """
@@ -67,15 +103,26 @@ class Movimiento(Entity):
 
     def confirmar(self) -> None:
         """
-        Confirma el movimiento si cumple las invariantes del dominio.
+        Confirma el movimiento si cumple todas
+        las invariantes del dominio.
         """
+
+        if not self.esta_en_borrador():
+            raise ValueError(
+                "Solo un movimiento en borrador puede confirmarse."
+            )
+
         if not self.tiene_lineas():
             raise ValueError(
                 "No se puede confirmar un movimiento sin líneas."
             )
 
-        self.estado = EstadoMovimiento.CONFIRMADO
+        if not self.esta_balanceado():
+            raise ValueError(
+                "El movimiento no está balanceado."
+            )
 
+        self.estado = EstadoMovimiento.CONFIRMADO
     def agregar_linea(self, linea: LineaMovimiento) -> None:
 
         if not self.esta_en_borrador():
@@ -84,3 +131,5 @@ class Movimiento(Entity):
             )
 
         self.lineas.append(linea)
+
+    

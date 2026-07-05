@@ -3,6 +3,7 @@ from decimal import Decimal
 
 import pytest
 
+
 from domain.enums.tipo_afectacion import TipoAfectacion
 from domain.enums.estado_movimiento import EstadoMovimiento
 from domain.entities.cuenta import Cuenta
@@ -37,11 +38,20 @@ def test_agregar_una_linea():
         importe=Decimal("1000"),
         tipo_afectacion=TipoAfectacion.DEBITO
     )
-
     movimiento.agregar_linea(linea)
-
-    assert len(movimiento.lineas) == 1
+    movimiento.agregar_linea(
+    LineaMovimiento(
+        cuenta=crear_cuenta(),
+        importe=Decimal("1000"),
+        tipo_afectacion=TipoAfectacion.CREDITO
+    )
+    )
+    assert len(movimiento.lineas) == 2
     assert movimiento.lineas[0] == linea
+    
+    movimiento.confirmar()
+
+    assert movimiento.estado == EstadoMovimiento.CONFIRMADO
 
 def test_cantidad_lineas():
     """
@@ -115,6 +125,14 @@ def test_confirmar_movimiento():
         )
     )
 
+    movimiento.agregar_linea(
+        LineaMovimiento(
+            cuenta=crear_cuenta(),
+            importe=Decimal("1000"),
+            tipo_afectacion=TipoAfectacion.CREDITO
+        )
+    )
+
     movimiento.confirmar()
 
     assert movimiento.estado == EstadoMovimiento.CONFIRMADO
@@ -144,6 +162,13 @@ def test_no_se_pueden_agregar_lineas_a_un_movimiento_confirmado():
             tipo_afectacion=TipoAfectacion.DEBITO
         )
     )
+    movimiento.agregar_linea(
+    LineaMovimiento(
+        cuenta=crear_cuenta(),
+        importe=Decimal("1000"),
+        tipo_afectacion=TipoAfectacion.CREDITO
+    )
+)
 
     movimiento.confirmar()
 
@@ -155,3 +180,142 @@ def test_no_se_pueden_agregar_lineas_a_un_movimiento_confirmado():
                 tipo_afectacion=TipoAfectacion.DEBITO   
             )
         )        
+
+def test_total_debitos():
+    """
+    Un movimiento debe poder calcular
+    la suma de todos sus débitos.
+    """
+
+    movimiento = Movimiento(
+        id=None,
+        fecha=date.today(),
+        descripcion="Compra de medicamentos"
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento(
+            cuenta=crear_cuenta(),
+            importe=Decimal("1000"),
+            tipo_afectacion=TipoAfectacion.DEBITO
+        )
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento(
+            cuenta=crear_cuenta(),
+            importe=Decimal("250"),
+            tipo_afectacion=TipoAfectacion.DEBITO
+        )
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento(
+            cuenta=crear_cuenta(),
+            importe=Decimal("900"),
+            tipo_afectacion=TipoAfectacion.CREDITO
+        )
+    )
+
+    assert movimiento.total_debitos() == Decimal("1250")
+
+def test_total_creditos():
+    """
+    Un movimiento debe calcular
+    correctamente la suma de sus créditos.
+    """
+
+    movimiento = Movimiento(
+        id=None,
+        fecha=date.today(),
+        descripcion="Compra"
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento(
+            cuenta=crear_cuenta(),
+            importe=Decimal("300"),
+            tipo_afectacion=TipoAfectacion.DEBITO
+        )
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento(
+            cuenta=crear_cuenta(),
+            importe=Decimal("700"),
+            tipo_afectacion=TipoAfectacion.CREDITO
+        )
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento(
+            cuenta=crear_cuenta(),
+            importe=Decimal("500"),
+            tipo_afectacion=TipoAfectacion.CREDITO
+        )
+    )
+
+    assert movimiento.total_creditos() == Decimal("1200")
+
+def test_movimiento_balanceado():
+    """
+    Un movimiento está balanceado
+    cuando los débitos igualan a los créditos.
+    """
+
+    movimiento = Movimiento(
+        id=None,
+        fecha=date.today(),
+        descripcion="Compra"
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento(
+            cuenta=crear_cuenta(),
+            importe=Decimal("1000"),
+            tipo_afectacion=TipoAfectacion.DEBITO
+        )
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento(
+            cuenta=crear_cuenta(),
+            importe=Decimal("1000"),
+            tipo_afectacion=TipoAfectacion.CREDITO
+        )
+    )
+
+    assert movimiento.esta_balanceado() is True
+
+def test_no_se_puede_confirmar_un_movimiento_desbalanceado():
+    """
+    Un movimiento desbalanceado nunca puede confirmarse.
+    """
+
+    movimiento = Movimiento(
+        id=None,
+        fecha=date.today(),
+        descripcion="Compra de medicamentos"
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento(
+            cuenta=crear_cuenta(),
+            importe=Decimal("1000"),
+            tipo_afectacion=TipoAfectacion.DEBITO
+        )
+    )
+
+    movimiento.agregar_linea(
+        LineaMovimiento(
+            cuenta=crear_cuenta(),
+            importe=Decimal("500"),
+            tipo_afectacion=TipoAfectacion.CREDITO
+        )
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="movimiento no está balanceado"
+    ):
+        movimiento.confirmar()

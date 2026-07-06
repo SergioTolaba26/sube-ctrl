@@ -1,9 +1,9 @@
+from __future__ import annotations
+
 from pydantic import Field
 
 from domain.base.entity import Entity
-
 from domain.enums.tipo_cuenta import TipoCuenta
-
 
 class Cuenta(Entity):
     """
@@ -39,7 +39,16 @@ class Cuenta(Entity):
     imputable: bool = Field(
     default=True,
     description="Indica si la cuenta admite movimientos."
-)
+    )
+
+    padre: Cuenta | None = Field(
+    default=None,
+    description="Cuenta padre dentro del plan de cuentas."
+    )
+    hijos: list[Cuenta] = Field(
+    default_factory=list,
+    description="Cuentas hijas."
+    )
     def activar(self) -> None:
         """Activa la cuenta."""
         self.activa = True
@@ -65,6 +74,7 @@ class Cuenta(Entity):
         Indica si la cuenta admite recibir movimientos.
         """
         return self.imputable
+    
 
     def esta_activa(self) -> bool:
         """Indica si la cuenta está activa."""
@@ -82,4 +92,83 @@ class Cuenta(Entity):
 
         self.nombre = nuevo_nombre
 
+    def asignar_padre(self, padre: Cuenta) -> None:
+        """
+        Asigna una cuenta padre.
+        """
+
+        if padre is self:
+            raise ValueError(
+                "Una cuenta no puede ser padre de sí misma."
+            )
+
+        if self in padre.ancestros():
+            raise ValueError(
+                "No se puede generar un ciclo en el árbol."
+            )
+
+        if self.padre is not None:
+            raise ValueError(
+                "La cuenta ya tiene una cuenta padre."
+            )
+
+        padre.hacer_no_imputable()
+
+        self.padre = padre
+        padre.hijos.append(self)
+
+    def ancestros(self) -> list[Cuenta]:
+        """
+        Devuelve la lista de ancestros de la cuenta,
+        comenzando por el padre inmediato hasta la raíz.
+        """
+
+        ancestros: list[Cuenta] = []
+
+        actual = self.padre
+
+        while actual is not None:
+            ancestros.append(actual)
+            actual = actual.padre
+
+        return ancestros
+
+    def descendientes(self) -> list[Cuenta]:
+        """
+        Devuelve todos los descendientes de la cuenta
+        recorriendo el árbol en profundidad.
+        """
+
+        resultado: list[Cuenta] = []
+
+        for hijo in self.hijos:
+            resultado.append(hijo)
+            resultado.extend(hijo.descendientes())
+
+        return resultado
     
+    def es_hoja(self) -> bool:
+        """
+        Indica si la cuenta no posee cuentas hijas.
+        """
+
+        return not self.hijos
+    
+    def nivel(self) -> int:
+        """
+        Devuelve el nivel que ocupa la cuenta
+        dentro del árbol del plan de cuentas.
+        """
+
+        return len(self.ancestros())
+    
+    def ruta(self) -> list[Cuenta]:
+        """
+        Devuelve la ruta desde la cuenta raíz
+        hasta esta cuenta.
+        """
+
+        ruta = list(reversed(self.ancestros()))
+        ruta.append(self)
+
+        return ruta

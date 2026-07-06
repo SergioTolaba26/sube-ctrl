@@ -482,3 +482,29 @@ def test_no_se_puede_agregar_una_linea_con_cuenta_inactiva():
                 importe=Decimal("1000")
             )
         )
+
+def test_no_se_pueden_agregar_lineas_a_una_cuenta_no_imputable():
+    """
+    No debe permitirse agregar líneas sobre cuentas
+    marcadas como no imputables.
+    """
+
+    cuenta = crear_cuenta()
+    cuenta.hacer_no_imputable()
+
+    movimiento = Movimiento(
+        id=None,
+        fecha=date.today(),
+        descripcion="Compra"
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="no imputable"
+    ):
+        movimiento.agregar_linea(
+            LineaMovimiento.debito(
+                cuenta=cuenta,
+                importe=Decimal("1000")
+            )
+        )

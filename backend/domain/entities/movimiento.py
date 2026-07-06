@@ -3,15 +3,12 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
-
 from pydantic import Field
 
-
-from domain.enums.tipo_afectacion import TipoAfectacion
 from domain.base.entity import Entity
 from domain.entities.linea_movimiento import LineaMovimiento
-
 from domain.enums.estado_movimiento import EstadoMovimiento
+from domain.enums.tipo_afectacion import TipoAfectacion
 
 
 class Movimiento(Entity):
@@ -21,10 +18,12 @@ class Movimiento(Entity):
     Es el Aggregate Root responsable de mantener la consistencia
     de todas las afectaciones producidas por ese hecho.
     """
+
     estado: EstadoMovimiento = Field(
-    default=EstadoMovimiento.BORRADOR,
-    description="Estado actual del movimiento."
+        default=EstadoMovimiento.BORRADOR,
+        description="Estado actual del movimiento."
     )
+
     fecha: date = Field(
         ...,
         description="Fecha del hecho económico."
@@ -41,6 +40,7 @@ class Movimiento(Entity):
         default_factory=list,
         description="Líneas que componen el movimiento."
     )
+
     def agregar_linea(self, linea: LineaMovimiento) -> None:
         """
         Agrega una línea al movimiento.
@@ -51,6 +51,16 @@ class Movimiento(Entity):
                 "No se pueden agregar líneas a un movimiento confirmado."
             )
 
+        if not linea.cuenta.esta_activa():
+            raise ValueError(
+                "La cuenta está inactiva."
+            )
+
+        if not linea.cuenta.es_imputable():
+            raise ValueError(
+                "La cuenta es no imputable."
+            )
+
         self.lineas.append(linea)
 
     def cantidad_lineas(self) -> int:
@@ -58,19 +68,17 @@ class Movimiento(Entity):
         Devuelve la cantidad de líneas del movimiento.
         """
         return len(self.lineas)
-    
+
     def tiene_lineas(self) -> bool:
         """
         Indica si el movimiento posee al menos una línea.
         """
         return self.cantidad_lineas() > 0
-    
+
     def total_debitos(self) -> Decimal:
         """
-        Calcula la suma de todos los débitos
-        del movimiento.
+        Calcula la suma de todos los débitos.
         """
-
         total = Decimal("0")
 
         for linea in self.lineas:
@@ -78,12 +86,11 @@ class Movimiento(Entity):
                 total += linea.importe
 
         return total
+
     def total_creditos(self) -> Decimal:
         """
-        Calcula la suma de todos los créditos
-        del movimiento.
+        Calcula la suma de todos los créditos.
         """
-
         total = Decimal("0")
 
         for linea in self.lineas:
@@ -91,26 +98,22 @@ class Movimiento(Entity):
                 total += linea.importe
 
         return total
-    
+
     def esta_balanceado(self) -> bool:
         """
-        Indica si el movimiento se encuentra
-        contablemente balanceado.
+        Indica si el movimiento está balanceado.
         """
-
         return self.total_debitos() == self.total_creditos()
 
     def esta_en_borrador(self) -> bool:
         """
-        Indica si el movimiento se encuentra en estado BORRADOR.
+        Indica si el movimiento está en estado BORRADOR.
         """
         return self.estado == EstadoMovimiento.BORRADOR
 
-
     def confirmar(self) -> None:
         """
-        Confirma el movimiento si cumple todas
-        las invariantes del dominio.
+        Confirma el movimiento.
         """
 
         if not self.esta_en_borrador():
@@ -133,45 +136,23 @@ class Movimiento(Entity):
     def cambiar_descripcion(self, descripcion: str) -> None:
         """
         Cambia la descripción del movimiento.
-
-        Solo puede modificarse mientras el movimiento
-        permanezca en estado BORRADOR.
         """
+
         if not self.esta_en_borrador():
             raise ValueError(
                 "No se puede modificar un movimiento confirmado."
             )
 
         self.descripcion = descripcion
-    def agregar_linea(self, linea: LineaMovimiento) -> None:
-        """
-        Agrega una línea al movimiento.
-        """
-
-        if not self.esta_en_borrador():
-            raise ValueError(
-                "No se pueden agregar líneas a un movimiento confirmado."
-            )
-
-        if not linea.cuenta.esta_activa():
-            raise ValueError(
-                "La cuenta está inactiva."
-            )
-
-        self.lineas.append(linea)
-
-    # def anular(self) -> None:
-    #     """
-    #     Anula un movimiento previamente confirmado.
-    #     """
-    #     self.estado = EstadoMovimiento.ANULADO
 
     def anular(self) -> None:
+        """
+        Anula un movimiento previamente confirmado.
+        """
+
         if self.estado != EstadoMovimiento.CONFIRMADO:
             raise ValueError(
                 "Solo un movimiento confirmado puede anularse."
             )
 
         self.estado = EstadoMovimiento.ANULADO
-
-    

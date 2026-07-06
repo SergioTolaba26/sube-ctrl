@@ -36,7 +36,10 @@ class Cuenta(Entity):
         default=True,
         description="Indica si la cuenta puede utilizarse."
     )
-
+    imputable: bool = Field(
+    default=True,
+    description="Indica si la cuenta admite movimientos."
+)
     def activar(self) -> None:
         """Activa la cuenta."""
         self.activa = True
@@ -44,6 +47,24 @@ class Cuenta(Entity):
     def desactivar(self) -> None:
         """Desactiva la cuenta."""
         self.activa = False
+
+    def hacer_no_imputable(self) -> None:
+        """
+        Impide que la cuenta reciba movimientos.
+        """
+        self.imputable = False
+
+    def hacer_imputable(self) -> None:
+        """
+        Permite nuevamente registrar movimientos en la cuenta.
+        """
+        self.imputable = True
+
+    def es_imputable(self) -> bool:
+        """
+        Indica si la cuenta admite recibir movimientos.
+        """
+        return self.imputable
 
     def esta_activa(self) -> bool:
         """Indica si la cuenta está activa."""
@@ -60,3 +81,5 @@ class Cuenta(Entity):
             raise ValueError("El nombre no puede estar vacío.")
 
         self.nombre = nuevo_nombre
+
+    

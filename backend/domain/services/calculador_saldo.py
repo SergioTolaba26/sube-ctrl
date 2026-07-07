@@ -1,6 +1,7 @@
 from decimal import Decimal
 
 from domain.enums.tipo_afectacion import TipoAfectacion
+from domain.enums.tipo_cuenta import TipoCuenta
 
 
 class CalculadorSaldo:
@@ -19,9 +20,20 @@ class CalculadorSaldo:
                 if linea.cuenta is not cuenta:
                     continue
 
-                if linea.tipo_afectacion == TipoAfectacion.DEBITO:
-                    saldo += linea.importe
+                # if cuenta.tipo in (
+                #     TipoCuenta.ACTIVO,
+                #     TipoCuenta.GASTO,
+                # ):
+                if cuenta.tipo.es_naturaleza_deudora(): # if cuenta.es_naturaleza_deudora(): #saldo += cuenta.efecto(linea)
+                    if linea.tipo_afectacion == TipoAfectacion.DEBITO:
+                        saldo += linea.importe
+                    else:
+                        saldo -= linea.importe
+
                 else:
-                    saldo -= linea.importe
+                    if linea.tipo_afectacion == TipoAfectacion.DEBITO:
+                        saldo -= linea.importe
+                    else:
+                        saldo += linea.importe
 
         return saldo

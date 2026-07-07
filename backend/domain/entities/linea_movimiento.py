@@ -55,10 +55,3 @@ class LineaMovimiento:
             importe=importe,
             tipo_afectacion=TipoAfectacion.CREDITO
         )
-        """
-        Valida las invariantes de la línea de movimiento.
-        """
-
-        # Una línea sin efecto económico no tiene sentido.
-        if self.importe == Decimal("0"):
-            raise ValueError("El importe no puede ser cero.")

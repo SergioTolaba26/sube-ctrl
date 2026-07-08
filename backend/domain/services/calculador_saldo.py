@@ -37,3 +37,4 @@ class CalculadorSaldo:
                         saldo += linea.importe
 
         return saldo
+    

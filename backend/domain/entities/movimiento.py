@@ -61,8 +61,10 @@ class Movimiento(Entity):
                 "La cuenta es no imputable."
             )
 
-        self.lineas.append(linea)
+        # La línea pasa a pertenecer a este movimiento.
+        linea.movimiento = self
 
+        self.lineas.append(linea)
     def cantidad_lineas(self) -> int:
         """
         Devuelve la cantidad de líneas del movimiento.

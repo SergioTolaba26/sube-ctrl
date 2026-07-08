@@ -5,6 +5,9 @@ from pydantic import Field
 from domain.base.entity import Entity
 from domain.enums.tipo_cuenta import TipoCuenta
 
+from decimal import Decimal
+from domain.enums.tipo_afectacion import TipoAfectacion
+
 class Cuenta(Entity):
     """
     Representa un recurso económico del negocio.
@@ -79,6 +82,13 @@ class Cuenta(Entity):
     def esta_activa(self) -> bool:
         """Indica si la cuenta está activa."""
         return self.activa
+    
+    def naturaleza_deudora(self) -> bool:
+        """
+        Indica si la cuenta posee naturaleza deudora.
+        """
+
+        return self.tipo.es_naturaleza_deudora()
 
     def renombrar(self, nuevo_nombre: str) -> None:
         """
@@ -172,3 +182,26 @@ class Cuenta(Entity):
         ruta.append(self)
 
         return ruta
+
+    def aplicar_afectacion(
+        self,
+        saldo_actual: Decimal,
+        tipo_afectacion: TipoAfectacion,
+        importe: Decimal,
+    ) -> Decimal:
+        """
+        Devuelve el nuevo saldo luego de aplicar
+        una afectación sobre esta cuenta.
+        """
+
+        if self.naturaleza_deudora():
+
+            if tipo_afectacion == TipoAfectacion.DEBITO:
+                return saldo_actual + importe
+
+            return saldo_actual - importe
+
+        if tipo_afectacion == TipoAfectacion.CREDITO:
+            return saldo_actual + importe
+
+        return saldo_actual - importe

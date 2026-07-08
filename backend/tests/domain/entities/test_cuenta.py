@@ -1,4 +1,7 @@
+from decimal import Decimal
 import pytest
+from domain.enums.tipo_afectacion import TipoAfectacion
+from tests.domain.entities.test_linea_movimiento import crear_cuenta
 from domain.entities.cuenta import Cuenta
 from domain.enums.tipo_cuenta import TipoCuenta
 
@@ -378,3 +381,19 @@ def test_ruta_de_una_cuenta():
         bancos,
         nacion,
     ]
+
+def test_cuenta_activo_aplica_un_debito_al_saldo():
+    """
+    Una cuenta de ACTIVO incrementa su saldo
+    cuando recibe un débito.
+    """
+
+    cuenta = crear_cuenta()
+
+    saldo = cuenta.aplicar_afectacion(
+        saldo_actual=Decimal("0"),
+        tipo_afectacion=TipoAfectacion.DEBITO,
+        importe=Decimal("1000")
+    )
+
+    assert saldo == Decimal("1000")

@@ -2,20 +2,22 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 from domain.entities.cuenta import Cuenta
 from domain.enums.tipo_afectacion import TipoAfectacion
 
+if TYPE_CHECKING:
+    from domain.entities.movimiento import Movimiento
 
 @dataclass(slots=True)
 class LineaMovimiento:
-    """
-    Representa el efecto de un Movimiento sobre una única Cuenta.
-    """
 
     cuenta: Cuenta
     importe: Decimal
     tipo_afectacion: TipoAfectacion
+
+    movimiento: Movimiento | None = None
 
     def __post_init__(self) -> None:
         """

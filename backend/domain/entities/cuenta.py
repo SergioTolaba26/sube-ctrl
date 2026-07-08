@@ -8,6 +8,7 @@ from domain.enums.tipo_cuenta import TipoCuenta
 from decimal import Decimal
 from domain.enums.tipo_afectacion import TipoAfectacion
 
+
 class Cuenta(Entity):
     """
     Representa un recurso económico del negocio.
@@ -205,3 +206,20 @@ class Cuenta(Entity):
             return saldo_actual + importe
 
         return saldo_actual - importe
+    
+
+
+    def calcular_saldo(
+        self,
+        total_debitos: Decimal,
+        total_creditos: Decimal,
+    ) -> Decimal:
+        """
+        Calcula el saldo de la cuenta a partir de los
+        totales de débitos y créditos.
+        """
+
+        if self.naturaleza_deudora():
+            return total_debitos - total_creditos
+
+        return total_creditos - total_debitos

@@ -397,3 +397,13 @@ def test_cuenta_activo_aplica_un_debito_al_saldo():
     )
 
     assert saldo == Decimal("1000")
+
+def test_cuenta_activo_calcula_saldo():
+    cuenta = crear_cuenta()
+
+    saldo = cuenta.calcular_saldo(
+        total_debitos=Decimal("1000"),
+        total_creditos=Decimal("300"),
+    )
+
+    assert saldo == Decimal("700")

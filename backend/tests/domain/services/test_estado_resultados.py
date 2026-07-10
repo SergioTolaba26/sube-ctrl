@@ -1,29 +1,26 @@
 from datetime import date
 from decimal import Decimal
 
+
 from domain.entities.cuenta import Cuenta
 from domain.entities.linea_movimiento import LineaMovimiento
 from domain.entities.movimiento import Movimiento
 from domain.enums.tipo_cuenta import TipoCuenta
 from domain.services.estado_resultados import EstadoResultados
+from domain.value_objects.saldo_cuenta import SaldoCuenta
+from tests.builders import (
+    crear_caja,
+    crear_ventas,
+    crear_gastos,
+    crear_ejercicio,
+    crear_movimiento_de_venta_confirmado,
+    crear_movimiento_de_gasto_confirmado,
+)
 
 
-def crear_caja():
-    return Cuenta(
-        id=None,
-        codigo="1.1.01",
-        nombre="Caja",
-        tipo=TipoCuenta.ACTIVO,
-    )
+crear_caja()
 
-
-def crear_ventas():
-    return Cuenta(
-        id=None,
-        codigo="4.1.01",
-        nombre="Ventas",
-        tipo=TipoCuenta.INGRESO,
-    )
+crear_ventas()
 
 
 def test_estado_resultados_informa_las_cuentas_de_ingreso():
@@ -68,13 +65,8 @@ def test_estado_resultados_informa_las_cuentas_de_ingreso():
     assert ingresos[0].cuenta is ventas
     assert ingresos[0].saldo == Decimal("1000")
 
-def crear_gastos():
-    return Cuenta(
-        id=None,
-        codigo="5.1.01",
-        nombre="Gastos Administrativos",
-        tipo=TipoCuenta.GASTO,
-    )
+    crear_gastos()
+
 
 
 def test_estado_resultados_informa_las_cuentas_de_gasto():
@@ -193,66 +185,213 @@ def test_estado_resultados_informa_el_total_de_gastos():
         movimientos=[movimiento]
     ) == Decimal("300")
 
-def test_estado_resultados_calcula_el_resultado_del_ejercicio():
-    """
-    El Estado de Resultados calcula el resultado
-    del ejercicio como:
+# def test_estado_resultados_calcula_el_resultado_del_ejercicio():
+#     """
+#     El Estado de Resultados calcula el resultado
+#     del ejercicio como:
 
-        Ingresos - Gastos
-    """
+#         Ingresos - Gastos
+#     """
 
+#     caja = crear_caja()
+#     ventas = crear_ventas()
+#     gastos = crear_gastos()
+
+#     # Venta: +1000
+#     venta = Movimiento(
+#         id=None,
+#         fecha=date(2026, 1, 2),
+#         descripcion="Venta contado",
+#     )
+
+#     venta.agregar_linea(
+#         LineaMovimiento.debito(
+#             cuenta=caja,
+#             importe=Decimal("1000"),
+#         )
+#     )
+
+#     venta.agregar_linea(
+#         LineaMovimiento.credito(
+#             cuenta=ventas,
+#             importe=Decimal("1000"),
+#         )
+#     )
+
+#     venta.confirmar()
+
+#     # Gasto: -300
+#     pago = Movimiento(
+#         id=None,
+#         fecha=date(2026, 1, 3),
+#         descripcion="Pago alquiler",
+#     )
+
+#     pago.agregar_linea(
+#         LineaMovimiento.debito(
+#             cuenta=gastos,
+#             importe=Decimal("300"),
+#         )
+#     )
+
+#     pago.agregar_linea(
+#         LineaMovimiento.credito(
+#             cuenta=caja,
+#             importe=Decimal("300"),
+#         )
+#     )
+
+#     pago.confirmar()
+
+#     estado = EstadoResultados()
+
+#     assert estado.resultado(
+#         movimientos=[venta, pago]
+#     ) == Decimal("700")
+
+def test_estado_resultados_informa_los_saldos_de_las_cuentas():
+    """
+    El Estado de Resultados informa
+    el saldo de cada cuenta de resultado.
+    """
     caja = crear_caja()
     ventas = crear_ventas()
-    gastos = crear_gastos()
 
-    # Venta: +1000
-    venta = Movimiento(
+    movimiento = Movimiento(
         id=None,
-        fecha=date(2026, 1, 2),
-        descripcion="Venta contado",
+        fecha=date(2026, 6, 1),
+        descripcion="Venta",
     )
 
-    venta.agregar_linea(
+    movimiento.agregar_linea(
         LineaMovimiento.debito(
             cuenta=caja,
             importe=Decimal("1000"),
         )
     )
 
-    venta.agregar_linea(
+    movimiento.agregar_linea(
         LineaMovimiento.credito(
             cuenta=ventas,
             importe=Decimal("1000"),
         )
     )
 
-    venta.confirmar()
-
-    # Gasto: -300
-    pago = Movimiento(
-        id=None,
-        fecha=date(2026, 1, 3),
-        descripcion="Pago alquiler",
-    )
-
-    pago.agregar_linea(
-        LineaMovimiento.debito(
-            cuenta=gastos,
-            importe=Decimal("300"),
-        )
-    )
-
-    pago.agregar_linea(
-        LineaMovimiento.credito(
-            cuenta=caja,
-            importe=Decimal("300"),
-        )
-    )
-
-    pago.confirmar()
+    movimiento.confirmar()
 
     estado = EstadoResultados()
 
-    assert estado.resultado(
-        movimientos=[venta, pago]
-    ) == Decimal("700")
+    saldos = estado.saldos(
+        movimientos=[movimiento],
+    )
+
+    assert len(saldos) == 1
+
+    saldo = saldos[0]
+
+    assert isinstance(
+        saldo,
+        SaldoCuenta,
+    )
+
+    assert saldo.cuenta == ventas
+
+    assert saldo.saldo == Decimal("1000")
+
+def test_estado_resultados_agrupa_los_saldos_de_una_misma_cuenta():
+        """
+        Los movimientos de una misma cuenta
+        generan un único saldo acumulado.
+        """
+
+        movimiento1 = crear_movimiento_de_venta_confirmado(
+            Decimal("1000")
+        )
+
+        movimiento2 = crear_movimiento_de_venta_confirmado(
+            Decimal("500")
+        )
+
+        estado = EstadoResultados()
+
+        saldos = estado.saldos(
+            movimientos=[
+                movimiento1,
+                movimiento2,
+            ],
+        )
+
+        assert len(saldos) == 1
+
+        saldo = saldos[0]
+
+        assert saldo.cuenta.nombre == "Ventas"
+
+        assert saldo.saldo == Decimal("1500")
+
+def test_estado_resultados_informa_los_saldos_de_las_cuentas_de_gasto():
+    """
+    El Estado de Resultados también informa
+    los saldos de las cuentas de gasto.
+    """
+
+    movimiento = crear_movimiento_de_gasto_confirmado()
+    estado = EstadoResultados()
+
+    saldos = estado.saldos(
+        movimientos=[movimiento],
+    )
+
+    assert len(saldos) == 1
+
+    saldo = saldos[0]
+
+    assert saldo.cuenta.tipo == TipoCuenta.GASTO
+
+    assert saldo.saldo == Decimal("300")
+
+    crear_gastos()
+
+
+crear_movimiento_de_gasto_confirmado()
+
+def test_estado_resultados_calcula_el_resultado_del_ejercicio():
+    """
+    El Estado de Resultados calcula
+    el resultado del ejercicio.
+    """
+
+    movimiento_ingreso = crear_movimiento_de_venta_confirmado(
+        Decimal("1000")
+    )
+
+    movimiento_gasto = crear_movimiento_de_gasto_confirmado(
+        Decimal("300")
+    )
+
+    estado = EstadoResultados()
+
+    resultado = estado.resultado(
+        movimientos=[
+            movimiento_ingreso,
+            movimiento_gasto,
+        ],
+    )
+
+    assert resultado == Decimal("700")
+
+def test_estado_resultados_puede_generar_un_estado_calculado():
+    """
+    El servicio puede devolver un EstadoResultadosCalculado.
+    """
+
+    movimiento = crear_movimiento_de_venta_confirmado()
+
+    estado = EstadoResultados()
+
+    calculado = estado.calcular(
+        movimientos=[movimiento],
+    )
+
+    assert calculado.resultado == Decimal("1000")
+    assert len(calculado.saldos) == 1

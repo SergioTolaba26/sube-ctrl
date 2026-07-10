@@ -1,9 +1,10 @@
 from datetime import date
 
-from domain.services.cierre_ejercicio import CierreEjercicio
-from domain.entities.movimiento import Movimiento
-from domain.entities.ejercicio_contable import EjercicioContable
 import pytest
+
+from domain.entities.ejercicio_contable import EjercicioContable
+from domain.entities.movimiento import Movimiento
+from domain.services.cierre_ejercicio import CierreEjercicio
 
 
 def test_un_ejercicio_se_crea_abierto():
@@ -18,6 +19,7 @@ def test_un_ejercicio_se_crea_abierto():
     )
 
     assert ejercicio.esta_abierto()
+
 
 def test_un_ejercicio_puede_cerrarse():
     """
@@ -140,3 +142,118 @@ def test_no_puede_cerrarse_dos_veces_un_ejercicio():
             ejercicio,
             [],
         )
+
+def test_movimientos_de_otro_ejercicio_no_impiden_el_cierre():
+    """
+    Los movimientos cuya fecha no pertenece
+    al ejercicio no participan del cierre.
+    """
+
+    ejercicio = EjercicioContable(
+        id=None,
+        fecha_inicio=date(2026, 1, 1),
+        fecha_fin=date(2026, 12, 31),
+    )
+
+    movimiento = Movimiento(
+        id=None,
+        fecha=date(2027, 1, 15),
+        descripcion="Movimiento futuro",
+    )
+
+    cierre = CierreEjercicio()
+
+    cierre.cerrar(
+        ejercicio,
+        [movimiento],
+    )
+
+    assert ejercicio.esta_cerrado()
+
+def test_el_cierre_del_ejercicio_genera_un_movimiento():
+    """
+    El cierre de un ejercicio genera
+    un Movimiento de cierre.
+    """
+
+    ejercicio = EjercicioContable(
+        id=None,
+        fecha_inicio=date(2026, 1, 1),
+        fecha_fin=date(2026, 12, 31),
+    )
+
+    cierre = CierreEjercicio()
+
+    movimiento = cierre.cerrar(
+        ejercicio,
+        movimientos=[],
+    )
+
+    assert isinstance(
+        movimiento,
+        Movimiento,
+    )
+
+def test_el_movimiento_de_cierre_tiene_descripcion():
+    """
+    El movimiento generado al cerrar un ejercicio
+    posee una descripción identificatoria.
+    """
+
+    ejercicio = EjercicioContable(
+        id=None,
+        fecha_inicio=date(2026, 1, 1),
+        fecha_fin=date(2026, 12, 31),
+    )
+
+    cierre = CierreEjercicio()
+
+    movimiento = cierre.cerrar(
+        ejercicio,
+        movimientos=[],
+    )
+
+    assert movimiento.descripcion == "Cierre del ejercicio"
+
+def test_el_movimiento_de_cierre_tiene_la_fecha_fin_del_ejercicio():
+    """
+    El asiento de cierre se registra
+    en la fecha de fin del ejercicio.
+    """
+
+    ejercicio = EjercicioContable(
+        id=None,
+        fecha_inicio=date(2026, 1, 1),
+        fecha_fin=date(2026, 12, 31),
+    )
+
+    cierre = CierreEjercicio()
+
+    movimiento = cierre.cerrar(
+        ejercicio,
+        movimientos=[],
+    )
+
+    assert movimiento.fecha == date(2026, 12, 31)
+
+# @pytest.mark.skip(reason="Se habilitará cuando el cierre genere las líneas contables.")
+# def test_el_movimiento_de_cierre_queda_confirmado():
+#     """
+#     El movimiento generado al cerrar un ejercicio
+#     queda confirmado automáticamente.
+#     """
+
+#     ejercicio = EjercicioContable(
+#         id=None,
+#         fecha_inicio=date(2026, 1, 1),
+#         fecha_fin=date(2026, 12, 31),
+#     )
+
+#     cierre = CierreEjercicio()
+
+#     movimiento = cierre.cerrar(
+#         ejercicio,
+#         movimientos=[],
+#     )
+
+#     assert movimiento.esta_confirmado()

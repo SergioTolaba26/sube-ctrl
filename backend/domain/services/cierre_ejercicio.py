@@ -1,3 +1,5 @@
+from domain.entities.movimiento import Movimiento
+
 class CierreEjercicio:
 
     def cerrar(
@@ -18,3 +20,13 @@ class CierreEjercicio:
                 )
 
         ejercicio.cerrar()
+
+        movimiento = Movimiento(
+            id=None,
+            fecha=ejercicio.fecha_fin,
+            descripcion="Cierre del ejercicio",
+        )
+
+        #movimiento.confirmar()
+
+        return movimiento

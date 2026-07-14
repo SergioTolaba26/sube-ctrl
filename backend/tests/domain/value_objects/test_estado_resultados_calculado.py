@@ -4,7 +4,7 @@ from domain.value_objects.estado_resultados_calculado import (
     EstadoResultadosCalculado,
 )
 from domain.value_objects.saldo_cuenta import SaldoCuenta
-from tests.builders import crear_ventas
+from tests.builders.entidades_builder import crear_ventas
 
 
 def test_se_puede_crear_un_estado_resultados_calculado():

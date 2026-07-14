@@ -57,3 +57,15 @@ class LineaMovimiento:
             importe=importe,
             tipo_afectacion=TipoAfectacion.CREDITO
         )
+    def es_debito(self) -> bool:
+        return (
+            self.tipo_afectacion
+            == TipoAfectacion.DEBITO
+        )
+
+
+    def es_credito(self) -> bool:
+        return (
+            self.tipo_afectacion
+            == TipoAfectacion.CREDITO
+        )

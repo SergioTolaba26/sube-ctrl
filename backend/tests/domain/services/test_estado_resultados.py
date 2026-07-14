@@ -8,7 +8,7 @@ from domain.entities.movimiento import Movimiento
 from domain.enums.tipo_cuenta import TipoCuenta
 from domain.services.estado_resultados import EstadoResultados
 from domain.value_objects.saldo_cuenta import SaldoCuenta
-from tests.builders import (
+from tests.builders.entidades_builder import (
     crear_caja,
     crear_ventas,
     crear_gastos,

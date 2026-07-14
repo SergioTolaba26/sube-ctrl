@@ -15,10 +15,16 @@ class LibroMayor:
 
         for movimiento in movimientos:
 
+
             if not movimiento.esta_confirmado():
                 continue
 
             for linea in movimiento.lineas:
+                # print(
+                # linea.cuenta.nombre,
+                # linea.cuenta is cuenta,
+                # linea.cuenta == cuenta,
+                #  )
 
                 if linea.cuenta == cuenta:
                     lineas.append(linea)
@@ -45,7 +51,10 @@ class LibroMayor:
                     saldo=saldo,
                 )
             )
-
+        # print(
+        # cuenta.nombre,
+        # len(renglones),
+        # )
         return renglones
             
 

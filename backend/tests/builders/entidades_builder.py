@@ -99,14 +99,14 @@ importe=Decimal("300"),
 
     return movimiento
 
-def crear_resultado_del_ejercicio():
+# def crear_resultado_del_ejercicio():
 
-    return Cuenta(
-        id=None,
-        codigo="3.1.01",
-        nombre="Resultado del Ejercicio",
-        tipo=TipoCuenta.PATRIMONIO_NETO,
-    )
+#     return Cuenta(
+#         id=None,
+#         codigo="3.1.01",
+#         nombre="Resultado del Ejercicio",
+#         tipo=TipoCuenta.PATRIMONIO_NETO,
+#     )
 
 def crear_resultado_del_ejercicio():
 
@@ -115,4 +115,31 @@ def crear_resultado_del_ejercicio():
         codigo="3.1.99",
         nombre="Resultado del Ejercicio",
         tipo=TipoCuenta.PATRIMONIO,
+    )
+
+def crear_compras():
+
+    return Cuenta(
+        id=None,
+        codigo="5.1.02",
+        nombre="Compras",
+        tipo=TipoCuenta.GASTO,
+    )
+
+def crear_proveedores():
+
+    return Cuenta(
+        id=None,
+        codigo="2.1.01",
+        nombre="Proveedores",
+        tipo=TipoCuenta.PASIVO,
+    )
+
+def crear_clientes():
+
+    return Cuenta(
+        id=None,
+        codigo="1.2.01",
+        nombre="Clientes",
+        tipo=TipoCuenta.ACTIVO,
     )

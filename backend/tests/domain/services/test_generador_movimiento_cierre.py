@@ -12,7 +12,7 @@ from domain.enums.tipo_cuenta import TipoCuenta
 from domain.services.generador_movimiento_cierre import (
     GeneradorMovimientoCierre,
 )
-from tests.builders import (
+from tests.builders.entidades_builder import (
     crear_caja,
     crear_ventas,
     crear_gastos,
@@ -263,3 +263,62 @@ def test_el_generador_agrega_la_linea_del_resultado():
     )
 
     assert len(cierre.lineas) == 3
+
+def test_el_movimiento_de_cierre_puede_confirmarse():
+    """
+    El asiento de cierre queda balanceado
+    y puede confirmarse.
+    """
+
+    ejercicio = crear_ejercicio()
+
+    saldo_ingreso = SaldoCuenta(
+        cuenta=crear_ventas(),
+        saldo=Decimal("1000"),
+    )
+
+    saldo_gasto = SaldoCuenta(
+        cuenta=crear_gastos(),
+        saldo=Decimal("300"),
+    )
+
+    generador = GeneradorMovimientoCierre()
+
+    cierre = generador.generar(
+        ejercicio=ejercicio,
+        saldos=[
+            saldo_ingreso,
+            saldo_gasto,
+        ],
+    )
+
+    cierre.confirmar()
+
+    assert cierre.esta_confirmado()
+
+def test_el_movimiento_de_cierre_queda_confirmado():
+    """
+    El asiento de cierre puede confirmarse.
+    """
+
+    ejercicio = crear_ejercicio()
+
+    generador = GeneradorMovimientoCierre()
+
+    cierre = generador.generar(
+        ejercicio=ejercicio,
+        saldos=[
+            SaldoCuenta(
+                cuenta=crear_ventas(),
+                saldo=Decimal("1000"),
+            ),
+            SaldoCuenta(
+                cuenta=crear_gastos(),
+                saldo=Decimal("300"),
+            ),
+        ],
+    )
+
+    cierre.confirmar()
+
+    assert cierre.esta_confirmado()

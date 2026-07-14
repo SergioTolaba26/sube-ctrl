@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 from domain.entities.linea_movimiento import LineaMovimiento
 from domain.enums.tipo_afectacion import TipoAfectacion
-from tests.builders import crear_resultado_del_ejercicio
+from tests.builders.entidades_builder import crear_resultado_del_ejercicio
 
 class ResultadoEjercicio(BaseModel):
 

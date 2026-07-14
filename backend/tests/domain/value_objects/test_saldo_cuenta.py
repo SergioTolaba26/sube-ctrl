@@ -5,7 +5,7 @@ from domain.enums.tipo_afectacion import TipoAfectacion
 from domain.entities.cuenta import Cuenta
 from domain.enums.tipo_cuenta import TipoCuenta
 from domain.value_objects.saldo_cuenta import SaldoCuenta
-from tests.builders import (
+from tests.builders.entidades_builder import (
     crear_caja,
     crear_ventas,
     crear_gastos,

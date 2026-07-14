@@ -1,6 +1,9 @@
 from domain.enums.tipo_cuenta import TipoCuenta
 from domain.services.balance_sumas_saldos import BalanceSumasSaldos
 from decimal import Decimal
+from domain.value_objects.balance_general_calculado import (
+    BalanceGeneralCalculado,
+)
 
 class BalanceGeneral:
 
@@ -65,4 +68,41 @@ class BalanceGeneral:
                 for fila in self.patrimonio(movimientos)
             ),
             Decimal("0")
+        )
+    
+
+
+    def calcular(
+        self,
+        movimientos,
+    ):
+        """
+        Calcula el Balance General completo.
+        """
+
+        activos = self.activos(
+            movimientos,
+        )
+
+        pasivos = self.pasivos(
+            movimientos,
+        )
+
+        patrimonio = self.patrimonio(
+            movimientos,
+        )
+
+        return BalanceGeneralCalculado(
+            activos=activos,
+            pasivos=pasivos,
+            patrimonio=patrimonio,
+            total_activos=self.total_activos(
+                movimientos,
+            ),
+            total_pasivos=self.total_pasivos(
+                movimientos,
+            ),
+            total_patrimonio=self.total_patrimonio(
+                movimientos,
+            ),
         )

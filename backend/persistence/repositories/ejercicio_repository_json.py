@@ -1,23 +1,23 @@
+from datetime import date
 from pathlib import Path
 
 from domain.entities.ejercicio_contable import (
     EjercicioContable,
 )
-
+from domain.enums.estado_ejercicio import (
+    EstadoEjercicio,
+)
 from domain.repositories.ejercicio_repository import (
     EjercicioRepository,
 )
 
-from persistence.json_storage import (
-    JsonStorage,
+from persistence.repositories.base_repository_json import (
+    BaseRepositoryJson,
 )
-from datetime import date
 
-from domain.enums.estado_ejercicio import (
-    EstadoEjercicio,
-)
 
 class EjercicioRepositoryJson(
+    BaseRepositoryJson,
     EjercicioRepository,
 ):
 
@@ -32,60 +32,11 @@ class EjercicioRepositoryJson(
                 "data/ejercicios.json"
             )
 
-        self.storage = JsonStorage(
-            file_path
-        )
-
-    # def guardar(
-    #     self,
-    #     ejercicio: EjercicioContable,
-    # ) -> None:
-    #     raise 
-    
-    def guardar(
-        self,
-        ejercicio: EjercicioContable,
-    ) -> None:
-
-        ejercicios = self.storage.read_list(
-            "ejercicios"
-        )
-
-        ejercicios.append(
-            self._to_dict(
-                ejercicio
-            )
-        )
-
-        self.storage.write_list(
+        super().__init__(
+            file_path,
             "ejercicios",
-            ejercicios,
         )
 
-    # def obtener_todos(
-    #     self,
-    # ) -> list[EjercicioContable]:
-    #     raise NotImplementedError
-    def obtener_todos(
-        self,
-    ) -> list[EjercicioContable]:
-
-        ejercicios = self.storage.read_list(
-            "ejercicios"
-        )
-
-        return [
-
-            self._from_dict(data)
-
-            for data in ejercicios
-        ]
-
-    # def obtener_abierto(
-    #     self,
-    # ) -> EjercicioContable | None:
-    #     raise 
-    
     def obtener_abierto(
         self,
     ) -> EjercicioContable | None:
@@ -98,35 +49,6 @@ class EjercicioRepositoryJson(
 
         return None
 
-    # def eliminar(
-    #     self,
-    #     ejercicio: EjercicioContable,
-    # ) -> None:
-    #     raise NotImplementedError
-    def eliminar(
-        self,
-        ejercicio: EjercicioContable,
-    ) -> None:
-
-        ejercicios = self.storage.read_list(
-            "ejercicios"
-        )
-
-        ejercicios = [
-
-            data
-
-            for data in ejercicios
-
-            if data["id"] != ejercicio.id
-
-        ]
-
-        self.storage.write_list(
-            "ejercicios",
-            ejercicios,
-        )
-    
     def _to_dict(
         self,
         ejercicio: EjercicioContable,
@@ -138,16 +60,14 @@ class EjercicioRepositoryJson(
 
             "empresa_id": ejercicio.empresa_id,
 
-            "fecha_inicio":
-                ejercicio.fecha_inicio.isoformat(),
+            "fecha_inicio": ejercicio.fecha_inicio.isoformat(),
 
-            "fecha_fin":
-                ejercicio.fecha_fin.isoformat(),
+            "fecha_fin": ejercicio.fecha_fin.isoformat(),
 
-            "estado":
-                ejercicio.estado.name,
+            "estado": ejercicio.estado.name,
+
         }
-    
+
     def _from_dict(
         self,
         data: dict,
@@ -170,5 +90,5 @@ class EjercicioRepositoryJson(
             estado=EstadoEjercicio[
                 data["estado"]
             ],
+
         )
-    

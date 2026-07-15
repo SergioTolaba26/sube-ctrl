@@ -252,3 +252,5 @@ def test_eliminar_ejercicio(tmp_path):
     ejercicios = repo.obtener_todos()
 
     assert len(ejercicios) == 0
+
+# Inicio refactorizacion para simplificar codigo Sprint 10.8 Refactor

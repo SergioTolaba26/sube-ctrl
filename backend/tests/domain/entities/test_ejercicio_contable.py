@@ -14,6 +14,7 @@ def test_un_ejercicio_se_crea_abierto():
 
     ejercicio = EjercicioContable(
         id=None,
+        empresa_id=1,
         fecha_inicio=date(2026, 1, 1),
         fecha_fin=date(2026, 12, 31),
     )
@@ -28,6 +29,7 @@ def test_un_ejercicio_puede_cerrarse():
 
     ejercicio = EjercicioContable(
         id=None,
+        empresa_id=1,
         fecha_inicio=date(2026, 1, 1),
         fecha_fin=date(2026, 12, 31),
     )
@@ -44,6 +46,7 @@ def test_un_ejercicio_cerrado_no_puede_volver_a_cerrarse():
 
     ejercicio = EjercicioContable(
         id=None,
+        empresa_id=1,
         fecha_inicio=date(2026, 1, 1),
         fecha_fin=date(2026, 12, 31),
     )
@@ -61,6 +64,7 @@ def test_un_ejercicio_contiene_una_fecha_de_su_periodo():
 
     ejercicio = EjercicioContable(
         id=None,
+        empresa_id=1,
         fecha_inicio=date(2026, 1, 1),
         fecha_fin=date(2026, 12, 31),
     )
@@ -77,6 +81,7 @@ def test_un_ejercicio_no_contiene_fechas_fuera_del_periodo():
 
     ejercicio = EjercicioContable(
         id=None,
+        empresa_id=1,
         fecha_inicio=date(2026, 1, 1),
         fecha_fin=date(2026, 12, 31),
     )
@@ -95,6 +100,7 @@ def test_un_ejercicio_no_puede_crearse_con_fechas_invalidas():
 
         EjercicioContable(
             id=None,
+            empresa_id=1,
             fecha_inicio=date(2026, 12, 31),
             fecha_fin=date(2026, 1, 1),
         )
@@ -107,6 +113,7 @@ def test_no_puede_cerrarse_un_ejercicio_con_movimientos_pendientes():
 
     ejercicio = EjercicioContable(
         id=None,
+        empresa_id=1,
         fecha_inicio=date(2026, 1, 1),
         fecha_fin=date(2026, 12, 31),
     )
@@ -129,6 +136,7 @@ def test_no_puede_cerrarse_dos_veces_un_ejercicio():
 
     ejercicio = EjercicioContable(
         id=None,
+        empresa_id=1,
         fecha_inicio=date(2026, 1, 1),
         fecha_fin=date(2026, 12, 31),
     )
@@ -151,6 +159,7 @@ def test_movimientos_de_otro_ejercicio_no_impiden_el_cierre():
 
     ejercicio = EjercicioContable(
         id=None,
+        empresa_id=1,
         fecha_inicio=date(2026, 1, 1),
         fecha_fin=date(2026, 12, 31),
     )
@@ -178,6 +187,7 @@ def test_el_cierre_del_ejercicio_genera_un_movimiento():
 
     ejercicio = EjercicioContable(
         id=None,
+        empresa_id=1,
         fecha_inicio=date(2026, 1, 1),
         fecha_fin=date(2026, 12, 31),
     )
@@ -202,6 +212,7 @@ def test_el_movimiento_de_cierre_tiene_descripcion():
 
     ejercicio = EjercicioContable(
         id=None,
+        empresa_id=1,
         fecha_inicio=date(2026, 1, 1),
         fecha_fin=date(2026, 12, 31),
     )
@@ -223,6 +234,7 @@ def test_el_movimiento_de_cierre_tiene_la_fecha_fin_del_ejercicio():
 
     ejercicio = EjercicioContable(
         id=None,
+        empresa_id=1,
         fecha_inicio=date(2026, 1, 1),
         fecha_fin=date(2026, 12, 31),
     )
@@ -236,24 +248,21 @@ def test_el_movimiento_de_cierre_tiene_la_fecha_fin_del_ejercicio():
 
     assert movimiento.fecha == date(2026, 12, 31)
 
-# @pytest.mark.skip(reason="Se habilitará cuando el cierre genere las líneas contables.")
-# def test_el_movimiento_de_cierre_queda_confirmado():
-#     """
-#     El movimiento generado al cerrar un ejercicio
-#     queda confirmado automáticamente.
-#     """
 
-#     ejercicio = EjercicioContable(
-#         id=None,
-#         fecha_inicio=date(2026, 1, 1),
-#         fecha_fin=date(2026, 12, 31),
-#     )
+from datetime import date
 
-#     cierre = CierreEjercicio()
+from domain.entities.ejercicio_contable import (
+    EjercicioContable,
+)
 
-#     movimiento = cierre.cerrar(
-#         ejercicio,
-#         movimientos=[],
-#     )
 
-#     assert movimiento.esta_confirmado()
+def test_conserva_empresa_id():
+
+    ejercicio = EjercicioContable(
+        id=None,
+        empresa_id=7,
+        fecha_inicio=date(2026, 1, 1),
+        fecha_fin=date(2026, 12, 31),
+    )
+
+    assert ejercicio.empresa_id == 7

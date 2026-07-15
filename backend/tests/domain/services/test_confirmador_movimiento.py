@@ -17,6 +17,7 @@ def test_no_puede_confirmarse_un_movimiento_en_un_ejercicio_cerrado():
 
     ejercicio = EjercicioContable(
         id=None,
+        empresa_id=1,
         fecha_inicio=date(2026, 1, 1),
         fecha_fin=date(2026, 12, 31),
     )

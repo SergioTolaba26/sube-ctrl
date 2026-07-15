@@ -11,6 +11,8 @@ class EjercicioContable:
 
     id: int | None
 
+    empresa_id: int # multiempresa
+
     fecha_inicio: date
     fecha_fin: date
 

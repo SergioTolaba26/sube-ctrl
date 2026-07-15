@@ -30,9 +30,10 @@ def crear_gastos():
     tipo=TipoCuenta.GASTO,
     )
 
-def crear_ejercicio():
+def crear_ejercicio()   :
     return EjercicioContable(
         id=None,
+        empresa_id=1,
         fecha_inicio=date(2026, 1, 1),
         fecha_fin=date(2026, 12, 31),
     )

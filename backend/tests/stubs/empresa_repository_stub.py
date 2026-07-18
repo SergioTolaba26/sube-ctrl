@@ -32,6 +32,17 @@ class EmpresaRepositoryStub(EmpresaRepository):
                 return empresa
 
         return None
+    def buscar_por_id(
+        self,
+        empresa_id: int,
+    ):
+
+        for empresa in self.empresas:
+
+            if empresa.id == empresa_id:
+                return empresa
+
+        return None
 
     def eliminar(
         self,

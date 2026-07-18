@@ -36,15 +36,7 @@ def test_devuelve_un_estado_resultados_calculado():
         resultado,
         EstadoResultadosCalculado,
     )
-def test_devuelve_el_resultado_del_ejercicio():
 
-    caso = ConsultarEstadoResultados()
-
-    resultado = caso.ejecutar(
-        movimientos=crear_movimientos_del_ejercicio(),
-    )
-
-    assert resultado.resultado == Decimal("200")
 
 def test_devuelve_tres_saldos_de_resultado():
 

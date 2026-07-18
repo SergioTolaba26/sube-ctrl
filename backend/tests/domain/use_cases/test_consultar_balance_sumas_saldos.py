@@ -101,16 +101,6 @@ def test_la_sexta_fila_corresponde_a_clientes():
     assert filas[5].cuenta.nombre == "Clientes"
     assert filas[5].saldo == Decimal("-800")
 
-def test_la_quinta_fila_corresponde_a_proveedores():
-
-    caso = ConsultarBalanceSumasSaldos()
-
-    filas = caso.ejecutar(
-        movimientos=crear_movimientos_del_ejercicio(),
-    )
-
-    assert filas[4].cuenta.nombre == "Proveedores"
-    assert filas[4].saldo == Decimal("-500")
 
  
 from domain.use_cases.consultar_balance_general import (

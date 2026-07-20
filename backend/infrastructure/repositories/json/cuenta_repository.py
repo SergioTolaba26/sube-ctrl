@@ -19,9 +19,9 @@ class CuentaRepositoryJson(
         storage: Storage,
     ):
         super().__init__(
-        storage,
-        CuentaMapper,
-    )
+            storage=storage,
+            mapper=CuentaMapper,
+        )
     # Ya funciona la herencia y puedo borrar este metodo que ahora viene de base_repository.py
     # def listar(
     #     self,

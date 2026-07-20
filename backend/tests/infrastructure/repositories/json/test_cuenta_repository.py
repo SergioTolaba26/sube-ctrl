@@ -171,7 +171,7 @@ def test_guardar_agrega_una_cuenta(
 
     assert cuentas[0].nombre == "Caja"
 
-def test_guardar_actualiza_si_el_id_ya_existe( # cambiamos id x codigo para refactorizar generico
+def test_guardar_actualiza_si_el_id_ya_existe( 
     tmp_path,
 ):
 

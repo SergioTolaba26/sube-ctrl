@@ -1,9 +1,11 @@
 from fastapi import APIRouter
+from pathlib import Path
+
+from domain.use_cases.registrar_empresa import RegistrarEmpresa
 from presentation.schemas.empresa_schema import (
     EmpresaCreate,
     EmpresaResponse,
 )
-from pathlib import Path
 
 from persistence.json_storage import JsonStorage
 
@@ -15,8 +17,8 @@ from domain.services.empresa_service import (
     EmpresaService,
 )
 
-from application.use_cases.empresa.registrar_empresa import (
-    RegistrarEmpresa,
+from application.use_cases.empresa.listar_empresas import (
+    ListarEmpresas,
 )
 
 
@@ -26,12 +28,38 @@ router = APIRouter(
 )
 
 
-@router.get("/")
+# @router.get("/")
+# def listar_empresas():
+
+#     return {
+#         "mensaje": "Listar empresas",
+#     }
+
+@router.get(
+    "/",
+    response_model=list[EmpresaResponse],
+)
 def listar_empresas():
 
-    return {
-        "mensaje": "Listar empresas",
-    }
+    storage = JsonStorage(
+        Path("data/empresas.json")
+    )
+
+    repository = EmpresaRepositoryJson(
+        storage,
+    )
+
+    # service = EmpresaService(
+    #     repository,
+    # )
+
+    use_case = ListarEmpresas(
+        repository,
+    )
+
+    empresas = use_case.execute()
+
+    return empresas
 
 
 @router.get("/{empresa_id}")

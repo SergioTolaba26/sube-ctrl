@@ -32,4 +32,8 @@ class EmpresaRepositoryJson(
                 return empresa
 
         return None
-        
+    
+    def obtener_todas(
+        self,
+    ):
+        return self.listar()

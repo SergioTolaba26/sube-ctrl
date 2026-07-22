@@ -9,8 +9,18 @@ class FakeEmpresaRepository:
         self,
     ):
         return [
-            "empresa1",
-            "empresa2",
+            Empresa(
+                id=1,
+                razon_social="Empresa 1",
+                nombre_fantasia="Empresa 1",
+                cuit="30111111111",
+            ),
+            Empresa(
+                id=2,
+                razon_social="Empresa 2",
+                nombre_fantasia="Empresa 2",
+                cuit="30222222222",
+            ),
         ]
 
     def buscar_por_id(
@@ -54,10 +64,18 @@ def test_listar_devuelve_empresas():
 
     empresas = service.listar()
 
-    assert empresas == [
-        "empresa1",
-        "empresa2",
-    ]
+    # assert empresas == [
+    #     "empresa1",
+    #     "empresa2",
+    # ]
+    assert len(empresas) == 2
+
+    # assert empresas[0].id == 1
+
+    # assert empresas[1].id == 2
+    assert empresas[0].razon_social == "Empresa 1"
+
+    assert empresas[1].razon_social == "Empresa 2"
 
 def test_buscar_por_id():
 

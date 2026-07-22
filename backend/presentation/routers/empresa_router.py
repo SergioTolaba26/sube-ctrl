@@ -20,7 +20,9 @@ from domain.services.empresa_service import (
 from application.use_cases.empresa.listar_empresas import (
     ListarEmpresas,
 )
-
+from application.use_cases.empresa.buscar_empresa import (
+    BuscarEmpresa,
+)
 
 router = APIRouter(
     prefix="/empresas",
@@ -62,14 +64,44 @@ def listar_empresas():
     return empresas
 
 
-@router.get("/{empresa_id}")
+# @router.get("/{empresa_id}")
+# def buscar_empresa(
+#     empresa_id: int,
+# ):
+
+#     return {
+#         "mensaje": f"Buscar empresa {empresa_id}",
+#     }
+
+@router.get(
+    "/{empresa_id}",
+    response_model=EmpresaResponse,
+)
 def buscar_empresa(
     empresa_id: int,
 ):
 
-    return {
-        "mensaje": f"Buscar empresa {empresa_id}",
-    }
+    storage = JsonStorage(
+        Path("data/empresas.json")
+    )
+
+    repository = EmpresaRepositoryJson(
+        storage,
+    )
+
+    service = EmpresaService(
+        repository,
+    )
+
+    use_case = BuscarEmpresa(
+        service,
+    )
+
+    empresa = use_case.execute(
+        empresa_id,
+    )
+
+    return empresa
 
 #1
 # @router.post("/")

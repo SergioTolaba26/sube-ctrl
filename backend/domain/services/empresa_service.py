@@ -24,10 +24,34 @@ class EmpresaService:
             id_,
         )
 
+    # def guardar(
+    #     self,
+    #     empresa,
+    # ):
+
+    #     self.repository.guardar(
+    #         empresa,
+    #     )
+
     def guardar(
         self,
         empresa,
     ):
+
+        empresas = self.repository.listar()
+
+        if len(empresas) == 0:
+
+            nuevo_id = 1
+
+        else:
+
+            nuevo_id = max(
+                e.id
+                for e in empresas
+            ) + 1
+
+        empresa.id = nuevo_id
 
         self.repository.guardar(
             empresa,

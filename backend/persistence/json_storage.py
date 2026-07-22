@@ -68,12 +68,27 @@ class JsonStorage(Storage):
 
     #     return self.read()
     # Modificacion para que POST no de error 500, debe generar solo esto: []
+    # def load(self):
+
+    #     if not self.exists():
+    #         return []
+
+    #     data = self.read()
+
+    #     return data.get(
+    #         "empresas",
+    #         [],
+    #     )
+
     def load(self):
 
         if not self.exists():
             return []
 
         data = self.read()
+
+        if isinstance(data, list):
+            return data
 
         return data.get(
             "empresas",

@@ -5,6 +5,7 @@ from domain.use_cases.registrar_empresa import RegistrarEmpresa
 from presentation.schemas.empresa_schema import (
     EmpresaCreate,
     EmpresaResponse,
+    EmpresaUpdate,
 )
 
 from persistence.json_storage import JsonStorage
@@ -22,6 +23,9 @@ from application.use_cases.empresa.listar_empresas import (
 )
 from application.use_cases.empresa.buscar_empresa import (
     BuscarEmpresa,
+)
+from application.use_cases.empresa.modificar_empresa import (
+    ModificarEmpresa,
 )
 
 router = APIRouter(
@@ -116,7 +120,55 @@ def buscar_empresa(
 #     empresa: EmpresaCreate,
 # ):
 
+@router.put(
+    "/{empresa_id}",
+    response_model=EmpresaResponse,
+)
+def modificar_empresa(
+    empresa_id: int,
+    empresa: EmpresaUpdate,
+):
 
+    storage = JsonStorage(
+        Path("data/empresas.json")
+    )
+
+    repository = EmpresaRepositoryJson(
+        storage,
+    )
+
+    use_case = ModificarEmpresa(
+        repository,
+    )
+
+    empresa_actual = repository.buscar_por_id(
+        empresa_id,
+    )
+
+    if empresa_actual is None:
+        return None
+
+    datos = empresa.model_dump(
+        exclude_unset=True,
+    )
+
+    empresa_modificada = use_case.execute(
+        empresa_id=empresa_id,
+        razon_social=datos.get(
+            "razon_social",
+            empresa_actual.razon_social,
+        ),
+        nombre_fantasia=datos.get(
+            "nombre_fantasia",
+            empresa_actual.nombre_fantasia,
+        ),
+        cuit=datos.get(
+            "cuit",
+            empresa_actual.cuit,
+        ),
+    )
+
+    return empresa_modificada
 #@router.post("/")
 @router.post(
     "/",

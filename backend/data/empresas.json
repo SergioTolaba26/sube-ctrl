@@ -8,9 +8,9 @@
     },
     {
         "id": 2,
-        "razon_social": "ACME S.A.",
-        "nombre_fantasia": "ACME",
-        "cuit": "30123456789",
+        "razon_social": "ACME S.R.L",
+        "nombre_fantasia": "ACME ARGENTINA",
+        "cuit": "30123456790",
         "activa": true
     }
 ]

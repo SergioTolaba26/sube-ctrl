@@ -27,7 +27,9 @@ from application.use_cases.empresa.buscar_empresa import (
 from application.use_cases.empresa.modificar_empresa import (
     ModificarEmpresa,
 )
-
+from application.use_cases.empresa.eliminar_empresa import (
+    EliminarEmpresa,
+)
 router = APIRouter(
     prefix="/empresas",
     tags=["Empresas"],
@@ -201,3 +203,36 @@ def registrar_empresa(
     )
 
     return empresa_creada
+
+@router.delete(
+    "/{empresa_id}",
+)
+def eliminar_empresa(
+    empresa_id: int,
+):
+
+    storage = JsonStorage(
+        Path("data/empresas.json")
+    )
+
+    repository = EmpresaRepositoryJson(
+        storage,
+    )
+
+    use_case = EliminarEmpresa(
+        repository,
+    )
+
+    eliminado = use_case.execute(
+        empresa_id,
+    )
+
+    if not eliminado:
+
+        return {
+            "mensaje": "Empresa no encontrada",
+        }
+
+    return {
+        "mensaje": "Empresa eliminada correctamente",
+    }

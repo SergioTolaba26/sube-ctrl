@@ -5,12 +5,5 @@
         "nombre_fantasia": "INOVA",
         "cuit": "30123456799",
         "activa": true
-    },
-    {
-        "id": 2,
-        "razon_social": "ACME S.R.L",
-        "nombre_fantasia": "ACME ARGENTINA",
-        "cuit": "30123456790",
-        "activa": true
     }
 ]

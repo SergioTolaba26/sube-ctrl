@@ -1,3 +1,9 @@
-{
-    "empresas": []
-}
+[
+    {
+        "id": null,
+        "razon_social": "ACME S.A.",
+        "nombre_fantasia": "ACME",
+        "cuit": "30123456789",
+        "activa": true
+    }
+]

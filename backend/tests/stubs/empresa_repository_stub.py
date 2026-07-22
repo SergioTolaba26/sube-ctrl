@@ -20,6 +20,12 @@ class EmpresaRepositoryStub(EmpresaRepository):
     def obtener_todas(self):
 
         return self.empresas
+    # Dimos marcha atras
+    # def listar(
+    #     self,
+    # ):
+
+    #     return self.empresas
 
     def buscar_por_cuit(
         self,

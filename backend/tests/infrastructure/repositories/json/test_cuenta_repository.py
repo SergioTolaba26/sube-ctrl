@@ -1,3 +1,4 @@
+from application.use_cases import cuenta
 from infrastructure.persistence.base.storage import (
     Storage,
 )
@@ -5,6 +6,7 @@ from infrastructure.persistence.base.storage import (
 from infrastructure.repositories.json.cuenta_repository import (
     CuentaRepositoryJson,
 )
+from tests.factories.cuenta_factory import CuentaFactory
 
 
 def test_crea_repositorio(tmp_path):
@@ -152,13 +154,18 @@ def test_guardar_agrega_una_cuenta(
         storage,
     )
 
-    cuenta = Cuenta(
-        id=1,
-        codigo="1.1.01",
-        nombre="Caja",
-        tipo=TipoCuenta.ACTIVO,
-    )
-
+    # cuenta = Cuenta(
+    #     id=1,
+    #     codigo="1.1.01",
+    #     nombre="Caja",
+    #     tipo=TipoCuenta.ACTIVO,
+    # )
+  
+    cuenta = CuentaFactory.crear()
+    # Si deseo ampliar o indicar algo mas de la cuenta
+    # CuentaFactory.crear(
+    # nombre="Caja Principal",
+    # )
     repository.guardar(
         cuenta,
     )
@@ -277,12 +284,13 @@ def test_eliminar_quita_la_cuenta(
         storage,
     )
 
-    cuenta = Cuenta(
-        id=1,
-        codigo="1.1.01",
-        nombre="Caja",
-        tipo=TipoCuenta.ACTIVO,
-    )
+    # cuenta = Cuenta(
+    #     id=1,
+    #     codigo="1.1.01",
+    #     nombre="Caja",
+    #     tipo=TipoCuenta.ACTIVO,
+    # )
+    cuenta = CuentaFactory.crear()
 
     repository.guardar(
         cuenta,

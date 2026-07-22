@@ -1,7 +1,9 @@
 from domain.services.cuenta_service import (
     CuentaService,
 )
-
+from tests.factories.cuenta_factory import (
+    CuentaFactory,
+)
 
 class FakeCuentaRepository:
 
@@ -120,13 +122,12 @@ def test_guardar():
         repository,
     )
 
-    cuenta = Cuenta(
-        id=1,
-        codigo="1.1.01",
-        nombre="Caja",
-        tipo=TipoCuenta.ACTIVO,
-    )
-
+    cuenta = CuentaFactory.crear()
+    # si necesito cambiar algun dato
+#     cuenta = CuentaFactory.crear(
+#     id=10,
+#     nombre="Banco Nación",
+# )
     service.guardar(
         cuenta,
     )

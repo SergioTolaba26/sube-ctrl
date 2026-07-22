@@ -2,11 +2,12 @@ from application.use_cases.empresa.listar_empresas import (
     ListarEmpresas,
 )
 
-from tests.stubs.empresa_repository_stub import (
-    EmpresaRepositoryStub,
-)
+# from tests.stubs.empresa_service_stub import (
+#     EmpresaServiceStub,
+# )
 
 from domain.entities.empresa import Empresa
+from tests.stubs.empresa_repository_stub import EmpresaRepositoryStub
 
 
 def test_lista_empresas():

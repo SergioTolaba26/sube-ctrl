@@ -1,17 +1,27 @@
-from domain.repositories.empresa_repository import (
-    EmpresaRepository,
-)
+# from domain.repositories.empresa_repository import (
+#     EmpresaRepository,
+# )
 from domain.entities.empresa import Empresa
-
+from domain.services.empresa_service import (
+    EmpresaService,
+)
 
 class RegistrarEmpresa:
 
     def __init__(
         self,
-        repository: EmpresaRepository,
+        service: EmpresaService,
     ):
+        self.service = service
 
-        self.repository = repository
+# class RegistrarEmpresa:
+
+#     def __init__(
+#         self,
+#         repository: EmpresaRepository,
+#     ):
+
+#         self.repository = repository
 
     # def execute(
     #     self,
@@ -34,8 +44,11 @@ class RegistrarEmpresa:
             nombre_fantasia=nombre_fantasia,
             cuit=cuit,
         )
-        self.repository.guardar(
-        empresa
+        # self.repository.guardar(
+        # empresa
+        # )
+        self.service.guardar(
+        empresa,
         )
 
         return empresa

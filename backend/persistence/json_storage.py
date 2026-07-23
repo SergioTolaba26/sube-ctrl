@@ -80,21 +80,26 @@ class JsonStorage(Storage):
     #         [],
     #     )
 
+    # def load(self):
+
+    #     if not self.exists():
+    #         return []
+
+    #     data = self.read()
+
+    #     if isinstance(data, list):
+    #         return data
+
+    #     return data.get(
+    #         "empresas",
+    #         [],
+    #     )
     def load(self):
 
         if not self.exists():
             return []
 
-        data = self.read()
-
-        if isinstance(data, list):
-            return data
-
-        return data.get(
-            "empresas",
-            [],
-        )
-
+        return self.read()
 
     def save(
         self,

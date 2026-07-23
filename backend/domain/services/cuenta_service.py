@@ -35,10 +35,32 @@ class CuentaService:
             codigo,
         )
 
+    # def guardar(
+    #     self,
+    #     cuenta,
+    # ):
+
+    #     self.repository.guardar(
+    #         cuenta,
+    #     )
+
     def guardar(
         self,
         cuenta,
     ):
+
+        cuentas = self.repository.listar()
+
+        if not cuentas:
+
+            cuenta.id = 1
+
+        else:
+
+            cuenta.id = max(
+                c.id
+                for c in cuentas
+            ) + 1
 
         self.repository.guardar(
             cuenta,

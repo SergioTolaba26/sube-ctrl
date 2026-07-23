@@ -1,6 +1,7 @@
 from domain.entities.cuenta import Cuenta
-from domain.repositories.plan_cuenta_repository import (
-    PlanCuentaRepository,
+
+from domain.services.cuenta_service import (
+    CuentaService,
 )
 
 
@@ -8,15 +9,16 @@ class RegistrarCuenta:
 
     def __init__(
         self,
-        repository: PlanCuentaRepository,
+        service: CuentaService,
     ):
-        self.repository = repository
+        self.service = service
 
     def execute(
         self,
         codigo: str,
         nombre: str,
         tipo,
+        imputable: bool = True,
     ):
 
         cuenta = Cuenta(
@@ -24,6 +26,11 @@ class RegistrarCuenta:
             codigo=codigo,
             nombre=nombre,
             tipo=tipo,
+            imputable=imputable,
         )
-        self.repository.guardar(cuenta)
+
+        self.service.guardar(
+            cuenta,
+        )
+
         return cuenta

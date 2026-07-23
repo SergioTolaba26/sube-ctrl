@@ -11,8 +11,16 @@ class FakeCuentaRepository:
         self,
     ):
         return [
-            "cuenta1",
-            "cuenta2",
+            CuentaFactory.crear(
+                id=1,
+                codigo="1.1.01",
+                nombre="Caja",
+            ),
+            CuentaFactory.crear(
+                id=2,
+                codigo="1.1.02",
+                nombre="Banco",
+            ),
         ]
 
     def buscar_por_id(
@@ -63,10 +71,15 @@ def test_listar():
 
     cuentas = service.listar()
 
-    assert cuentas == [
-        "cuenta1",
-        "cuenta2",
-    ]
+    # assert cuentas == [
+    #     "cuenta1",
+    #     "cuenta2",
+    # ]
+    assert len(cuentas) == 2
+
+    assert cuentas[0].codigo == "1.1.01"
+
+    assert cuentas[1].codigo == "1.1.02"
 
 def test_buscar_por_id():
 

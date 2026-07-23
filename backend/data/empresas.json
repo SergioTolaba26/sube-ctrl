@@ -1,1 +1,16 @@
-[]
+[
+    {
+        "id": 1,
+        "razon_social": "EMPRESA AUDITORIA MODIFICADA S.A.",
+        "nombre_fantasia": "AUDITORIA MOD",
+        "cuit": "30777777771",
+        "activa": true
+    },
+    {
+        "id": 2,
+        "razon_social": "ACME S.A.",
+        "nombre_fantasia": "ACME",
+        "cuit": "30123456789",
+        "activa": true
+    }
+]

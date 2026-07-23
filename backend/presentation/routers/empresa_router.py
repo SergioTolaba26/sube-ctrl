@@ -1,7 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pathlib import Path
 
-from domain.use_cases.registrar_empresa import RegistrarEmpresa
+from application.use_cases.empresa.registrar_empresa import (
+    RegistrarEmpresa,
+)
 from presentation.schemas.empresa_schema import (
     EmpresaCreate,
     EmpresaResponse,
@@ -103,9 +105,18 @@ def buscar_empresa(
         service,
     )
 
-    empresa = use_case.execute(
-        empresa_id,
-    )
+    # empresa = use_case.execute(
+    #     empresa_id,
+    # )
+
+    # return empresa
+    empresa = use_case.execute(empresa_id)
+
+    if empresa is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Empresa no encontrada",
+        )
 
     return empresa
 
@@ -148,7 +159,10 @@ def modificar_empresa(
     )
 
     if empresa_actual is None:
-        return None
+        raise HTTPException(
+            status_code=404,
+            detail="Empresa no encontrada",
+        )
 
     datos = empresa.model_dump(
         exclude_unset=True,

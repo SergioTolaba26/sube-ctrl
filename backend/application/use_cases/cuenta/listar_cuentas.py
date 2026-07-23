@@ -1,7 +1,17 @@
+from domain.services.cuenta_service import (
+    CuentaService,
+)
+
+
 class ListarCuentas:
 
-    def __init__(self, repository):
-        self.repository = repository
+    def __init__(
+        self,
+        service: CuentaService,
+    ):
+        self.service = service
 
-    def execute(self):
-        return self.repository.obtener_todas()
+    def execute(
+        self,
+    ):
+        return self.service.listar()

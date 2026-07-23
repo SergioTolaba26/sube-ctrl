@@ -3,7 +3,7 @@ from domain.services.cuenta_service import (
 )
 
 
-class BuscarCuenta:
+class EliminarCuenta:
 
     def __init__(
         self,
@@ -15,6 +15,16 @@ class BuscarCuenta:
         self,
         cuenta_id: int,
     ):
-        return self.service.buscar_por_id(
+
+        cuenta = self.service.buscar_por_id(
             cuenta_id,
         )
+
+        if cuenta is None:
+            return None
+
+        self.service.eliminar(
+            cuenta_id,
+        )
+
+        return cuenta

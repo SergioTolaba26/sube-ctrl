@@ -49,18 +49,23 @@ class CuentaService:
         cuenta,
     ):
 
-        cuentas = self.repository.listar()
+        if cuenta.id is None:
 
-        if not cuentas:
+            cuentas = self.repository.listar()
 
-            cuenta.id = 1
+            if not cuentas:
 
-        else:
+                cuenta.id = 1
 
-            cuenta.id = max(
-                c.id
-                for c in cuentas
-            ) + 1
+            else:
+
+                cuenta.id = (
+                    max(
+                        c.id
+                        for c in cuentas
+                    )
+                    + 1
+                )
 
         self.repository.guardar(
             cuenta,

@@ -5,12 +5,39 @@ from domain.services.movimiento_service import (
 
 class FakeMovimientoRepository:
 
+    # def listar(
+    #     self,
+    # ):
+    #     return [
+    #         "movimiento1",
+    #         "movimiento2",
+    #     ]
     def listar(
         self,
     ):
         return [
-            "movimiento1",
-            "movimiento2",
+            Movimiento(
+                id=1,
+                fecha=date(
+                    2026,
+                    7,
+                    20,
+                ),
+                descripcion="Movimiento 1",
+                estado=EstadoMovimiento.BORRADOR,
+                lineas=[],
+            ),
+            Movimiento(
+                id=2,
+                fecha=date(
+                    2026,
+                    7,
+                    21,
+                ),
+                descripcion="Movimiento 2",
+                estado=EstadoMovimiento.BORRADOR,
+                lineas=[],
+            ),
         ]
     def buscar_por_id(
         self,
@@ -42,6 +69,16 @@ def test_crea_service():
         service.repository
         is repository
     )
+# MODIFICACION TEST PARA QUE NO FALLE CON LA ARQUITECTURA NUEVA
+from datetime import date
+
+from domain.entities.movimiento import (
+    Movimiento,
+)
+
+from domain.enums.estado_movimiento import (
+    EstadoMovimiento,
+)
 
 def test_listar():
 
@@ -53,10 +90,17 @@ def test_listar():
 
     movimientos = service.listar()
 
-    assert movimientos == [
-        "movimiento1",
-        "movimiento2",
-    ]
+    # assert movimientos == [
+    #     "movimiento1",
+    #     "movimiento2",
+    # ]
+    assert len(
+        movimientos,
+    ) == 2
+
+    assert movimientos[0].id == 1
+
+    assert movimientos[1].id == 2
 
 def test_buscar_por_id():
 

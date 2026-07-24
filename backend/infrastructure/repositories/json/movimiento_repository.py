@@ -35,3 +35,14 @@ class MovimientoRepositoryJson(
             datos,
             self.cuenta_repository,
         )
+    def buscar_por_id(
+        self,
+        id_,
+    ):
+
+        for movimiento in self.listar():
+
+            if movimiento.id == id_:
+                return movimiento
+
+        return None

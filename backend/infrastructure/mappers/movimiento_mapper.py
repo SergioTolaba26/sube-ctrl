@@ -43,8 +43,12 @@ class MovimientoMapper:
                 datos["estado"]
             ],
 
+            # lineas=LineaMovimientoMapper.from_dict_list(
+            #     datos["lineas"],
+            #     cuenta_repository,
+            # ),
             lineas=LineaMovimientoMapper.from_dict_list(
-                datos["lineas"],
+                datos.get("lineas", []), # soporta CRUD inicial de solo encabezados, sin lineas todavía
                 cuenta_repository,
             ),
         )

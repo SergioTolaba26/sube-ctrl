@@ -10,6 +10,11 @@ class MovimientoRepositoryStub(
     def __init__(self):
 
         self.movimientos = []
+    
+    def listar(
+        self,
+    ):
+        return self.movimientos
 
     def guardar(
         self,

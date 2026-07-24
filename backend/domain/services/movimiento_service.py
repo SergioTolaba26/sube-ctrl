@@ -26,15 +26,35 @@ class MovimientoService:
             id_,
         )
 
+    # def guardar(
+    #     self,
+    #     movimiento,
+    # ):
+
+    #     self.repository.guardar(
+    #         movimiento,
+    #     )
     def guardar(
         self,
         movimiento,
     ):
 
+        movimientos = self.repository.listar()
+
+        if not movimientos:
+
+            movimiento.id = 1
+
+        else:
+
+            movimiento.id = max(
+                m.id
+                for m in movimientos
+            ) + 1
+
         self.repository.guardar(
             movimiento,
         )
-
     def eliminar(
         self,
         id_,

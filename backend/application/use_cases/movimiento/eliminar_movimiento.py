@@ -3,7 +3,7 @@ from domain.services.movimiento_service import (
 )
 
 
-class BuscarMovimiento:
+class EliminarMovimiento:
 
     def __init__(
         self,
@@ -15,6 +15,16 @@ class BuscarMovimiento:
         self,
         movimiento_id: int,
     ):
-        return self.service.buscar_por_id(
+
+        movimiento = self.service.buscar_por_id(
             movimiento_id,
         )
+
+        if movimiento is None:
+            return None
+
+        self.service.eliminar(
+            movimiento_id,
+        )
+
+        return movimiento

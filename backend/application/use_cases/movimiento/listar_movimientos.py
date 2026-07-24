@@ -1,5 +1,5 @@
-from domain.repositories.movimiento_repository import (
-    MovimientoRepository,
+from domain.services.movimiento_service import (
+    MovimientoService,
 )
 
 
@@ -7,11 +7,11 @@ class ListarMovimientos:
 
     def __init__(
         self,
-        repository: MovimientoRepository,
+        service: MovimientoService,
     ):
-        self.repository = repository
+        self.service = service
 
     def execute(
         self,
     ):
-        return self.repository.obtener_todos()
+        return self.service.listar()

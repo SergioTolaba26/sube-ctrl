@@ -1,5 +1,5 @@
 from domain.entities.movimiento import (
-    Movimiento,
+    Movimiento, 
 )
 
 
@@ -34,23 +34,47 @@ class MovimientoService:
     #     self.repository.guardar(
     #         movimiento,
     #     )
+    # def guardar(
+    #     self,
+    #     movimiento,
+    # ):
+
+    #     movimientos = self.repository.listar()
+
+    #     if not movimientos:
+
+    #         movimiento.id = 1
+
+    #     else:
+
+    #         movimiento.id = max(
+    #             m.id
+    #             for m in movimientos
+    #         ) + 1
+
+    #     self.repository.guardar(
+    #         movimiento,
+    #     )
+    # MODIFICACION PARA QUE AL HACER UN UPDATE no agruegue otro id
     def guardar(
         self,
         movimiento,
     ):
 
-        movimientos = self.repository.listar()
+        if movimiento.id is None:
 
-        if not movimientos:
+            movimientos = self.repository.listar()
 
-            movimiento.id = 1
+            if not movimientos:
 
-        else:
+                movimiento.id = 1
 
-            movimiento.id = max(
-                m.id
-                for m in movimientos
-            ) + 1
+            else:
+
+                movimiento.id = max(
+                    m.id
+                    for m in movimientos
+                ) + 1
 
         self.repository.guardar(
             movimiento,

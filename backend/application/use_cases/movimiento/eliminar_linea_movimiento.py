@@ -3,29 +3,32 @@ from domain.services.movimiento_service import (
 )
 
 
-class ConfirmarMovimiento:
+class EliminarLineaMovimiento:
 
     def __init__(
         self,
-        service: MovimientoService,
+        movimiento_service: MovimientoService,
     ):
-        self.service = service
+        self.movimiento_service = movimiento_service
 
     def execute(
         self,
         movimiento_id: int,
+        linea_index: int,
     ):
 
-        movimiento = self.service.buscar_por_id(
+        movimiento = self.movimiento_service.buscar_por_id(
             movimiento_id,
         )
 
         if movimiento is None:
             return None
 
-        movimiento.confirmar()
+        movimiento.eliminar_linea(
+            linea_index,
+        )
 
-        self.service.guardar(
+        self.movimiento_service.guardar(
             movimiento,
         )
 

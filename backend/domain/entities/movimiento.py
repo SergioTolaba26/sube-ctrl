@@ -165,3 +165,20 @@ class Movimiento(Entity):
             )
 
         self.estado = EstadoMovimiento.ANULADO
+
+    def eliminar_linea(
+        self,
+        indice: int,
+    ) -> None:
+
+        if not self.esta_en_borrador():
+            raise ValueError(
+                "No se pueden eliminar líneas de un movimiento confirmado."
+            )
+
+        if indice < 0 or indice >= len(self.lineas):
+            raise IndexError(
+                "Línea inexistente."
+            )
+
+        self.lineas.pop(indice)

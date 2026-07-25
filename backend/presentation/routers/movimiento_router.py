@@ -42,7 +42,46 @@ from application.use_cases.movimiento.modificar_movimiento import (
 from application.use_cases.movimiento.eliminar_movimiento import (
     EliminarMovimiento,
 )
+# Linea movimiento
+from presentation.schemas.linea_movimiento_schema import (
+    LineaMovimientoCreate,
+    LineaMovimientoResponse,
+)
 
+from application.use_cases.movimiento.agregar_linea_movimiento import (
+    AgregarLineaMovimiento,
+)
+
+from domain.services.cuenta_service import (
+    CuentaService,
+)
+# Agregar linea movimiento
+from fastapi import HTTPException
+
+from application.use_cases.movimiento.agregar_linea_movimiento import (
+    AgregarLineaMovimiento,
+)
+
+from application.use_cases.movimiento.modificar_linea_movimiento import (
+    ModificarLineaMovimiento,
+)
+
+from application.use_cases.movimiento.eliminar_linea_movimiento import (
+    EliminarLineaMovimiento,
+)
+
+from domain.services.cuenta_service import (
+    CuentaService,
+)
+
+from presentation.schemas.linea_movimiento_schema import (
+    LineaMovimientoCreate,
+    LineaMovimientoResponse,
+)
+
+from application.use_cases.movimiento.confirmar_movimiento import (
+    ConfirmarMovimiento,
+)
 
 router = APIRouter(
     prefix="/movimientos",
@@ -194,42 +233,37 @@ def modificar_movimiento(
         cuenta_repository,
     )
 
-    service = MovimientoService(
+    movimiento_service = MovimientoService(
         movimiento_repository,
     )
 
     use_case = ModificarMovimiento(
-        service,
+        movimiento_service,
     )
 
-    movimiento_actual = service.buscar_por_id(
-        movimiento_id,
-    )
+    try:
 
-    if movimiento_actual is None:
+        movimiento_modificado = use_case.execute(
+            movimiento_id=movimiento_id,
+            fecha=movimiento.fecha,
+            descripcion=movimiento.descripcion,
+        )
+
+    except ValueError as e:
+
+        raise HTTPException(
+            status_code=400,
+            detail=str(e),
+        )
+
+    if movimiento_modificado is None:
+
         raise HTTPException(
             status_code=404,
             detail="Movimiento no encontrado",
         )
 
-    datos = movimiento.model_dump(
-        exclude_unset=True,
-    )
-
-    movimiento_modificado = use_case.execute(
-        movimiento_id=movimiento_id,
-        fecha=datos.get(
-            "fecha",
-            movimiento_actual.fecha,
-        ),
-        descripcion=datos.get(
-            "descripcion",
-            movimiento_actual.descripcion,
-        ),
-    )
-
     return movimiento_modificado
-
 @router.delete(
     "/{movimiento_id}",
 )
@@ -274,4 +308,343 @@ def eliminar_movimiento(
 
     return {
         "mensaje": "Movimiento eliminado correctamente",
+    }
+
+@router.post(
+    "/{movimiento_id}/lineas",
+    response_model=LineaMovimientoResponse,
+)
+def agregar_linea_movimiento(
+    movimiento_id: int,
+    linea: LineaMovimientoCreate,
+):
+
+    cuenta_storage = JsonStorage(
+        Path("data/cuentas.json")
+    )
+
+    cuenta_repository = CuentaRepositoryJson(
+        cuenta_storage,
+    )
+
+    movimiento_storage = JsonStorage(
+        Path("data/movimientos.json")
+    )
+
+    movimiento_repository = MovimientoRepositoryJson(
+        movimiento_storage,
+        cuenta_repository,
+    )
+
+    movimiento_service = MovimientoService(
+        movimiento_repository,
+    )
+
+    cuenta_service = CuentaService(
+        cuenta_repository,
+    )
+
+    use_case = AgregarLineaMovimiento(
+        movimiento_service,
+        cuenta_service,
+    )
+
+    try:
+
+        linea_creada = use_case.execute(
+            movimiento_id=movimiento_id,
+            cuenta_id=linea.cuenta_id,
+            importe=linea.importe,
+            tipo_afectacion=linea.tipo_afectacion,
+        )
+
+    except ValueError as e:
+
+        raise HTTPException(
+            status_code=400,
+            detail=str(e),
+        )
+
+    if linea_creada is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Movimiento no encontrado",
+        )
+
+    return {
+        "cuenta_id": linea_creada.cuenta.id,
+        "cuenta_codigo": linea_creada.cuenta.codigo,
+        "cuenta_nombre": linea_creada.cuenta.nombre,
+        "importe": linea_creada.importe,
+        "tipo_afectacion": linea_creada.tipo_afectacion,
+    }
+
+@router.post(
+    "/{movimiento_id}/lineas",
+    response_model=LineaMovimientoResponse,
+)
+def agregar_linea_movimiento(
+    movimiento_id: int,
+    linea: LineaMovimientoCreate,
+):
+
+    cuenta_storage = JsonStorage(
+        Path("data/cuentas.json")
+    )
+
+    cuenta_repository = CuentaRepositoryJson(
+        cuenta_storage,
+    )
+
+    movimiento_storage = JsonStorage(
+        Path("data/movimientos.json")
+    )
+
+    movimiento_repository = MovimientoRepositoryJson(
+        movimiento_storage,
+        cuenta_repository,
+    )
+
+    movimiento_service = MovimientoService(
+        movimiento_repository,
+    )
+
+    cuenta_service = CuentaService(
+        cuenta_repository,
+    )
+
+    use_case = AgregarLineaMovimiento(
+        movimiento_service,
+        cuenta_service,
+    )
+
+    try:
+
+        linea_creada = use_case.execute(
+            movimiento_id=movimiento_id,
+            cuenta_id=linea.cuenta_id,
+            importe=linea.importe,
+            tipo_afectacion=linea.tipo_afectacion,
+        )
+
+    except ValueError as e:
+
+        raise HTTPException(
+            status_code=400,
+            detail=str(e),
+        )
+
+    if linea_creada is None:
+
+        raise HTTPException(
+            status_code=404,
+            detail="Movimiento no encontrado",
+        )
+
+    return {
+        "cuenta_id": linea_creada.cuenta.id,
+        "cuenta_codigo": linea_creada.cuenta.codigo,
+        "cuenta_nombre": linea_creada.cuenta.nombre,
+        "importe": linea_creada.importe,
+        "tipo_afectacion": linea_creada.tipo_afectacion,
+    }
+
+@router.put(
+    "/{movimiento_id}/lineas/{linea_index}",
+    response_model=LineaMovimientoResponse,
+)
+def modificar_linea_movimiento(
+    movimiento_id: int,
+    linea_index: int,
+    linea: LineaMovimientoCreate,
+):
+
+    cuenta_storage = JsonStorage(
+        Path("data/cuentas.json")
+    )
+
+    cuenta_repository = CuentaRepositoryJson(
+        cuenta_storage,
+    )
+
+    movimiento_storage = JsonStorage(
+        Path("data/movimientos.json")
+    )
+
+    movimiento_repository = MovimientoRepositoryJson(
+        movimiento_storage,
+        cuenta_repository,
+    )
+
+    movimiento_service = MovimientoService(
+        movimiento_repository,
+    )
+
+    cuenta_service = CuentaService(
+        cuenta_repository,
+    )
+
+    use_case = ModificarLineaMovimiento(
+        movimiento_service,
+        cuenta_service,
+    )
+
+    try:
+
+        linea_modificada = use_case.execute(
+            movimiento_id=movimiento_id,
+            linea_index=linea_index,
+            cuenta_id=linea.cuenta_id,
+            importe=linea.importe,
+            tipo_afectacion=linea.tipo_afectacion,
+        )
+
+    except ValueError as e:
+
+        raise HTTPException(
+            status_code=400,
+            detail=str(e),
+        )
+
+    except IndexError as e:
+
+        raise HTTPException(
+            status_code=404,
+            detail=str(e),
+        )
+
+    if linea_modificada is None:
+
+        raise HTTPException(
+            status_code=404,
+            detail="Movimiento no encontrado",
+        )
+
+    return {
+        "cuenta_id": linea_modificada.cuenta.id,
+        "cuenta_codigo": linea_modificada.cuenta.codigo,
+        "cuenta_nombre": linea_modificada.cuenta.nombre,
+        "importe": linea_modificada.importe,
+        "tipo_afectacion": linea_modificada.tipo_afectacion,
+    }
+
+@router.delete(
+    "/{movimiento_id}/lineas/{linea_index}",
+    response_model=MovimientoResponse,
+)
+def eliminar_linea_movimiento(
+    movimiento_id: int,
+    linea_index: int,
+):
+
+    cuenta_storage = JsonStorage(
+        Path("data/cuentas.json")
+    )
+
+    cuenta_repository = CuentaRepositoryJson(
+        cuenta_storage,
+    )
+
+    movimiento_storage = JsonStorage(
+        Path("data/movimientos.json")
+    )
+
+    movimiento_repository = MovimientoRepositoryJson(
+        movimiento_storage,
+        cuenta_repository,
+    )
+
+    movimiento_service = MovimientoService(
+        movimiento_repository,
+    )
+
+    use_case = EliminarLineaMovimiento(
+        movimiento_service,
+    )
+
+    try:
+
+        movimiento = use_case.execute(
+            movimiento_id=movimiento_id,
+            linea_index=linea_index,
+        )
+
+    except ValueError as e:
+
+        raise HTTPException(
+            status_code=400,
+            detail=str(e),
+        )
+
+    except IndexError as e:
+
+        raise HTTPException(
+            status_code=404,
+            detail=str(e),
+        )
+
+    if movimiento is None:
+
+        raise HTTPException(
+            status_code=404,
+            detail="Movimiento no encontrado.",
+        )
+
+    return movimiento
+
+@router.post(
+    "/{movimiento_id}/confirmar",
+)
+def confirmar_movimiento(
+    movimiento_id: int,
+):
+
+    cuenta_storage = JsonStorage(
+        Path("data/cuentas.json")
+    )
+
+    cuenta_repository = CuentaRepositoryJson(
+        cuenta_storage,
+    )
+
+    movimiento_storage = JsonStorage(
+        Path("data/movimientos.json")
+    )
+
+    movimiento_repository = MovimientoRepositoryJson(
+        movimiento_storage,
+        cuenta_repository,
+    )
+
+    movimiento_service = MovimientoService(
+        movimiento_repository,
+    )
+
+    use_case = ConfirmarMovimiento(
+        movimiento_service,
+    )
+
+    try:
+
+        movimiento = use_case.execute(
+            movimiento_id,
+        )
+
+    except ValueError as e:
+
+        raise HTTPException(
+            status_code=400,
+            detail=str(e),
+        )
+
+    if movimiento is None:
+
+        raise HTTPException(
+            status_code=404,
+            detail="Movimiento no encontrado",
+        )
+
+    return {
+        "mensaje": "Movimiento confirmado correctamente.",
+        "estado": movimiento.estado.name,
     }

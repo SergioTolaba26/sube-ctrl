@@ -1,32 +1,73 @@
 [
     {
         "id": 1,
-        "fecha": "2026-07-24",
-        "descripcion": "Movimiento que estoy cambiando",
+        "fecha": "2026-07-01",
+        "descripcion": "Aporte de Capital",
         "estado": "CONFIRMADO",
         "lineas": [
             {
                 "cuenta_id": 1,
-                "importe": "1020",
+                "importe": "100000",
                 "tipo_afectacion": "DEBITO"
             },
             {
-                "cuenta_id": 2,
-                "importe": "1020",
+                "cuenta_id": 7,
+                "importe": "100000",
                 "tipo_afectacion": "CREDITO"
             }
         ]
     },
     {
         "id": 2,
-        "fecha": "2026-07-26",
-        "descripcion": "Movimiento prueba nueva",
-        "estado": "BORRADOR",
+        "fecha": "2026-07-04",
+        "descripcion": "Compra de mercaderías a crédito",
+        "estado": "CONFIRMADO",
+        "lineas": [
+            {
+                "cuenta_id": 4,
+                "importe": "30000",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 5,
+                "importe": "30000",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "fecha": "2026-07-05",
+        "descripcion": "Venta al contado",
+        "estado": "CONFIRMADO",
         "lineas": [
             {
                 "cuenta_id": 1,
-                "importe": "500",
+                "importe": "50000",
                 "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 9,
+                "importe": "50000",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "fecha": "2026-07-02",
+        "descripcion": "Pago de alquiler",
+        "estado": "CONFIRMADO",
+        "lineas": [
+            {
+                "cuenta_id": 13,
+                "importe": "10000",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "10000",
+                "tipo_afectacion": "CREDITO"
             }
         ]
     }

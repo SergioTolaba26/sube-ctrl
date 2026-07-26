@@ -25,6 +25,13 @@ PLAN_MINIMO = [
         "imputable": True,
     },
 
+    {
+        "codigo": "1.3.01",
+        "nombre": "Mercaderías",
+        "tipo": TipoCuenta.ACTIVO,
+        "imputable": True,
+    },
+
     # PASIVO
 
     {
@@ -36,7 +43,7 @@ PLAN_MINIMO = [
 
     {
         "codigo": "2.2.01",
-        "nombre": "Préstamos",
+        "nombre": "Sueldos a pagar",
         "tipo": TipoCuenta.PASIVO,
         "imputable": True,
     },
@@ -50,11 +57,25 @@ PLAN_MINIMO = [
         "imputable": True,
     },
 
+    {
+        "codigo": "3.2.01",
+        "nombre": "Resultados Acumulados",
+        "tipo": TipoCuenta.PATRIMONIO,
+        "imputable": True,
+    },
+
     # INGRESOS
 
     {
         "codigo": "4.1.01",
         "nombre": "Ventas",
+        "tipo": TipoCuenta.INGRESO,
+        "imputable": True,
+    },
+
+    {
+        "codigo": "4.2.01",
+        "nombre": "Ingresos Financieros",
         "tipo": TipoCuenta.INGRESO,
         "imputable": True,
     },
@@ -77,7 +98,21 @@ PLAN_MINIMO = [
 
     {
         "codigo": "5.3.01",
+        "nombre": "Alquiler",
+        "tipo": TipoCuenta.GASTO,
+        "imputable": True,
+    },
+
+    {
+        "codigo": "5.4.01",
         "nombre": "Servicios",
+        "tipo": TipoCuenta.GASTO,
+        "imputable": True,
+    },
+
+    {
+        "codigo": "5.5.01",
+        "nombre": "Gastos Bancarios",
         "tipo": TipoCuenta.GASTO,
         "imputable": True,
     },

@@ -1,3 +1,7 @@
+from domain.enums.estado_movimiento import (
+    EstadoMovimiento,
+)
+
 from domain.services.movimiento_service import (
     MovimientoService,
 )
@@ -18,22 +22,13 @@ class ListarLibroDiario:
         movimientos = self.service.listar()
 
         movimientos_confirmados = [
-
             movimiento
-
             for movimiento in movimientos
-
-            if movimiento.esta_confirmado()
-
+            if movimiento.estado == EstadoMovimiento.CONFIRMADO
         ]
 
         movimientos_confirmados.sort(
-
-            key=lambda movimiento: (
-                movimiento.fecha,
-                movimiento.id,
-            )
-
+            key=lambda movimiento: movimiento.fecha,
         )
 
         return movimientos_confirmados

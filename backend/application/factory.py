@@ -61,6 +61,25 @@ from application.use_cases.movimiento.eliminar_linea_movimiento import (
 from application.use_cases.cuenta.buscar_cuenta_por_codigo import (
     BuscarCuentaPorCodigo,
 )
+
+from application.use_cases.libro_diario.listar_libro_diario import (
+    ListarLibroDiario,
+)
+from application.use_cases.libro_mayor.listar_libro_mayor import (
+    ListarLibroMayor,
+)
+from application.use_cases.balance_sumas_saldos.listar_balance_sumas_saldos import (
+    ListarBalanceSumasSaldos,
+)
+from application.use_cases.balance_general.listar_balance_general import (
+    ListarBalanceGeneral,
+)
+from application.use_cases.estado_resultados.listar_estado_resultados import (
+    ListarEstadoResultados,
+)
+from application.use_cases.balance_general.listar_balance_general import (
+    ListarBalanceGeneral,
+)
 class ApplicationFactory:
 
     def __init__(self):
@@ -160,4 +179,45 @@ class ApplicationFactory:
 
         return EliminarLineaMovimiento(
             self.movimiento_service,
+        )
+    
+    # --------------REPORTES CONTABLES ----------------------
+    def listar_libro_diario(
+        self,
+    ):
+
+        return ListarLibroDiario(
+            self.movimiento_service,
+        )
+    
+    def listar_libro_mayor(
+        self,
+    ):
+
+        return ListarLibroMayor(
+            self.movimiento_service,
+        )
+    
+    def listar_balance_sumas_saldos(
+        self,
+    ):
+
+        return ListarBalanceSumasSaldos(
+            self.movimiento_service,
+        )
+    
+    def listar_balance_general(self):
+
+        return ListarBalanceGeneral(
+            self.movimiento_service,
+            self.cuenta_service,
+        )
+        
+    def listar_estado_resultados(
+        self,
+    ):
+
+        return ListarEstadoResultados(
+            self.movimiento_service,
+            self.cuenta_service,
         )

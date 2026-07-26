@@ -3,7 +3,9 @@ from domain.entities.cuenta import Cuenta
 from domain.services.cuenta_service import (
     CuentaService,
 )
-
+from domain.enums.tipo_cuenta import (
+    TipoCuenta,
+)
 
 class RegistrarCuenta:
 
@@ -20,6 +22,14 @@ class RegistrarCuenta:
         tipo,
         imputable: bool = True,
     ):
+
+        
+        if isinstance(
+        tipo,
+        str,
+    ):
+            
+            tipo = TipoCuenta[tipo]
 
         cuenta = Cuenta(
             id=None,

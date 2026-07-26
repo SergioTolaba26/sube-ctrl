@@ -23,6 +23,8 @@ class EliminarMovimiento:
         if movimiento is None:
             return None
 
+        movimiento.eliminar()
+
         self.service.eliminar(
             movimiento_id,
         )

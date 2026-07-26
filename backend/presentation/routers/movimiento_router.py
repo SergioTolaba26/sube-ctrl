@@ -83,41 +83,43 @@ from application.use_cases.movimiento.confirmar_movimiento import (
     ConfirmarMovimiento,
 )
 
+from application.factory import (
+    ApplicationFactory,
+)
+
 router = APIRouter(
     prefix="/movimientos",
     tags=["Movimientos"],
 )
+factory = ApplicationFactory()
+
+@router.post(
+    "/",
+    response_model=MovimientoResponse,
+)
+def registrar_movimiento(
+    movimiento: MovimientoCreate,
+):
+
+    use_case = factory.registrar_movimiento()
+
+    datos = movimiento.model_dump()
+
+    movimiento_creado = use_case.execute(
+        **datos,
+    )
+
+    return movimiento_creado
+
 # Lo nuevo para GET/movimientos - agrego este endpoint  
+
 @router.get(
     "/",
     response_model=list[MovimientoResponse],
 )
 def listar_movimientos():
 
-    cuenta_storage = JsonStorage(
-        Path("data/cuentas.json")
-    )
-
-    cuenta_repository = CuentaRepositoryJson(
-        cuenta_storage,
-    )
-
-    movimiento_storage = JsonStorage(
-        Path("data/movimientos.json")
-    )
-
-    movimiento_repository = MovimientoRepositoryJson(
-        movimiento_storage,
-        cuenta_repository,
-    )
-
-    service = MovimientoService(
-        movimiento_repository,
-    )
-
-    use_case = ListarMovimientos(
-        service,
-    )
+    use_case = factory.listar_movimientos()
 
     return use_case.execute()
 
@@ -129,83 +131,20 @@ def buscar_movimiento(
     movimiento_id: int,
 ):
 
-    cuenta_storage = JsonStorage(
-        Path("data/cuentas.json")
-    )
-
-    cuenta_repository = CuentaRepositoryJson(
-        cuenta_storage,
-    )
-
-    movimiento_storage = JsonStorage(
-        Path("data/movimientos.json")
-    )
-
-    movimiento_repository = MovimientoRepositoryJson(
-        movimiento_storage,
-        cuenta_repository,
-    )
-
-    service = MovimientoService(
-        movimiento_repository,
-    )
-
-    use_case = BuscarMovimiento(
-        service,
-    )
+    use_case = factory.buscar_movimiento()
 
     movimiento = use_case.execute(
         movimiento_id,
     )
 
     if movimiento is None:
+
         raise HTTPException(
             status_code=404,
-            detail="Movimiento no encontrado",
+            detail="Movimiento inexistente.",
         )
 
     return movimiento
-@router.post(
-    "/",
-    response_model=MovimientoResponse,
-)
-def registrar_movimiento(
-    movimiento: MovimientoCreate,
-):
-
-    cuenta_storage = JsonStorage(
-        Path("data/cuentas.json")
-    )
-
-    cuenta_repository = CuentaRepositoryJson(
-        cuenta_storage,
-    )
-
-    movimiento_storage = JsonStorage(
-        Path("data/movimientos.json")
-    )
-
-    movimiento_repository = MovimientoRepositoryJson(
-        movimiento_storage,
-        cuenta_repository,
-    )
-
-    service = MovimientoService(
-        movimiento_repository,
-    )
-
-    use_case = RegistrarMovimiento(
-        service,
-    )
-
-    datos = movimiento.model_dump()
-
-    movimiento_creado = use_case.execute(
-        **datos,
-    )
-
-    return movimiento_creado
-
 
 @router.put(
     "/{movimiento_id}",
@@ -216,30 +155,7 @@ def modificar_movimiento(
     movimiento: MovimientoUpdate,
 ):
 
-    cuenta_storage = JsonStorage(
-        Path("data/cuentas.json")
-    )
-
-    cuenta_repository = CuentaRepositoryJson(
-        cuenta_storage,
-    )
-
-    movimiento_storage = JsonStorage(
-        Path("data/movimientos.json")
-    )
-
-    movimiento_repository = MovimientoRepositoryJson(
-        movimiento_storage,
-        cuenta_repository,
-    )
-
-    movimiento_service = MovimientoService(
-        movimiento_repository,
-    )
-
-    use_case = ModificarMovimiento(
-        movimiento_service,
-    )
+    use_case = factory.modificar_movimiento()
 
     try:
 
@@ -260,7 +176,7 @@ def modificar_movimiento(
 
         raise HTTPException(
             status_code=404,
-            detail="Movimiento no encontrado",
+            detail="Movimiento inexistente.",
         )
 
     return movimiento_modificado
@@ -271,91 +187,12 @@ def eliminar_movimiento(
     movimiento_id: int,
 ):
 
-    cuenta_storage = JsonStorage(
-        Path("data/cuentas.json")
-    )
-
-    cuenta_repository = CuentaRepositoryJson(
-        cuenta_storage,
-    )
-
-    movimiento_storage = JsonStorage(
-        Path("data/movimientos.json")
-    )
-
-    movimiento_repository = MovimientoRepositoryJson(
-        movimiento_storage,
-        cuenta_repository,
-    )
-
-    service = MovimientoService(
-        movimiento_repository,
-    )
-
-    use_case = EliminarMovimiento(
-        service,
-    )
-
-    movimiento = use_case.execute(
-        movimiento_id,
-    )
-
-    if movimiento is None:
-        raise HTTPException(
-            status_code=404,
-            detail="Movimiento no encontrado",
-        )
-
-    return {
-        "mensaje": "Movimiento eliminado correctamente",
-    }
-
-@router.post(
-    "/{movimiento_id}/lineas",
-    response_model=LineaMovimientoResponse,
-)
-def agregar_linea_movimiento(
-    movimiento_id: int,
-    linea: LineaMovimientoCreate,
-):
-
-    cuenta_storage = JsonStorage(
-        Path("data/cuentas.json")
-    )
-
-    cuenta_repository = CuentaRepositoryJson(
-        cuenta_storage,
-    )
-
-    movimiento_storage = JsonStorage(
-        Path("data/movimientos.json")
-    )
-
-    movimiento_repository = MovimientoRepositoryJson(
-        movimiento_storage,
-        cuenta_repository,
-    )
-
-    movimiento_service = MovimientoService(
-        movimiento_repository,
-    )
-
-    cuenta_service = CuentaService(
-        cuenta_repository,
-    )
-
-    use_case = AgregarLineaMovimiento(
-        movimiento_service,
-        cuenta_service,
-    )
+    use_case = factory.eliminar_movimiento()
 
     try:
 
-        linea_creada = use_case.execute(
-            movimiento_id=movimiento_id,
-            cuenta_id=linea.cuenta_id,
-            importe=linea.importe,
-            tipo_afectacion=linea.tipo_afectacion,
+        eliminado = use_case.execute(
+            movimiento_id,
         )
 
     except ValueError as e:
@@ -365,18 +202,15 @@ def agregar_linea_movimiento(
             detail=str(e),
         )
 
-    if linea_creada is None:
+    if eliminado is None:
+
         raise HTTPException(
             status_code=404,
-            detail="Movimiento no encontrado",
+            detail="Movimiento inexistente.",
         )
 
     return {
-        "cuenta_id": linea_creada.cuenta.id,
-        "cuenta_codigo": linea_creada.cuenta.codigo,
-        "cuenta_nombre": linea_creada.cuenta.nombre,
-        "importe": linea_creada.importe,
-        "tipo_afectacion": linea_creada.tipo_afectacion,
+        "mensaje": "Movimiento eliminado correctamente.",
     }
 
 @router.post(
@@ -388,35 +222,7 @@ def agregar_linea_movimiento(
     linea: LineaMovimientoCreate,
 ):
 
-    cuenta_storage = JsonStorage(
-        Path("data/cuentas.json")
-    )
-
-    cuenta_repository = CuentaRepositoryJson(
-        cuenta_storage,
-    )
-
-    movimiento_storage = JsonStorage(
-        Path("data/movimientos.json")
-    )
-
-    movimiento_repository = MovimientoRepositoryJson(
-        movimiento_storage,
-        cuenta_repository,
-    )
-
-    movimiento_service = MovimientoService(
-        movimiento_repository,
-    )
-
-    cuenta_service = CuentaService(
-        cuenta_repository,
-    )
-
-    use_case = AgregarLineaMovimiento(
-        movimiento_service,
-        cuenta_service,
-    )
+    use_case = factory.agregar_linea_movimiento()
 
     try:
 
@@ -438,16 +244,16 @@ def agregar_linea_movimiento(
 
         raise HTTPException(
             status_code=404,
-            detail="Movimiento no encontrado",
+            detail="Movimiento inexistente.",
         )
 
     return {
-        "cuenta_id": linea_creada.cuenta.id,
-        "cuenta_codigo": linea_creada.cuenta.codigo,
-        "cuenta_nombre": linea_creada.cuenta.nombre,
-        "importe": linea_creada.importe,
-        "tipo_afectacion": linea_creada.tipo_afectacion,
-    }
+    "cuenta_id": linea_creada.cuenta.id,
+    "cuenta_codigo": linea_creada.cuenta.codigo,
+    "cuenta_nombre": linea_creada.cuenta.nombre,
+    "importe": linea_creada.importe,
+    "tipo_afectacion": linea_creada.tipo_afectacion,
+}
 
 @router.put(
     "/{movimiento_id}/lineas/{linea_index}",
@@ -459,35 +265,7 @@ def modificar_linea_movimiento(
     linea: LineaMovimientoCreate,
 ):
 
-    cuenta_storage = JsonStorage(
-        Path("data/cuentas.json")
-    )
-
-    cuenta_repository = CuentaRepositoryJson(
-        cuenta_storage,
-    )
-
-    movimiento_storage = JsonStorage(
-        Path("data/movimientos.json")
-    )
-
-    movimiento_repository = MovimientoRepositoryJson(
-        movimiento_storage,
-        cuenta_repository,
-    )
-
-    movimiento_service = MovimientoService(
-        movimiento_repository,
-    )
-
-    cuenta_service = CuentaService(
-        cuenta_repository,
-    )
-
-    use_case = ModificarLineaMovimiento(
-        movimiento_service,
-        cuenta_service,
-    )
+    use_case = factory.modificar_linea_movimiento()
 
     try:
 
@@ -517,7 +295,7 @@ def modificar_linea_movimiento(
 
         raise HTTPException(
             status_code=404,
-            detail="Movimiento no encontrado",
+            detail="Movimiento no encontrado.",
         )
 
     return {
@@ -526,7 +304,7 @@ def modificar_linea_movimiento(
         "cuenta_nombre": linea_modificada.cuenta.nombre,
         "importe": linea_modificada.importe,
         "tipo_afectacion": linea_modificada.tipo_afectacion,
-    }
+    }    
 
 @router.delete(
     "/{movimiento_id}/lineas/{linea_index}",

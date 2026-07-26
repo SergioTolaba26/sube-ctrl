@@ -59,16 +59,17 @@ class ModificarLineaMovimiento:
                 "Cuenta inexistente."
             )
 
-        linea = movimiento.lineas[
-            linea_index
-        ]
-
-        linea.cuenta = cuenta
-        linea.importe = importe
-        linea.tipo_afectacion = tipo_afectacion
+        movimiento.modificar_linea(
+            linea_index=linea_index,
+            cuenta=cuenta,
+            importe=importe,
+            tipo_afectacion=tipo_afectacion,
+        )
 
         self.movimiento_service.guardar(
             movimiento,
         )
 
-        return linea
+        return movimiento.lineas[
+            linea_index
+        ]

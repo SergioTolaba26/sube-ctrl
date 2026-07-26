@@ -153,6 +153,15 @@ class Movimiento(Entity):
             )
 
         self.descripcion = descripcion
+    def eliminar(self) -> None:
+        """
+        Valida si el movimiento puede eliminarse.
+        """
+
+        if not self.esta_en_borrador():
+            raise ValueError(
+                "No se puede eliminar un movimiento confirmado."
+            )
 
     def anular(self) -> None:
         """
@@ -182,3 +191,34 @@ class Movimiento(Entity):
             )
 
         self.lineas.pop(indice)
+
+    def modificar_linea(
+        self,
+        linea_index: int,
+        cuenta,
+        importe,
+        tipo_afectacion,
+    ) -> None:
+        """
+        Modifica una línea del movimiento.
+        """
+
+        if not self.esta_en_borrador():
+            raise ValueError(
+                "No se puede modificar un movimiento confirmado."
+            )
+
+        if (
+            linea_index < 0
+            or
+            linea_index >= len(self.lineas)
+        ):
+            raise IndexError(
+                "Línea inexistente."
+            )
+
+        linea = self.lineas[linea_index]
+
+        linea.cuenta = cuenta
+        linea.importe = importe
+        linea.tipo_afectacion = tipo_afectacion

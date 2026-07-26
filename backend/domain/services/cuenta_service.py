@@ -35,15 +35,7 @@ class CuentaService:
             codigo,
         )
 
-    # def guardar(
-    #     self,
-    #     cuenta,
-    # ):
-
-    #     self.repository.guardar(
-    #         cuenta,
-    #     )
-
+    
     def guardar(
         self,
         cuenta,

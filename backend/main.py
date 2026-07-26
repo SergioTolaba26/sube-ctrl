@@ -9,7 +9,9 @@ from presentation.routers.cuenta_router import (
 from presentation.routers.movimiento_router import (
     router as movimiento_router,
 )
-
+from presentation.routers.libro_diario_router import (
+    router as libro_diario_router,
+)
 app = FastAPI(
     title="Sistema Contable API",
     version="1.0.0",
@@ -23,6 +25,11 @@ app.include_router(
 app.include_router(
     movimiento_router,
 )
+app.include_router(
+    libro_diario_router,
+)
+
+
 @app.get("/")
 def root():
 

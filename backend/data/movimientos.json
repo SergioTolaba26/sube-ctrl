@@ -3,7 +3,7 @@
         "id": 1,
         "fecha": "2026-07-24",
         "descripcion": "Movimiento que estoy cambiando",
-        "estado": "BORRADOR",
+        "estado": "CONFIRMADO",
         "lineas": [
             {
                 "cuenta_id": 1,
@@ -14,6 +14,19 @@
                 "cuenta_id": 2,
                 "importe": "1020",
                 "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "fecha": "2026-07-26",
+        "descripcion": "Movimiento prueba nueva",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 1,
+                "importe": "500",
+                "tipo_afectacion": "DEBITO"
             }
         ]
     }

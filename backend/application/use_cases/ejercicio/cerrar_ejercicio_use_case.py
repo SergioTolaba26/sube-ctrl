@@ -9,9 +9,11 @@ class CerrarEjercicio:
         self,
         repository,
         movimiento_service,
+        cuenta_service,
     ):
         self.repository = repository
         self.movimiento_service = movimiento_service
+        self.cuenta_service = cuenta_service
 
     def execute(
         self,
@@ -27,25 +29,21 @@ class CerrarEjercicio:
                 "Ejercicio inexistente."
             )
 
-        movimientos = self.movimiento_service.listar()
+        #
+        # Regla 1
+        #
+        for movimiento in self.movimiento_service.listar():
 
-        for movimiento in movimientos:
+            if movimiento.esta_en_borrador():
 
-            if (
-                hasattr(
-                    movimiento,
-                    "confirmado",
-                )
-                and
-                not movimiento.confirmado
-            ):
                 raise ValueError(
-                    "Existen movimientos borrador."
+                    "Existen movimientos en borrador."
                 )
 
-        self._generar_asiento_cierre(
-            ejercicio,
-        )
+        #
+        # (El asiento de cierre se implementará
+        # en el siguiente paso.)
+        #
 
         ejercicio.cerrar()
 
@@ -54,38 +52,3 @@ class CerrarEjercicio:
         )
 
         return ejercicio
-
-    def _validar_movimientos_pendientes(
-        self,
-        ejercicio,
-    ):
-
-        movimientos = (
-            self.movimiento_service.listar()
-        )
-
-        for movimiento in movimientos:
-
-            if (
-                movimiento.ejercicio_id
-                ==
-                ejercicio.id
-                and
-                not movimiento.confirmado
-            ):
-                raise ValueError(
-                    "No puede cerrarse un ejercicio con movimientos sin confirmar."
-                )
-
-    def _generar_asiento_cierre(
-        self,
-        ejercicio,
-    ):
-        """
-        Placeholder.
-
-        En el próximo paso se generará el asiento
-        de cierre utilizando el Estado de Resultados.
-        """
-
-        return None

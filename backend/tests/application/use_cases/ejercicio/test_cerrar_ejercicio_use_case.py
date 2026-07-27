@@ -45,6 +45,11 @@ class StubRepository:
         self.ejercicio = ejercicio
 
 
+from domain.enums.estado_movimiento import (
+    EstadoMovimiento,
+)
+
+
 class MovimientoStub:
 
     def __init__(
@@ -53,8 +58,20 @@ class MovimientoStub:
         confirmado,
     ):
         self.ejercicio_id = ejercicio_id
-        self.confirmado = confirmado
 
+        if confirmado:
+            self.estado = EstadoMovimiento.CONFIRMADO
+        else:
+            self.estado = EstadoMovimiento.BORRADOR
+
+    def esta_en_borrador(
+        self,
+    ):
+        return (
+            self.estado
+            ==
+            EstadoMovimiento.BORRADOR
+        )
 
 class MovimientoServiceStub:
 
@@ -68,8 +85,57 @@ class MovimientoServiceStub:
         self,
     ):
         return self._movimientos
+# modif test
+class Cuenta:
+
+    def __init__(
+        self,
+        id,
+        codigo,
+        nombre,
+    ):
+        self.id = id
+        self.codigo = codigo
+        self.nombre = nombre
 
 
+class CuentaServiceStub:
+
+    def __init__(self):
+
+        self.cuentas = [
+            Cuenta(
+                9,
+                "4.1.01",
+                "Ventas",
+            ),
+            Cuenta(
+                13,
+                "5.3.01",
+                "Alquiler",
+            ),
+            Cuenta(
+                8,
+                "3.2.01",
+                "Resultados Acumulados",
+            ),
+        ]
+
+    def listar(self):
+        return self.cuentas
+
+    def buscar_por_id(
+        self,
+        cuenta_id,
+    ):
+
+        for cuenta in self.cuentas:
+
+            if cuenta.id == cuenta_id:
+                return cuenta
+
+        return None
+# fin modif 
 def test_cerrar_ejercicio():
 
     ejercicio = EjercicioFactory.crear()
@@ -79,12 +145,14 @@ def test_cerrar_ejercicio():
     )
 
     movimiento_service = MovimientoServiceStub()
-
+    #modif
+    cuenta_service = CuentaServiceStub()
     use_case = CerrarEjercicio(
         repository,
         movimiento_service,
+        cuenta_service,
     )
-
+    # fin modif
     resultado = use_case.execute(
         ejercicio.id,
     )
@@ -105,11 +173,14 @@ def test_no_permite_cerrar_dos_veces():
     )
 
     movimiento_service = MovimientoServiceStub()
-
+    #modif
+    cuenta_service = CuentaServiceStub()
     use_case = CerrarEjercicio(
         repository,
         movimiento_service,
+        cuenta_service,
     )
+    # fin modif
 
     with pytest.raises(
         ValueError,
@@ -117,7 +188,6 @@ def test_no_permite_cerrar_dos_veces():
         use_case.execute(
             ejercicio.id,
         )
-
 
 def test_no_permite_cerrar_con_movimientos_sin_confirmar():
 
@@ -138,9 +208,12 @@ def test_no_permite_cerrar_con_movimientos_sin_confirmar():
         ],
     )
 
+    cuenta_service = CuentaServiceStub()
+
     use_case = CerrarEjercicio(
         repository,
         movimiento_service,
+        cuenta_service,
     )
 
     with pytest.raises(
@@ -149,4 +222,3 @@ def test_no_permite_cerrar_con_movimientos_sin_confirmar():
         use_case.execute(
             ejercicio.id,
         )
-

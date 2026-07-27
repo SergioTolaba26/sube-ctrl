@@ -1,3 +1,14 @@
+from infrastructure.repositories.json.ejercicio_repository import (
+    EjercicioRepositoryJson,
+)
+
+from domain.services.ejercicio_service import (
+    EjercicioService,
+)
+
+from application.use_cases.ejercicio.abrir_ejercicio import (
+    AbrirEjercicio,
+)
 from pathlib import Path
 
 from persistence.json_storage import JsonStorage
@@ -91,7 +102,9 @@ class ApplicationFactory:
         self.movimiento_storage = JsonStorage(
             Path("data/movimientos.json"),
         )
-
+        self.ejercicio_storage = JsonStorage(
+            Path("data/ejercicios.json"),
+        )   
         self.cuenta_repository = CuentaRepositoryJson(
             self.cuenta_storage,
         )
@@ -100,7 +113,9 @@ class ApplicationFactory:
             self.movimiento_storage,
             self.cuenta_repository,
         )
-
+        self.ejercicio_repository = EjercicioRepositoryJson(
+            self.ejercicio_storage,
+        )
         self.cuenta_service = CuentaService(
             self.cuenta_repository,
         )
@@ -108,7 +123,10 @@ class ApplicationFactory:
         self.movimiento_service = MovimientoService(
             self.movimiento_repository,
         )
-
+        self.ejercicio_service = EjercicioService(
+            self.ejercicio_repository,
+        )
+    ## -----iNICIO CASOS DE USO -----
     # ---------------- CUENTAS ----------------
 
     def registrar_cuenta(self):
@@ -180,7 +198,13 @@ class ApplicationFactory:
         return EliminarLineaMovimiento(
             self.movimiento_service,
         )
-    
+    # -----------EJERCICIOS -----------------
+    def abrir_ejercicio(self):
+
+        return AbrirEjercicio(
+            self.ejercicio_service,
+        )
+    ## -----FIN CASOS DE USO ------
     # --------------REPORTES CONTABLES ----------------------
     def listar_libro_diario(
         self,

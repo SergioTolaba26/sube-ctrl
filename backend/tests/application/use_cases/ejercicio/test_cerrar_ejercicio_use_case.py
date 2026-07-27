@@ -1,37 +1,152 @@
+
 from datetime import date
+
+import pytest
 
 from application.use_cases.ejercicio.cerrar_ejercicio_use_case import (
     CerrarEjercicio,
 )
 
-from tests.stubs.ejercicio_repository_stub import (
-    EjercicioRepositoryStub,
+from tests.factories.ejercicio_factory import (
+    EjercicioFactory,
 )
 
-from domain.entities.ejercicio_contable import (
-    EjercicioContable,
+from domain.enums.estado_ejercicio import (
+    EstadoEjercicio,
 )
 
 
-def test_cierra_ejercicio():
+class StubRepository:
 
-    repository = EjercicioRepositoryStub()
+    def __init__(
+        self,
+        ejercicio,
+    ):
+        self.ejercicio = ejercicio
 
-    ejercicio = EjercicioContable(
-        id=1,
-        empresa_id=1,
-        fecha_inicio=date(2026, 1, 1),
-        fecha_fin=date(2026, 12, 31),
+    def listar(
+        self,
+    ):
+        return [self.ejercicio]
+
+    def buscar_por_id(
+        self,
+        id_,
+    ):
+        if self.ejercicio.id == id_:
+            return self.ejercicio
+
+        return None
+
+    def guardar(
+        self,
+        ejercicio,
+    ):
+        self.ejercicio = ejercicio
+
+
+class MovimientoStub:
+
+    def __init__(
+        self,
+        ejercicio_id,
+        confirmado,
+    ):
+        self.ejercicio_id = ejercicio_id
+        self.confirmado = confirmado
+
+
+class MovimientoServiceStub:
+
+    def __init__(
+        self,
+        movimientos=None,
+    ):
+        self._movimientos = movimientos or []
+
+    def listar(
+        self,
+    ):
+        return self._movimientos
+
+
+def test_cerrar_ejercicio():
+
+    ejercicio = EjercicioFactory.crear()
+
+    repository = StubRepository(
+        ejercicio,
     )
 
-    repository.guardar(
-        ejercicio
+    movimiento_service = MovimientoServiceStub()
+
+    use_case = CerrarEjercicio(
+        repository,
+        movimiento_service,
+    )
+
+    resultado = use_case.execute(
+        ejercicio.id,
+    )
+
+    assert resultado.estado == EstadoEjercicio.CERRADO
+    assert resultado.fecha_cierre == date.today()
+
+
+def test_no_permite_cerrar_dos_veces():
+
+    ejercicio = EjercicioFactory.crear(
+        estado=EstadoEjercicio.CERRADO,
+        fecha_cierre=date.today(),
+    )
+
+    repository = StubRepository(
+        ejercicio,
+    )
+
+    movimiento_service = MovimientoServiceStub()
+
+    use_case = CerrarEjercicio(
+        repository,
+        movimiento_service,
+    )
+
+    with pytest.raises(
+        ValueError,
+    ):
+        use_case.execute(
+            ejercicio.id,
+        )
+
+
+def test_no_permite_cerrar_con_movimientos_sin_confirmar():
+
+    ejercicio = EjercicioFactory.crear()
+
+    repository = StubRepository(
+        ejercicio,
+    )
+
+    movimiento = MovimientoStub(
+        ejercicio_id=ejercicio.id,
+        confirmado=False,
+    )
+
+    movimiento_service = MovimientoServiceStub(
+        movimientos=[
+            movimiento,
+        ],
     )
 
     use_case = CerrarEjercicio(
         repository,
+        movimiento_service,
     )
 
-    use_case.execute(1)
+    with pytest.raises(
+        ValueError,
+    ):
+        use_case.execute(
+            ejercicio.id,
+        )
 
-    assert ejercicio.esta_cerrado()

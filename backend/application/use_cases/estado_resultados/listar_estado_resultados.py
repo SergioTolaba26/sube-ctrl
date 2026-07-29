@@ -45,8 +45,6 @@ class ListarEstadoResultados:
             "resultado": Decimal("0"),
         }
 
-        #print(balance)
-
         for fila in balance:
 
             cuenta = self.cuenta_service.buscar_por_id(
@@ -54,33 +52,9 @@ class ListarEstadoResultados:
             )
 
             if cuenta is None:
-
-                # print(
-                #     "NO ENCONTRÓ CUENTA:",
-                #     fila["cuenta_id"],
-                # )
-
                 continue
 
-            # print(
-            #     cuenta.codigo,
-            #     cuenta.nombre,
-            #     cuenta.tipo,
-            # )
-
-            # print(
-            #     "INGRESO?",
-            #     cuenta.tipo == TipoCuenta.INGRESO,
-            # )
-
-            # print(
-            #     "GASTO?",
-            #     cuenta.tipo == TipoCuenta.GASTO,
-            # )
-
             if cuenta.tipo == TipoCuenta.INGRESO:
-
-                #print("ENTRÓ EN INGRESO")
 
                 resultado["ingresos"].append(
                     fila,
@@ -95,8 +69,6 @@ class ListarEstadoResultados:
                 resultado["total_ingresos"] += importe
 
             elif cuenta.tipo == TipoCuenta.GASTO:
-
-                #print("ENTRÓ EN GASTO")
 
                 resultado["egresos"].append(
                     fila,

@@ -1,5 +1,5 @@
-from application.use_cases.estado_resultados.listar_estado_resultados import (
-    ListarEstadoResultados,
+from application.services.cierre_contable_service import (
+    CierreContableService,
 )
 
 
@@ -41,10 +41,42 @@ class CerrarEjercicio:
                 )
 
         #
-        # (El asiento de cierre se implementará
-        # en el siguiente paso.)
+        # Generar asiento de cierre
         #
+        servicio_cierre = CierreContableService(
+            self.movimiento_service,
+            self.cuenta_service,
+        )
 
+        movimiento = servicio_cierre.generar_asiento_cierre(
+            ejercicio,
+        )
+
+        #
+        # Si el movimiento tiene líneas,
+        # se confirma y se guarda.
+        #
+        if movimiento.tiene_lineas():
+            print("===== LINEAS DEL CIERRE =====")
+
+            for linea in movimiento.lineas:
+
+                print(
+                    linea.cuenta.codigo,
+                    linea.tipo_afectacion,
+                    linea.importe,
+                )
+
+            print("=============================")
+            movimiento.confirmar()
+
+            self.movimiento_service.guardar(
+                movimiento,
+            )
+
+        #
+        # Cerrar ejercicio
+        #
         ejercicio.cerrar()
 
         self.repository.guardar(

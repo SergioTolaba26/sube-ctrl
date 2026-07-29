@@ -1,3 +1,5 @@
+from datetime import date
+
 from fastapi import APIRouter
 
 from application.factory import (
@@ -20,8 +22,14 @@ factory = ApplicationFactory()
     "/",
     response_model=list[MovimientoResponse],
 )
-def listar_libro_diario():
+def listar_libro_diario(
+    desde: date | None = None,
+    hasta: date | None = None,
+):
 
     use_case = factory.listar_libro_diario()
 
-    return use_case.execute()
+    return use_case.execute(
+        desde=desde,
+        hasta=hasta,
+    )

@@ -35,6 +35,32 @@ class MovimientoRepositoryJson(
             datos,
             self.cuenta_repository,
         )
+    def listar_por_fecha(
+        self,
+        desde,
+        hasta,
+    ):
+
+        movimientos = self.listar()
+
+        if desde is not None:
+
+            movimientos = [
+                movimiento
+                for movimiento in movimientos
+                if movimiento.fecha >= desde
+            ]
+
+        if hasta is not None:
+
+            movimientos = [
+                movimiento
+                for movimiento in movimientos
+                if movimiento.fecha <= hasta
+            ]
+
+        return movimientos
+
     def buscar_por_id(
         self,
         id_,

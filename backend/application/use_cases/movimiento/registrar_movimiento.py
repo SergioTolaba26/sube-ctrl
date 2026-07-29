@@ -15,15 +15,33 @@ class RegistrarMovimiento:
 
     def __init__(
         self,
-        service: MovimientoService,
+        movimiento_service: MovimientoService,
+        ejercicio_service,
     ):
-        self.service = service
+        self.movimiento_service = movimiento_service
+        self.ejercicio_service = ejercicio_service
 
     def execute(
         self,
         fecha,
         descripcion,
     ):
+
+        ejercicio = self.ejercicio_service.buscar_por_fecha(
+            fecha,
+        )
+
+        if ejercicio is None:
+
+            raise ValueError(
+                "No existe un ejercicio para esa fecha."
+            )
+
+        if ejercicio.esta_cerrado():
+
+            raise ValueError(
+                "No se pueden registrar movimientos en un ejercicio cerrado."
+            )
 
         movimiento = Movimiento(
             id=None,
@@ -33,9 +51,8 @@ class RegistrarMovimiento:
             lineas=[],
         )
 
-        self.service.guardar(
+        self.movimiento_service.guardar(
             movimiento,
         )
 
         return movimiento
-

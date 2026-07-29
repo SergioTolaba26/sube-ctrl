@@ -7,6 +7,7 @@ from application.use_cases.ejercicio.cerrar_ejercicio_use_case import (
     CerrarEjercicio,
 )
 
+from domain.enums.tipo_cuenta import TipoCuenta
 from tests.factories.ejercicio_factory import (
     EjercicioFactory,
 )
@@ -80,11 +81,20 @@ class MovimientoServiceStub:
         movimientos=None,
     ):
         self._movimientos = movimientos or []
+        self.movimientos_guardados = []
 
     def listar(
         self,
     ):
         return self._movimientos
+
+    def guardar(
+        self,
+        movimiento,
+    ):
+        self.movimientos_guardados.append(
+            movimiento,
+        )
 # modif test
 class Cuenta:
 
@@ -99,25 +109,31 @@ class Cuenta:
         self.nombre = nombre
 
 
+from tests.factories.cuenta_factory import CuentaFactory
+
+
 class CuentaServiceStub:
 
     def __init__(self):
 
         self.cuentas = [
-            Cuenta(
-                9,
-                "4.1.01",
-                "Ventas",
+            CuentaFactory.crear(
+                id=9,
+                codigo="4.1.01",
+                nombre="Ventas",
+                tipo=TipoCuenta.INGRESO,
             ),
-            Cuenta(
-                13,
-                "5.3.01",
-                "Alquiler",
+            CuentaFactory.crear(
+                id=13,
+                codigo="5.3.01",
+                nombre="Alquiler",
+                tipo=TipoCuenta.GASTO,
             ),
-            Cuenta(
-                8,
-                "3.2.01",
-                "Resultados Acumulados",
+            CuentaFactory.crear(
+                id=8,
+                codigo="3.2.01",
+                nombre="Resultados Acumulados",
+                tipo=TipoCuenta.PATRIMONIO,
             ),
         ]
 
@@ -128,9 +144,7 @@ class CuentaServiceStub:
         self,
         cuenta_id,
     ):
-
         for cuenta in self.cuentas:
-
             if cuenta.id == cuenta_id:
                 return cuenta
 
@@ -159,7 +173,10 @@ def test_cerrar_ejercicio():
 
     assert resultado.estado == EstadoEjercicio.CERRADO
     assert resultado.fecha_cierre == date.today()
-
+    # Cuando no existe resultado contable es decir Resultado = 0, no hay movimientos que guardar
+    # assert len(
+    #     movimiento_service.movimientos_guardados
+    # ) == 1
 
 def test_no_permite_cerrar_dos_veces():
 
@@ -222,3 +239,59 @@ def test_no_permite_cerrar_con_movimientos_sin_confirmar():
         use_case.execute(
             ejercicio.id,
         )
+
+def test_cerrar_ejercicio_genera_movimiento_de_cierre():
+
+    class EstadoResultadosStub:
+
+        def execute(
+            self,
+        ):
+            from decimal import Decimal
+
+            return {
+                "ingresos": [
+                    {
+                        "cuenta_id": 9,
+                        "saldo": Decimal("1000"),
+                        "debitos": Decimal("0"),
+                        "creditos": Decimal("1000"),
+                    }
+                ],
+                "egresos": [],
+                "total_ingresos": Decimal("1000"),
+                "total_egresos": Decimal("0"),
+                "resultado": Decimal("1000"),
+            }
+
+    from application.services import cierre_contable_service
+
+    cierre_contable_service.ListarEstadoResultados = (
+        lambda *args, **kwargs: EstadoResultadosStub()
+    )
+
+    ejercicio = EjercicioFactory.crear()
+
+    repository = StubRepository(
+        ejercicio,
+    )
+
+    movimiento_service = MovimientoServiceStub()
+
+    cuenta_service = CuentaServiceStub()
+
+    use_case = CerrarEjercicio(
+        repository,
+        movimiento_service,
+        cuenta_service,
+    )
+
+    resultado = use_case.execute(
+        ejercicio.id,
+    )
+
+    assert resultado.estado == EstadoEjercicio.CERRADO
+
+    assert len(
+        movimiento_service.movimientos_guardados
+    ) == 1

@@ -13,6 +13,20 @@ from domain.entities.ejercicio_contable import (
 )
 
 
+class EjercicioServiceStub:
+
+    def __init__(
+        self,
+        repository,
+    ):
+        self.repository = repository
+
+    def listar(
+        self,
+    ):
+        return self.repository.listar()
+
+
 def test_lista_ejercicios():
 
     repository = EjercicioRepositoryStub()
@@ -35,8 +49,12 @@ def test_lista_ejercicios():
         )
     )
 
-    use_case = ListarEjercicios(
+    service = EjercicioServiceStub(
         repository,
+    )
+
+    use_case = ListarEjercicios(
+        service,
     )
 
     ejercicios = use_case.execute()

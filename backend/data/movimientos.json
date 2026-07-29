@@ -70,5 +70,208 @@
                 "tipo_afectacion": "CREDITO"
             }
         ]
+    },
+    {
+        "id": 0,
+        "fecha": "2026-07-28",
+        "descripcion": "Cierre ejercicio 2026",
+        "estado": "CONFIRMADO",
+        "lineas": [
+            {
+                "cuenta_id": 9,
+                "importe": "50000",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 13,
+                "importe": "10000",
+                "tipo_afectacion": "CREDITO"
+            },
+            {
+                "cuenta_id": 8,
+                "importe": "40000",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "fecha": "2026-07-28",
+        "descripcion": "Venta contado API",
+        "estado": "CONFIRMADO",
+        "lineas": [
+            {
+                "cuenta_id": 1,
+                "importe": "1000",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 9,
+                "importe": "1000",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "fecha": "2026-07-28",
+        "descripcion": "Venta contado API",
+        "estado": "CONFIRMADO",
+        "lineas": [
+            {
+                "cuenta_id": 1,
+                "importe": "1000",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 9,
+                "importe": "1000",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "fecha": "2027-07-28",
+        "descripcion": "Venta contado API",
+        "estado": "CONFIRMADO",
+        "lineas": [
+            {
+                "cuenta_id": 1,
+                "importe": "1000",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 9,
+                "importe": "1000",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "fecha": "2027-07-28",
+        "descripcion": "Venta contado API",
+        "estado": "CONFIRMADO",
+        "lineas": [
+            {
+                "cuenta_id": 1,
+                "importe": "1000",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 9,
+                "importe": "1000",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "fecha": "2027-07-28",
+        "descripcion": "Venta contado API",
+        "estado": "CONFIRMADO",
+        "lineas": [
+            {
+                "cuenta_id": 1,
+                "importe": "1000",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 9,
+                "importe": "1000",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "fecha": "2027-07-28",
+        "descripcion": "Venta contado API",
+        "estado": "CONFIRMADO",
+        "lineas": [
+            {
+                "cuenta_id": 1,
+                "importe": "1000",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 9,
+                "importe": "1000",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "fecha": "2027-07-28",
+        "descripcion": "Venta contado API",
+        "estado": "CONFIRMADO",
+        "lineas": [
+            {
+                "cuenta_id": 1,
+                "importe": "1000",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 9,
+                "importe": "1000",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "fecha": "2027-07-30",
+        "descripcion": "Venta contado API",
+        "estado": "CONFIRMADO",
+        "lineas": [
+            {
+                "cuenta_id": 1,
+                "importe": "1000",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 9,
+                "importe": "1000",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "fecha": "2027-07-29",
+        "descripcion": "Intereses bancarios",
+        "estado": "CONFIRMADO",
+        "lineas": [
+            {
+                "cuenta_id": 1,
+                "importe": "200.21",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 10,
+                "importe": "200.21",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "fecha": "2027-07-30",
+        "descripcion": "Sueldo pagado",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 12,
+                "importe": "3500",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "3500",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
     }
 ]

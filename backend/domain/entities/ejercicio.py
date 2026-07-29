@@ -41,3 +41,12 @@ class Ejercicio(Entity):
 
         self.estado = EstadoEjercicio.ABIERTO
         self.fecha_cierre = None
+
+    def esta_cerrado(
+        self,
+    ) -> bool:
+
+        return (
+            self.estado
+            == EstadoEjercicio.CERRADO
+        )

@@ -1,3 +1,4 @@
+from domain.enums.estado_ejercicio import EstadoEjercicio
 from infrastructure.persistence.base.storage import (
     Storage,
 )
@@ -24,6 +25,7 @@ class EjercicioRepositoryJson(
             mapper=EjercicioMapper,
         )
 
+    
     def buscar_por_anio(
         self,
         anio: int,
@@ -32,6 +34,18 @@ class EjercicioRepositoryJson(
         for ejercicio in self.listar():
 
             if ejercicio.anio == anio:
+                return ejercicio
+
+        return None
+
+
+    def buscar_abierto(
+        self,
+    ):
+
+        for ejercicio in self.listar():
+
+            if ejercicio.estado == EstadoEjercicio.ABIERTO:
                 return ejercicio
 
         return None

@@ -17,14 +17,31 @@ class ListarLibroDiario:
 
     def execute(
         self,
+        desde=None,
+        hasta=None,
     ):
 
-        movimientos = self.service.listar()
+        if (
+            desde is None
+            and hasta is None
+        ):
+
+            movimientos = self.service.listar()
+
+        else:
+
+            movimientos = (
+                self.service.listar_por_fecha(
+                    desde,
+                    hasta,
+                )
+            )
 
         movimientos_confirmados = [
             movimiento
             for movimiento in movimientos
-            if movimiento.estado == EstadoMovimiento.CONFIRMADO
+            if movimiento.estado
+            == EstadoMovimiento.CONFIRMADO
         ]
 
         movimientos_confirmados.sort(

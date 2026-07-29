@@ -119,6 +119,15 @@ class Movimiento(Entity):
         Indica si el movimiento se encuentra en estado CONFIRMADO.
         """
         return self.estado == EstadoMovimiento.CONFIRMADO
+    
+    def esta_borrador(
+        self,
+    ) -> bool:
+
+        return (
+            self.estado
+            == EstadoMovimiento.BORRADOR
+        )
 
     def confirmar(self) -> None:
         """

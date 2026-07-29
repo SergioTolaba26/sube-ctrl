@@ -1,3 +1,4 @@
+from application.use_cases.ejercicio.buscar_ejercicio_use_case import BuscarEjercicio
 from infrastructure.repositories.json.ejercicio_repository import (
     EjercicioRepositoryJson,
 )
@@ -90,6 +91,9 @@ from application.use_cases.estado_resultados.listar_estado_resultados import (
 )
 from application.use_cases.balance_general.listar_balance_general import (
     ListarBalanceGeneral,
+)
+from application.use_cases.ejercicio.registrar_ejercicio import (
+    RegistrarEjercicio,
 )
 class ApplicationFactory:
 
@@ -202,6 +206,21 @@ class ApplicationFactory:
     def abrir_ejercicio(self):
 
         return AbrirEjercicio(
+            self.ejercicio_service,
+        )
+    def buscar_ejercicio(
+        self,
+    ):
+
+        return BuscarEjercicio(
+            self.ejercicio_repository,
+        )
+    
+    def registrar_ejercicio(
+        self,
+    ):
+
+        return RegistrarEjercicio(
             self.ejercicio_service,
         )
     ## -----FIN CASOS DE USO ------

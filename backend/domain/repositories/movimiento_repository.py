@@ -3,7 +3,9 @@ from abc import (
     abstractmethod,
 )
 
-from domain.entities.movimiento import Movimiento
+from domain.entities.movimiento import (
+    Movimiento,
+)
 
 
 class MovimientoRepository(
@@ -11,16 +13,24 @@ class MovimientoRepository(
 ):
 
     @abstractmethod
+    def listar(
+        self,
+    ) -> list[Movimiento]:
+        pass
+
+    @abstractmethod
+    def listar_por_fecha(
+        self,
+        desde,
+        hasta,
+    ) -> list[Movimiento]:
+        pass
+
+    @abstractmethod
     def guardar(
         self,
         movimiento: Movimiento,
     ) -> None:
-        pass
-
-    @abstractmethod
-    def obtener_todos(
-        self,
-    ) -> list[Movimiento]:
         pass
 
     @abstractmethod
@@ -33,6 +43,6 @@ class MovimientoRepository(
     @abstractmethod
     def eliminar(
         self,
-        movimiento: Movimiento,
+        movimiento_id: int,
     ) -> None:
         pass

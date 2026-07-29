@@ -25,6 +25,17 @@ from presentation.routers.balance_general_router import (
 from presentation.routers.estado_resultados_router import (
     router as estado_resultados_router,
 )
+from presentation.routers.ejercicio_router import (
+    router as ejercicio_router,
+)
+
+from presentation.routers.asiento_router import (
+    router as asiento_router,
+)
+
+from presentation.routers.asiento_router import (
+    router as asiento_router,
+)
 app = FastAPI(
     title="Sistema Contable API",
     version="1.0.0",
@@ -51,7 +62,14 @@ app.include_router(
     balance_general_router,
 )
 app.include_router(
+    ejercicio_router,
+)
+
+app.include_router(
     estado_resultados_router,
+)
+app.include_router(
+    asiento_router,
 )
 @app.get("/")
 def root():

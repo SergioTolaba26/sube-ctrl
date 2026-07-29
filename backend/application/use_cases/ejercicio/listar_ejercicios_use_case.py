@@ -1,5 +1,5 @@
-from domain.repositories.ejercicio_repository import (
-    EjercicioRepository,
+from domain.services.ejercicio_service import (
+    EjercicioService,
 )
 
 
@@ -7,11 +7,11 @@ class ListarEjercicios:
 
     def __init__(
         self,
-        repository: EjercicioRepository,
+        service: EjercicioService,
     ):
-        self.repository = repository
+        self.service = service
 
     def execute(
         self,
     ):
-        return self.repository.obtener_todas()
+        return self.service.listar()

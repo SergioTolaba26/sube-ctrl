@@ -1,10 +1,12 @@
+from datetime import date
 from decimal import Decimal
 
 from application.use_cases.estado_resultados.listar_estado_resultados import (
     ListarEstadoResultados,
 )
 
-from domain.enums.tipo_cuenta import TipoCuenta
+from domain.entities.movimiento import Movimiento
+from domain.entities.linea_movimiento import LineaMovimiento
 
 
 class CierreContableService:
@@ -20,95 +22,149 @@ class CierreContableService:
     def calcular_cierre(
         self,
     ):
+        """
+        Calcula las líneas necesarias para construir
+        el asiento de cierre.
+        """
 
         estado = ListarEstadoResultados(
             self.movimiento_service,
             self.cuenta_service,
         ).execute()
 
-        cierre = {
-            "resultado": estado["resultado"],
-            "lineas": [],
-        }
+        lineas = []
 
         #
-        # Cancelar cuentas de ingresos
+        # Cancelar ingresos
         #
-        for ingreso in estado["ingresos"]:
+        for cuenta in estado["ingresos"]:
 
-            cierre["lineas"].append(
+            saldo = abs(
+                cuenta["saldo"],
+            )
+
+            if saldo == Decimal("0"):
+                continue
+
+            lineas.append(
                 {
-                    "cuenta_id": ingreso["cuenta_id"],
-                    "codigo": ingreso["codigo"],
-                    "nombre": ingreso["cuenta"],
-                    "debito": ingreso["creditos"],
+                    "cuenta_id": cuenta["cuenta_id"],
+                    "debito": saldo,
                     "credito": Decimal("0"),
                 }
             )
 
         #
-        # Cancelar cuentas de gastos
+        # Cancelar gastos
         #
-        for gasto in estado["egresos"]:
+        for cuenta in estado["egresos"]:
 
-            cierre["lineas"].append(
+            if cuenta["saldo"] == Decimal("0"):
+                continue
+
+            lineas.append(
                 {
-                    "cuenta_id": gasto["cuenta_id"],
-                    "codigo": gasto["codigo"],
-                    "nombre": gasto["cuenta"],
+                    "cuenta_id": cuenta["cuenta_id"],
                     "debito": Decimal("0"),
-                    "credito": gasto["debitos"],
+                    "credito": cuenta["saldo"],
                 }
             )
+        # inicio del bloque ha cambiar
+        resultado = estado["resultado"]
 
         #
-        # Buscar Resultados Acumulados
+        # Si no hubo ingresos ni gastos,
+        # no hay asiento de cierre.
         #
-        cuenta_resultado = None
+        if not lineas and resultado == Decimal("0"):
+            return []
+
+        cuenta_resultados = None
 
         for cuenta in self.cuenta_service.listar():
 
             if cuenta.codigo == "3.2.01":
-
-                cuenta_resultado = cuenta
+                cuenta_resultados = cuenta
                 break
 
-        if cuenta_resultado is None:
-
+        if cuenta_resultados is None:
             raise ValueError(
                 "No existe la cuenta Resultados Acumulados."
             )
 
-        resultado = estado["resultado"]
+        if resultado > Decimal("0"):
 
-        #
-        # Resultado positivo
-        #
-        if resultado > 0:
-
-            cierre["lineas"].append(
+            lineas.append(
                 {
-                    "cuenta_id": cuenta_resultado.id,
-                    "codigo": cuenta_resultado.codigo,
-                    "nombre": cuenta_resultado.nombre,
+                    "cuenta_id": cuenta_resultados.id,
                     "debito": Decimal("0"),
                     "credito": resultado,
                 }
             )
 
-        #
-        # Resultado negativo
-        #
-        elif resultado < 0:
+        elif resultado < Decimal("0"):
 
-            cierre["lineas"].append(
+            lineas.append(
                 {
-                    "cuenta_id": cuenta_resultado.id,
-                    "codigo": cuenta_resultado.codigo,
-                    "nombre": cuenta_resultado.nombre,
-                    "debito": abs(resultado),
+                    "cuenta_id": cuenta_resultados.id,
+                    "debito": -resultado,
                     "credito": Decimal("0"),
                 }
             )
 
-        return cierre
+        return lineas
+
+    def generar_asiento_cierre(
+        self,
+        ejercicio,
+    ) -> Movimiento:
+        """
+        Genera el Movimiento de cierre completo.
+        """
+
+        movimiento = Movimiento(
+            id=0,
+            fecha=date.today(),
+            descripcion=f"Cierre ejercicio {ejercicio.anio}",
+        )
+
+        lineas = self.calcular_cierre()
+
+        for dato in lineas:
+
+            #
+            # Ignorar líneas vacías
+            #
+            if (
+                dato["debito"] == Decimal("0")
+                and
+                dato["credito"] == Decimal("0")
+            ):
+                continue
+
+            cuenta = self.cuenta_service.buscar_por_id(
+                dato["cuenta_id"],
+            )
+
+            if dato["debito"] > Decimal("0"):
+
+                linea = LineaMovimiento.debito(
+                    cuenta,
+                    dato["debito"],
+                )
+
+            elif dato["credito"] > Decimal("0"):
+
+                linea = LineaMovimiento.credito(
+                    cuenta,
+                    dato["credito"],
+                )
+
+            else:
+                continue
+
+            movimiento.agregar_linea(
+                linea,
+            )
+
+        return movimiento

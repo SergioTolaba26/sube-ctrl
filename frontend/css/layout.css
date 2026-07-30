@@ -1,0 +1,43 @@
+.toolbar {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+.toolbar-botones {
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+.toolbar button {
+
+    padding: 8px 16px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    background: #1976d2;
+
+    color: white;
+
+    font-size: 14px;
+
+}
+
+.toolbar button:hover {
+
+    background: #1565c0;
+
+}

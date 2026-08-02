@@ -16,6 +16,9 @@ siempre exista en un estado válido.
 from dataclasses import dataclass
 from decimal import Decimal
 
+from backend.modules.producto.exceptions.producto_exception import (
+    ProductoInvalidoError,
+)
 
 @dataclass(slots=True)
 class Producto:
@@ -37,12 +40,12 @@ class Producto:
         self.nombre = self.nombre.strip()
 
         if not self.codigo_barras:
-            raise ValueError("El código de barras es obligatorio.")
+            raise ProductoInvalidoError("El código de barras es obligatorio.")
 
         if not self.nombre:
-            raise ValueError("El nombre es obligatorio.")
+            raise ProductoInvalidoError("El nombre es obligatorio.")
 
         if self.precio_compra <= Decimal("0"):
-            raise ValueError(
+            raise ProductoInvalidoError(
                 "El precio de compra debe ser mayor que cero."
             )

@@ -59,6 +59,7 @@ def test_mapper_convierte_entidad_a_dict():
 
     assert datos == {
         "id": 1,
+        "numero_asiento": 0,
         "fecha": "2026-07-01",
         "descripcion": "Compra de mercadería",
         "estado": "BORRADOR",

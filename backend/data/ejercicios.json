@@ -1,16 +1,9 @@
 [
     {
         "id": 1,
-        "anio": 2027,
-        "fecha_apertura": "2027-01-01",
-        "fecha_cierre": "2027-07-31",
-        "estado": "CERRADO"
-    },
-    {
-        "id": 2,
-        "anio": 2028,
-        "fecha_apertura": "2028-01-01",
-        "fecha_cierre": "2028-12-31",
+        "anio": 2026,
+        "fecha_apertura": "2026-01-01",
+        "fecha_cierre": null,
         "estado": "ABIERTO"
     }
 ]

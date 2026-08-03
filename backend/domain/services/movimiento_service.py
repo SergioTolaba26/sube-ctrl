@@ -60,10 +60,33 @@ class MovimientoService:
                     + 1
                 )
 
+        #
+        # Generar número de asiento
+        #
+        if movimiento.numero_asiento == 0:
+
+            movimientos = self.repository.listar()
+
+            if not movimientos:
+
+                movimiento.numero_asiento = 1
+
+            else:
+
+                movimiento.numero_asiento = (
+                    max(
+                        m.numero_asiento
+                        for m in movimientos
+                    )
+                    + 1
+                )
+
+        #
+        # ← ESTE GUARDAR VA AFUERA
+        #
         self.repository.guardar(
             movimiento,
         )
-
     def eliminar(
         self,
         id_,

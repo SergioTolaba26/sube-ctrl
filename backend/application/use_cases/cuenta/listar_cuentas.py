@@ -14,4 +14,13 @@ class ListarCuentas:
     def execute(
         self,
     ):
-        return self.service.listar()
+
+        cuentas = self.service.listar()
+
+        cuentas.sort(
+            key=lambda cuenta: (
+                cuenta.codigo or ""
+            )
+        )
+
+        return cuentas

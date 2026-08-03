@@ -18,11 +18,18 @@ class Movimiento(Entity):
     Es el Aggregate Root responsable de mantener la consistencia
     de todas las afectaciones producidas por ese hecho.
     """
+    # <<< NUEVO CAMPO >>>
+    numero_asiento: int = Field(
+        default=0,
+        description="Número correlativo del asiento."
+    )
+
 
     estado: EstadoMovimiento = Field(
         default=EstadoMovimiento.BORRADOR,
         description="Estado actual del movimiento."
     )
+    
 
     fecha: date = Field(
         ...,

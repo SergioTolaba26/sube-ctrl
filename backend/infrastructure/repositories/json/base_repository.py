@@ -28,41 +28,7 @@ class BaseRepositoryJson:
                 return entidad
 
         return None
-    
-    # def guardar(
-    #     self,
-    #     entidad,
-    # ):
 
-    #     entidades = self.listar()
-
-    #     reemplazada = False
-
-    #     for i, existente in enumerate(
-    #         entidades,
-    #     ):
-
-    #         if existente.id == entidad.id:
-
-    #             entidades[i] = entidad
-
-    #             reemplazada = True
-
-    #             break
-
-    #     if not reemplazada:
-
-    #         entidades.append(
-    #             entidad,
-    #         )
-
-    #     datos = self.mapper.to_dict_list(
-    #         entidades,
-    #     )
-
-    #     self.storage.save(
-    #         datos,
-    #     )
 
     def guardar(
         self,
@@ -93,6 +59,14 @@ class BaseRepositoryJson:
 
         self.storage.save(
             datos,
+        )   
+    def actualizar(
+        self,
+        entidad,
+    ):
+
+        self.guardar(
+            entidad,
         )
 
     def eliminar(

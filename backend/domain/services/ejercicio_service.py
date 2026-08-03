@@ -82,6 +82,16 @@ class EjercicioService:
         self.repository.eliminar(
             id_,
         )
+    def actualizar(
+        self,
+        ejercicio,
+    ):
+
+        self.repository.actualizar(
+            ejercicio,
+        )
+
+        return ejercicio
     def guardar(
         self,
         ejercicio,

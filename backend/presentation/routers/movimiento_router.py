@@ -16,19 +16,13 @@ from domain.services.movimiento_service import (
     MovimientoService,
 )
 
-from application.use_cases.movimiento.registrar_movimiento import (
-    RegistrarMovimiento,
-)
+
 # Agregamos este import para GET/movimientos
 from application.use_cases.movimiento.listar_movimientos import (
     ListarMovimientos,
 )
 
-from presentation.schemas.movimiento_schema import (
-    MovimientoCreate,
-    MovimientoResponse,
-    MovimientoUpdate,
-)
+
 from application.use_cases.movimiento.buscar_movimiento import (
     BuscarMovimiento,
 )
@@ -86,7 +80,22 @@ from application.use_cases.movimiento.confirmar_movimiento import (
 from application.factory import (
     ApplicationFactory,
 )
+from presentation.schemas.movimiento_resumen_response import MovimientoResumenResponse
+from presentation.schemas.registrar_asiento_request import (
+    RegistrarAsientoRequest,
+)
 
+from application.use_cases.movimiento.registrar_asiento_contable import (
+    RegistrarAsientoContable,
+)
+
+from presentation.schemas.movimiento_schema import (
+    MovimientoResponse,
+    MovimientoUpdate,
+)
+from presentation.mappers.movimiento_response_mapper import (
+    MovimientoResponseMapper,
+)
 router = APIRouter(
     prefix="/movimientos",
     tags=["Movimientos"],
@@ -98,31 +107,41 @@ factory = ApplicationFactory()
     response_model=MovimientoResponse,
 )
 def registrar_movimiento(
-    movimiento: MovimientoCreate,
+    request: RegistrarAsientoRequest,
 ):
 
-    use_case = factory.registrar_movimiento()
+    use_case = factory.registrar_asiento_contable()
 
-    datos = movimiento.model_dump()
-
-    movimiento_creado = use_case.execute(
-        **datos,
+    movimiento = use_case.execute(
+        fecha=request.fecha,
+        descripcion=request.descripcion,
+        lineas=[
+            linea.model_dump()
+            for linea in request.lineas
+        ],
     )
 
-    return movimiento_creado
-
+    return movimiento
 # Lo nuevo para GET/movimientos - agrego este endpoint  
+
+from presentation.mappers.movimiento_response_mapper import (
+    MovimientoResponseMapper,
+)
 
 @router.get(
     "/",
-    response_model=list[MovimientoResponse],
+    response_model=list[MovimientoResumenResponse],
 )
 def listar_movimientos():
 
     use_case = factory.listar_movimientos()
 
-    return use_case.execute()
+    movimientos = use_case.execute()
 
+    return [
+        MovimientoResponseMapper.to_resumen(m)
+        for m in movimientos
+    ]
 @router.get(
     "/{movimiento_id}",
     response_model=MovimientoResponse,
@@ -144,8 +163,23 @@ def buscar_movimiento(
             detail="Movimiento inexistente.",
         )
 
-    return movimiento
-
+    return {
+        "id": movimiento.id,
+        "numero_asiento": movimiento.numero_asiento,
+        "fecha": movimiento.fecha,
+        "descripcion": movimiento.descripcion,
+        "estado": movimiento.estado,
+        "lineas": [
+            {
+                "cuenta_id": linea.cuenta.id,
+                "cuenta_codigo": linea.cuenta.codigo,
+                "cuenta_nombre": linea.cuenta.nombre,
+                "importe": linea.importe,
+                "tipo_afectacion": linea.tipo_afectacion,
+            }
+            for linea in movimiento.lineas
+        ],
+    }
 @router.put(
     "/{movimiento_id}",
     response_model=MovimientoResponse,
@@ -163,6 +197,8 @@ def modificar_movimiento(
             movimiento_id=movimiento_id,
             fecha=movimiento.fecha,
             descripcion=movimiento.descripcion,
+            estado=movimiento.estado,
+            lineas=movimiento.lineas,
         )
 
     except ValueError as e:
@@ -179,7 +215,10 @@ def modificar_movimiento(
             detail="Movimiento inexistente.",
         )
 
-    return movimiento_modificado
+    # return movimiento_modificado
+    return MovimientoResponseMapper.to_detalle(
+    movimiento_modificado,
+)
 @router.delete(
     "/{movimiento_id}",
 )

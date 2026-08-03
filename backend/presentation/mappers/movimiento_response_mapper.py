@@ -1,11 +1,15 @@
-from presentation.schemas.movimiento_resumen_response import (
-    MovimientoResumenResponse,
+from presentation.schemas.linea_movimiento_schema import (
+    LineaMovimientoResponse,
 )
 
 from presentation.schemas.movimiento_detalle_response import (
     MovimientoDetalleResponse,
-    LineaMovimientoResponse,
 )
+
+from presentation.schemas.movimiento_resumen_response import (
+    MovimientoResumenResponse,
+)
+
 
 
 class MovimientoResponseMapper:
@@ -17,6 +21,7 @@ class MovimientoResponseMapper:
 
         return MovimientoResumenResponse(
             id=movimiento.id,
+            numero_asiento=movimiento.numero_asiento,
             fecha=movimiento.fecha,
             descripcion=movimiento.descripcion,
             estado=movimiento.estado,
@@ -29,16 +34,17 @@ class MovimientoResponseMapper:
 
         return MovimientoDetalleResponse(
             id=movimiento.id,
+            numero_asiento=movimiento.numero_asiento,
             fecha=movimiento.fecha,
             descripcion=movimiento.descripcion,
             estado=movimiento.estado,
             lineas=[
                 LineaMovimientoResponse(
                     cuenta_id=linea.cuenta.id,
-                    codigo=linea.cuenta.codigo,
-                    cuenta=linea.cuenta.nombre,
-                    tipo=linea.tipo_afectacion,
+                    cuenta_codigo=linea.cuenta.codigo,
+                    cuenta_nombre=linea.cuenta.nombre,
                     importe=linea.importe,
+                    tipo_afectacion=linea.tipo_afectacion,
                 )
                 for linea in movimiento.lineas
             ],

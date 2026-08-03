@@ -4,6 +4,10 @@ from pydantic import BaseModel, Field
 
 from domain.enums.estado_movimiento import EstadoMovimiento
 
+from presentation.schemas.linea_movimiento_schema import (
+    LineaMovimientoUpdate,
+)
+
 
 class MovimientoCreate(BaseModel):
 
@@ -26,16 +30,28 @@ class MovimientoUpdate(BaseModel):
         max_length=200,
     )
 
+    estado: EstadoMovimiento | None = None
+
+    lineas: list[
+        LineaMovimientoUpdate
+    ] | None = None
+
 
 class MovimientoResponse(BaseModel):
 
     id: int
+
+    numero_asiento: int
 
     fecha: date
 
     descripcion: str
 
     estado: EstadoMovimiento
+
+    lineas: list[
+        LineaMovimientoUpdate
+    ] | None = None
 
     model_config = {
         "from_attributes": True,

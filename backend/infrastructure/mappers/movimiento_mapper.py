@@ -16,9 +16,15 @@ class MovimientoMapper:
     ):
         return {
             "id": movimiento.id,
+
+            "numero_asiento": movimiento.numero_asiento,   # ← NUEVO
+
             "fecha": movimiento.fecha.isoformat(),
+
             "descripcion": movimiento.descripcion,
+
             "estado": movimiento.estado.name,
+
             "lineas": LineaMovimientoMapper.to_dict_list(
                 movimiento.lineas,
             ),
@@ -31,7 +37,13 @@ class MovimientoMapper:
     ):
 
         return Movimiento(
+
             id=datos["id"],
+
+            numero_asiento=datos.get(          # ← NUEVO
+                "numero_asiento",
+                0,
+            ),
 
             fecha=date.fromisoformat(
                 datos["fecha"],
@@ -43,12 +55,8 @@ class MovimientoMapper:
                 datos["estado"]
             ],
 
-            # lineas=LineaMovimientoMapper.from_dict_list(
-            #     datos["lineas"],
-            #     cuenta_repository,
-            # ),
             lineas=LineaMovimientoMapper.from_dict_list(
-                datos.get("lineas", []), # soporta CRUD inicial de solo encabezados, sin lineas todavía
+                datos.get("lineas", []),
                 cuenta_repository,
             ),
         )
@@ -56,7 +64,7 @@ class MovimientoMapper:
     @staticmethod
     def to_dict_list(
         movimientos,
-    ):
+    ):  
         return [
             MovimientoMapper.to_dict(
                 movimiento,

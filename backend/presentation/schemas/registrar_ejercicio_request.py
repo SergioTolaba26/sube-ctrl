@@ -11,4 +11,4 @@ class RegistrarEjercicioRequest(
 
     fecha_apertura: date
 
-    fecha_cierre: date
+    fecha_cierre: date | None = None

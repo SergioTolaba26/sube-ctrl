@@ -71,7 +71,18 @@ class RegistrarAsientoContable:
             )
 
         #movimiento.confirmar() Lo elimino para que el asiento nazca como BORRADOR
+        #
+        # Verificación temporal
+        #
+        print("Cantidad de líneas:", len(movimiento.lineas))
 
+        for linea in movimiento.lineas:
+            print(
+                linea.cuenta.id,
+                linea.tipo_afectacion,
+                linea.importe,
+            )
+            
         self.movimiento_service.guardar(
             movimiento,
         )

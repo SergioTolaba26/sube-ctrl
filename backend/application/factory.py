@@ -37,7 +37,9 @@ from application.use_cases.cuenta.registrar_cuenta import (
 from application.use_cases.movimiento.registrar_movimiento import (
     RegistrarMovimiento,
 )
-
+from application.use_cases.movimiento.registrar_asiento_contable import (
+    RegistrarAsientoContable,
+)
 from application.use_cases.movimiento.buscar_movimiento import (
     BuscarMovimiento,
 )
@@ -151,6 +153,7 @@ class ApplicationFactory:
 
         return RegistrarMovimiento(
             self.movimiento_service,
+            self.ejercicio_service,
         )
 
     def buscar_movimiento(self):
@@ -169,8 +172,8 @@ class ApplicationFactory:
 
         return ModificarMovimiento(
             self.movimiento_service,
+            self.cuenta_service,
         )
-
     def eliminar_movimiento(self):
 
         return EliminarMovimiento(
@@ -223,6 +226,17 @@ class ApplicationFactory:
         return RegistrarEjercicio(
             self.ejercicio_service,
         )
+    
+    def registrar_asiento_contable(
+        self,
+    ):
+
+        return RegistrarAsientoContable(
+            self.movimiento_service,
+            self.cuenta_service,
+            self.ejercicio_service,
+        )
+
     ## -----FIN CASOS DE USO ------
     # --------------REPORTES CONTABLES ----------------------
     def listar_libro_diario(

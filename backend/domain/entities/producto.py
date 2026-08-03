@@ -32,13 +32,9 @@ class Producto(Entity):
     )
 
     def activar(self) -> None:
-        """
-        Activa el producto.
-        """
+        """Activa el producto."""
         self.activo = True
 
     def desactivar(self) -> None:
-        """
-        Desactiva el producto.
-        """
+        """Desactiva el producto."""
         self.activo = False

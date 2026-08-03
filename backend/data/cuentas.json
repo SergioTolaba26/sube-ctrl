@@ -103,5 +103,12 @@
         "nombre": "Gastos Bancarios",
         "tipo": "GASTO",
         "activa": true
+    },
+    {
+        "id": 16,
+        "codigo": "1.1.03",
+        "nombre": "Inversiones",
+        "tipo": "ACTIVO",
+        "activa": true
     }
 ]

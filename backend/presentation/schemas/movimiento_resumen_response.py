@@ -13,6 +13,8 @@ class MovimientoResumenResponse(
 
     id: int
 
+    numero_asiento: int
+
     fecha: date
 
     descripcion: str

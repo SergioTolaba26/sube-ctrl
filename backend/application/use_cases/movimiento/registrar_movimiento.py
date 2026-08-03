@@ -42,7 +42,7 @@ class RegistrarMovimiento:
             raise ValueError(
                 "No se pueden registrar movimientos en un ejercicio cerrado."
             )
-
+        
         movimiento = Movimiento(
             id=None,
             fecha=fecha,

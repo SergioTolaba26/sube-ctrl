@@ -1,20 +1,14 @@
 import {
-
-    obtenerAsientos,
-
-    obtenerAsiento,
-
-    crearAsiento as apiCrearAsiento,
-
-    actualizarAsiento as apiActualizarAsiento,
-
-    eliminarAsiento as apiEliminarAsiento,
-
-} from "../api.js";
+  obtenerAsientos,
+  obtenerAsiento,
+  crearAsiento as apiCrearAsiento,
+  actualizarAsiento as apiActualizarAsiento,
+  eliminarAsiento as apiEliminarAsiento,
+} from '../api.js';
 
 import { crearPagina } from '../components/page.js';
 
-import { abrirModal, cerrarModal } from '../components/modal.js';
+import { abrirModal, cerrarModal, mostrarMensaje } from '../components/modal.js';
 
 import { conectarEventosTabla } from '../components/table.js';
 
@@ -24,11 +18,7 @@ import { crearLineaMovimiento } from '../components/lineaMovimiento.js';
 
 import { obtenerCuentas } from '../api.js';
 
-import {
-
-    actualizarLineaAsiento,
-
-} from "../api.js";
+import { actualizarLineaAsiento } from '../api.js';
 
 let asientos = [];
 let cuentas = [];
@@ -134,7 +124,7 @@ async function nuevoAsiento() {
     titulo: 'Nuevo Asiento',
 
     contenido: crearFormularioAsiento(),
-    
+
     textoAceptar: 'Guardar',
 
     textoCancelar: 'Cancelar',
@@ -218,7 +208,6 @@ function conectarEliminarLineas() {
 async function guardarAsiento() {
   const formulario = document.getElementById('form-asiento');
 
-    
   const lineas = [...document.querySelectorAll('.linea-movimiento')].map(
     (linea) => ({
       cuenta_id: Number(linea.querySelector('.cuenta').value),
@@ -254,94 +243,56 @@ async function guardarAsiento() {
  *********************************************/
 
 async function editarAsiento(indice) {
+  const resumen = asientos[indice];
 
-    const resumen =
-        asientos[indice];
+  const asiento = await obtenerAsiento(resumen.id);
 
-    const asiento =
-        await obtenerAsiento(
-            resumen.id,
-        );
+  //
+  // Cargar todas las cuentas
+  //
+  window.cuentas = await obtenerCuentas();
 
-    //
-    // Cargar todas las cuentas
-    //
-    window.cuentas =
-        await obtenerCuentas();
+  abrirModal({
+    titulo: 'Editar Asiento',
 
-    abrirModal({
+    contenido: crearFormularioAsiento(asiento),
 
-        titulo: "Editar Asiento",
+    textoAceptar: 'Guardar cambios',
 
-        contenido:
-            crearFormularioAsiento(
-                asiento,
-            ),
+    textoCancelar: 'Cancelar',
 
-        textoAceptar: "Guardar",
+    onAceptar: () => actualizarAsiento(asiento.id),
+  });
 
-        textoCancelar: "Cancelar",
-
-        onAceptar: () =>
-            actualizarAsiento(
-                asiento.id,
-            ),
-
-    });
-
-    inicializarFormularioAsiento();
-
+  inicializarFormularioAsiento();
 }
 function inicializarFormularioAsiento() {
+  //
+  // Botón eliminar
+  //
+  document.querySelectorAll('.btn-eliminar-linea').forEach((boton) => {
+    boton.onclick = () => {
+      const fila = boton.closest('.linea-asiento');
 
-    //
-    // Botón eliminar
-    //
-    document
-        .querySelectorAll(".btn-eliminar-linea")
-        .forEach((boton) => {
+      if (fila) {
+        fila.remove();
+      }
+    };
+  });
 
-            boton.onclick = () => {
+  //
+  // Botón agregar
+  //
+  const btnAgregar = document.getElementById('btn-agregar-linea');
 
-                const fila =
-                    boton.closest(
-                        ".linea-asiento",
-                    );
-
-                if (fila) {
-
-                    fila.remove();
-
-                }
-
-            };
-
-        });
-
-    //
-    // Botón agregar
-    //
-    const btnAgregar =
-        document.getElementById(
-            "btn-agregar-linea",
-        );
-
-    if (btnAgregar) {
-
-        btnAgregar.onclick =
-            agregarLineaFormulario;
-
-    }
-
+  if (btnAgregar) {
+    btnAgregar.onclick = agregarLineaFormulario;
+  }
 }
 function agregarLineaFormulario() {
+  const contenedor = document.getElementById('lineas-container');
 
-    const contenedor =
-        document.getElementById(
-            "lineas-container",
-        );
-
-    const html = `
+  const html = `
 
 <div class="linea-asiento">
 
@@ -351,7 +302,9 @@ function agregarLineaFormulario() {
 
         <select class="cuenta-id">
 
-            ${window.cuentas.map(cuenta => `
+            ${window.cuentas
+              .map(
+                (cuenta) => `
 
                 <option value="${cuenta.id}">
 
@@ -359,7 +312,9 @@ function agregarLineaFormulario() {
 
                 </option>
 
-            `).join("")}
+            `,
+              )
+              .join('')}
 
         </select>
 
@@ -416,97 +371,69 @@ function agregarLineaFormulario() {
 
 `;
 
-    contenedor.insertAdjacentHTML(
-        "beforeend",
-        html,
-    );
+  contenedor.insertAdjacentHTML('beforeend', html);
 
-    inicializarFormularioAsiento();
-
+  inicializarFormularioAsiento();
 }
 /*********************************************
  * ACTUALIZAR
  *********************************************/
 
 async function actualizarAsiento(id) {
+  const formulario = document.getElementById('form-asiento');
 
-    const formulario =
-        document.getElementById(
-            "form-asiento",
-        );
+  //
+  // Armamos el asiento completo.
+  //
+  const datos = {
+    fecha: formulario.fecha.value,
 
-    //
-    // Armamos el asiento completo.
-    //
-    const datos = {
+    descripcion: formulario.descripcion.value,
 
-        fecha:
-            formulario.fecha.value,
+    estado: 'BORRADOR',
 
-        descripcion:
-            formulario.descripcion.value,
+    lineas: obtenerLineasFormulario(),
+  };
+  const resultado = validarAsientoBalanceado(datos.lineas);
 
-        estado:
-            "BORRADOR",
+  if (!resultado.balanceado) {
+    mostrarMensaje(
+      '⚠ Asiento desbalanceado',
 
-        lineas:
-            obtenerLineasFormulario(),
+      `Débitos : ${resultado.debitos}
+        Créditos: ${resultado.creditos}
 
-    };
-    const resultado =
-        validarAsientoBalanceado(
-            datos.lineas,
-        );
-
-    if (!resultado.balanceado) {
-
-        alert(
-
-            `⚠ El asiento está desbalanceado.\n\n` +
-
-            `Débitos : ${resultado.debitos}\n` +
-
-            `Créditos: ${resultado.creditos}\n` +
-
-            `Diferencia: ${resultado.diferencia}`
-
-        );
-
-        return;
-
-    }
-
-    console.log(
-        "ASIENTO A ENVIAR:",
-        datos,
+        Diferencia: ${resultado.diferencia}`,
     );
 
-    try {
+    return;
 
-        //
-        // Ahora TODO se guarda en un único PUT.
-        //
-        await apiActualizarAsiento(
+    return;
+  }
 
-            id,
+  console.log('ASIENTO A ENVIAR:', datos);
 
-            datos,
+  try {
+    //
+    // Ahora TODO se guarda en un único PUT.
+    //
+    await apiActualizarAsiento(
+      id,
 
-        );
+      datos,
+    );
+    mostrarMensaje(
+      '✅ Asiento actualizado',
 
-        cerrarModal();
+      'Los cambios fueron guardados correctamente.',
+    );
 
-        await mostrarAsientos();
+    cerrarModal();
 
-    } catch (error) {
-
-        console.error(
-            "ERROR AL ACTUALIZAR:",
-            error,
-        );
-
-    }
-
+    await mostrarAsientos();
+  } catch (error) {
+    console.error('ERROR AL ACTUALIZAR:', error);
+  }
 }
 /*********************************************
  * ELIMINAR
@@ -529,91 +456,56 @@ async function eliminarAsiento(indice) {
 }
 
 /***********DIBUJAR LINEAS DEL ASIENTO AL EDITAR */
-function cargarLineasExistentes(
-    lineas,
-) {
+function cargarLineasExistentes(lineas) {
+  const contenedor = document.getElementById('lineas-container');
 
-    const contenedor =
-        document.getElementById(
-            "lineas-container",
-        );
+  contenedor.innerHTML = '';
 
-    contenedor.innerHTML = "";
-
-    lineas.forEach(
-        (linea) => {
-
-            contenedor.insertAdjacentHTML(
-                "beforeend",
-                crearLineaMovimiento(
-                    cuentas,
-                    linea,
-                ),
-            );
-
-        },
+  lineas.forEach((linea) => {
+    contenedor.insertAdjacentHTML(
+      'beforeend',
+      crearLineaMovimiento(cuentas, linea),
     );
+  });
 
-    conectarEventosLineas();
-
+  conectarEventosLineas();
 }
 function obtenerLineasFormulario() {
+  const lineas = [];
 
-    const lineas = [];
+  document.querySelectorAll('.linea-asiento').forEach((fila) => {
+    lineas.push({
+      cuenta_id: Number(fila.querySelector('.cuenta-id').value),
 
-    document.querySelectorAll(".linea-asiento").forEach((fila) => {
+      tipo_afectacion: fila.querySelector('.tipo-afectacion').value,
 
-        lineas.push({
-
-            cuenta_id: Number(
-                fila.querySelector(".cuenta-id").value
-            ),
-
-            tipo_afectacion:
-                fila.querySelector(".tipo-afectacion").value,
-
-            importe: Number(
-                fila.querySelector(".importe").value
-            ),
-
-        });
-
+      importe: Number(fila.querySelector('.importe').value),
     });
+  });
 
-    return lineas;
-
+  return lineas;
 }
 
 // Nejora UX
 function validarAsientoBalanceado(lineas) {
+  let totalDebitos = 0;
+  let totalCreditos = 0;
 
-    let totalDebitos = 0;
-    let totalCreditos = 0;
+  lineas.forEach((linea) => {
+    if (linea.tipo_afectacion === 'DEBITO') {
+      totalDebitos += Number(linea.importe);
+    } else {
+      totalCreditos += Number(linea.importe);
+    }
+  });
 
-    lineas.forEach((linea) => {
+  return {
+    balanceado: totalDebitos === totalCreditos,
 
-        if (linea.tipo_afectacion === "DEBITO") {
+    debitos: totalDebitos,
 
-            totalDebitos += Number(linea.importe);
+    creditos: totalCreditos,
 
-        } else {
-
-            totalCreditos += Number(linea.importe);
-
-        }
-
-    });
-
-    return {
-
-        balanceado: totalDebitos === totalCreditos,
-
-        debitos: totalDebitos,
-
-        creditos: totalCreditos,
-
-        diferencia: Math.abs(totalDebitos - totalCreditos),
-
-    };
-
+    diferencia: Math.abs(totalDebitos - totalCreditos),
+  };
 }

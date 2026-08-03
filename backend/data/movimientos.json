@@ -186,5 +186,43 @@
                 "tipo_afectacion": "CREDITO"
             }
         ]
+    },
+    {
+        "id": 23,
+        "numero_asiento": 11,
+        "fecha": "2026-08-04",
+        "descripcion": "Borrador desbalanceado",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 16,
+                "importe": "100",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "50",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "numero_asiento": 12,
+        "fecha": "2026-08-04",
+        "descripcion": "Borrador desbalanceado",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 16,
+                "importe": "100",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "100",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
     }
 ]

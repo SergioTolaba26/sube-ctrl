@@ -124,3 +124,12 @@ export function cerrarModal() {
     }
 
 }
+//Mejora UX
+export function mostrarMensaje(
+    titulo,
+    mensaje,
+) {
+
+    alert(`${titulo}\n\n${mensaje}`);
+
+}

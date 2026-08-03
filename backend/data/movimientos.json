@@ -177,7 +177,12 @@
             },
             {
                 "cuenta_id": 5,
-                "importe": "500",
+                "importe": "250",
+                "tipo_afectacion": "CREDITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "250",
                 "tipo_afectacion": "CREDITO"
             }
         ]

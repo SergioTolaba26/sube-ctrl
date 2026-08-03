@@ -453,6 +453,28 @@ async function actualizarAsiento(id) {
             obtenerLineasFormulario(),
 
     };
+    const resultado =
+        validarAsientoBalanceado(
+            datos.lineas,
+        );
+
+    if (!resultado.balanceado) {
+
+        alert(
+
+            `⚠ El asiento está desbalanceado.\n\n` +
+
+            `Débitos : ${resultado.debitos}\n` +
+
+            `Créditos: ${resultado.creditos}\n` +
+
+            `Diferencia: ${resultado.diferencia}`
+
+        );
+
+        return;
+
+    }
 
     console.log(
         "ASIENTO A ENVIAR:",
@@ -559,5 +581,39 @@ function obtenerLineasFormulario() {
     });
 
     return lineas;
+
+}
+
+// Nejora UX
+function validarAsientoBalanceado(lineas) {
+
+    let totalDebitos = 0;
+    let totalCreditos = 0;
+
+    lineas.forEach((linea) => {
+
+        if (linea.tipo_afectacion === "DEBITO") {
+
+            totalDebitos += Number(linea.importe);
+
+        } else {
+
+            totalCreditos += Number(linea.importe);
+
+        }
+
+    });
+
+    return {
+
+        balanceado: totalDebitos === totalCreditos,
+
+        debitos: totalDebitos,
+
+        creditos: totalCreditos,
+
+        diferencia: Math.abs(totalDebitos - totalCreditos),
+
+    };
 
 }

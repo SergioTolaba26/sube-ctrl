@@ -162,5 +162,24 @@
                 "tipo_afectacion": "DEBITO"
             }
         ]
+    },
+    {
+        "id": 22,
+        "numero_asiento": 10,
+        "fecha": "2026-08-02",
+        "descripcion": "Asiento del domingo agosto",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 16,
+                "importe": "500",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 5,
+                "importe": "500",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
     }
 ]

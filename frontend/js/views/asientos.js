@@ -4,7 +4,7 @@ import {
 
     obtenerAsiento,
 
-    crearAsiento,
+    crearAsiento as apiCrearAsiento,
 
     actualizarAsiento as apiActualizarAsiento,
 

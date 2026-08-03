@@ -1,38 +1,242 @@
 export function crearTabla(
+
     columnas,
+
     filas,
+
+    opciones = {},
+
 ) {
 
-    let html = `
-        <table border="1" cellpadding="5">
+    const {
 
-            <tr>
+        mostrarAcciones = false,
+
+    } = opciones;
+
+    let html = `
+
+        <table class="tabla">
+
+            <thead>
+
+                <tr>
+
     `;
 
-    columnas.forEach(columna => {
+    columnas.forEach(
 
-        html += `<th>${columna}</th>`;
+        columna => {
 
-    });
+            html += `<th>${columna}</th>`;
 
-    html += "</tr>";
+        },
 
-    filas.forEach(fila => {
+    );
 
-        html += "<tr>";
+    if (
 
-        fila.forEach(celda => {
+        mostrarAcciones
 
-            html += `<td>${celda}</td>`;
+    ) {
 
-        });
+        html += "<th>Acciones</th>";
 
-        html += "</tr>";
+    }
 
-    });
+    html += `
 
-    html += "</table>";
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+    `;
+
+    filas.forEach(
+
+        (
+
+            fila,
+
+            indice,
+
+        ) => {
+
+            html += "<tr>";
+
+            fila.forEach(
+
+                celda => {
+
+                    html += `<td>${celda}</td>`;
+
+                },
+
+            );
+
+            if (
+
+                mostrarAcciones
+
+            ) {
+
+                html += `
+
+                    <td class="acciones">
+
+                        <button
+
+                            class="btn-editar"
+
+                            data-index="${indice}"
+
+                            title="Editar"
+
+                        >
+
+                            ✏️
+
+                        </button>
+
+                        <button
+
+                            class="btn-eliminar"
+
+                            data-index="${indice}"
+
+                            title="Eliminar"
+
+                        >
+
+                            🗑️
+
+                        </button>
+
+                    </td>
+
+                `;
+
+            }
+
+            html += "</tr>";
+
+        },
+
+    );
+
+    html += `
+
+            </tbody>
+
+        </table>
+
+    `;
 
     return html;
+
+}
+
+
+/*************************************************
+ * CONECTAR EVENTOS DE LA TABLA
+ *************************************************/
+
+export function conectarEventosTabla({
+
+    onEditar = null,
+
+    onEliminar = null,
+
+}) {
+
+    if (
+
+        onEditar
+
+    ) {
+
+        document
+
+            .querySelectorAll(
+
+                ".btn-editar",
+
+            )
+
+            .forEach(
+
+                boton => {
+
+                    boton.addEventListener(
+
+                        "click",
+
+                        () => {
+
+                            onEditar(
+
+                                Number(
+
+                                    boton.dataset.index,
+
+                                ),
+
+                            );
+
+                        },
+
+                    );
+
+                },
+
+            );
+
+    }
+
+    if (
+
+        onEliminar
+
+    ) {
+
+        document
+
+            .querySelectorAll(
+
+                ".btn-eliminar",
+
+            )
+
+            .forEach(
+
+                boton => {
+
+                    boton.addEventListener(
+
+                        "click",
+
+                        () => {
+
+                            onEliminar(
+
+                                Number(
+
+                                    boton.dataset.index,
+
+                                ),
+
+                            );
+
+                        },
+
+                    );
+
+                },
+
+            );
+
+    }
 
 }

@@ -123,13 +123,42 @@
         "estado": "BORRADOR",
         "lineas": [
             {
-                "cuenta_id": 6,
+                "cuenta_id": 1,
                 "importe": "13400",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 9,
+                "importe": "13000",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 5,
+                "importe": "400",
+                "tipo_afectacion": "DEBITO"
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "numero_asiento": 9,
+        "fecha": "2026-08-03",
+        "descripcion": "devolucion Mercaderia 2 lineas",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 4,
+                "importe": "3525",
                 "tipo_afectacion": "CREDITO"
             },
             {
                 "cuenta_id": 1,
-                "importe": "13400",
+                "importe": "3500",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 5,
+                "importe": "25",
                 "tipo_afectacion": "DEBITO"
             }
         ]

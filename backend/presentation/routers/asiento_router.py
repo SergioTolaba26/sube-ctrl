@@ -28,28 +28,11 @@ from domain.services.ejercicio_service import (
 from application.use_cases.movimiento.listar_asientos import (
     ListarAsientos,
 )
-from application.use_cases.movimiento.registrar_asiento_contable import (
-    RegistrarAsientoContable,
-)
-
-from presentation.schemas.movimiento_resumen_response import (
-    MovimientoResumenResponse,
-)
-from presentation.schemas.registrar_asiento_request import (
-    RegistrarAsientoRequest,
-)
-
 from application.use_cases.movimiento.buscar_asiento import (
     BuscarAsiento,
 )
-
-from presentation.schemas.movimiento_detalle_response import (
-    MovimientoDetalleResponse,
-    LineaMovimientoResponse,
-)
-
-from presentation.mappers.movimiento_response_mapper import (
-    MovimientoResponseMapper,
+from application.use_cases.movimiento.registrar_asiento_contable import (
+    RegistrarAsientoContable,
 )
 from application.use_cases.movimiento.confirmar_asiento import (
     ConfirmarAsiento,
@@ -57,7 +40,20 @@ from application.use_cases.movimiento.confirmar_asiento import (
 from application.use_cases.movimiento.modificar_asiento import (
     ModificarAsiento,
 )
-from application.use_cases.movimiento.eliminar_asiento import (EliminarAsiento,)
+from application.use_cases.movimiento.eliminar_asiento import (
+    EliminarAsiento,
+)
+
+from presentation.schemas.movimiento_schema import (
+    MovimientoResponse,
+)
+from presentation.schemas.registrar_asiento_request import (
+    RegistrarAsientoRequest,
+)
+
+from presentation.mappers.movimiento_response_mapper import (
+    MovimientoResponseMapper,
+)
 
 router = APIRouter(
     prefix="/asientos",
@@ -114,7 +110,7 @@ service_movimientos = MovimientoService(
 @router.get(
     "/",
     response_model=list[
-        MovimientoResumenResponse
+        MovimientoResponse
     ],
 )
 def listar():
@@ -131,9 +127,11 @@ def listar():
         )
         for movimiento in movimientos
     ]
+
+
 @router.get(
     "/{movimiento_id}",
-    response_model=MovimientoDetalleResponse,
+    response_model=MovimientoResponse,
 )
 def buscar(
     movimiento_id: int,
@@ -157,6 +155,8 @@ def buscar(
     return MovimientoResponseMapper.to_detalle(
         movimiento,
     )
+
+
 @router.post("/")
 def registrar_asiento(
     request: RegistrarAsientoRequest,
@@ -198,7 +198,8 @@ def registrar_asiento(
             status_code=400,
             detail=str(error),
         )
-    
+
+
 @router.post(
     "/{movimiento_id}/confirmar",
 )
@@ -230,7 +231,8 @@ def confirmar(
             status_code=400,
             detail=str(error),
         )
-    
+
+
 @router.put(
     "/{movimiento_id}",
 )
@@ -275,7 +277,8 @@ def modificar_asiento(
             status_code=400,
             detail=str(error),
         )
-    
+
+
 @router.delete(
     "/{movimiento_id}",
 )

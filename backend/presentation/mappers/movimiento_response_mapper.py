@@ -2,14 +2,9 @@ from presentation.schemas.linea_movimiento_schema import (
     LineaMovimientoResponse,
 )
 
-from presentation.schemas.movimiento_detalle_response import (
-    MovimientoDetalleResponse,
+from presentation.schemas.movimiento_schema import (
+    MovimientoResponse,
 )
-
-from presentation.schemas.movimiento_resumen_response import (
-    MovimientoResumenResponse,
-)
-
 
 
 class MovimientoResponseMapper:
@@ -17,22 +12,23 @@ class MovimientoResponseMapper:
     @staticmethod
     def to_resumen(
         movimiento,
-    ) -> MovimientoResumenResponse:
+    ) -> MovimientoResponse:
 
-        return MovimientoResumenResponse(
+        return MovimientoResponse(
             id=movimiento.id,
             numero_asiento=movimiento.numero_asiento,
             fecha=movimiento.fecha,
             descripcion=movimiento.descripcion,
             estado=movimiento.estado,
+            lineas=None,
         )
 
     @staticmethod
     def to_detalle(
         movimiento,
-    ) -> MovimientoDetalleResponse:
+    ) -> MovimientoResponse:
 
-        return MovimientoDetalleResponse(
+        return MovimientoResponse(
             id=movimiento.id,
             numero_asiento=movimiento.numero_asiento,
             fecha=movimiento.fecha,

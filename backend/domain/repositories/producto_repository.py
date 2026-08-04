@@ -1,4 +1,5 @@
-from abc import ABC, abstractmethod
+from abc import ABC
+from abc import abstractmethod
 
 from domain.entities.producto import Producto
 
@@ -6,61 +7,55 @@ from domain.entities.producto import Producto
 class ProductoRepository(ABC):
     """
     Contrato para la persistencia de productos.
+
+    El dominio depende únicamente de esta interfaz.
     """
 
     @abstractmethod
     def guardar(
         self,
         producto: Producto,
-    ) -> Producto:
+    ) -> None:
         """
-        Guarda un producto.
+        Persiste un producto.
         """
-        pass
+        raise NotImplementedError
 
     @abstractmethod
-    def obtener_por_id(
+    def obtener_todos(
         self,
-        producto_id: int,
+    ) -> list[Producto]:
+        """
+        Devuelve todos los productos.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def buscar_por_id(
+        self,
+        id_: int,
     ) -> Producto | None:
         """
-        Obtiene un producto por su ID.
+        Busca un producto por su identificador.
         """
-        pass
+        raise NotImplementedError
 
     @abstractmethod
-    def obtener_por_codigo_barras(
+    def buscar_por_codigo_barras(
         self,
         codigo_barras: str,
     ) -> Producto | None:
         """
-        Obtiene un producto por código de barras.
+        Busca un producto por su código de barras.
         """
-        pass
-
-    @abstractmethod
-    def listar(self) -> list[Producto]:
-        """
-        Devuelve todos los productos.
-        """
-        pass
-
-    @abstractmethod
-    def actualizar(
-        self,
-        producto: Producto,
-    ) -> Producto:
-        """
-        Actualiza un producto.
-        """
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def eliminar(
         self,
-        producto_id: int,
+        producto: Producto,
     ) -> None:
         """
         Elimina un producto.
         """
-        pass
+        raise NotImplementedError

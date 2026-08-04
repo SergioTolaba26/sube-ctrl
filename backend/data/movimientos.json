@@ -224,5 +224,43 @@
                 "tipo_afectacion": "CREDITO"
             }
         ]
+    },
+    {
+        "id": 25,
+        "numero_asiento": 13,
+        "fecha": "2026-08-04",
+        "descripcion": "agosto 4",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 11,
+                "importe": "325.45",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 5,
+                "importe": "300",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "numero_asiento": 14,
+        "fecha": "2026-08-05",
+        "descripcion": "ago 5",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 4,
+                "importe": "300.22",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 5,
+                "importe": "300.21",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
     }
 ]

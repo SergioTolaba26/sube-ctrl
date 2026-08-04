@@ -6,9 +6,6 @@ from presentation.routers.cuenta_router import (
     router as cuenta_router,
 )
 
-from presentation.routers.movimiento_router import (
-    router as movimiento_router,
-)
 from presentation.routers.libro_diario_router import (
     router as libro_diario_router,
 )
@@ -45,9 +42,7 @@ app.include_router(
 app.include_router(
     cuenta_router,
 )
-app.include_router(
-    movimiento_router,
-)
+
 app.include_router(
     libro_diario_router,
 )

@@ -1,7 +1,7 @@
 import sqlite3
 
 from infrastructure.config.settings import DATABASE_PATH
-
+from infrastructure.sqlite.schema import SCHEMA
 
 class Database:
     """
@@ -24,6 +24,24 @@ class Database:
     @property
     def connection(self):
         return self._connection
+    
+    def crear_tablas(
+        self,
+    ) -> None:
+        """
+        Crea todas las tablas definidas
+        en infrastructure.sqlite.schema.
+        """
+
+        cursor = self._connection.cursor()
+
+        for sentencia in SCHEMA:
+
+            cursor.execute(
+                sentencia,
+            )
+
+        self._connection.commit()
 
     def close(self):
         self._connection.close()

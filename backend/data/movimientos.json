@@ -210,17 +210,17 @@
         "id": 24,
         "numero_asiento": 12,
         "fecha": "2026-08-04",
-        "descripcion": "Borrador desbalanceado",
+        "descripcion": "Borrador balanceado",
         "estado": "BORRADOR",
         "lineas": [
             {
-                "cuenta_id": 16,
-                "importe": "100",
+                "cuenta_id": 4,
+                "importe": "101",
                 "tipo_afectacion": "DEBITO"
             },
             {
-                "cuenta_id": 1,
-                "importe": "100",
+                "cuenta_id": 5,
+                "importe": "101",
                 "tipo_afectacion": "CREDITO"
             }
         ]

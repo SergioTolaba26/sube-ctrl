@@ -80,7 +80,7 @@ from application.use_cases.movimiento.confirmar_movimiento import (
 from application.factory import (
     ApplicationFactory,
 )
-from presentation.schemas.movimiento_resumen_response import MovimientoResumenResponse
+
 from presentation.schemas.registrar_asiento_request import (
     RegistrarAsientoRequest,
 )
@@ -130,7 +130,7 @@ from presentation.mappers.movimiento_response_mapper import (
 
 @router.get(
     "/",
-    response_model=list[MovimientoResumenResponse],
+    response_model=list[MovimientoResponse],
 )
 def listar_movimientos():
 

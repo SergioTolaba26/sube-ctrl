@@ -6,8 +6,11 @@ from domain.enums.estado_movimiento import EstadoMovimiento
 
 from presentation.schemas.linea_movimiento_schema import (
     LineaMovimientoUpdate,
+    LineaMovimientoResponse
 )
-
+from presentation.schemas.linea_movimiento_schema import (
+    LineaMovimientoResponse,
+)
 
 class MovimientoCreate(BaseModel):
 
@@ -50,7 +53,7 @@ class MovimientoResponse(BaseModel):
     estado: EstadoMovimiento
 
     lineas: list[
-        LineaMovimientoUpdate
+        LineaMovimientoResponse
     ] | None = None
 
     model_config = {

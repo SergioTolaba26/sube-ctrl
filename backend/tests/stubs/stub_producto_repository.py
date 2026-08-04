@@ -28,7 +28,7 @@ class StubProductoRepository(
 
         return producto
 
-    def obtener_por_id(
+    def buscar_por_id(
         self,
         producto_id: int,
     ) -> Producto | None:
@@ -40,7 +40,7 @@ class StubProductoRepository(
 
         return None
 
-    def obtener_por_codigo_barras(
+    def buscar_por_codigo_barras(
         self,
         codigo_barras: str,
     ) -> Producto | None:
@@ -55,30 +55,21 @@ class StubProductoRepository(
 
         return None
 
-    def listar(
+    def obtener_todos(
         self,
     ) -> list[Producto]:
 
         return self._productos.copy()
 
-    def actualizar(
-        self,
-        producto: Producto,
-    ) -> Producto:
 
-        return producto
 
     def eliminar(
         self,
-        producto_id: int,
+        producto: Producto,
     ) -> None:
 
         self._productos = [
-
-            producto
-
-            for producto in self._productos
-
-            if producto.id != producto_id
-
+            existente
+            for existente in self._productos
+            if existente.id != producto.id
         ]

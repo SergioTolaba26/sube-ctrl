@@ -21,7 +21,7 @@ class CrearProducto:
     ) -> Producto:
 
         existente = (
-            self._repository.obtener_por_codigo_barras(
+            self._repository.buscar_por_codigo_barras(
                 producto.codigo_barras,
             )
         )

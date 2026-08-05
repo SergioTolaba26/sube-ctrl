@@ -1,0 +1,1 @@
+from tests.fixtures.sqlite_database import database

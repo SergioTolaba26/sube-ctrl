@@ -212,3 +212,23 @@ class ProductoRepositorySQLite(
         if cursor.rowcount == 0:
             return None
         return producto
+    
+    def eliminar(
+        self,
+        producto_id: int,
+    ) -> bool:
+
+        cursor = self._connection.cursor()
+        cursor.execute(
+            """
+            DELETE FROM productos
+            WHERE id = ?
+            """,
+            (
+                producto_id,
+            ),
+        )
+        # Lo confirmo
+        self._connection.commit()
+        # Verifico que se eliminó el registro
+        return cursor.rowcount > 0

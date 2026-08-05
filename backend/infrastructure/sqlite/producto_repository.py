@@ -177,3 +177,38 @@ class ProductoRepositorySQLite(
             )
             for fila in filas
         ]
+    
+    def actualizar(
+        self,
+        producto: Producto,
+    ) -> Producto | None:
+
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            """
+            UPDATE productos
+            SET
+                codigo_barras = ?,
+                nombre = ?,
+                precio_compra = ?,
+                activo = ?
+            WHERE id = ?
+            """,
+            (
+                producto.codigo_barras,
+                producto.nombre,
+                float(
+                    producto.precio_compra,
+                ),
+                int(
+                    producto.activo,
+                ),
+                producto.id,
+            ),
+        )
+        self._connection.commit()
+
+        if cursor.rowcount == 0:
+            return None
+        return producto

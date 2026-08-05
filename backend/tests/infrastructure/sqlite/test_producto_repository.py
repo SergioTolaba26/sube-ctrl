@@ -142,3 +142,56 @@ def test_obtener_todos( # db con 2 productos
     productos = repository.obtener_todos()
 
     assert len(productos) == 2
+
+# Producto existente
+def test_actualizar_producto(
+    database,
+):
+
+    repository = ProductoRepositorySQLite(
+        database.connection,
+    )
+
+    producto = Producto(
+        codigo_barras="7791234567890",
+        nombre="Agua",
+        precio_compra=Decimal("850"),
+    )
+
+    guardado = repository.guardar(
+        producto,
+    )
+
+    guardado.nombre = "Agua Mineral"
+
+    guardado.precio_compra = Decimal("900")
+
+    actualizado = repository.actualizar(
+        guardado,
+    )
+
+    assert actualizado is not None
+    assert actualizado.nombre == "Agua Mineral"
+    assert actualizado.precio_compra == Decimal("900")
+
+# Producto inexistente
+def test_actualizar_producto_inexistente(
+    database,
+):
+
+    repository = ProductoRepositorySQLite(
+        database.connection,
+    )
+
+    producto = Producto(
+        id=999,
+        codigo_barras="779",
+        nombre="Inexistente",
+        precio_compra=Decimal("100"),
+    )
+
+    resultado = repository.actualizar(
+        producto,
+    )
+
+    assert resultado is None

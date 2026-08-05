@@ -149,3 +149,31 @@ class ProductoRepositorySQLite(
         return self._row_to_producto(
             fila,
         )
+    
+    def obtener_todos(
+        self,
+    ) -> list[Producto]:
+
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                codigo_barras,
+                nombre,
+                precio_compra,
+                activo
+            FROM productos
+            ORDER BY nombre
+            """
+        )
+
+        filas = cursor.fetchall()
+
+        return [
+            self._row_to_producto(
+                fila,
+            )
+            for fila in filas
+        ]

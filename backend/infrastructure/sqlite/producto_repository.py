@@ -27,6 +27,23 @@ class ProductoRepositorySQLite(
         super().__init__(
             connection,
         )
+    def _row_to_producto(
+        self,
+        fila,
+    ) -> Producto:
+
+        return Producto(
+            id=fila["id"],
+            codigo_barras=fila["codigo_barras"],
+            nombre=fila["nombre"],
+            precio_compra=Decimal(
+                str(fila["precio_compra"])
+            ),
+            activo=bool(
+                fila["activo"],
+            ),
+        )
+
 
     def guardar(
         self,
@@ -62,15 +79,7 @@ class ProductoRepositorySQLite(
         self,
     ) -> list[Producto]:
         raise NotImplementedError
-
-
-    def buscar_por_id(
-        self,
-        id_: int,
-    ) -> Producto | None:
-        raise NotImplementedError
-
-
+    
     def buscar_por_codigo_barras(
         self,
         codigo_barras: str,
@@ -99,20 +108,44 @@ class ProductoRepositorySQLite(
         if fila is None:
             return None
 
-        return Producto(
-            id=fila["id"],
-            codigo_barras=fila["codigo_barras"],
-            nombre=fila["nombre"],
-            precio_compra=Decimal(
-                str(fila["precio_compra"])
-            ),
-            activo=bool(
-                fila["activo"]
-            ),
-        )
+        return self._row_to_producto(
+            fila,
+    )
 
     def eliminar(
         self,
         producto: Producto,
     ) -> None:
         raise NotImplementedError
+    
+    def buscar_por_id(
+        self,
+        producto_id: int,
+    ) -> Producto | None:
+
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                codigo_barras,
+                nombre,
+                precio_compra,
+                activo
+            FROM productos
+            WHERE id = ?
+            """,
+            (
+                producto_id,
+            ),
+        )
+
+        fila = cursor.fetchone()
+
+        if fila is None:
+            return None
+
+        return self._row_to_producto(
+            fila,
+        )

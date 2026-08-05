@@ -75,8 +75,41 @@ class ProductoRepositorySQLite(
         self,
         codigo_barras: str,
     ) -> Producto | None:
-        raise NotImplementedError
 
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                codigo_barras,
+                nombre,
+                precio_compra,
+                activo
+            FROM productos
+            WHERE codigo_barras = ?
+            """,
+            (
+                codigo_barras,
+            ),
+        )
+
+        fila = cursor.fetchone()
+
+        if fila is None:
+            return None
+
+        return Producto(
+            id=fila["id"],
+            codigo_barras=fila["codigo_barras"],
+            nombre=fila["nombre"],
+            precio_compra=Decimal(
+                str(fila["precio_compra"])
+            ),
+            activo=bool(
+                fila["activo"]
+            ),
+        )
 
     def eliminar(
         self,

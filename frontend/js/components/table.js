@@ -100,6 +100,12 @@ export function crearTabla(
 
                         </button>
 
+                            <button class="btn-confirmar">
+
+                                Confirmar
+
+                            </button>
+
                         <button
 
                             class="btn-eliminar"
@@ -146,7 +152,7 @@ export function crearTabla(
 export function conectarEventosTabla({
 
     onEditar = null,
-
+    onConfirmar = null,
     onEliminar = null,
 
 }) {
@@ -192,6 +198,23 @@ export function conectarEventosTabla({
                 },
 
             );
+
+    }
+    if (onConfirmar) {
+
+        document
+            .querySelectorAll(".btn-confirmar")
+            .forEach((boton, indice) => {
+
+                boton.addEventListener(
+
+                    "click",
+
+                    () => onConfirmar(indice),
+
+                );
+
+            });
 
     }
 

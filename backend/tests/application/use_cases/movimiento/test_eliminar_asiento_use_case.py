@@ -1,3 +1,4 @@
+from domain.enums.tipo_afectacion import TipoAfectacion
 from datetime import date
 from decimal import Decimal
 
@@ -83,15 +84,14 @@ def test_elimina_asiento_borrador():
         fecha=date.today(),
         descripcion="Asiento borrar",
         lineas=[
-            {
-                "cuenta_id": 1,
-                "debito": Decimal("1000"),
-                "credito": Decimal("0"),
+            {   "cuenta_id": 1,
+                "tipo_afectacion": TipoAfectacion.DEBITO,
+                "importe": Decimal("1000"),
             },
             {
                 "cuenta_id": 2,
-                "debito": Decimal("0"),
-                "credito": Decimal("1000"),
+                "tipo_afectacion": TipoAfectacion.CREDITO,
+                "importe": Decimal("1000"),
             },
         ],
     )
@@ -165,13 +165,13 @@ def test_no_elimina_asiento_confirmado():
         lineas=[
             {
                 "cuenta_id": 1,
-                "debito": Decimal("1000"),
-                "credito": Decimal("0"),
+                "tipo_afectacion": TipoAfectacion.DEBITO,
+                "importe": Decimal("1000"),
             },
             {
                 "cuenta_id": 2,
-                "debito": Decimal("0"),
-                "credito": Decimal("1000"),
+               "tipo_afectacion": TipoAfectacion.CREDITO,
+                "importe": Decimal("1000"),
             },
         ],
     )

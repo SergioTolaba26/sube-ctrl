@@ -1,3 +1,4 @@
+from domain.enums.tipo_afectacion import TipoAfectacion
 from datetime import date
 from decimal import Decimal
 
@@ -76,15 +77,15 @@ def test_modifica_asiento_borrador():
         fecha=date(2027, 7, 28),
         descripcion="Venta",
         lineas=[
-            {
+                {
                 "cuenta_id": 1,
-                "debito": Decimal("1000"),
-                "credito": Decimal("0"),
+                "tipo_afectacion": TipoAfectacion.DEBITO,
+                "importe": Decimal("1000"),
             },
             {
-                "cuenta_id": 2,
-                "debito": Decimal("0"),
-                "credito": Decimal("1000"),
+                "cuenta_id": 1,
+                "tipo_afectacion": TipoAfectacion.DEBITO,
+                "importe": Decimal("1000"),
             },
         ],
     )
@@ -101,13 +102,13 @@ def test_modifica_asiento_borrador():
         lineas=[
             {
                 "cuenta_id": 1,
-                "debito": Decimal("2000"),
-                "credito": Decimal("0"),
+                "tipo_afectacion": TipoAfectacion.DEBITO,
+                "importe": Decimal("2000"),
             },
             {
                 "cuenta_id": 2,
-                "debito": Decimal("0"),
-                "credito": Decimal("2000"),
+                "tipo_afectacion": TipoAfectacion.CREDITO,
+                "importe": Decimal("2000"),
             },
         ],
     )
@@ -210,16 +211,16 @@ def test_no_modifica_asiento_confirmado():
         fecha=date.today(),
         descripcion="Venta",
         lineas=[
-            {
-                "cuenta_id": 1,
-                "debito": Decimal("1000"),
-                "credito": Decimal("0"),
-            },
-            {
-                "cuenta_id": 2,
-                "debito": Decimal("0"),
-                "credito": Decimal("1000"),
-            },
+                {
+            "cuenta_id": 1,
+            "tipo_afectacion": TipoAfectacion.DEBITO,
+            "importe": Decimal("1000"),
+},
+        {
+            "cuenta_id": 2,
+            "tipo_afectacion": TipoAfectacion.CREDITO,
+            "importe": Decimal("1000"),
+        },
         ],
     )
 
@@ -298,15 +299,15 @@ def test_no_modifica_con_cuenta_inexistente():
         fecha=date(2027, 7, 28),
         descripcion="Venta",
         lineas=[
-            {
+                    {
                 "cuenta_id": 1,
-                "debito": Decimal("1000"),
-                "credito": Decimal("0"),
+                "tipo_afectacion": TipoAfectacion.DEBITO,
+                "importe": Decimal("1000"),
             },
             {
                 "cuenta_id": 2,
-                "debito": Decimal("0"),
-                "credito": Decimal("1000"),
+                "tipo_afectacion": TipoAfectacion.CREDITO,
+                "importe": Decimal("1000"),
             },
         ],
     )
@@ -328,8 +329,8 @@ def test_no_modifica_con_cuenta_inexistente():
             lineas=[
                 {
                     "cuenta_id": 999,
-                    "debito": Decimal("100"),
-                    "credito": Decimal("0"),
-                }
+                    "tipo_afectacion": TipoAfectacion.DEBITO,
+                    "importe": Decimal("100"),
+                },
             ],
         )

@@ -110,5 +110,26 @@
         "nombre": "Inversiones",
         "tipo": "ACTIVO",
         "activa": true
+    },
+    {
+        "id": 17,
+        "codigo": "5.3.02",
+        "nombre": "Expensas",
+        "tipo": "ACTIVO",
+        "activa": true
+    },
+    {
+        "id": 18,
+        "codigo": "5.5.02",
+        "nombre": "Gastos Banco Galicia",
+        "tipo": "ACTIVO",
+        "activa": true
+    },
+    {
+        "id": 19,
+        "codigo": "5.5.03",
+        "nombre": "Gastos Banco BBVA",
+        "tipo": "ACTIVO",
+        "activa": true
     }
 ]

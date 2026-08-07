@@ -1,511 +1,239 @@
+/******************************************************************
+ * asientos.js
+ *
+ * Vista principal de Asientos Contables
+ ******************************************************************/
+
+import { obtenerAsientos,  confirmarAsiento as confirmarAsientoAPI, eliminarAsiento } from '../api.js';
+
+import { crearTabla, conectarEventosTabla } from '../components/table.js';
+
+import { abrirNuevoAsiento, abrirEditarAsiento } from './asientosFormulario.js';
+
 import {
-  obtenerAsientos,
-  obtenerAsiento,
-  crearAsiento as apiCrearAsiento,
-  actualizarAsiento as apiActualizarAsiento,
-  eliminarAsiento as apiEliminarAsiento,
-} from '../api.js';
 
-import { crearPagina } from '../components/page.js';
+    obtenerCuentas,
 
-import { abrirModal, cerrarModal, mostrarMensaje } from '../components/modal.js';
+} from "../api.js";
 
-import { conectarEventosTabla } from '../components/table.js';
-
-import { crearFormularioAsiento } from '../forms/asientoForm.js';
-
-import { crearLineaMovimiento } from '../components/lineaMovimiento.js';
-
-import { obtenerCuentas } from '../api.js';
-
-import { actualizarLineaAsiento } from '../api.js';
-
-let asientos = [];
-let cuentas = [];
-
-/*********************************************
- * LISTAR
- *********************************************/
+/*************************************************
+ * MOSTRAR
+ *************************************************/
 
 export async function mostrarAsientos() {
-  const contenido = document.getElementById('contenido');
+  const asientos = await obtenerAsientos();
 
-  contenido.innerHTML = '<h2>Asientos</h2><p>Cargando...</p>';
+  const columnas = ['N°', 'Fecha', 'Descripción', 'Importe','Estado'];
 
-  try {
-    asientos = await obtenerAsientos();
+  const filas = asientos.map((asiento) => [
+    asiento.numero_asiento,
+    asiento.fecha,
+    asiento.descripcion,
+    Number(asiento.importe).toFixed(2),
+    asiento.estado,
+]);
 
-    asientos.sort((a, b) => a.numero_asiento - b.numero_asiento);
-
-    contenido.innerHTML = crearPagina({
-      titulo: 'Asientos',
-
-      botones: [
-        {
-          id: 'btn-nuevo-asiento',
-
-          texto: 'Nuevo',
-
-          icono: '➕',
-        },
-
-        {
-          id: 'btn-actualizar-asientos',
-
-          texto: 'Actualizar',
-
-          icono: '🔄',
-        },
-      ],
-
-      columnas: ['N°', 'Fecha', 'Descripción', 'Estado'],
-
-      filas: asientos.map((asiento) => [
-        asiento.numero_asiento,
-
-        asiento.fecha,
-
-        asiento.descripcion,
-
-        asiento.estado,
-      ]),
-
-      acciones: true,
-    });
-
-    conectarEventosTabla({
-      onEditar: editarAsiento,
-
-      onEliminar: eliminarAsiento,
-    });
-
-    document
-
-      .getElementById('btn-nuevo-asiento')
-
-      ?.addEventListener(
-        'click',
-
-        nuevoAsiento,
-      );
-
-    document
-
-      .getElementById('btn-actualizar-asientos')
-
-      ?.addEventListener(
-        'click',
-
-        mostrarAsientos,
-      );
-  } catch (error) {
-    contenido.innerHTML = `
-
-            <h2>Asientos</h2>
-
-            <p>Error al consultar la API.</p>
-
-        `;
-
-    console.error(error);
-  }
-}
-
-/*********************************************
- * NUEVO
- *********************************************/
-
-async function nuevoAsiento() {
-  cuentas = await obtenerCuentas();
-
-  cuentas.sort((a, b) => a.codigo.localeCompare(b.codigo));
-
-  abrirModal({
-    titulo: 'Nuevo Asiento',
-
-    contenido: crearFormularioAsiento(),
-
-    textoAceptar: 'Guardar',
-
-    textoCancelar: 'Cancelar',
-
-    onAceptar: guardarAsiento,
-  });
-
-  inicializarLineas();
-}
-
-/*********************************************
- * INICIALIZAR LINEAS
- *********************************************/
-
-function inicializarLineas() {
-  const contenedor = document.getElementById('lineas-container');
+  const contenedor = document.getElementById('contenido');
 
   if (!contenedor) {
+    console.error('No existe #contenido');
+
     return;
   }
 
-  contenedor.innerHTML =
-    crearLineaMovimiento(cuentas) + crearLineaMovimiento(cuentas);
+  //  .innerHTML = crearTabla(
+  //   columnas,
 
-  conectarEventosLineas();
-}
+  //   filas,
+  contenedor.innerHTML = `
 
-/*********************************************
- * AGREGAR LINEAS
- *********************************************/
+  <div class="toolbar">
 
-function conectarEventosLineas() {
-  document
+      <button id="btnNuevoAsiento">
 
-    .getElementById('btn-agregar-linea')
+          + Nuevo
 
-    ?.addEventListener(
-      'click',
+      </button>
 
-      () => {
-        document
+      <button id="btnActualizarAsientos">
 
-          .getElementById('lineas-container')
+          Actualizar
 
-          .insertAdjacentHTML(
-            'beforeend',
+      </button>
 
-            crearLineaMovimiento(cuentas),
-          );
+  </div>
 
-        conectarEliminarLineas();
+  ${crearTabla(
+
+      columnas,
+
+      filas,
+
+      {
+
+          mostrarAcciones: true,
+
       },
-    );
 
-  conectarEliminarLineas();
-}
+  )}
 
-/*********************************************
- * ELIMINAR LINEAS
- *********************************************/
+  `;
 
-function conectarEliminarLineas() {
+  //   {
+  //     mostrarAcciones: true,
+  //   },
+  // );
+
+  conectarEventosTabla({
+
+      onEditar: (indice) =>
+
+          editarAsiento(
+              asientos[indice].id,
+          ),
+
+      onConfirmar: (indice) =>
+
+          confirmarAsiento(
+              asientos[indice].id,
+              asientos[indice].numero_asiento,
+          ),
+
+      onEliminar: (indice) =>
+
+          eliminarAsientoUI(
+              asientos[indice].id,
+              asientos[indice].numero_asiento,
+              asientos[indice].descripcion,
+          ),
+
+  });
   document
+      .getElementById(
+          "btnNuevoAsiento",
+      )
+      ?.addEventListener(
+          "click",
+          nuevoAsiento,
+      );
 
-    .querySelectorAll('.btn-eliminar-linea')
-
-    .forEach((boton) => {
-      boton.onclick = () => {
-        boton
-
-          .closest('.linea-movimiento')
-
-          .remove();
-      };
-    });
-}
-/*********************************************
- * GUARDAR
- *********************************************/
-
-async function guardarAsiento() {
-  const formulario = document.getElementById('form-asiento');
-
-  const lineas = [...document.querySelectorAll('.linea-movimiento')].map(
-    (linea) => ({
-      cuenta_id: Number(linea.querySelector('.cuenta').value),
-
-      debito: Number(linea.querySelector('.debito').value || 0),
-
-      credito: Number(linea.querySelector('.credito').value || 0),
-    }),
-  );
-  const datos = {
-    fecha: formulario.fecha.value,
-
-    descripcion: formulario.descripcion.value,
-
-    estado: formulario.estado.value,
-    lineas,
-  };
-  console.log('DATOS A ENVIAR:', datos);
-
-  try {
-    await apiCrearAsiento(datos);
-
-    cerrarModal();
-
-    await mostrarAsientos();
-  } catch (error) {
-    console.error(error);
-  }
+  document
+      .getElementById(
+          "btnActualizarAsientos",
+      )
+      ?.addEventListener(
+          "click",
+          mostrarAsientos,
+      );
 }
 
-/*********************************************
+/*************************************************
+ * NUEVO
+ *************************************************/
+
+export async function nuevoAsiento() {
+  await abrirNuevoAsiento();
+}
+
+/*************************************************
  * EDITAR
- *********************************************/
+ *************************************************/
 
-async function editarAsiento(indice) {
-  const resumen = asientos[indice];
-
-  const asiento = await obtenerAsiento(resumen.id);
-
-  //
-  // Cargar todas las cuentas
-  //
-  window.cuentas = await obtenerCuentas();
-
-  abrirModal({
-    titulo: 'Editar Asiento',
-
-    contenido: crearFormularioAsiento(asiento),
-
-    textoAceptar: 'Guardar cambios',
-
-    textoCancelar: 'Cancelar',
-
-    onAceptar: () => actualizarAsiento(asiento.id),
-  });
-
-  inicializarFormularioAsiento();
+export async function editarAsiento(movimientoId) {
+  await abrirEditarAsiento(movimientoId);
 }
-function inicializarFormularioAsiento() {
-  //
-  // Botón eliminar
-  //
-  document.querySelectorAll('.btn-eliminar-linea').forEach((boton) => {
-    boton.onclick = () => {
-      const fila = boton.closest('.linea-asiento');
+async function confirmarAsiento(
 
-      if (fila) {
-        fila.remove();
-      }
-    };
-  });
+    movimientoId,
 
-  //
-  // Botón agregar
-  //
-  const btnAgregar = document.getElementById('btn-agregar-linea');
+    numeroAsiento,
 
-  if (btnAgregar) {
-    btnAgregar.onclick = agregarLineaFormulario;
-  }
-}
-function agregarLineaFormulario() {
-  const contenedor = document.getElementById('lineas-container');
+) {
 
-  const html = `
+    const confirmar = confirm(
 
-<div class="linea-asiento">
+        `¿Confirmar el Asiento Nº ${numeroAsiento}?`,
 
-    <div class="fila-linea">
-
-        <label>Cuenta</label>
-
-        <select class="cuenta-id">
-
-            ${window.cuentas
-              .map(
-                (cuenta) => `
-
-                <option value="${cuenta.id}">
-
-                    ${cuenta.codigo} - ${cuenta.nombre}
-
-                </option>
-
-            `,
-              )
-              .join('')}
-
-        </select>
-
-    </div>
-
-    <div class="fila-linea">
-
-        <label>Tipo</label>
-
-        <select class="tipo-afectacion">
-
-            <option value="DEBITO">
-
-                Débito
-
-            </option>
-
-            <option value="CREDITO">
-
-                Crédito
-
-            </option>
-
-        </select>
-
-    </div>
-
-    <div class="fila-linea">
-
-        <label>Importe</label>
-
-        <input
-            class="importe"
-            type="number"
-            value="0"
-        >
-
-    </div>
-
-    <div class="fila-linea">
-
-        <button
-            type="button"
-            class="btn-eliminar-linea"
-        >
-
-            🗑
-
-        </button>
-
-    </div>
-
-</div>
-
-`;
-
-  contenedor.insertAdjacentHTML('beforeend', html);
-
-  inicializarFormularioAsiento();
-}
-/*********************************************
- * ACTUALIZAR
- *********************************************/
-
-async function actualizarAsiento(id) {
-  const formulario = document.getElementById('form-asiento');
-
-  //
-  // Armamos el asiento completo.
-  //
-  const datos = {
-    fecha: formulario.fecha.value,
-
-    descripcion: formulario.descripcion.value,
-
-    estado: 'BORRADOR',
-
-    lineas: obtenerLineasFormulario(),
-  };
-  const resultado = validarAsientoBalanceado(datos.lineas);
-
-  if (!resultado.balanceado) {
-    mostrarMensaje(
-      '⚠ Asiento desbalanceado',
-
-      `Débitos : ${resultado.debitos}
-        Créditos: ${resultado.creditos}
-
-        Diferencia: ${resultado.diferencia}`,
     );
 
-    return;
+    if (!confirmar) {
 
-    return;
-  }
+        return;
 
-  console.log('ASIENTO A ENVIAR:', datos);
-
-  try {
-    //
-    // Ahora TODO se guarda en un único PUT.
-    //
-    await apiActualizarAsiento(
-      id,
-
-      datos,
-    );
-    mostrarMensaje(
-      '✅ Asiento actualizado',
-
-      'Los cambios fueron guardados correctamente.',
-    );
-
-    cerrarModal();
-
-    await mostrarAsientos();
-  } catch (error) {
-    console.error('ERROR AL ACTUALIZAR:', error);
-  }
-}
-/*********************************************
- * ELIMINAR
- *********************************************/
-
-async function eliminarAsiento(indice) {
-  const asiento = asientos[indice];
-
-  if (!confirm(`¿Eliminar el asiento Nº ${asiento.numero_asiento}?`)) {
-    return;
-  }
-
-  try {
-    await apiEliminarAsiento(asiento.id);
-
-    await mostrarAsientos();
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-/***********DIBUJAR LINEAS DEL ASIENTO AL EDITAR */
-function cargarLineasExistentes(lineas) {
-  const contenedor = document.getElementById('lineas-container');
-
-  contenedor.innerHTML = '';
-
-  lineas.forEach((linea) => {
-    contenedor.insertAdjacentHTML(
-      'beforeend',
-      crearLineaMovimiento(cuentas, linea),
-    );
-  });
-
-  conectarEventosLineas();
-}
-function obtenerLineasFormulario() {
-  const lineas = [];
-
-  document.querySelectorAll('.linea-asiento').forEach((fila) => {
-    lineas.push({
-      cuenta_id: Number(fila.querySelector('.cuenta-id').value),
-
-      tipo_afectacion: fila.querySelector('.tipo-afectacion').value,
-
-      importe: Number(fila.querySelector('.importe').value),
-    });
-  });
-
-  return lineas;
-}
-
-// Nejora UX
-function validarAsientoBalanceado(lineas) {
-  let totalDebitos = 0;
-  let totalCreditos = 0;
-
-  lineas.forEach((linea) => {
-    if (linea.tipo_afectacion === 'DEBITO') {
-      totalDebitos += Number(linea.importe);
-    } else {
-      totalCreditos += Number(linea.importe);
     }
-  });
 
-  return {
-    balanceado: totalDebitos === totalCreditos,
+    try {
 
-    debitos: totalDebitos,
+        await confirmarAsientoAPI(
 
-    creditos: totalCreditos,
+            movimientoId,
 
-    diferencia: Math.abs(totalDebitos - totalCreditos),
-  };
+        );
+
+        await mostrarAsientos();
+
+    }
+
+    catch (error) {
+
+        alert(
+
+            error.message,
+
+        );
+
+    }
+
 }
+/*************************************************
+ * ELIMINAR
+ *************************************************/
+
+async function eliminarAsientoUI(
+    movimientoId,
+    numeroAsiento,
+    descripcion,
+) {
+
+    const confirmar = confirm(
+        `¿Desea eliminar el Asiento Nº ${numeroAsiento}?\n\n` +
+        `Descripción: ${descripcion}`,
+    );
+
+    if (!confirmar) {
+        return;
+    }
+
+    try {
+
+        await eliminarAsiento(
+            movimientoId,
+        );
+
+        await mostrarAsientos();
+
+    } catch (error) {
+
+        alert(
+            error.message,
+        );
+
+    }
+}
+/******************************************************************
+ * EXPORTAR
+ ******************************************************************/
+
+export default {
+
+    mostrarAsientos,
+
+    nuevoAsiento,
+
+    editarAsiento,
+
+};
+
+/******************************************************************
+ * FIN DEL ARCHIVO
+ ******************************************************************/

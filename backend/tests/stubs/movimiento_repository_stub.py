@@ -10,7 +10,7 @@ class MovimientoRepositoryStub(
     def __init__(self):
 
         self.movimientos = []
-    
+
     def listar(
         self,
     ):
@@ -44,6 +44,8 @@ class MovimientoRepositoryStub(
     def obtener_todos(self):
         return self.movimientos
 
+
+
     def eliminar(
         self,
         movimiento_id,
@@ -68,7 +70,7 @@ class MovimientoRepositoryStub(
                 return movimiento
 
         return None
-    
+
     def listar_por_fecha(
         self,
         desde,

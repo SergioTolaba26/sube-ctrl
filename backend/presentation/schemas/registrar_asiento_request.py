@@ -1,18 +1,10 @@
 from datetime import date
-from decimal import Decimal
 
 from pydantic import BaseModel
 
-
-class LineaAsientoRequest(
-    BaseModel,
-):
-
-    cuenta_id: int
-
-    debito: Decimal = Decimal("0")
-
-    credito: Decimal = Decimal("0")
+from presentation.schemas.linea_movimiento_schema import (
+    LineaMovimientoCreate,
+)
 
 
 class RegistrarAsientoRequest(
@@ -24,5 +16,5 @@ class RegistrarAsientoRequest(
     descripcion: str
 
     lineas: list[
-        LineaAsientoRequest
+        LineaMovimientoCreate
     ]

@@ -1,3 +1,4 @@
+from domain.enums.tipo_afectacion import TipoAfectacion
 from datetime import date
 from decimal import Decimal
 
@@ -85,14 +86,14 @@ def test_libro_diario_lista_solo_confirmados():
         lineas=[
             {
                 "cuenta_id": 1,
-                "debito": Decimal("100"),
-                "credito": Decimal("0"),
+                "tipo_afectacion": TipoAfectacion.DEBITO,
+                "importe": Decimal("100"),
             },
             {
                 "cuenta_id": 2,
-                "debito": Decimal("0"),
-                "credito": Decimal("100"),
-            },
+                "tipo_afectacion": TipoAfectacion.CREDITO,
+                "importe": Decimal("100"),
+                            },
         ],
     )
 
@@ -102,13 +103,13 @@ def test_libro_diario_lista_solo_confirmados():
         lineas=[
             {
                 "cuenta_id": 1,
-                "debito": Decimal("200"),
-                "credito": Decimal("0"),
+                "tipo_afectacion": TipoAfectacion.DEBITO,
+                "importe": Decimal("200"),
             },
             {
                 "cuenta_id": 2,
-                "debito": Decimal("0"),
-                "credito": Decimal("200"),
+                "tipo_afectacion": TipoAfectacion.CREDITO,
+                "importe": Decimal("200"),
             },
         ],
     )
@@ -182,13 +183,13 @@ def test_libro_diario_ordena_por_fecha():
         lineas=[
             {
                 "cuenta_id": 1,
-                "debito": Decimal("100"),
-                "credito": Decimal("0"),
+                "tipo_afectacion": TipoAfectacion.DEBITO,
+                "importe": Decimal("100"),
             },
             {
                 "cuenta_id": 2,
-                "debito": Decimal("0"),
-                "credito": Decimal("100"),
+                "tipo_afectacion": TipoAfectacion.CREDITO,
+                "importe": Decimal("100"),
             },
         ],
     )
@@ -199,13 +200,13 @@ def test_libro_diario_ordena_por_fecha():
         lineas=[
             {
                 "cuenta_id": 1,
-                "debito": Decimal("200"),
-                "credito": Decimal("0"),
+                "tipo_afectacion": TipoAfectacion.DEBITO,
+                "importe": Decimal("200"),
             },
             {
                 "cuenta_id": 2,
-                "debito": Decimal("0"),
-                "credito": Decimal("200"),
+                "tipo_afectacion": TipoAfectacion.CREDITO,
+                "importe": Decimal("200"),
             },
         ],
     )
@@ -293,13 +294,13 @@ def test_libro_diario_filtra_por_rango_de_fechas():
             lineas=[
                 {
                     "cuenta_id": 1,
-                    "debito": Decimal("100"),
-                    "credito": Decimal("0"),
+                    "tipo_afectacion": TipoAfectacion.DEBITO,
+                    "importe": Decimal("100"),
                 },
                 {
                     "cuenta_id": 2,
-                    "debito": Decimal("0"),
-                    "credito": Decimal("100"),
+                    "tipo_afectacion": TipoAfectacion.CREDITO,
+                    "importe": Decimal("100"),
                 },
             ],
         )

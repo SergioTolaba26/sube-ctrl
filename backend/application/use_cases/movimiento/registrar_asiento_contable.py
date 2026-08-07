@@ -1,6 +1,7 @@
 from domain.entities.movimiento import Movimiento
 from domain.entities.linea_movimiento import LineaMovimiento
 from domain.enums.estado_movimiento import EstadoMovimiento
+from domain.enums.tipo_afectacion import TipoAfectacion
 
 
 class RegistrarAsientoContable:
@@ -27,13 +28,11 @@ class RegistrarAsientoContable:
         )
 
         if ejercicio is None:
-
             raise ValueError(
                 "No existe un ejercicio para la fecha indicada."
             )
 
         if ejercicio.esta_cerrado():
-
             raise ValueError(
                 "No se puede registrar un asiento en un ejercicio cerrado."
             )
@@ -52,37 +51,26 @@ class RegistrarAsientoContable:
                 dato["cuenta_id"],
             )
 
-            if dato["debito"] > 0:
-
-                linea = LineaMovimiento.debito(
-                    cuenta,
-                    dato["debito"],
+            if cuenta is None:
+                raise ValueError(
+                    f"No existe la cuenta {dato['cuenta_id']}"
                 )
 
+            if dato["tipo_afectacion"] == TipoAfectacion.DEBITO:
+                linea = LineaMovimiento.debito(
+                    cuenta,
+                    dato["importe"],
+                )
             else:
-
                 linea = LineaMovimiento.credito(
                     cuenta,
-                    dato["credito"],
+                    dato["importe"],
                 )
 
             movimiento.agregar_linea(
                 linea,
             )
 
-        #movimiento.confirmar() Lo elimino para que el asiento nazca como BORRADOR
-        #
-        # Verificación temporal
-        #
-        print("Cantidad de líneas:", len(movimiento.lineas))
-
-        for linea in movimiento.lineas:
-            print(
-                linea.cuenta.id,
-                linea.tipo_afectacion,
-                linea.importe,
-            )
-            
         self.movimiento_service.guardar(
             movimiento,
         )

@@ -1,6 +1,9 @@
 from domain.entities.linea_movimiento import (
     LineaMovimiento,
 )
+from domain.enums.tipo_afectacion import (
+    TipoAfectacion,
+)
 
 
 class ModificarAsiento:
@@ -41,7 +44,7 @@ class ModificarAsiento:
         movimiento.descripcion = descripcion
 
         #
-        # reemplazar líneas
+        # Reemplazar líneas
         #
         movimiento.lineas = []
 
@@ -58,12 +61,15 @@ class ModificarAsiento:
                     f"No existe la cuenta {dato['cuenta_id']}."
                 )
 
-            if dato["debito"] > 0:
+            if (
+                dato["tipo_afectacion"]
+                == TipoAfectacion.DEBITO
+            ):
 
                 linea = (
                     LineaMovimiento.debito(
                         cuenta,
-                        dato["debito"],
+                        dato["importe"],
                     )
                 )
 
@@ -72,7 +78,7 @@ class ModificarAsiento:
                 linea = (
                     LineaMovimiento.credito(
                         cuenta,
-                        dato["credito"],
+                        dato["importe"],
                     )
                 )
 

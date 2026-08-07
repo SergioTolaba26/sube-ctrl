@@ -104,8 +104,19 @@
         "numero_asiento": 6,
         "fecha": "2026-08-01",
         "descripcion": "primer gasto de agosto",
-        "estado": "BORRADOR",
-        "lineas": []
+        "estado": "CONFIRMADO",
+        "lineas": [
+            {
+                "cuenta_id": 13,
+                "importe": "475540.09",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "475540.09",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
     },
     {
         "id": 19,
@@ -116,35 +127,11 @@
         "lineas": []
     },
     {
-        "id": 20,
-        "numero_asiento": 8,
-        "fecha": "2026-08-03",
-        "descripcion": "Prueba Asiento Reg 2",
-        "estado": "BORRADOR",
-        "lineas": [
-            {
-                "cuenta_id": 1,
-                "importe": "13400",
-                "tipo_afectacion": "DEBITO"
-            },
-            {
-                "cuenta_id": 9,
-                "importe": "13000",
-                "tipo_afectacion": "DEBITO"
-            },
-            {
-                "cuenta_id": 5,
-                "importe": "400",
-                "tipo_afectacion": "DEBITO"
-            }
-        ]
-    },
-    {
         "id": 21,
         "numero_asiento": 9,
         "fecha": "2026-08-03",
         "descripcion": "devolucion Mercaderia 2 lineas",
-        "estado": "BORRADOR",
+        "estado": "CONFIRMADO",
         "lineas": [
             {
                 "cuenta_id": 4,
@@ -164,68 +151,6 @@
         ]
     },
     {
-        "id": 22,
-        "numero_asiento": 10,
-        "fecha": "2026-08-02",
-        "descripcion": "Asiento del domingo agosto",
-        "estado": "BORRADOR",
-        "lineas": [
-            {
-                "cuenta_id": 16,
-                "importe": "500",
-                "tipo_afectacion": "DEBITO"
-            },
-            {
-                "cuenta_id": 5,
-                "importe": "250",
-                "tipo_afectacion": "CREDITO"
-            },
-            {
-                "cuenta_id": 1,
-                "importe": "250",
-                "tipo_afectacion": "CREDITO"
-            }
-        ]
-    },
-    {
-        "id": 23,
-        "numero_asiento": 11,
-        "fecha": "2026-08-04",
-        "descripcion": "Borrador desbalanceado",
-        "estado": "BORRADOR",
-        "lineas": [
-            {
-                "cuenta_id": 16,
-                "importe": "100",
-                "tipo_afectacion": "DEBITO"
-            },
-            {
-                "cuenta_id": 1,
-                "importe": "50",
-                "tipo_afectacion": "CREDITO"
-            }
-        ]
-    },
-    {
-        "id": 24,
-        "numero_asiento": 12,
-        "fecha": "2026-08-04",
-        "descripcion": "Borrador balanceado",
-        "estado": "BORRADOR",
-        "lineas": [
-            {
-                "cuenta_id": 4,
-                "importe": "101",
-                "tipo_afectacion": "DEBITO"
-            },
-            {
-                "cuenta_id": 5,
-                "importe": "101",
-                "tipo_afectacion": "CREDITO"
-            }
-        ]
-    },
-    {
         "id": 25,
         "numero_asiento": 13,
         "fecha": "2026-08-04",
@@ -241,24 +166,239 @@
                 "cuenta_id": 5,
                 "importe": "300",
                 "tipo_afectacion": "CREDITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "25.45",
+                "tipo_afectacion": "CREDITO"
             }
         ]
     },
     {
-        "id": 26,
-        "numero_asiento": 14,
-        "fecha": "2026-08-05",
-        "descripcion": "ago 5",
+        "id": 28,
+        "numero_asiento": 16,
+        "fecha": "2027-08-23",
+        "descripcion": "Sueldo pagado",
+        "estado": "CONFIRMADO",
+        "lineas": [
+            {
+                "cuenta_id": 12,
+                "importe": "15.15",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "15.15",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "numero_asiento": 17,
+        "fecha": "2026-08-07",
+        "descripcion": "cobro alquiler",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 1,
+                "importe": "3828",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 13,
+                "importe": "3828",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "numero_asiento": 18,
+        "fecha": "2026-08-07",
+        "descripcion": "San Cayetano y Devolucion",
         "estado": "BORRADOR",
         "lineas": [
             {
                 "cuenta_id": 4,
-                "importe": "300.22",
+                "importe": "150",
                 "tipo_afectacion": "DEBITO"
             },
             {
                 "cuenta_id": 5,
-                "importe": "300.21",
+                "importe": "150",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 31,
+        "numero_asiento": 19,
+        "fecha": "2026-08-07",
+        "descripcion": "Mensaje verde?",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 4,
+                "importe": "89.09",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "89.09",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "numero_asiento": 20,
+        "fecha": "2026-08-07",
+        "descripcion": "Mensaje verde?",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 11,
+                "importe": "55.25",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "50.25",
+                "tipo_afectacion": "CREDITO"
+            },
+            {
+                "cuenta_id": 5,
+                "importe": "5",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "numero_asiento": 21,
+        "fecha": "2026-05-05",
+        "descripcion": "Mensaje verde?",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 11,
+                "importe": "100",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "100",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 34,
+        "numero_asiento": 22,
+        "fecha": "2026-08-07",
+        "descripcion": "Mensaje verde?",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 4,
+                "importe": "100.01",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "0.01",
+                "tipo_afectacion": "CREDITO"
+            },
+            {
+                "cuenta_id": 5,
+                "importe": "100",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 35,
+        "numero_asiento": 23,
+        "fecha": "2026-08-07",
+        "descripcion": "Mensaje verde?",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 11,
+                "importe": "100.22",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "100",
+                "tipo_afectacion": "CREDITO"
+            },
+            {
+                "cuenta_id": 5,
+                "importe": "0.22",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "numero_asiento": 24,
+        "fecha": "2026-08-08",
+        "descripcion": "Mensaje verde?",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 5,
+                "importe": "100",
+                "tipo_afectacion": "CREDITO"
+            },
+            {
+                "cuenta_id": 4,
+                "importe": "100",
+                "tipo_afectacion": "DEBITO"
+            }
+        ]
+    },
+    {
+        "id": 37,
+        "numero_asiento": 25,
+        "fecha": "2026-08-07",
+        "descripcion": "Mensaje verde? final",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 4,
+                "importe": "100.22",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "100.22",
+                "tipo_afectacion": "CREDITO"
+            }
+        ]
+    },
+    {
+        "id": 38,
+        "numero_asiento": 26,
+        "fecha": "2026-08-09",
+        "descripcion": "Mensaje verde?",
+        "estado": "BORRADOR",
+        "lineas": [
+            {
+                "cuenta_id": 4,
+                "importe": "100.22",
+                "tipo_afectacion": "DEBITO"
+            },
+            {
+                "cuenta_id": 1,
+                "importe": "0.22",
+                "tipo_afectacion": "CREDITO"
+            },
+            {
+                "cuenta_id": 5,
+                "importe": "100",
                 "tipo_afectacion": "CREDITO"
             }
         ]

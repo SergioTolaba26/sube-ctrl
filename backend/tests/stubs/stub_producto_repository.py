@@ -60,7 +60,24 @@ class StubProductoRepository(
     ) -> list[Producto]:
 
         return self._productos.copy()
+    def actualizar(
+        self,
+        producto: Producto,
+    ) -> Producto:
 
+        for indice, existente in enumerate(
+            self._productos,
+        ):
+
+            if existente.id == producto.id:
+
+                self._productos[indice] = producto
+
+                return producto
+
+        raise ValueError(
+            "Producto inexistente.",
+        )
 
 
     def eliminar(

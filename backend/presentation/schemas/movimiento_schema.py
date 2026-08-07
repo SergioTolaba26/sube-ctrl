@@ -1,4 +1,5 @@
 from datetime import date
+from decimal import Decimal
 
 from pydantic import BaseModel, Field
 
@@ -8,9 +9,7 @@ from presentation.schemas.linea_movimiento_schema import (
     LineaMovimientoUpdate,
     LineaMovimientoResponse
 )
-from presentation.schemas.linea_movimiento_schema import (
-    LineaMovimientoResponse,
-)
+
 
 class MovimientoCreate(BaseModel):
 
@@ -51,6 +50,8 @@ class MovimientoResponse(BaseModel):
     descripcion: str
 
     estado: EstadoMovimiento
+
+    importe: Decimal
 
     lineas: list[
         LineaMovimientoResponse

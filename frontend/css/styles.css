@@ -63,3 +63,19 @@
     }
 
 }
+
+/* ================================
+   TABLAS - ENCABEZADO FIJO
+   ================================ */
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #ffffff;
+}

@@ -1,3 +1,4 @@
+from domain.enums.tipo_afectacion import TipoAfectacion
 from presentation.schemas.linea_movimiento_schema import (
     LineaMovimientoResponse,
 )
@@ -14,19 +15,30 @@ class MovimientoResponseMapper:
         movimiento,
     ) -> MovimientoResponse:
 
+        importe = sum(
+            linea.importe
+            for linea in movimiento.lineas
+            if linea.tipo_afectacion == TipoAfectacion.DEBITO
+        )
+
         return MovimientoResponse(
             id=movimiento.id,
             numero_asiento=movimiento.numero_asiento,
             fecha=movimiento.fecha,
             descripcion=movimiento.descripcion,
             estado=movimiento.estado,
+            importe=importe,
             lineas=None,
         )
-
     @staticmethod
     def to_detalle(
         movimiento,
     ) -> MovimientoResponse:
+        importe = sum(
+            linea.importe
+            for linea in movimiento.lineas
+            if linea.tipo_afectacion == TipoAfectacion.DEBITO
+        )
 
         return MovimientoResponse(
             id=movimiento.id,
@@ -34,6 +46,7 @@ class MovimientoResponseMapper:
             fecha=movimiento.fecha,
             descripcion=movimiento.descripcion,
             estado=movimiento.estado,
+            importe=importe,
             lineas=[
                 LineaMovimientoResponse(
                     cuenta_id=linea.cuenta.id,

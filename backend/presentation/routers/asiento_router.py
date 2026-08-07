@@ -3,6 +3,7 @@ from pathlib import Path
 from fastapi import APIRouter
 from fastapi import HTTPException
 
+from presentation.schemas.api_response_movimiento import ApiResponseMovimiento
 from persistence.json_storage import JsonStorage
 
 from infrastructure.repositories.json.movimiento_repository import (
@@ -53,6 +54,10 @@ from presentation.schemas.registrar_asiento_request import (
 
 from presentation.mappers.movimiento_response_mapper import (
     MovimientoResponseMapper,
+)
+
+from presentation.schemas.api_response_movimiento import (
+    ApiResponseMovimiento,
 )
 
 router = APIRouter(
@@ -157,7 +162,10 @@ def buscar(
     )
 
 
-@router.post("/")
+@router.post(
+    "/",
+    response_model=ApiResponseMovimiento,
+)
 def registrar_asiento(
     request: RegistrarAsientoRequest,
 ):
@@ -179,18 +187,12 @@ def registrar_asiento(
             ],
         )
 
-        return {
-            "mensaje": "Asiento creado en estado BORRADOR.",
-            "movimiento": {
-                "id": movimiento.id,
-                "fecha": movimiento.fecha,
-                "descripcion": movimiento.descripcion,
-                "estado": movimiento.estado,
-                "cantidad_lineas": len(
-                    movimiento.lineas
-                ),
-            },
-        }
+        return ApiResponseMovimiento(
+            mensaje="Asiento creado correctamente.",
+            data=MovimientoResponseMapper.to_detalle(
+                movimiento,
+            ),
+        )
 
     except ValueError as error:
 
@@ -199,9 +201,9 @@ def registrar_asiento(
             detail=str(error),
         )
 
-
 @router.post(
     "/{movimiento_id}/confirmar",
+    response_model=ApiResponseMovimiento,
 )
 def confirmar(
     movimiento_id: int,
@@ -217,13 +219,12 @@ def confirmar(
             movimiento_id,
         )
 
-        return {
-            "mensaje": "Asiento confirmado correctamente.",
-            "movimiento": {
-                "id": movimiento.id,
-                "estado": movimiento.estado,
-            },
-        }
+        return ApiResponseMovimiento(
+            mensaje="Asiento confirmado correctamente.",
+            data=MovimientoResponseMapper.to_detalle(
+                movimiento,
+            ),
+        )
 
     except ValueError as error:
 
@@ -235,6 +236,7 @@ def confirmar(
 
 @router.put(
     "/{movimiento_id}",
+    response_model=ApiResponseMovimiento,
 )
 def modificar_asiento(
     movimiento_id: int,
@@ -258,18 +260,12 @@ def modificar_asiento(
             ],
         )
 
-        return {
-            "mensaje": "Asiento modificado correctamente.",
-            "movimiento": {
-                "id": movimiento.id,
-                "fecha": movimiento.fecha,
-                "descripcion": movimiento.descripcion,
-                "estado": movimiento.estado,
-                "cantidad_lineas": len(
-                    movimiento.lineas
-                ),
-            },
-        }
+        return ApiResponseMovimiento(
+            mensaje="Asiento actualizado correctamente.",
+            data=MovimientoResponseMapper.to_detalle(
+                movimiento,
+            ),
+        )
 
     except ValueError as error:
 

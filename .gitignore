@@ -19,3 +19,5 @@ backend/logs/
 # Sistema operativo
 .DS_Store
 Thumbs.dbcd
+# Base de datos local
+backend/data/erp.db

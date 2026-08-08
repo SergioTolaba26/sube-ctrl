@@ -53,9 +53,11 @@ class ProductoRepository(ABC):
     @abstractmethod
     def eliminar(
         self,
-        producto: Producto,
+        producto_id: int,
     ) -> None:
-        """
-        Elimina un producto.
-        """
-        raise NotImplementedError
+
+        self._productos = [
+            existente
+            for existente in self._productos
+            if existente.id != producto_id
+        ]

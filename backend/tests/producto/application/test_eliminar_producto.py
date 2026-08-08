@@ -34,3 +34,17 @@ def test_eliminar_producto():
     assert repository.buscar_por_id(
         producto.id,
     ) is None
+
+def test_eliminar_producto_inexistente():
+
+    repository = StubProductoRepository()
+
+    use_case = EliminarProducto(
+        repository,
+    )
+
+    use_case.execute(
+        999,
+    )
+
+    assert repository.obtener_todos() == []

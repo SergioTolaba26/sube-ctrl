@@ -82,11 +82,11 @@ class StubProductoRepository(
 
     def eliminar(
         self,
-        producto: Producto,
+        producto_id: int,
     ) -> None:
 
         self._productos = [
             existente
             for existente in self._productos
-            if existente.id != producto.id
+            if existente.id != producto_id
         ]

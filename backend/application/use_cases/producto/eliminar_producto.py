@@ -16,13 +16,6 @@ class EliminarProducto:
         producto_id: int,
     ) -> None:
 
-        producto = self._repository.buscar_por_id(
-            producto_id,
-        )
-
-        if producto is None:
-            return
-
         self._repository.eliminar(
-            producto,
+            producto_id,
         )

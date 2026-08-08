@@ -200,7 +200,8 @@ def test_actualizar_producto_inexistente(
 def test_eliminar_producto(
     database,
 ):
-    repository= ProductoRepositorySQLite(
+
+    repository = ProductoRepositorySQLite(
         database.connection,
     )
 
@@ -210,19 +211,19 @@ def test_eliminar_producto(
         precio_compra=Decimal("850"),
     )
 
-    guardado = repository.guardar(
+    repository.guardar(
         producto,
     )
 
-    resultado = repository.eliminar(
-        guardado.id,
+    repository.eliminar(
+        producto.id,
     )
 
-    assert resultado is True
+    resultado = repository.buscar_por_id(
+        producto.id,
+    )
 
-    assert repository.buscar_por_id(
-        guardado.id,
-    ) is None
+    assert resultado is None
 
 # Eliminar producto inexistente
 def test_eliminar_producto_inexistente(

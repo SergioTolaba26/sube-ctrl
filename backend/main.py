@@ -29,7 +29,9 @@ from presentation.routers.ejercicio_router import (
 from presentation.routers.asiento_router import (
     router as asiento_router,
 )
-
+from presentation.routers.producto_router import (
+    router as producto_router,
+)
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
@@ -64,6 +66,9 @@ app.include_router(
 )
 app.include_router(
     asiento_router,
+)
+app.include_router(
+    producto_router,
 )
 @app.get("/")
 def root():

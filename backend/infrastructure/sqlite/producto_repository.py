@@ -75,10 +75,7 @@ class ProductoRepositorySQLite(
         producto.id = cursor.lastrowid
 
         return producto
-    def obtener_todos(
-        self,
-    ) -> list[Producto]:
-        raise NotImplementedError
+    
     
     def buscar_por_codigo_barras(
         self,
@@ -112,12 +109,7 @@ class ProductoRepositorySQLite(
             fila,
     )
 
-    def eliminar(
-        self,
-        producto: Producto,
-    ) -> None:
-        raise NotImplementedError
-    
+     
     def buscar_por_id(
         self,
         producto_id: int,

@@ -13,6 +13,7 @@ def test_cuenta_nace_activa():
 
     cuenta = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -27,6 +28,7 @@ def test_cuenta_nace_imputable():
 
     cuenta = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO
@@ -41,6 +43,7 @@ def test_hacer_no_imputable():
 
     cuenta = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1",
         nombre="Activo",
         tipo=TipoCuenta.ACTIVO
@@ -57,6 +60,7 @@ def test_hacer_imputable():
 
     cuenta = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1",
         nombre="Activo",
         tipo=TipoCuenta.ACTIVO
@@ -74,6 +78,7 @@ def test_es_imputable():
 
     cuenta = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO
@@ -92,6 +97,7 @@ def test_asignar_cuenta_padre():
 
     padre = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1",
         nombre="Bancos",
         tipo=TipoCuenta.ACTIVO,
@@ -99,6 +105,7 @@ def test_asignar_cuenta_padre():
 
     hija = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1.01",
         nombre="Banco Nación",
         tipo=TipoCuenta.ACTIVO,
@@ -111,6 +118,7 @@ def test_asignar_cuenta_padre():
 def test_al_asignar_un_hijo_la_cuenta_padre_deja_de_ser_imputable():
     padre = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO
@@ -118,6 +126,7 @@ def test_al_asignar_un_hijo_la_cuenta_padre_deja_de_ser_imputable():
 
     hija = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1",
         nombre="Caja Principal",
         tipo=TipoCuenta.ACTIVO
@@ -137,6 +146,7 @@ def test_la_cuenta_padre_conoce_a_sus_hijos():
 
     padre = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1",
         nombre="Activo",
         tipo=TipoCuenta.ACTIVO,
@@ -144,6 +154,7 @@ def test_la_cuenta_padre_conoce_a_sus_hijos():
 
     hija = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -160,6 +171,7 @@ def test_no_se_puede_cambiar_de_padre():
 
     padre1 = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1",
         nombre="Activo",
         tipo=TipoCuenta.ACTIVO,
@@ -167,6 +179,7 @@ def test_no_se_puede_cambiar_de_padre():
 
     padre2 = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="2",
         nombre="Pasivo",
         tipo=TipoCuenta.PASIVO,
@@ -174,6 +187,7 @@ def test_no_se_puede_cambiar_de_padre():
 
     hija = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -195,6 +209,7 @@ def test_obtener_ancestros():
 
     raiz = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1",
         nombre="Activo",
         tipo=TipoCuenta.ACTIVO,
@@ -202,6 +217,7 @@ def test_obtener_ancestros():
 
     padre = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1",
         nombre="Bancos",
         tipo=TipoCuenta.ACTIVO,
@@ -209,6 +225,7 @@ def test_obtener_ancestros():
 
     hija = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1.01",
         nombre="Banco Nación",
         tipo=TipoCuenta.ACTIVO,
@@ -226,6 +243,7 @@ def test_no_se_puede_generar_un_ciclo():
 
     raiz = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1",
         nombre="Activo",
         tipo=TipoCuenta.ACTIVO,
@@ -233,6 +251,7 @@ def test_no_se_puede_generar_un_ciclo():
 
     padre = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1",
         nombre="Bancos",
         tipo=TipoCuenta.ACTIVO,
@@ -240,6 +259,7 @@ def test_no_se_puede_generar_un_ciclo():
 
     hija = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1.01",
         nombre="Banco Nación",
         tipo=TipoCuenta.ACTIVO,
@@ -262,6 +282,7 @@ def test_obtener_descendientes():
 
     raiz = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1",
         nombre="Activo",
         tipo=TipoCuenta.ACTIVO,
@@ -269,6 +290,7 @@ def test_obtener_descendientes():
 
     bancos = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1",
         nombre="Bancos",
         tipo=TipoCuenta.ACTIVO,
@@ -276,6 +298,7 @@ def test_obtener_descendientes():
 
     caja = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.2",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -283,6 +306,7 @@ def test_obtener_descendientes():
 
     nacion = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1.1",
         nombre="Banco Nación",
         tipo=TipoCuenta.ACTIVO,
@@ -305,6 +329,7 @@ def test_una_cuenta_sin_hijos_es_hoja():
 
     cuenta = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -320,6 +345,7 @@ def test_nivel_de_una_cuenta():
 
     raiz = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1",
         nombre="Activo",
         tipo=TipoCuenta.ACTIVO,
@@ -327,6 +353,7 @@ def test_nivel_de_una_cuenta():
 
     padre = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1",
         nombre="Bancos",
         tipo=TipoCuenta.ACTIVO,
@@ -334,6 +361,7 @@ def test_nivel_de_una_cuenta():
 
     hija = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1.01",
         nombre="Banco Nación",
         tipo=TipoCuenta.ACTIVO,
@@ -354,6 +382,7 @@ def test_ruta_de_una_cuenta():
 
     activo = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1",
         nombre="Activo",
         tipo=TipoCuenta.ACTIVO,
@@ -361,6 +390,7 @@ def test_ruta_de_una_cuenta():
 
     bancos = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1",
         nombre="Bancos",
         tipo=TipoCuenta.ACTIVO,
@@ -368,6 +398,7 @@ def test_ruta_de_una_cuenta():
 
     nacion = Cuenta(
         id=None,
+        empresa_id=1,       
         codigo="1.1.01",
         nombre="Banco Nación",
         tipo=TipoCuenta.ACTIVO,

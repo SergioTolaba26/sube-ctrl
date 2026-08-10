@@ -40,6 +40,7 @@ def test_modifica_asiento_borrador():
     cuenta_repository.guardar(
         Cuenta(
             id=1,
+            empresa_id=1,
             codigo="1.1.01",
             nombre="Caja",
             tipo=TipoCuenta.ACTIVO,
@@ -49,6 +50,7 @@ def test_modifica_asiento_borrador():
     cuenta_repository.guardar(
         Cuenta(
             id=2,
+            empresa_id=1,
             codigo="4.1.01",
             nombre="Ventas",
             tipo=TipoCuenta.INGRESO,
@@ -174,6 +176,7 @@ def test_no_modifica_asiento_confirmado():
     cuenta_repository.guardar(
         Cuenta(
             id=1,
+            empresa_id=1,
             codigo="1.1.01",
             nombre="Caja",
             tipo=TipoCuenta.ACTIVO,
@@ -183,6 +186,7 @@ def test_no_modifica_asiento_confirmado():
     cuenta_repository.guardar(
         Cuenta(
             id=2,
+            empresa_id=1,
             codigo="4.1.01",
             nombre="Ventas",
             tipo=TipoCuenta.INGRESO,
@@ -262,6 +266,7 @@ def test_no_modifica_con_cuenta_inexistente():
     cuenta_repository.guardar(
         Cuenta(
             id=1,
+            empresa_id=1,
             codigo="1.1.01",
             nombre="Caja",
             tipo=TipoCuenta.ACTIVO,
@@ -271,6 +276,7 @@ def test_no_modifica_con_cuenta_inexistente():
     cuenta_repository.guardar(
         Cuenta(
             id=2,
+            empresa_id=1,
             codigo="4.1.01",
             nombre="Ventas",
             tipo=TipoCuenta.INGRESO,

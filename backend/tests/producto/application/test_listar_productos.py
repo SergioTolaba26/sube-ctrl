@@ -15,6 +15,7 @@ def test_listar_productos():
 
     repository.guardar(
         Producto(
+            empresa_id=1,
             codigo_barras="111",
             nombre="Agua",
             precio_compra=Decimal("850"),
@@ -23,6 +24,7 @@ def test_listar_productos():
 
     repository.guardar(
         Producto(
+            empresa_id=1,
             codigo_barras="222",
             nombre="Gaseosa",
             precio_compra=Decimal("1200"),
@@ -33,7 +35,9 @@ def test_listar_productos():
         repository,
     )
 
-    resultado = use_case.execute()
+    resultado = use_case.execute(
+        1,
+    )
 
     assert len(resultado) == 2
     assert resultado[0].nombre == "Agua"

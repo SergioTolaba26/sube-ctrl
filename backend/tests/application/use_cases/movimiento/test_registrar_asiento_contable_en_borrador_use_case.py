@@ -53,6 +53,7 @@ def test_registra_asiento_contable():
     cuenta_repository.guardar(
         Cuenta(
             id=1,
+            empresa_id=1,
             codigo="1.1.01",
             nombre="Caja",
             tipo=TipoCuenta.ACTIVO,
@@ -62,6 +63,7 @@ def test_registra_asiento_contable():
     cuenta_repository.guardar(
         Cuenta(
             id=2,
+            empresa_id=1,
             codigo="4.1.01",
             nombre="Ventas",
             tipo=TipoCuenta.INGRESO,
@@ -133,6 +135,7 @@ def test_no_permite_registrar_asiento_en_ejercicio_cerrado():
     cuenta_repository.guardar(
         Cuenta(
             id=1,
+            empresa_id=1,
             codigo="1.1.01",
             nombre="Caja",
             tipo=TipoCuenta.ACTIVO,
@@ -142,6 +145,7 @@ def test_no_permite_registrar_asiento_en_ejercicio_cerrado():
     cuenta_repository.guardar(
         Cuenta(
             id=2,
+            empresa_id=1,
             codigo="4.1.01",
             nombre="Ventas",
             tipo=TipoCuenta.INGRESO,

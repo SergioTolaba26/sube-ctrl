@@ -12,6 +12,7 @@ def test_convierte_cuenta_a_dict():
 
     cuenta = Cuenta(
         id=1,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -22,6 +23,7 @@ def test_convierte_cuenta_a_dict():
     assert data == {
 
         "id": 1,
+        "empresa_id": 1,
 
         "codigo": "1.1.01",
 
@@ -48,6 +50,7 @@ def test_busca_cuenta_por_codigo(tmp_path):
 
     cuenta = Cuenta(
         id=1,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -80,6 +83,7 @@ def test_busca_cuenta_por_codigo_inexistente(tmp_path):
 
     cuenta = Cuenta(
         id=1,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,

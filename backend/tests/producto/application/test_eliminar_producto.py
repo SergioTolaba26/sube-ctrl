@@ -14,6 +14,7 @@ def test_eliminar_producto():
     repository = StubProductoRepository()
 
     producto = Producto(
+        empresa_id=1,
         codigo_barras="7791234567890",
         nombre="Agua",
         precio_compra=Decimal("850"),
@@ -28,10 +29,12 @@ def test_eliminar_producto():
     )
 
     use_case.execute(
+        producto.empresa_id,
         producto.id,
     )
 
     assert repository.buscar_por_id(
+        producto.empresa_id,
         producto.id,
     ) is None
 
@@ -44,7 +47,10 @@ def test_eliminar_producto_inexistente():
     )
 
     use_case.execute(
+        1,
         999,
     )
 
-    assert repository.obtener_todos() == []
+    assert repository.obtener_todos(
+        1,
+    ) == []

@@ -21,6 +21,7 @@ def test_consulta_balance_general():
 
     caja = Cuenta(
         id=1,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -28,6 +29,7 @@ def test_consulta_balance_general():
 
     capital = Cuenta(
         id=2,
+        empresa_id=1,
         codigo="3.1.01",
         nombre="Capital",
         tipo=TipoCuenta.PATRIMONIO,

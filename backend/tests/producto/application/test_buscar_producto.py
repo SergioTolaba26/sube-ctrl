@@ -14,6 +14,7 @@ def test_buscar_producto_por_id():
     repository = StubProductoRepository()
 
     producto = Producto(
+        empresa_id=1,
         codigo_barras="7791234567890",
         nombre="Agua",
         precio_compra=Decimal("850"),
@@ -28,6 +29,7 @@ def test_buscar_producto_por_id():
     )
 
     resultado = use_case.execute(
+        producto.empresa_id,
         producto.id,
     )
 

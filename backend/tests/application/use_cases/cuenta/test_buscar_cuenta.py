@@ -30,6 +30,7 @@ def test_busca_cuenta_por_id():
 
     cuenta = Cuenta(
         id=1,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -57,6 +58,7 @@ def test_busca_cuenta_por_id():
 
 #     cuenta = Cuenta(
 #         id=None,
+empresa_id=1,
 #         codigo="1.1.01",
 #         nombre="Caja",
 #         tipo=TipoCuenta.ACTIVO,

@@ -13,9 +13,18 @@ class EliminarProducto:
 
     def execute(
         self,
+        empresa_id: int,
         producto_id: int,
     ) -> None:
 
-        self._repository.eliminar(
+        producto = self._repository.buscar_por_id(
+            empresa_id,
             producto_id,
+        )
+
+        if producto is None:
+            return
+
+        self._repository.eliminar(
+            producto.id,
         )

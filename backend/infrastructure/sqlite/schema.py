@@ -11,13 +11,17 @@ SCHEMA = [
 
         id INTEGER PRIMARY KEY AUTOINCREMENT,
 
-        codigo_barras TEXT NOT NULL UNIQUE,
+        empresa_id INTEGER NOT NULL,
+
+        codigo_barras TEXT NOT NULL,
 
         nombre TEXT NOT NULL,
 
         precio_compra REAL NOT NULL,
 
-        activo INTEGER NOT NULL DEFAULT 1
+        activo INTEGER NOT NULL DEFAULT 1,
+
+        UNIQUE (empresa_id, codigo_barras)
 
     );
     """,

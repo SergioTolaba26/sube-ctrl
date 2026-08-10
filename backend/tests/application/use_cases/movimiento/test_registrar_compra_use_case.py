@@ -19,6 +19,7 @@ def test_registrar_compra_genera_un_movimiento():
 
     compras = Cuenta(
         id=1,
+        empresa_id=1,
         codigo="5.1.1",
         nombre="Compras",
         tipo=TipoCuenta.GASTO,
@@ -26,6 +27,7 @@ def test_registrar_compra_genera_un_movimiento():
 
     caja = Cuenta(
         id=2,
+        empresa_id=1,
         codigo="1.1.1",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,

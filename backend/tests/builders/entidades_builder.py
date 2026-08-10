@@ -7,30 +7,77 @@ from domain.entities.cuenta import Cuenta
 from domain.enums.tipo_cuenta import TipoCuenta
 
 
+
 def crear_caja():
     return Cuenta(
         id=None,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
     )
+
+
 def crear_ventas():
     return Cuenta(
         id=None,
+        empresa_id=1,
         codigo="4.1.01",
         nombre="Ventas",
         tipo=TipoCuenta.INGRESO,
     )
 
+
 def crear_gastos():
     return Cuenta(
-    id=None,
-    codigo="5.1.01",
-    nombre="Gastos Administrativos",
-    tipo=TipoCuenta.GASTO,
+        id=None,
+        empresa_id=1,
+        codigo="5.1.01",
+        nombre="Gastos Administrativos",
+        tipo=TipoCuenta.GASTO,
     )
 
-def crear_ejercicio()   :
+
+def crear_resultado_del_ejercicio():
+    return Cuenta(
+        id=None,
+        empresa_id=1,
+        codigo="3.1.99",
+        nombre="Resultado del Ejercicio",
+        tipo=TipoCuenta.PATRIMONIO,
+    )
+
+
+def crear_compras():
+    return Cuenta(
+        id=None,
+        empresa_id=1,
+        codigo="5.1.02",
+        nombre="Compras",
+        tipo=TipoCuenta.GASTO,
+    )
+
+
+def crear_proveedores():
+    return Cuenta(
+        id=None,
+        empresa_id=1,
+        codigo="2.1.01",
+        nombre="Proveedores",
+        tipo=TipoCuenta.PASIVO,
+    )
+
+
+def crear_clientes():
+    return Cuenta(
+        id=None,
+        empresa_id=1,
+        codigo="1.2.01",
+        nombre="Clientes",
+        tipo=TipoCuenta.ACTIVO,
+    )
+
+def crear_ejercicio():
     return EjercicioContable(
         id=None,
         empresa_id=1,
@@ -70,7 +117,7 @@ def crear_movimiento_de_venta_confirmado(
     return movimiento
 
 def crear_movimiento_de_gasto_confirmado(
-importe=Decimal("300"),
+    importe=Decimal("300"),
 ):
 
     caja = crear_caja()
@@ -99,48 +146,3 @@ importe=Decimal("300"),
     movimiento.confirmar()
 
     return movimiento
-
-# def crear_resultado_del_ejercicio():
-
-#     return Cuenta(
-#         id=None,
-#         codigo="3.1.01",
-#         nombre="Resultado del Ejercicio",
-#         tipo=TipoCuenta.PATRIMONIO_NETO,
-#     )
-
-def crear_resultado_del_ejercicio():
-
-    return Cuenta(
-        id=None,
-        codigo="3.1.99",
-        nombre="Resultado del Ejercicio",
-        tipo=TipoCuenta.PATRIMONIO,
-    )
-
-def crear_compras():
-
-    return Cuenta(
-        id=None,
-        codigo="5.1.02",
-        nombre="Compras",
-        tipo=TipoCuenta.GASTO,
-    )
-
-def crear_proveedores():
-
-    return Cuenta(
-        id=None,
-        codigo="2.1.01",
-        nombre="Proveedores",
-        tipo=TipoCuenta.PASIVO,
-    )
-
-def crear_clientes():
-
-    return Cuenta(
-        id=None,
-        codigo="1.2.01",
-        nombre="Clientes",
-        tipo=TipoCuenta.ACTIVO,
-    )

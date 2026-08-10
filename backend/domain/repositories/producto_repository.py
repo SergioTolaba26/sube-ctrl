@@ -33,6 +33,7 @@ class ProductoRepository(ABC):
     @abstractmethod
     def buscar_por_id(
         self,
+        empresa_id: int,
         id_: int,
     ) -> Producto | None:
         """
@@ -43,10 +44,11 @@ class ProductoRepository(ABC):
     @abstractmethod
     def buscar_por_codigo_barras(
         self,
+        empresa_id: int,
         codigo_barras: str,
     ) -> Producto | None:
         """
-        Busca un producto por su código de barras.
+        Busca un producto por empresa y código de barras.
         """
         raise NotImplementedError
 
@@ -55,9 +57,7 @@ class ProductoRepository(ABC):
         self,
         producto_id: int,
     ) -> None:
-
-        self._productos = [
-            existente
-            for existente in self._productos
-            if existente.id != producto_id
-        ]
+        """
+        Elimina un producto.
+        """
+        raise NotImplementedError

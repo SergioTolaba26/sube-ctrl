@@ -14,6 +14,7 @@ from domain.services.calculador_saldo import CalculadorSaldo
 def crear_cuenta():
     return Cuenta(
         id=None,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -106,6 +107,7 @@ def test_saldo_cuenta_pasivo_con_un_credito():
 
     cuenta = Cuenta(
         id=None,
+        empresa_id=1,
         codigo="2.1.01",
         nombre="Proveedores",
         tipo=TipoCuenta.PASIVO,
@@ -128,6 +130,7 @@ def test_saldo_cuenta_pasivo_con_un_credito():
         LineaMovimiento.debito(
             cuenta=Cuenta(
                 id=None,
+                empresa_id=1,
                 codigo="1.1.01",
                 nombre="Mercaderías",
                 tipo=TipoCuenta.ACTIVO,
@@ -155,6 +158,7 @@ def test_saldo_cuenta_patrimonio_neto_con_un_credito():
 
     cuenta = Cuenta(
         id=None,
+        empresa_id=1,
         codigo="3.1.01",
         nombre="Capital",
         tipo=TipoCuenta.PATRIMONIO,
@@ -177,6 +181,7 @@ def test_saldo_cuenta_patrimonio_neto_con_un_credito():
         LineaMovimiento.debito(
             cuenta=Cuenta(
                 id=None,
+                empresa_id=1,
                 codigo="1.1.01",
                 nombre="Caja",
                 tipo=TipoCuenta.ACTIVO,
@@ -204,6 +209,7 @@ def test_saldo_cuenta_ingreso_con_un_credito():
 
     cuenta = Cuenta(
         id=None,
+        empresa_id=1,
         codigo="4.1.01",
         nombre="Ventas",
         tipo=TipoCuenta.INGRESO,
@@ -226,6 +232,7 @@ def test_saldo_cuenta_ingreso_con_un_credito():
         LineaMovimiento.debito(
             cuenta=Cuenta(
                 id=None,
+                empresa_id=1,
                 codigo="1.1.01",
                 nombre="Caja",
                 tipo=TipoCuenta.ACTIVO,
@@ -253,6 +260,7 @@ def test_saldo_cuenta_gasto_con_un_debito():
 
     cuenta = Cuenta(
         id=None,
+        empresa_id=1,
         codigo="5.1.01",
         nombre="Sueldos",
         tipo=TipoCuenta.GASTO,
@@ -275,6 +283,7 @@ def test_saldo_cuenta_gasto_con_un_debito():
         LineaMovimiento.credito(
             cuenta=Cuenta(
                 id=None,
+                empresa_id=1,
                 codigo="1.1.01",
                 nombre="Caja",
                 tipo=TipoCuenta.ACTIVO,

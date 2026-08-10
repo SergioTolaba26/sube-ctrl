@@ -5,6 +5,12 @@ from pydantic import BaseModel, Field
 
 class ProductoCreate(BaseModel):
 
+    empresa_id: int = Field(
+    )
+    codigo_barras: str = Field(
+        ...
+    )
+
     codigo_barras: str = Field(
         ...,
         min_length=1,
@@ -24,7 +30,10 @@ class ProductoCreate(BaseModel):
 
 
 class ProductoUpdate(BaseModel):
-
+    empresa_id: int | None = Field(
+        default=None,
+        description="Empresa a la que pertenece el producto.",
+    )
     codigo_barras: str | None = Field(
         default=None,
         min_length=1,
@@ -48,7 +57,7 @@ class ProductoUpdate(BaseModel):
 class ProductoResponse(BaseModel):
 
     id: int
-
+    empresa_id: int
     codigo_barras: str
 
     nombre: str

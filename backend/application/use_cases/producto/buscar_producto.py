@@ -14,9 +14,11 @@ class BuscarProducto:
 
     def execute(
         self,
+        empresa_id: int,
         producto_id: int,
     ) -> Producto | None:
 
         return self._repository.buscar_por_id(
+            empresa_id,
             producto_id,
         )

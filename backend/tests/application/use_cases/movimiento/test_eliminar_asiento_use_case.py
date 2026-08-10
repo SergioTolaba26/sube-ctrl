@@ -47,6 +47,7 @@ def test_elimina_asiento_borrador():
     cuenta_repository.guardar(
         Cuenta(
             id=1,
+            empresa_id=1,
             codigo="1.1.01",
             nombre="Caja",
             tipo=TipoCuenta.ACTIVO,
@@ -56,6 +57,7 @@ def test_elimina_asiento_borrador():
     cuenta_repository.guardar(
         Cuenta(
             id=2,
+            empresa_id=1,
             codigo="4.1.01",
             nombre="Ventas",
             tipo=TipoCuenta.INGRESO,
@@ -126,6 +128,7 @@ def test_no_elimina_asiento_confirmado():
     cuenta_repository.guardar(
         Cuenta(
             id=1,
+            empresa_id=1,
             codigo="1.1.01",
             nombre="Caja",
             tipo=TipoCuenta.ACTIVO,
@@ -135,6 +138,7 @@ def test_no_elimina_asiento_confirmado():
     cuenta_repository.guardar(
         Cuenta(
             id=2,
+            empresa_id=1,
             codigo="4.1.01",
             nombre="Ventas",
             tipo=TipoCuenta.INGRESO,

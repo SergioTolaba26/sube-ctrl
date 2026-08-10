@@ -4,7 +4,7 @@ from domain.repositories.producto_repository import (
 )
 
 
-class ActualizarProducto:
+class ModificarProducto:
 
     def __init__(
         self,

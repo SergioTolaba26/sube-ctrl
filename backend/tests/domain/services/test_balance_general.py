@@ -11,6 +11,7 @@ from domain.services.balance_general import BalanceGeneral
 def crear_caja():
     return Cuenta(
         id=None,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -19,6 +20,7 @@ def crear_caja():
 def crear_proveedores():
     return Cuenta(
         id=None,
+        empresa_id=1,
         codigo="2.1.01",
         nombre="Proveedores",
         tipo=TipoCuenta.PASIVO,
@@ -26,6 +28,7 @@ def crear_proveedores():
 def crear_capital():
     return Cuenta(
         id=None,
+        empresa_id=1,
         codigo="3.1.01",
         nombre="Capital",
         tipo=TipoCuenta.PATRIMONIO,

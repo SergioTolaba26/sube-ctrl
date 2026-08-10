@@ -7,7 +7,7 @@ from domain.repositories.producto_repository import (
 )
 
 
-class CrearProducto:
+class RegistrarProducto:
 
     def __init__(
         self,
@@ -22,6 +22,7 @@ class CrearProducto:
 
         existente = (
             self._repository.buscar_por_codigo_barras(
+                producto.empresa_id,
                 producto.codigo_barras,
             )
         )

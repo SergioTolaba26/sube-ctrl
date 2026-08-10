@@ -18,6 +18,7 @@ def test_registra_cuenta():
     )
 
     cuenta = use_case.execute(
+        
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,

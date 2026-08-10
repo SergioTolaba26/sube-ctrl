@@ -10,6 +10,7 @@ def test_mapper_convierte_entidad_a_dict():
 
     cuenta = Cuenta(
         id=1,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -21,6 +22,7 @@ def test_mapper_convierte_entidad_a_dict():
 
     assert datos == {
         "id": 1,
+        "empresa_id": 1,
         "codigo": "1.1.01",
         "nombre": "Caja",
         "tipo": "ACTIVO",
@@ -34,6 +36,7 @@ def test_mapper_convierte_dict_a_entidad():
 
     datos = {
         "id": 1,
+        "empresa_id": 1,
         "codigo": "1.1.01",
         "nombre": "Caja",
         "tipo": "ACTIVO",
@@ -45,6 +48,7 @@ def test_mapper_convierte_dict_a_entidad():
     )
 
     assert cuenta.id == 1
+    assert cuenta.empresa_id == 1    
     assert cuenta.codigo == "1.1.01"
     assert cuenta.nombre == "Caja"
     assert cuenta.tipo == TipoCuenta.ACTIVO
@@ -54,6 +58,7 @@ def test_mapper_convierte_lista_de_entidades_a_lista_de_dict():
 
     cuenta1 = Cuenta(
         id=1,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -61,6 +66,7 @@ def test_mapper_convierte_lista_de_entidades_a_lista_de_dict():
 
     cuenta2 = Cuenta(
         id=2,
+        empresa_id=1,
         codigo="2.1.01",
         nombre="Proveedores",
         tipo=TipoCuenta.PASIVO,
@@ -76,6 +82,7 @@ def test_mapper_convierte_lista_de_entidades_a_lista_de_dict():
     assert datos == [
         {
             "id": 1,
+            "empresa_id": 1,
             "codigo": "1.1.01",
             "nombre": "Caja",
             "tipo": "ACTIVO",
@@ -83,6 +90,7 @@ def test_mapper_convierte_lista_de_entidades_a_lista_de_dict():
         },
         {
             "id": 2,
+            "empresa_id": 1,
             "codigo": "2.1.01",
             "nombre": "Proveedores",
             "tipo": "PASIVO",
@@ -95,6 +103,7 @@ def test_mapper_convierte_lista_de_dict_a_lista_de_entidades():
     datos = [
         {
             "id": 1,
+            "empresa_id": 1,
             "codigo": "1.1.01",
             "nombre": "Caja",
             "tipo": "ACTIVO",
@@ -102,6 +111,7 @@ def test_mapper_convierte_lista_de_dict_a_lista_de_entidades():
         },
         {
             "id": 2,
+            "empresa_id": 1,
             "codigo": "2.1.01",
             "nombre": "Proveedores",
             "tipo": "PASIVO",
@@ -116,7 +126,9 @@ def test_mapper_convierte_lista_de_dict_a_lista_de_entidades():
     assert len(cuentas) == 2
 
     assert cuentas[0].codigo == "1.1.01"
+    assert cuentas[0].empresa_id == 1
     assert cuentas[0].tipo == TipoCuenta.ACTIVO
 
     assert cuentas[1].codigo == "2.1.01"
+    assert cuentas[1].empresa_id == 1
     assert cuentas[1].tipo == TipoCuenta.PASIVO

@@ -18,6 +18,7 @@ def test_registrar_venta_genera_dos_lineas():
 
     caja = Cuenta(
         id=1,
+        empresa_id=1,
         codigo="1.1.1",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -25,6 +26,7 @@ def test_registrar_venta_genera_dos_lineas():
 
     ventas = Cuenta(
         id=2,
+        empresa_id=1,
         codigo="4.1.1",
         nombre="Ventas",
         tipo=TipoCuenta.INGRESO,

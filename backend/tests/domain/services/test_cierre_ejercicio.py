@@ -12,6 +12,7 @@ from domain.services.cierre_ejercicio import CierreEjercicio
 def crear_ventas():
     return Cuenta(
         id=None,
+        empresa_id=1,
         codigo="4.1.01",
         nombre="Ventas",
         tipo=TipoCuenta.INGRESO,
@@ -21,6 +22,7 @@ def crear_ventas():
 def crear_sueldos():
     return Cuenta(
         id=None,
+        empresa_id=1,
         codigo="5.1.01",
         nombre="Sueldos",
         tipo=TipoCuenta.GASTO,

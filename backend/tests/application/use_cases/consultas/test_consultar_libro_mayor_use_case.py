@@ -21,6 +21,7 @@ def test_consulta_libro_mayor():
 
     caja = Cuenta(
         id=1,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -28,6 +29,7 @@ def test_consulta_libro_mayor():
 
     ventas = Cuenta(
         id=2,
+        empresa_id=1,
         codigo="4.1.01",
         nombre="Ventas",
         tipo=TipoCuenta.INGRESO,

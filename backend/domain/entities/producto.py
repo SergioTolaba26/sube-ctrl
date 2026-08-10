@@ -9,7 +9,10 @@ class Producto(Entity):
     """
     Entidad del dominio que representa un producto.
     """
-
+    empresa_id: int = Field(
+        ...,
+        description="Empresa a la que pertenece el producto.",
+    )
     codigo_barras: str = Field(
         ...,
         min_length=1,

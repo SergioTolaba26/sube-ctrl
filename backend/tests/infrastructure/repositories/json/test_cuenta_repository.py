@@ -37,6 +37,7 @@ def test_listar_devuelve_lista_de_cuentas(
         [
             {
                 "id": 1,
+                "empresa_id": 1,
                 "codigo": "1.1.01",
                 "nombre": "Caja",
                 "tipo": "ACTIVO",
@@ -44,6 +45,7 @@ def test_listar_devuelve_lista_de_cuentas(
             },
             {
                 "id": 2,
+                "empresa_id": 1,
                 "codigo": "2.1.01",
                 "nombre": "Proveedores",
                 "tipo": "PASIVO",
@@ -81,6 +83,7 @@ def test_buscar_por_codigo_devuelve_la_cuenta(
         [
             {
                 "id": 1,
+                "empresa_id": 1,
                 "codigo": "1.1.01",
                 "nombre": "Caja",
                 "tipo": "ACTIVO",
@@ -88,6 +91,7 @@ def test_buscar_por_codigo_devuelve_la_cuenta(
             },
             {
                 "id": 2,
+                "empresa_id": 1,
                 "codigo": "2.1.01",
                 "nombre": "Proveedores",
                 "tipo": "PASIVO",
@@ -124,6 +128,7 @@ def test_buscar_por_codigo_devuelve_none_si_no_existe(
         [
             {
                 "id": 1,
+                "empresa_id": 1,
                 "codigo": "1.1.01",
                 "nombre": "Caja",
                 "tipo": "ACTIVO",
@@ -156,6 +161,7 @@ def test_guardar_agrega_una_cuenta(
 
     # cuenta = Cuenta(
     #     id=1,
+    empresa_id=1,
     #     codigo="1.1.01",
     #     nombre="Caja",
     #     tipo=TipoCuenta.ACTIVO,
@@ -174,7 +180,7 @@ def test_guardar_agrega_una_cuenta(
 
     assert len(cuentas) == 1
 
-    assert cuentas[0].codigo == "1.1.01"
+    assert cuentas[0].codigo ==     "1.1.01"
 
     assert cuentas[0].nombre == "Caja"
 
@@ -193,6 +199,7 @@ def test_guardar_actualiza_si_el_id_ya_existe(
     repository.guardar(
         Cuenta(
             id=1,
+            empresa_id=1,
             codigo="1.1.01",
             nombre="Caja",
             tipo=TipoCuenta.ACTIVO,
@@ -202,6 +209,7 @@ def test_guardar_actualiza_si_el_id_ya_existe(
     repository.guardar(
         Cuenta(
             id=1,
+            empresa_id=1,
             codigo="1.1.01",
             nombre="Caja Principal",
             tipo=TipoCuenta.ACTIVO,
@@ -229,6 +237,7 @@ def test_buscar_por_id_devuelve_la_cuenta(
     repository.guardar(
         Cuenta(
             id=10,
+            empresa_id=1,
             codigo="1.1.01",
             nombre="Caja",
             tipo=TipoCuenta.ACTIVO,
@@ -260,6 +269,7 @@ def test_buscar_por_id_devuelve_none_si_no_existe(
     repository.guardar(
         Cuenta(
             id=1,
+            empresa_id=1,
             codigo="1.1.01",
             nombre="Caja",
             tipo=TipoCuenta.ACTIVO,
@@ -286,6 +296,7 @@ def test_eliminar_quita_la_cuenta(
 
     # cuenta = Cuenta(
     #     id=1,
+    empresa_id=1,
     #     codigo="1.1.01",
     #     nombre="Caja",
     #     tipo=TipoCuenta.ACTIVO,
@@ -319,6 +330,7 @@ def test_eliminar_id_inexistente_no_hace_nada(
     repository.guardar(
         Cuenta(
             id=1,
+            empresa_id=1,
             codigo="1.1.01",
             nombre="Caja",
             tipo=TipoCuenta.ACTIVO,

@@ -12,6 +12,9 @@ class ListarProductos:
         self._repository = repository
 
     def execute(
-        self,
-    ):
-        return self._repository.obtener_todos()
+            self,
+            empresa_id: int,
+        ):
+            return self._repository.obtener_todos(
+                empresa_id,
+            )

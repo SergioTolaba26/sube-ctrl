@@ -25,6 +25,7 @@ class FakeCuentaRepository:
     ):
         return Cuenta(
             id=id_,
+            empresa_id=1,
             codigo=f"{id_}",
             nombre="Caja",
             tipo=TipoCuenta.ACTIVO,
@@ -35,6 +36,7 @@ def test_mapper_convierte_entidad_a_dict():
 
     cuenta = Cuenta(
         id=10,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,

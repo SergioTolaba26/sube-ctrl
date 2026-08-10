@@ -47,6 +47,7 @@ class FakeCuentaRepository:
     ):
         return Cuenta(
             id=id_,
+            empresa_id=1,
             codigo=f"{id_}",
             nombre="Caja",
             tipo=TipoCuenta.ACTIVO,
@@ -250,6 +251,7 @@ def test_guardar_agrega_un_movimiento(
 
     cuenta = Cuenta(
         id=10,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -316,6 +318,7 @@ def test_guardar_actualiza_si_el_id_ya_existe(
 
     cuenta = Cuenta(
         id=10,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -373,6 +376,7 @@ def test_eliminar_quita_el_movimiento(
 
     cuenta = Cuenta(
         id=10,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -419,6 +423,7 @@ def test_eliminar_id_inexistente_no_hace_nada(
 
     cuenta = Cuenta(
         id=10,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,

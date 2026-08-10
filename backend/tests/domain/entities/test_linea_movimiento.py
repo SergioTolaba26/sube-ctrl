@@ -13,6 +13,7 @@ def crear_cuenta() -> Cuenta:
     Factory utilizada por los tests para evitar duplicación.
     """
     return Cuenta(
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,

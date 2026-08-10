@@ -30,36 +30,45 @@ class StubProductoRepository(
 
     def buscar_por_id(
         self,
+        empresa_id: int,
         producto_id: int,
     ) -> Producto | None:
 
         for producto in self._productos:
 
-            if producto.id == producto_id:
+            if (
+                producto.empresa_id == empresa_id
+                and producto.id == producto_id
+            ):
                 return producto
 
         return None
 
     def buscar_por_codigo_barras(
         self,
+        empresa_id: int,
         codigo_barras: str,
     ) -> Producto | None:
 
         for producto in self._productos:
 
             if (
-                producto.codigo_barras
-                == codigo_barras
+                producto.empresa_id == empresa_id
+                and producto.codigo_barras == codigo_barras
             ):
                 return producto
 
         return None
-
     def obtener_todos(
         self,
+        empresa_id: int,
     ) -> list[Producto]:
 
-        return self._productos.copy()
+        return [
+            producto
+            for producto in self._productos
+            if producto.empresa_id == empresa_id
+        ]
     def actualizar(
         self,
         producto: Producto,

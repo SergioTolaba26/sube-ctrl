@@ -6,6 +6,7 @@ from application.use_cases.producto.registrar_producto import (
     RegistrarProducto,
 )
 
+from    application.use_cases.producto.listar_productos import ListarProductos
 from domain.entities.producto import Producto
 from infrastructure.sqlite.database import (
     Database,
@@ -18,6 +19,11 @@ from infrastructure.sqlite.producto_repository import (
 from presentation.schemas.producto_schema import (
     ProductoCreate,
     ProductoResponse,
+)
+
+from fastapi import HTTPException
+from domain.errors.producto_duplicado_error import (
+    ProductoDuplicadoError,
 )
 
 router = APIRouter(
@@ -48,8 +54,43 @@ def registrar_producto(
     entidad = Producto(
         **datos,
     )
+    try:
 
-    producto_creado = use_case.execute(
-        entidad,
+        producto_creado = use_case.execute(
+            entidad,
+        )
+
+        return producto_creado
+
+    except ProductoDuplicadoError as exc:
+
+        raise HTTPException(
+            status_code=409,
+            detail=str(exc),
+        )
+@router.get(
+    "/",
+    response_model=list[
+        ProductoResponse,
+    ],
+    summary="Listar Productos",
+)
+def listar_productos():
+
+    database = Database()
+
+    repository = ProductoRepositorySQLite(
+        database.connection,
     )
-    return producto_creado
+
+    use_case = ListarProductos(
+        repository,
+    )
+
+    productos = use_case.execute(
+        1,
+    )
+
+    database.close()
+
+    return productos

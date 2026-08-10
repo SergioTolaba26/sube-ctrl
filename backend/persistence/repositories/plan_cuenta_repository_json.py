@@ -67,6 +67,8 @@ class PlanCuentaRepositoryJson(
 
             "id": cuenta.id,
 
+            "empresa_id": cuenta.empresa_id,
+
             "codigo": cuenta.codigo,
 
             "nombre": cuenta.nombre,
@@ -76,7 +78,6 @@ class PlanCuentaRepositoryJson(
             "activa": cuenta.activa,
 
         }
-
     def _from_dict(
         self,
         data: dict,
@@ -85,7 +86,7 @@ class PlanCuentaRepositoryJson(
         return Cuenta(
 
             id=data["id"],
-
+            empresa_id=data["empresa_id"],
             codigo=data["codigo"],
 
             nombre=data["nombre"],

@@ -11,6 +11,7 @@ from domain.services.asiento_libro_diario import AsientoLibroDiario
 def crear_cuenta():
     return Cuenta(
         id=None,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -20,6 +21,7 @@ def crear_cuenta():
 def crear_otra_cuenta():
     return Cuenta(
         id=None,
+        empresa_id=1,
         codigo="3.1.01",
         nombre="Capital",
         tipo=TipoCuenta.PATRIMONIO,

@@ -7,6 +7,7 @@ class CuentaFactory:
     @staticmethod
     def crear(
         id=1,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -15,6 +16,7 @@ class CuentaFactory:
 
         return Cuenta(
             id=id,
+            empresa_id=empresa_id,
             codigo=codigo,
             nombre=nombre,
             tipo=tipo,
@@ -26,6 +28,7 @@ class CuentaFactory:
 
         return CuentaFactory.crear(
             id=1,
+            empresa_id=1,
             codigo="1.1.01",
             nombre="Caja",
             tipo=TipoCuenta.ACTIVO,
@@ -36,6 +39,7 @@ class CuentaFactory:
 
         return CuentaFactory.crear(
             id=2,
+            empresa_id=1,
             codigo="1.1.02",
             nombre="Banco",
             tipo=TipoCuenta.ACTIVO,
@@ -46,6 +50,7 @@ class CuentaFactory:
 
         return CuentaFactory.crear(
             id=3,
+            empresa_id=1,
             codigo="1.2.01",
             nombre="Clientes",
             tipo=TipoCuenta.ACTIVO,
@@ -56,6 +61,7 @@ class CuentaFactory:
 
         return CuentaFactory.crear(
             id=4,
+            empresa_id=1,
             codigo="1.3.01",
             nombre="Mercaderías",
             tipo=TipoCuenta.ACTIVO,
@@ -66,6 +72,7 @@ class CuentaFactory:
 
         return CuentaFactory.crear(
             id=5,
+            empresa_id=1,
             codigo="2.1.01",
             nombre="Proveedores",
             tipo=TipoCuenta.PASIVO,
@@ -76,6 +83,7 @@ class CuentaFactory:
 
         return CuentaFactory.crear(
             id=7,
+            empresa_id=1,
             codigo="3.1.01",
             nombre="Capital",
             tipo=TipoCuenta.PATRIMONIO,
@@ -86,6 +94,7 @@ class CuentaFactory:
 
         return CuentaFactory.crear(
             id=8,
+            empresa_id=1,
             codigo="3.2.01",
             nombre="Resultados Acumulados",
             tipo=TipoCuenta.PATRIMONIO,
@@ -96,6 +105,7 @@ class CuentaFactory:
 
         return CuentaFactory.crear(
             id=9,
+            empresa_id=1,
             codigo="4.1.01",
             nombre="Ventas",
             tipo=TipoCuenta.INGRESO,
@@ -106,6 +116,7 @@ class CuentaFactory:
 
         return CuentaFactory.crear(
             id=11,
+            empresa_id=1,
             codigo="5.1.01",
             nombre="Compras",
             tipo=TipoCuenta.GASTO,
@@ -116,6 +127,7 @@ class CuentaFactory:
 
         return CuentaFactory.crear(
             id=13,
+            empresa_id=1,
             codigo="5.3.01",
             nombre="Alquiler",
             tipo=TipoCuenta.GASTO,

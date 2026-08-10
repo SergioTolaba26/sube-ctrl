@@ -14,6 +14,7 @@ def test_buscar_producto_por_codigo_barras():
     repository = StubProductoRepository()
 
     producto = Producto(
+        empresa_id=1,
         codigo_barras="7791234567890",
         nombre="Agua",
         precio_compra=Decimal("850"),
@@ -28,6 +29,7 @@ def test_buscar_producto_por_codigo_barras():
     )
 
     resultado = use_case.execute(
+        1,
         "7791234567890",
     )
 
@@ -44,6 +46,7 @@ def test_buscar_producto_por_codigo_barras_inexistente():
     )
 
     resultado = use_case.execute(
+        1,
         "0000000000000",
     )
 

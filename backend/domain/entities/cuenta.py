@@ -16,7 +16,10 @@ class Cuenta(Entity):
     Una Cuenta no almacena su saldo.
     El saldo se obtiene a partir de las Líneas de Movimiento.
     """
-
+    empresa_id: int = Field(
+        ...,
+        description="Empresa a la que pertenece la cuenta."
+    )
     codigo: str = Field(
         ...,
         min_length=1,

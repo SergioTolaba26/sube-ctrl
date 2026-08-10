@@ -1,4 +1,5 @@
 from decimal import Decimal
+import sqlite3
 
 from domain.entities.producto import Producto
 
@@ -9,7 +10,9 @@ from domain.repositories.producto_repository import (
 from infrastructure.sqlite.base_repository import (
     BaseRepository,
 )
-
+from domain.errors.producto_duplicado_error import (
+    ProductoDuplicadoError,
+)
 
 class ProductoRepositorySQLite(
     BaseRepository,
@@ -34,6 +37,7 @@ class ProductoRepositorySQLite(
 
         return Producto(
             id=fila["id"],
+            empresa_id=fila["empresa_id"],
             codigo_barras=fila["codigo_barras"],
             nombre=fila["nombre"],
             precio_compra=Decimal(
@@ -52,25 +56,35 @@ class ProductoRepositorySQLite(
 
         cursor = self._connection.cursor()
 
-        cursor.execute(
-            """
-            INSERT INTO productos (
-                codigo_barras,
-                nombre,
-                precio_compra,
-                activo
-            )
-            VALUES (?, ?, ?, ?)
-            """,
-            (
-                producto.codigo_barras,
-                producto.nombre,
-                float(producto.precio_compra),
-                int(producto.activo),
-            ),
-        )
+        try:
 
-        self._connection.commit()
+            cursor.execute(
+                """
+                INSERT INTO productos (
+                    empresa_id,
+                    codigo_barras,
+                    nombre,
+                    precio_compra,
+                    activo
+                )
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                (
+                    producto.empresa_id,
+                    producto.codigo_barras,
+                    producto.nombre,
+                    float(producto.precio_compra),
+                    int(producto.activo),
+                ),
+            )
+
+            self._connection.commit()
+
+        except sqlite3.IntegrityError as exc:
+
+            raise ProductoDuplicadoError(
+                "Ya existe un producto con ese código de barras."
+            ) from exc
 
         producto.id = cursor.lastrowid
 
@@ -79,6 +93,7 @@ class ProductoRepositorySQLite(
     
     def buscar_por_codigo_barras(
         self,
+        empresa_id: int,
         codigo_barras: str,
     ) -> Producto | None:
 
@@ -88,14 +103,17 @@ class ProductoRepositorySQLite(
             """
             SELECT
                 id,
+                empresa_id,
                 codigo_barras,
                 nombre,
                 precio_compra,
                 activo
             FROM productos
-            WHERE codigo_barras = ?
+            WHERE empresa_id = ?
+            AND codigo_barras = ?
             """,
             (
+                empresa_id,
                 codigo_barras,
             ),
         )
@@ -121,6 +139,7 @@ class ProductoRepositorySQLite(
             """
             SELECT
                 id,
+                empresa_id,
                 codigo_barras,
                 nombre,
                 precio_compra,
@@ -144,6 +163,7 @@ class ProductoRepositorySQLite(
     
     def obtener_todos(
         self,
+        empresa_id: int,
     ) -> list[Producto]:
 
         cursor = self._connection.cursor()
@@ -152,13 +172,18 @@ class ProductoRepositorySQLite(
             """
             SELECT
                 id,
+                empresa_id,
                 codigo_barras,
                 nombre,
                 precio_compra,
                 activo
             FROM productos
+            WHERE empresa_id = ?
             ORDER BY nombre
-            """
+            """,
+            (
+                empresa_id,
+            ),
         )
 
         filas = cursor.fetchall()
@@ -181,6 +206,7 @@ class ProductoRepositorySQLite(
             """
             UPDATE productos
             SET
+                empresa_id = ?,
                 codigo_barras = ?,
                 nombre = ?,
                 precio_compra = ?,
@@ -188,6 +214,7 @@ class ProductoRepositorySQLite(
             WHERE id = ?
             """,
             (
+                producto.empresa_id,
                 producto.codigo_barras,
                 producto.nombre,
                 float(

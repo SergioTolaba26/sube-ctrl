@@ -21,6 +21,7 @@ def test_consulta_balance_sumas_saldos():
 
     caja = Cuenta(
         id=1,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -28,6 +29,7 @@ def test_consulta_balance_sumas_saldos():
 
     ventas = Cuenta(
         id=2,
+        empresa_id=1,
         codigo="4.1.01",
         nombre="Ventas",
         tipo=TipoCuenta.INGRESO,

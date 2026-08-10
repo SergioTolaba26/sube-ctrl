@@ -12,6 +12,7 @@ from domain.services.libro_mayor import LibroMayor
 def crear_cuenta():
     return Cuenta(
         id=None,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -20,6 +21,7 @@ def crear_cuenta():
 def crear_otra_cuenta():
     return Cuenta(
         id=None,
+        empresa_id=1,
         codigo="1.1.02",
         nombre="Banco",
         tipo=TipoCuenta.ACTIVO,
@@ -30,6 +32,7 @@ def test_libro_mayor_devuelve_las_lineas_de_una_cuenta():
 
     banco = Cuenta(
         id=None,
+        empresa_id=1,
         codigo="1.1.02",
         nombre="Banco",
         tipo=TipoCuenta.ACTIVO,
@@ -73,6 +76,7 @@ def test_libro_mayor_devuelve_las_lineas_ordenadas_por_fecha():
 
     banco = Cuenta(
         id=None,
+        empresa_id=1,
         codigo="1.1.02",
         nombre="Banco",
         tipo=TipoCuenta.ACTIVO,

@@ -10,6 +10,7 @@ class CuentaMapper:
 
         return {
             "id": cuenta.id,
+            "empresa_id": cuenta.empresa_id,
             "codigo": cuenta.codigo,
             "nombre": cuenta.nombre,
             "tipo": cuenta.tipo.name,
@@ -23,6 +24,7 @@ class CuentaMapper:
 
         return Cuenta(
             id=datos["id"],
+            empresa_id=datos["empresa_id"],
             codigo=datos["codigo"],
             nombre=datos["nombre"],
             tipo=TipoCuenta[

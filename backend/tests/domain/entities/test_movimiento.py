@@ -15,6 +15,7 @@ from domain.enums.tipo_cuenta import TipoCuenta
 def crear_cuenta() -> Cuenta:
     return Cuenta(
         id=None,
+        empresa_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,

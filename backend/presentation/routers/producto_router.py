@@ -1,19 +1,7 @@
-from pathlib import Path
+from fastapi import APIRouter, HTTPException
 
-from fastapi import APIRouter
-
-from application.use_cases.producto.registrar_producto import (
-    RegistrarProducto,
-)
-
-from    application.use_cases.producto.listar_productos import ListarProductos
-from domain.entities.producto import Producto
-from infrastructure.sqlite.database import (
-    Database,
-)
-
-from infrastructure.sqlite.producto_repository import (
-    ProductoRepositorySQLite,
+from application.container import (
+    ApplicationContainer,
 )
 
 from presentation.schemas.producto_schema import (
@@ -21,15 +9,21 @@ from presentation.schemas.producto_schema import (
     ProductoResponse,
 )
 
-from fastapi import HTTPException
+from domain.entities.producto import Producto
+
 from domain.errors.producto_duplicado_error import (
     ProductoDuplicadoError,
 )
+
 
 router = APIRouter(
     prefix="/productos",
     tags=["Productos"],
 )
+
+
+container = ApplicationContainer()
+
 
 @router.post(
     "/",
@@ -39,21 +33,14 @@ def registrar_producto(
     producto: ProductoCreate,
 ):
 
-    database = Database()
-
-    repository = ProductoRepositorySQLite(
-        database.connection,
-    )
-
-    use_case = RegistrarProducto(
-        repository,
-    )
+    use_case = container.registrar_producto()
 
     datos = producto.model_dump()
 
     entidad = Producto(
         **datos,
     )
+
     try:
 
         producto_creado = use_case.execute(
@@ -68,29 +55,17 @@ def registrar_producto(
             status_code=409,
             detail=str(exc),
         )
+
+
 @router.get(
     "/",
-    response_model=list[
-        ProductoResponse,
-    ],
+    response_model=list[ProductoResponse],
     summary="Listar Productos",
 )
 def listar_productos():
 
-    database = Database()
+    use_case = container.listar_productos()
 
-    repository = ProductoRepositorySQLite(
-        database.connection,
-    )
-
-    use_case = ListarProductos(
-        repository,
-    )
-
-    productos = use_case.execute(
-        1,
-    )
-
-    database.close()
+    productos = use_case.execute()
 
     return productos

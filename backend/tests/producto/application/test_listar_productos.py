@@ -7,7 +7,9 @@ from domain.entities.producto import Producto
 from tests.stubs.stub_producto_repository import (
     StubProductoRepository,
 )
-
+from application.context.empresa_context import (
+    EmpresaContext,
+)   
 
 def test_listar_productos():
 
@@ -30,14 +32,13 @@ def test_listar_productos():
             precio_compra=Decimal("1200"),
         )
     )
-
+    empresa_context = EmpresaContext()
     use_case = ListarProductos(
         repository,
+        empresa_context,
     )
 
-    resultado = use_case.execute(
-        1,
-    )
+    resultado = use_case.execute()
 
     assert len(resultado) == 2
     assert resultado[0].nombre == "Agua"

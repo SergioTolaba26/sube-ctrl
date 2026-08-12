@@ -15,7 +15,7 @@ class ProductoRepository(ABC):
     def guardar(
         self,
         producto: Producto,
-    ) -> None:
+    ) -> Producto:
         """
         Persiste un producto.
         """
@@ -24,9 +24,10 @@ class ProductoRepository(ABC):
     @abstractmethod
     def obtener_todos(
         self,
+        empresa_id: int,
     ) -> list[Producto]:
         """
-        Devuelve todos los productos.
+        Devuelve todos los productos de una empresa.
         """
         raise NotImplementedError
 
@@ -34,10 +35,10 @@ class ProductoRepository(ABC):
     def buscar_por_id(
         self,
         empresa_id: int,
-        id_: int,
+        producto_id: int,
     ) -> Producto | None:
         """
-        Busca un producto por su identificador.
+        Busca un producto por empresa e identificador.
         """
         raise NotImplementedError
 
@@ -53,11 +54,24 @@ class ProductoRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
+    def modificar(
+        self,
+        producto: Producto,
+    ) -> Producto | None:
+        """
+        Modifica un producto existente.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
     def eliminar(
         self,
+        empresa_id: int,
         producto_id: int,
-    ) -> None:
+    ) -> bool:
         """
-        Elimina un producto.
+        Elimina un producto de una empresa.
+
+        Devuelve True si el producto fue eliminado.
         """
         raise NotImplementedError

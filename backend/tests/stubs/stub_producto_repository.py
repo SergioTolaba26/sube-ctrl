@@ -1,26 +1,21 @@
 from domain.entities.producto import Producto
-from domain.repositories.producto_repository import (
-    ProductoRepository,
-)
 
 
-class StubProductoRepository(
-    ProductoRepository,
-):
+class StubProductoRepository:
 
     def __init__(self):
 
-        self._productos: list[Producto] = []
-        self._ultimo_id = 0
+        self._productos = []
+        self._siguiente_id = 1
 
     def guardar(
         self,
         producto: Producto,
     ) -> Producto:
 
-        self._ultimo_id += 1
+        producto.id = self._siguiente_id
 
-        producto.id = self._ultimo_id
+        self._siguiente_id += 1
 
         self._productos.append(
             producto,
@@ -37,8 +32,8 @@ class StubProductoRepository(
         for producto in self._productos:
 
             if (
-                producto.empresa_id == empresa_id
-                and producto.id == producto_id
+                producto.id == producto_id
+                and producto.empresa_id == empresa_id
             ):
                 return producto
 
@@ -59,6 +54,7 @@ class StubProductoRepository(
                 return producto
 
         return None
+
     def obtener_todos(
         self,
         empresa_id: int,
@@ -69,33 +65,42 @@ class StubProductoRepository(
             for producto in self._productos
             if producto.empresa_id == empresa_id
         ]
-    def actualizar(
+
+    def modificar(
         self,
         producto: Producto,
-    ) -> Producto:
+    ) -> Producto | None:
 
         for indice, existente in enumerate(
             self._productos,
         ):
 
-            if existente.id == producto.id:
-
+            if (
+                existente.id == producto.id
+                and existente.empresa_id == producto.empresa_id
+            ):
                 self._productos[indice] = producto
 
                 return producto
 
-        raise ValueError(
-            "Producto inexistente.",
-        )
-
+        return None
 
     def eliminar(
         self,
+        empresa_id: int,
         producto_id: int,
-    ) -> None:
+    ) -> bool:
 
-        self._productos = [
-            existente
-            for existente in self._productos
-            if existente.id != producto_id
-        ]
+        for indice, producto in enumerate(
+            self._productos,
+        ):
+
+            if (
+                producto.id == producto_id
+                and producto.empresa_id == empresa_id
+            ):
+                del self._productos[indice]
+
+                return True
+
+        return False

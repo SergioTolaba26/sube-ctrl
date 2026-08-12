@@ -1,8 +1,10 @@
-from decimal import Decimal
 import sqlite3
+from decimal import Decimal
 
 from domain.entities.producto import Producto
-
+from domain.errors.producto_duplicado_error import (
+    ProductoDuplicadoError,
+)
 from domain.repositories.producto_repository import (
     ProductoRepository,
 )
@@ -10,9 +12,7 @@ from domain.repositories.producto_repository import (
 from infrastructure.sqlite.base_repository import (
     BaseRepository,
 )
-from domain.errors.producto_duplicado_error import (
-    ProductoDuplicadoError,
-)
+
 
 class ProductoRepositorySQLite(
     BaseRepository,
@@ -30,6 +30,7 @@ class ProductoRepositorySQLite(
         super().__init__(
             connection,
         )
+
     def _row_to_producto(
         self,
         fila,
@@ -47,7 +48,6 @@ class ProductoRepositorySQLite(
                 fila["activo"],
             ),
         )
-
 
     def guardar(
         self,
@@ -125,7 +125,7 @@ class ProductoRepositorySQLite(
         return self._row_to_producto(
             fila,
         )
-    
+
     def buscar_por_id(
         self,
         empresa_id: int,
@@ -162,8 +162,6 @@ class ProductoRepositorySQLite(
             fila,
         )
 
-     
-    
     def obtener_todos(
         self,
         empresa_id: int,
@@ -197,7 +195,7 @@ class ProductoRepositorySQLite(
             )
             for fila in filas
         ]
-    
+
     def modificar(
         self,
         producto: Producto,
@@ -214,7 +212,8 @@ class ProductoRepositorySQLite(
                 nombre = ?,
                 precio_compra = ?,
                 activo = ?
-            WHERE id = ?
+            WHERE empresa_id = ?
+            AND id = ?
             """,
             (
                 producto.empresa_id,
@@ -226,15 +225,18 @@ class ProductoRepositorySQLite(
                 int(
                     producto.activo,
                 ),
+                producto.empresa_id,
                 producto.id,
             ),
         )
+
         self._connection.commit()
 
         if cursor.rowcount == 0:
             return None
+
         return producto
-    
+
     def eliminar(
         self,
         empresa_id: int,

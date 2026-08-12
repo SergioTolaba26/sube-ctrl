@@ -1,4 +1,5 @@
 from domain.entities.producto import Producto
+
 from domain.repositories.producto_repository import (
     ProductoRepository,
 )
@@ -17,8 +18,6 @@ class ModificarProducto:
         empresa_id: int,
         producto: Producto,
     ) -> Producto | None:
-
-        producto.empresa_id = empresa_id
 
         existente = self._repository.buscar_por_id(
             empresa_id,

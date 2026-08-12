@@ -15,7 +15,7 @@ class EliminarProducto:
         self,
         empresa_id: int,
         producto_id: int,
-    ) -> None:
+    ) -> bool:
 
         producto = self._repository.buscar_por_id(
             empresa_id,
@@ -23,8 +23,9 @@ class EliminarProducto:
         )
 
         if producto is None:
-            return
+            return False
 
-        self._repository.eliminar(
-            producto.id,
+        return self._repository.eliminar(
+            empresa_id,
+            producto_id,
         )

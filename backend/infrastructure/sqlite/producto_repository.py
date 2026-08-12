@@ -89,8 +89,7 @@ class ProductoRepositorySQLite(
         producto.id = cursor.lastrowid
 
         return producto
-    
-    
+
     def buscar_por_codigo_barras(
         self,
         empresa_id: int,
@@ -125,11 +124,11 @@ class ProductoRepositorySQLite(
 
         return self._row_to_producto(
             fila,
-    )
-
-     
+        )
+    
     def buscar_por_id(
         self,
+        empresa_id: int,
         producto_id: int,
     ) -> Producto | None:
 
@@ -145,9 +144,11 @@ class ProductoRepositorySQLite(
                 precio_compra,
                 activo
             FROM productos
-            WHERE id = ?
+            WHERE empresa_id = ?
+            AND id = ?
             """,
             (
+                empresa_id,
                 producto_id,
             ),
         )
@@ -160,6 +161,8 @@ class ProductoRepositorySQLite(
         return self._row_to_producto(
             fila,
         )
+
+     
     
     def obtener_todos(
         self,
@@ -195,7 +198,7 @@ class ProductoRepositorySQLite(
             for fila in filas
         ]
     
-    def actualizar(
+    def modificar(
         self,
         producto: Producto,
     ) -> Producto | None:
@@ -234,20 +237,24 @@ class ProductoRepositorySQLite(
     
     def eliminar(
         self,
+        empresa_id: int,
         producto_id: int,
     ) -> bool:
 
         cursor = self._connection.cursor()
+
         cursor.execute(
             """
             DELETE FROM productos
-            WHERE id = ?
+            WHERE empresa_id = ?
+            AND id = ?
             """,
             (
+                empresa_id,
                 producto_id,
             ),
         )
-        # Lo confirmo
+
         self._connection.commit()
-        # Verifico que se eliminó el registro
+
         return cursor.rowcount > 0

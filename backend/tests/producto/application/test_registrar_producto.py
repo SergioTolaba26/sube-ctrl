@@ -2,10 +2,6 @@ from decimal import Decimal
 
 import pytest
 
-from application.context.empresa_context import (
-    EmpresaContext,
-)
-
 from application.use_cases.producto.registrar_producto import (
     RegistrarProducto,
 )
@@ -25,12 +21,8 @@ def test_crear_producto():
 
     repository = StubProductoRepository()
 
-    empresa_context = EmpresaContext()
-    
-
     use_case = RegistrarProducto(
         repository,
-        empresa_context,
     )
 
     producto = Producto(
@@ -41,10 +33,12 @@ def test_crear_producto():
     )
 
     resultado = use_case.execute(
+        1,
         producto,
     )
 
     assert resultado.id == 1
+    assert resultado.empresa_id == 1
     assert resultado.nombre == "Agua"
 
 
@@ -52,11 +46,8 @@ def test_no_permitir_codigo_duplicado():
 
     repository = StubProductoRepository()
 
-    empresa_context = EmpresaContext()
-
     use_case = RegistrarProducto(
         repository,
-        empresa_context,
     )
 
     producto = Producto(
@@ -67,12 +58,21 @@ def test_no_permitir_codigo_duplicado():
     )
 
     use_case.execute(
+        1,
         producto,
+    )
+
+    segundo_producto = Producto(
+        empresa_id=1,
+        codigo_barras="7791234567890",
+        nombre="Agua",
+        precio_compra=Decimal("850"),
     )
 
     with pytest.raises(
         ProductoDuplicadoError,
     ):
         use_case.execute(
-            producto,
+            1,
+            segundo_producto,
         )

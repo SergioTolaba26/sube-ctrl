@@ -32,13 +32,15 @@ def test_listar_productos():
             precio_compra=Decimal("1200"),
         )
     )
-    empresa_context = EmpresaContext()
+    
     use_case = ListarProductos(
         repository,
-        empresa_context,
+        
     )
 
-    resultado = use_case.execute()
+    resultado = use_case.execute(
+        1,
+    )
 
     assert len(resultado) == 2
     assert resultado[0].nombre == "Agua"

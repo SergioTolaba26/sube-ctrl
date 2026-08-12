@@ -14,9 +14,20 @@ class ModificarProducto:
 
     def execute(
         self,
+        empresa_id: int,
         producto: Producto,
-    ) -> Producto:
+    ) -> Producto | None:
 
-        return self._repository.actualizar(
+        producto.empresa_id = empresa_id
+
+        existente = self._repository.buscar_por_id(
+            empresa_id,
+            producto.id,
+        )
+
+        if existente is None:
+            return None
+
+        return self._repository.modificar(
             producto,
         )

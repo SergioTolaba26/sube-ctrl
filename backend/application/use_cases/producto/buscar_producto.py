@@ -1,4 +1,5 @@
 from domain.entities.producto import Producto
+
 from domain.repositories.producto_repository import (
     ProductoRepository,
 )

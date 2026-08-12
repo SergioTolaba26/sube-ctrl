@@ -18,6 +18,8 @@ def test_lista_movimientos():
     repository.guardar(
         Movimiento(
             id=1,
+            empresa_id=1,
+            ejercicio_id=1,
             fecha=date(2026, 7, 17),
             descripcion="Venta",
         )
@@ -26,6 +28,8 @@ def test_lista_movimientos():
     repository.guardar(
         Movimiento(
             id=2,
+            empresa_id=1,
+            ejercicio_id=1,
             fecha=date(2026, 7, 18),
             descripcion="Compra",
         )

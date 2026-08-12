@@ -1,11 +1,11 @@
 from datetime import date
 from decimal import Decimal
+
 from domain.entities.linea_movimiento import LineaMovimiento
 from domain.entities.movimiento import Movimiento
 from domain.entities.ejercicio_contable import EjercicioContable
 from domain.entities.cuenta import Cuenta
 from domain.enums.tipo_cuenta import TipoCuenta
-
 
 
 def crear_caja():
@@ -77,23 +77,26 @@ def crear_clientes():
         tipo=TipoCuenta.ACTIVO,
     )
 
+
 def crear_ejercicio():
     return EjercicioContable(
-        id=None,
+        id=1,
         empresa_id=1,
         fecha_inicio=date(2026, 1, 1),
         fecha_fin=date(2026, 12, 31),
     )
 
+
 def crear_movimiento_de_venta_confirmado(
     importe=Decimal("1000"),
 ):
-
     caja = crear_caja()
     ventas = crear_ventas()
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 6, 1),
         descripcion="Venta",
     )
@@ -116,15 +119,17 @@ def crear_movimiento_de_venta_confirmado(
 
     return movimiento
 
+
 def crear_movimiento_de_gasto_confirmado(
     importe=Decimal("300"),
 ):
-
     caja = crear_caja()
     gastos = crear_gastos()
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 6, 1),
         descripcion="Pago de gastos",
     )

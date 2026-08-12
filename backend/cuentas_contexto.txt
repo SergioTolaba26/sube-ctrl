@@ -1,0 +1,1664 @@
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-    repository = MovimientoRepositoryStub()
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py:    caja = Cuenta(
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-        id=1,
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-        empresa_id=1,
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-        codigo="1.1.01",
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-        nombre="Caja",
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-        tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py:    capital = Cuenta(
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-        id=2,
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-        empresa_id=1,
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-        codigo="3.1.01",
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-        nombre="Capital",
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-        tipo=TipoCuenta.PATRIMONIO,
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-    movimiento = Movimiento(
+--
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-    repository = MovimientoRepositoryStub()
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py:    caja = Cuenta(
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-        id=1,
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-        empresa_id=1,
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-        codigo="1.1.01",
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-        nombre="Caja",
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-        tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py:    ventas = Cuenta(
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-        id=2,
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-        empresa_id=1,
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-        codigo="4.1.01",
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-        nombre="Ventas",
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-        tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-    movimiento = Movimiento(
+--
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-    repository = MovimientoRepositoryStub()
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py:    caja = Cuenta(
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-        id=1,
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-        empresa_id=1,
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-        codigo="1.1.01",
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-        nombre="Caja",
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-        tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py:    ventas = Cuenta(
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-        id=2,
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-        empresa_id=1,
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-        codigo="4.1.01",
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-        nombre="Ventas",
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-        tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-    movimiento = Movimiento(
+--
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-    repository = MovimientoRepositoryStub()
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py:    caja = Cuenta(
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-        id=1,
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-        empresa_id=1,
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-        codigo="1.1.01",
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-        nombre="Caja",
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-        tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py:    ventas = Cuenta(
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-        id=2,
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-        empresa_id=1,
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-        codigo="4.1.01",
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-        nombre="Ventas",
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-        tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-    movimiento = Movimiento(
+--
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-    repository = MovimientoRepositoryStub()
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py:    caja = Cuenta(
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-        id=1,
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-        empresa_id=1,
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-        codigo="1.1.01",
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-        nombre="Caja",
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-        tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py:    ventas = Cuenta(
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-        id=2,
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-        empresa_id=1,
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-        codigo="4.1.01",
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-        nombre="Ventas",
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-        tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-    movimiento = Movimiento(
+--
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-    repository = CuentaRepositoryStub()
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-
+tests/application/use_cases/cuenta/test_buscar_cuenta.py:    cuenta = Cuenta(
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-        id=1,
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-        empresa_id=1,
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-        codigo="1.1.01",
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-        nombre="Caja",
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-    )
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-    repository.guardar(cuenta)
+--
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-    )
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-
+tests/application/use_cases/cuenta/test_buscar_cuenta.py:    use_case = BuscarCuenta(
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-        service,
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-    )
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-    resultado = use_case.execute(
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-        1,
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-    )
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-    assert resultado == cuenta
+--
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-#     repository = CuentaRepositoryStub()
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-
+tests/application/use_cases/cuenta/test_buscar_cuenta.py:#     cuenta = Cuenta(
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-#         id=None,
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-empresa_id=1,
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-#         codigo="1.1.01",
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-#         nombre="Caja",
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-#         tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-#     )
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-#     repository.guardar(cuenta)
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-
+tests/application/use_cases/cuenta/test_buscar_cuenta.py:#     use_case = BuscarCuenta(repository)
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-#     resultado = use_case.execute("1.1.01")
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-
+tests/application/use_cases/cuenta/test_buscar_cuenta.py-#     assert resultado == cuenta
+--
+tests/application/use_cases/cuenta/test_listar_cuentas.py-
+tests/application/use_cases/cuenta/test_listar_cuentas.py-    repository.guardar(
+tests/application/use_cases/cuenta/test_listar_cuentas.py:        Cuenta(
+tests/application/use_cases/cuenta/test_listar_cuentas.py-            id=None,
+tests/application/use_cases/cuenta/test_listar_cuentas.py-            empresa_id=1,
+tests/application/use_cases/cuenta/test_listar_cuentas.py-            codigo="1.1.01",
+tests/application/use_cases/cuenta/test_listar_cuentas.py-            nombre="Caja",
+tests/application/use_cases/cuenta/test_listar_cuentas.py-            tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/cuenta/test_listar_cuentas.py-        )
+tests/application/use_cases/cuenta/test_listar_cuentas.py-    )
+tests/application/use_cases/cuenta/test_listar_cuentas.py-
+tests/application/use_cases/cuenta/test_listar_cuentas.py-    repository.guardar(
+tests/application/use_cases/cuenta/test_listar_cuentas.py:        Cuenta(
+tests/application/use_cases/cuenta/test_listar_cuentas.py-            id=None,
+tests/application/use_cases/cuenta/test_listar_cuentas.py-            empresa_id=1,
+tests/application/use_cases/cuenta/test_listar_cuentas.py-            codigo="4.1.01",
+tests/application/use_cases/cuenta/test_listar_cuentas.py-            nombre="Ventas",
+tests/application/use_cases/cuenta/test_listar_cuentas.py-            tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/cuenta/test_listar_cuentas.py-        )
+tests/application/use_cases/cuenta/test_listar_cuentas.py-    )
+tests/application/use_cases/cuenta/test_listar_cuentas.py-
+--
+tests/application/use_cases/cuenta/test_registrar_cuenta.py-    repository = CuentaRepositoryStub()
+tests/application/use_cases/cuenta/test_registrar_cuenta.py-
+tests/application/use_cases/cuenta/test_registrar_cuenta.py:    use_case = RegistrarCuenta(
+tests/application/use_cases/cuenta/test_registrar_cuenta.py-        repository,
+tests/application/use_cases/cuenta/test_registrar_cuenta.py-    )
+tests/application/use_cases/cuenta/test_registrar_cuenta.py-
+tests/application/use_cases/cuenta/test_registrar_cuenta.py-    cuenta = use_case.execute(
+tests/application/use_cases/cuenta/test_registrar_cuenta.py-        
+tests/application/use_cases/cuenta/test_registrar_cuenta.py-        codigo="1.1.01",
+tests/application/use_cases/cuenta/test_registrar_cuenta.py-        nombre="Caja",
+tests/application/use_cases/cuenta/test_registrar_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+--
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py:        Cuenta(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            id=1,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            empresa_id=1,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            codigo="1.1.01",
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            nombre="Caja",
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-        )
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-    )
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py:        Cuenta(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            id=2,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            empresa_id=1,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            codigo="4.1.01",
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            nombre="Ventas",
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-        )
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-    )
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-
+--
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py:        Cuenta(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            id=1,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            empresa_id=1,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            codigo="1.1.01",
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            nombre="Caja",
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-        )
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-    )
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py:        Cuenta(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            id=2,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            empresa_id=1,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            codigo="4.1.01",
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            nombre="Ventas",
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-        )
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-    )
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-
+--
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py:        Cuenta(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            id=1,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            empresa_id=1,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            codigo="1.1.01",
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            nombre="Caja",
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-        )
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-    )
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py:        Cuenta(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            id=2,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            empresa_id=1,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            codigo="4.1.01",
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            nombre="Ventas",
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-            tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-        )
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-    )
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py-
+--
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-    repository = MovimientoRepositoryStub()
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py:    cuenta_caja = Cuenta(
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        id=1,
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        empresa_id=1,
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        codigo="1.1.01",
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        nombre="Caja",
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py:    cuenta_ventas = Cuenta(
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        id=2,
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        empresa_id=1,
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        codigo="4.1.01",
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        nombre="Ventas",
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-    movimiento = Movimiento(
+--
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            id=1,
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            codigo="1.1.01",
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            nombre="Caja",
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-        )
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            id=2,
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            codigo="4.1.01",
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            nombre="Ventas",
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-        )
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-
+--
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            id=1,
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            codigo="1.1.01",
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            nombre="Caja",
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-            tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-        )
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py-
+--
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-    repository = MovimientoRepositoryStub()
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py:    cuenta_caja = Cuenta(
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        id=1,
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        empresa_id=1,
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        codigo="1.1.01",
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        nombre="Caja",
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py:    cuenta_ventas = Cuenta(
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        id=2,
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        empresa_id=1,
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        codigo="4.1.01",
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        nombre="Ventas",
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-    movimiento = Movimiento(
+--
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            id=1,
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            codigo="1.1.01",
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            nombre="Caja",
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-        )
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            id=2,
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            codigo="4.1.01",
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            nombre="Ventas",
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-        )
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-
+--
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            id=1,
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            codigo="1.1.01",
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            nombre="Caja",
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-        )
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            id=2,
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            codigo="4.1.01",
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            nombre="Ventas",
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-            tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-        )
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py-
+--
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            id=1,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            codigo="1.1.01",
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            nombre="Caja",
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-        )
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            id=2,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            codigo="4.1.01",
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            nombre="Ventas",
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-        )
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-
+--
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            id=1,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            codigo="1.1.01",
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            nombre="Caja",
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-        )
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            id=2,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            codigo="4.1.01",
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            nombre="Ventas",
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-        )
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-
+--
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            id=1,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            codigo="1.1.01",
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            nombre="Caja",
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-        )
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            id=2,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            codigo="4.1.01",
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            nombre="Ventas",
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-            tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-        )
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py-
+--
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            id=1,
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            codigo="1.1.01",
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            nombre="Caja",
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-        )
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            id=2,
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            codigo="4.1.01",
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            nombre="Ventas",
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-        )
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-
+--
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            id=1,
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            codigo="1.1.01",
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            nombre="Caja",
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-        )
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-    cuenta_repository.guardar(
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py:        Cuenta(
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            id=2,
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            empresa_id=1,
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            codigo="4.1.01",
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            nombre="Ventas",
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-            tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-        )
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py-
+--
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-    repository = MovimientoRepositoryStub()
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py:    caja = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-        id=1,
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-        empresa_id=1,
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-        codigo="1.1.1",
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-        nombre="Caja",
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-        tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py:    clientes = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-        id=2,
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-        empresa_id=1,
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-        codigo="1.1.2",
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-        nombre="Clientes",
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-        tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py-    use_case = RegistrarCobro(
+--
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-    repository = MovimientoRepositoryStub()
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py:    compras = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-        id=1,
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-        empresa_id=1,
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-        codigo="5.1.1",
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-        nombre="Compras",
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-        tipo=TipoCuenta.GASTO,
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py:    caja = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-        id=2,
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-        empresa_id=1,
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-        codigo="1.1.1",
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-        nombre="Caja",
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-        tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py-    use_case = RegistrarCompra(
+--
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-    repository = MovimientoRepositoryStub()
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py:    gastos = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-        id=1,
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-        empresa_id=1,
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-        codigo="5.2.1",
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-        nombre="Gastos Administrativos",
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-        tipo=TipoCuenta.GASTO,
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py:    caja = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-        id=2,
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-        empresa_id=1,
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-        codigo="1.1.1",
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-        nombre="Caja",
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-        tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py-    use_case = RegistrarGasto(
+--
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-    repository = MovimientoRepositoryStub()
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py:    proveedores = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-        id=1,
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-        empresa_id=1,
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-        codigo="2.1.1",
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-        nombre="Proveedores",
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-        tipo=TipoCuenta.PASIVO,
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py:    caja = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-        id=2,
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-        empresa_id=1,
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-        codigo="1.1.1",
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-        nombre="Caja",
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-        tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py-    use_case = RegistrarPago(
+--
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-    repository = MovimientoRepositoryStub()
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py:    caja = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-        id=1,
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-        empresa_id=1,
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-        codigo="1.1.1",
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-        nombre="Caja",
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-        tipo=TipoCuenta.ACTIVO,
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py:    ventas = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-        id=2,
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-        empresa_id=1,
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-        codigo="4.1.1",
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-        nombre="Ventas",
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-        tipo=TipoCuenta.INGRESO,
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py-    use_case = RegistrarVenta(repository)
+--
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py-def crear_caja():
+tests/builders/entidades_builder.py:    return Cuenta(
+tests/builders/entidades_builder.py-        id=None,
+tests/builders/entidades_builder.py-        empresa_id=1,
+tests/builders/entidades_builder.py-        codigo="1.1.01",
+tests/builders/entidades_builder.py-        nombre="Caja",
+tests/builders/entidades_builder.py-        tipo=TipoCuenta.ACTIVO,
+tests/builders/entidades_builder.py-    )
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py-def crear_ventas():
+tests/builders/entidades_builder.py:    return Cuenta(
+tests/builders/entidades_builder.py-        id=None,
+tests/builders/entidades_builder.py-        empresa_id=1,
+tests/builders/entidades_builder.py-        codigo="4.1.01",
+tests/builders/entidades_builder.py-        nombre="Ventas",
+tests/builders/entidades_builder.py-        tipo=TipoCuenta.INGRESO,
+tests/builders/entidades_builder.py-    )
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py-def crear_gastos():
+tests/builders/entidades_builder.py:    return Cuenta(
+tests/builders/entidades_builder.py-        id=None,
+tests/builders/entidades_builder.py-        empresa_id=1,
+tests/builders/entidades_builder.py-        codigo="5.1.01",
+tests/builders/entidades_builder.py-        nombre="Gastos Administrativos",
+tests/builders/entidades_builder.py-        tipo=TipoCuenta.GASTO,
+tests/builders/entidades_builder.py-    )
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py-def crear_resultado_del_ejercicio():
+tests/builders/entidades_builder.py:    return Cuenta(
+tests/builders/entidades_builder.py-        id=None,
+tests/builders/entidades_builder.py-        empresa_id=1,
+tests/builders/entidades_builder.py-        codigo="3.1.99",
+tests/builders/entidades_builder.py-        nombre="Resultado del Ejercicio",
+tests/builders/entidades_builder.py-        tipo=TipoCuenta.PATRIMONIO,
+tests/builders/entidades_builder.py-    )
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py-def crear_compras():
+tests/builders/entidades_builder.py:    return Cuenta(
+tests/builders/entidades_builder.py-        id=None,
+tests/builders/entidades_builder.py-        empresa_id=1,
+tests/builders/entidades_builder.py-        codigo="5.1.02",
+tests/builders/entidades_builder.py-        nombre="Compras",
+tests/builders/entidades_builder.py-        tipo=TipoCuenta.GASTO,
+tests/builders/entidades_builder.py-    )
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py-def crear_proveedores():
+tests/builders/entidades_builder.py:    return Cuenta(
+tests/builders/entidades_builder.py-        id=None,
+tests/builders/entidades_builder.py-        empresa_id=1,
+tests/builders/entidades_builder.py-        codigo="2.1.01",
+tests/builders/entidades_builder.py-        nombre="Proveedores",
+tests/builders/entidades_builder.py-        tipo=TipoCuenta.PASIVO,
+tests/builders/entidades_builder.py-    )
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py-def crear_clientes():
+tests/builders/entidades_builder.py:    return Cuenta(
+tests/builders/entidades_builder.py-        id=None,
+tests/builders/entidades_builder.py-        empresa_id=1,
+tests/builders/entidades_builder.py-        codigo="1.2.01",
+tests/builders/entidades_builder.py-        nombre="Clientes",
+tests/builders/entidades_builder.py-        tipo=TipoCuenta.ACTIVO,
+tests/builders/entidades_builder.py-    )
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py-def crear_ejercicio():
+--
+tests/domain/entities/test_cuenta.py-    """
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    cuenta = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1.01",
+tests/domain/entities/test_cuenta.py-        nombre="Caja",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    assert cuenta.activa is True
+--
+tests/domain/entities/test_cuenta.py-    """
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    cuenta = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1.01",
+tests/domain/entities/test_cuenta.py-        nombre="Caja",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    assert cuenta.imputable is True
+--
+tests/domain/entities/test_cuenta.py-    """
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    cuenta = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1",
+tests/domain/entities/test_cuenta.py-        nombre="Activo",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    cuenta.hacer_no_imputable()
+--
+tests/domain/entities/test_cuenta.py-    """
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    cuenta = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1",
+tests/domain/entities/test_cuenta.py-        nombre="Activo",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    cuenta.hacer_no_imputable()
+--
+tests/domain/entities/test_cuenta.py-    """
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    cuenta = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1",
+tests/domain/entities/test_cuenta.py-        nombre="Caja",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    assert cuenta.es_imputable() is True
+--
+tests/domain/entities/test_cuenta.py-    """
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    padre = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1",
+tests/domain/entities/test_cuenta.py-        nombre="Bancos",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    hija = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1.01",
+tests/domain/entities/test_cuenta.py-        nombre="Banco Nación",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    hija.asignar_padre(padre)
+--
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-def test_al_asignar_un_hijo_la_cuenta_padre_deja_de_ser_imputable():
+tests/domain/entities/test_cuenta.py:    padre = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1",
+tests/domain/entities/test_cuenta.py-        nombre="Caja",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    hija = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1",
+tests/domain/entities/test_cuenta.py-        nombre="Caja Principal",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    assert padre.es_imputable() is True
+--
+tests/domain/entities/test_cuenta.py-    """
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    padre = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1",
+tests/domain/entities/test_cuenta.py-        nombre="Activo",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    hija = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1",
+tests/domain/entities/test_cuenta.py-        nombre="Caja",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    hija.asignar_padre(padre)
+--
+tests/domain/entities/test_cuenta.py-    """
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    padre1 = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1",
+tests/domain/entities/test_cuenta.py-        nombre="Activo",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    padre2 = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="2",
+tests/domain/entities/test_cuenta.py-        nombre="Pasivo",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.PASIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    hija = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1",
+tests/domain/entities/test_cuenta.py-        nombre="Caja",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    hija.asignar_padre(padre1)
+--
+tests/domain/entities/test_cuenta.py-    """
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    raiz = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1",
+tests/domain/entities/test_cuenta.py-        nombre="Activo",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    padre = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1",
+tests/domain/entities/test_cuenta.py-        nombre="Bancos",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    hija = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1.01",
+tests/domain/entities/test_cuenta.py-        nombre="Banco Nación",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    padre.asignar_padre(raiz)
+--
+tests/domain/entities/test_cuenta.py-    """
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    raiz = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1",
+tests/domain/entities/test_cuenta.py-        nombre="Activo",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    padre = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1",
+tests/domain/entities/test_cuenta.py-        nombre="Bancos",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    hija = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1.01",
+tests/domain/entities/test_cuenta.py-        nombre="Banco Nación",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    padre.asignar_padre(raiz)
+--
+tests/domain/entities/test_cuenta.py-    """
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    raiz = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1",
+tests/domain/entities/test_cuenta.py-        nombre="Activo",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    bancos = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1",
+tests/domain/entities/test_cuenta.py-        nombre="Bancos",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    caja = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.2",
+tests/domain/entities/test_cuenta.py-        nombre="Caja",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    nacion = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1.1",
+tests/domain/entities/test_cuenta.py-        nombre="Banco Nación",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    bancos.asignar_padre(raiz)
+--
+tests/domain/entities/test_cuenta.py-    """
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    cuenta = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1.01",
+tests/domain/entities/test_cuenta.py-        nombre="Caja",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    assert cuenta.es_hoja() is True
+--
+tests/domain/entities/test_cuenta.py-    """
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    raiz = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1",
+tests/domain/entities/test_cuenta.py-        nombre="Activo",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    padre = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1",
+tests/domain/entities/test_cuenta.py-        nombre="Bancos",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    hija = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1.01",
+tests/domain/entities/test_cuenta.py-        nombre="Banco Nación",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    padre.asignar_padre(raiz)
+--
+tests/domain/entities/test_cuenta.py-    """
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    activo = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1",
+tests/domain/entities/test_cuenta.py-        nombre="Activo",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    bancos = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1",
+tests/domain/entities/test_cuenta.py-        nombre="Bancos",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py:    nacion = Cuenta(
+tests/domain/entities/test_cuenta.py-        id=None,
+tests/domain/entities/test_cuenta.py-        empresa_id=1,       
+tests/domain/entities/test_cuenta.py-        codigo="1.1.01",
+tests/domain/entities/test_cuenta.py-        nombre="Banco Nación",
+tests/domain/entities/test_cuenta.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_cuenta.py-    )
+tests/domain/entities/test_cuenta.py-
+tests/domain/entities/test_cuenta.py-    bancos.asignar_padre(activo)
+--
+tests/domain/entities/test_linea_movimiento.py-    Factory utilizada por los tests para evitar duplicación.
+tests/domain/entities/test_linea_movimiento.py-    """
+tests/domain/entities/test_linea_movimiento.py:    return Cuenta(
+tests/domain/entities/test_linea_movimiento.py-        empresa_id=1,
+tests/domain/entities/test_linea_movimiento.py-        codigo="1.1.01",
+tests/domain/entities/test_linea_movimiento.py-        nombre="Caja",
+tests/domain/entities/test_linea_movimiento.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_linea_movimiento.py-    )
+tests/domain/entities/test_linea_movimiento.py-
+tests/domain/entities/test_linea_movimiento.py-
+tests/domain/entities/test_linea_movimiento.py-def test_crear_linea_movimiento():
+--
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-def crear_cuenta() -> Cuenta:
+tests/domain/entities/test_movimiento.py:    return Cuenta(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        empresa_id=1,
+tests/domain/entities/test_movimiento.py-        codigo="1.1.01",
+tests/domain/entities/test_movimiento.py-        nombre="Caja",
+tests/domain/entities/test_movimiento.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-
+--
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py-def crear_caja():
+tests/domain/services/test_balance_general.py:    return Cuenta(
+tests/domain/services/test_balance_general.py-        id=None,
+tests/domain/services/test_balance_general.py-        empresa_id=1,
+tests/domain/services/test_balance_general.py-        codigo="1.1.01",
+tests/domain/services/test_balance_general.py-        nombre="Caja",
+tests/domain/services/test_balance_general.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/services/test_balance_general.py-    )
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py-def crear_proveedores():
+tests/domain/services/test_balance_general.py:    return Cuenta(
+tests/domain/services/test_balance_general.py-        id=None,
+tests/domain/services/test_balance_general.py-        empresa_id=1,
+tests/domain/services/test_balance_general.py-        codigo="2.1.01",
+tests/domain/services/test_balance_general.py-        nombre="Proveedores",
+tests/domain/services/test_balance_general.py-        tipo=TipoCuenta.PASIVO,
+tests/domain/services/test_balance_general.py-    )
+tests/domain/services/test_balance_general.py-def crear_capital():
+tests/domain/services/test_balance_general.py:    return Cuenta(
+tests/domain/services/test_balance_general.py-        id=None,
+tests/domain/services/test_balance_general.py-        empresa_id=1,
+tests/domain/services/test_balance_general.py-        codigo="3.1.01",
+tests/domain/services/test_balance_general.py-        nombre="Capital",
+tests/domain/services/test_balance_general.py-        tipo=TipoCuenta.PATRIMONIO,
+tests/domain/services/test_balance_general.py-    )
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py-
+--
+tests/domain/services/test_balance_sumas_saldos.py-
+tests/domain/services/test_balance_sumas_saldos.py-def crear_cuenta():
+tests/domain/services/test_balance_sumas_saldos.py:    return Cuenta(
+tests/domain/services/test_balance_sumas_saldos.py-        id=None,
+tests/domain/services/test_balance_sumas_saldos.py-        empresa_id=1,
+tests/domain/services/test_balance_sumas_saldos.py-        codigo="1.1.01",
+tests/domain/services/test_balance_sumas_saldos.py-        nombre="Caja",
+tests/domain/services/test_balance_sumas_saldos.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/services/test_balance_sumas_saldos.py-    )
+tests/domain/services/test_balance_sumas_saldos.py-
+tests/domain/services/test_balance_sumas_saldos.py-
+tests/domain/services/test_balance_sumas_saldos.py-def crear_otra_cuenta():
+tests/domain/services/test_balance_sumas_saldos.py:    return Cuenta(
+tests/domain/services/test_balance_sumas_saldos.py-        id=None,
+tests/domain/services/test_balance_sumas_saldos.py-        empresa_id=1,
+tests/domain/services/test_balance_sumas_saldos.py-        codigo="3.1.01",
+tests/domain/services/test_balance_sumas_saldos.py-        nombre="Capital",
+tests/domain/services/test_balance_sumas_saldos.py-        tipo=TipoCuenta.PATRIMONIO,
+tests/domain/services/test_balance_sumas_saldos.py-    )
+tests/domain/services/test_balance_sumas_saldos.py-
+tests/domain/services/test_balance_sumas_saldos.py-
+--
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py-def crear_cuenta():
+tests/domain/services/test_calculador_saldo.py:    return Cuenta(
+tests/domain/services/test_calculador_saldo.py-        id=None,
+tests/domain/services/test_calculador_saldo.py-        empresa_id=1,
+tests/domain/services/test_calculador_saldo.py-        codigo="1.1.01",
+tests/domain/services/test_calculador_saldo.py-        nombre="Caja",
+tests/domain/services/test_calculador_saldo.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py-
+--
+tests/domain/services/test_calculador_saldo.py-    """
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py:    cuenta = Cuenta(
+tests/domain/services/test_calculador_saldo.py-        id=None,
+tests/domain/services/test_calculador_saldo.py-        empresa_id=1,
+tests/domain/services/test_calculador_saldo.py-        codigo="2.1.01",
+tests/domain/services/test_calculador_saldo.py-        nombre="Proveedores",
+tests/domain/services/test_calculador_saldo.py-        tipo=TipoCuenta.PASIVO,
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py-    movimiento = Movimiento(
+--
+tests/domain/services/test_calculador_saldo.py-    movimiento.agregar_linea(
+tests/domain/services/test_calculador_saldo.py-        LineaMovimiento.debito(
+tests/domain/services/test_calculador_saldo.py:            cuenta=Cuenta(
+tests/domain/services/test_calculador_saldo.py-                id=None,
+tests/domain/services/test_calculador_saldo.py-                empresa_id=1,
+tests/domain/services/test_calculador_saldo.py-                codigo="1.1.01",
+tests/domain/services/test_calculador_saldo.py-                nombre="Mercaderías",
+tests/domain/services/test_calculador_saldo.py-                tipo=TipoCuenta.ACTIVO,
+tests/domain/services/test_calculador_saldo.py-            ),
+tests/domain/services/test_calculador_saldo.py-            importe=Decimal("500")
+tests/domain/services/test_calculador_saldo.py-        )
+--
+tests/domain/services/test_calculador_saldo.py-    """
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py:    cuenta = Cuenta(
+tests/domain/services/test_calculador_saldo.py-        id=None,
+tests/domain/services/test_calculador_saldo.py-        empresa_id=1,
+tests/domain/services/test_calculador_saldo.py-        codigo="3.1.01",
+tests/domain/services/test_calculador_saldo.py-        nombre="Capital",
+tests/domain/services/test_calculador_saldo.py-        tipo=TipoCuenta.PATRIMONIO,
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py-    movimiento = Movimiento(
+--
+tests/domain/services/test_calculador_saldo.py-    movimiento.agregar_linea(
+tests/domain/services/test_calculador_saldo.py-        LineaMovimiento.debito(
+tests/domain/services/test_calculador_saldo.py:            cuenta=Cuenta(
+tests/domain/services/test_calculador_saldo.py-                id=None,
+tests/domain/services/test_calculador_saldo.py-                empresa_id=1,
+tests/domain/services/test_calculador_saldo.py-                codigo="1.1.01",
+tests/domain/services/test_calculador_saldo.py-                nombre="Caja",
+tests/domain/services/test_calculador_saldo.py-                tipo=TipoCuenta.ACTIVO,
+tests/domain/services/test_calculador_saldo.py-            ),
+tests/domain/services/test_calculador_saldo.py-            importe=Decimal("1000")
+tests/domain/services/test_calculador_saldo.py-        )
+--
+tests/domain/services/test_calculador_saldo.py-    """
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py:    cuenta = Cuenta(
+tests/domain/services/test_calculador_saldo.py-        id=None,
+tests/domain/services/test_calculador_saldo.py-        empresa_id=1,
+tests/domain/services/test_calculador_saldo.py-        codigo="4.1.01",
+tests/domain/services/test_calculador_saldo.py-        nombre="Ventas",
+tests/domain/services/test_calculador_saldo.py-        tipo=TipoCuenta.INGRESO,
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py-    movimiento = Movimiento(
+--
+tests/domain/services/test_calculador_saldo.py-    movimiento.agregar_linea(
+tests/domain/services/test_calculador_saldo.py-        LineaMovimiento.debito(
+tests/domain/services/test_calculador_saldo.py:            cuenta=Cuenta(
+tests/domain/services/test_calculador_saldo.py-                id=None,
+tests/domain/services/test_calculador_saldo.py-                empresa_id=1,
+tests/domain/services/test_calculador_saldo.py-                codigo="1.1.01",
+tests/domain/services/test_calculador_saldo.py-                nombre="Caja",
+tests/domain/services/test_calculador_saldo.py-                tipo=TipoCuenta.ACTIVO,
+tests/domain/services/test_calculador_saldo.py-            ),
+tests/domain/services/test_calculador_saldo.py-            importe=Decimal("2500")
+tests/domain/services/test_calculador_saldo.py-        )
+--
+tests/domain/services/test_calculador_saldo.py-    """
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py:    cuenta = Cuenta(
+tests/domain/services/test_calculador_saldo.py-        id=None,
+tests/domain/services/test_calculador_saldo.py-        empresa_id=1,
+tests/domain/services/test_calculador_saldo.py-        codigo="5.1.01",
+tests/domain/services/test_calculador_saldo.py-        nombre="Sueldos",
+tests/domain/services/test_calculador_saldo.py-        tipo=TipoCuenta.GASTO,
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py-    movimiento = Movimiento(
+--
+tests/domain/services/test_calculador_saldo.py-    movimiento.agregar_linea(
+tests/domain/services/test_calculador_saldo.py-        LineaMovimiento.credito(
+tests/domain/services/test_calculador_saldo.py:            cuenta=Cuenta(
+tests/domain/services/test_calculador_saldo.py-                id=None,
+tests/domain/services/test_calculador_saldo.py-                empresa_id=1,
+tests/domain/services/test_calculador_saldo.py-                codigo="1.1.01",
+tests/domain/services/test_calculador_saldo.py-                nombre="Caja",
+tests/domain/services/test_calculador_saldo.py-                tipo=TipoCuenta.ACTIVO,
+tests/domain/services/test_calculador_saldo.py-            ),
+tests/domain/services/test_calculador_saldo.py-            importe=Decimal("1800")
+tests/domain/services/test_calculador_saldo.py-        )
+--
+tests/domain/services/test_cierre_ejercicio.py-
+tests/domain/services/test_cierre_ejercicio.py-def crear_ventas():
+tests/domain/services/test_cierre_ejercicio.py:    return Cuenta(
+tests/domain/services/test_cierre_ejercicio.py-        id=None,
+tests/domain/services/test_cierre_ejercicio.py-        empresa_id=1,
+tests/domain/services/test_cierre_ejercicio.py-        codigo="4.1.01",
+tests/domain/services/test_cierre_ejercicio.py-        nombre="Ventas",
+tests/domain/services/test_cierre_ejercicio.py-        tipo=TipoCuenta.INGRESO,
+tests/domain/services/test_cierre_ejercicio.py-    )
+tests/domain/services/test_cierre_ejercicio.py-
+tests/domain/services/test_cierre_ejercicio.py-
+tests/domain/services/test_cierre_ejercicio.py-def crear_sueldos():
+tests/domain/services/test_cierre_ejercicio.py:    return Cuenta(
+tests/domain/services/test_cierre_ejercicio.py-        id=None,
+tests/domain/services/test_cierre_ejercicio.py-        empresa_id=1,
+tests/domain/services/test_cierre_ejercicio.py-        codigo="5.1.01",
+tests/domain/services/test_cierre_ejercicio.py-        nombre="Sueldos",
+tests/domain/services/test_cierre_ejercicio.py-        tipo=TipoCuenta.GASTO,
+tests/domain/services/test_cierre_ejercicio.py-    )
+tests/domain/services/test_cierre_ejercicio.py-
+tests/domain/services/test_cierre_ejercicio.py-# Se habilitará cuando el asiento de cierre genere
+--
+tests/domain/services/test_generador_movimiento_cierre.py-    #     movimientos=[movimiento],
+tests/domain/services/test_generador_movimiento_cierre.py-    # )
+tests/domain/services/test_generador_movimiento_cierre.py:    saldo = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py-    cuenta=crear_ventas(),
+tests/domain/services/test_generador_movimiento_cierre.py-    saldo=Decimal("1000"),
+tests/domain/services/test_generador_movimiento_cierre.py-)
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py-    cierre = generador.generar(
+tests/domain/services/test_generador_movimiento_cierre.py-        ejercicio=ejercicio,
+tests/domain/services/test_generador_movimiento_cierre.py-        saldos=[saldo],
+tests/domain/services/test_generador_movimiento_cierre.py-    )
+--
+tests/domain/services/test_generador_movimiento_cierre.py-    #     movimientos=[movimiento],
+tests/domain/services/test_generador_movimiento_cierre.py-    # )
+tests/domain/services/test_generador_movimiento_cierre.py:    saldo = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py-    cuenta=crear_ventas(),
+tests/domain/services/test_generador_movimiento_cierre.py-    saldo=Decimal("1000"),
+tests/domain/services/test_generador_movimiento_cierre.py-)
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py-    cierre = generador.generar(
+tests/domain/services/test_generador_movimiento_cierre.py-        ejercicio=ejercicio,
+tests/domain/services/test_generador_movimiento_cierre.py-        saldos=[saldo],
+tests/domain/services/test_generador_movimiento_cierre.py-    )
+--
+tests/domain/services/test_generador_movimiento_cierre.py-    #     movimientos=[movimiento],
+tests/domain/services/test_generador_movimiento_cierre.py-    # )
+tests/domain/services/test_generador_movimiento_cierre.py:    saldo = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py-    cuenta=crear_ventas(),
+tests/domain/services/test_generador_movimiento_cierre.py-    saldo=Decimal("1000"),
+tests/domain/services/test_generador_movimiento_cierre.py-    )
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py-    cierre = generador.generar(
+tests/domain/services/test_generador_movimiento_cierre.py-        ejercicio=ejercicio,
+tests/domain/services/test_generador_movimiento_cierre.py-        saldos=[saldo],
+tests/domain/services/test_generador_movimiento_cierre.py-    )
+--
+tests/domain/services/test_generador_movimiento_cierre.py-    ejercicio = crear_ejercicio()
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py:    saldo = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py-        cuenta=crear_ventas(),
+tests/domain/services/test_generador_movimiento_cierre.py-        saldo=Decimal("1000"),
+tests/domain/services/test_generador_movimiento_cierre.py-    )
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py-    generador = GeneradorMovimientoCierre()
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py-    cierre = generador.generar(
+tests/domain/services/test_generador_movimiento_cierre.py-        ejercicio=ejercicio,
+--
+tests/domain/services/test_generador_movimiento_cierre.py-    ventas = crear_ventas()
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py:    saldo = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py-        cuenta=ventas,
+tests/domain/services/test_generador_movimiento_cierre.py-        saldo=Decimal("1000"),
+tests/domain/services/test_generador_movimiento_cierre.py-    )
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py-    generador = GeneradorMovimientoCierre()
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py-    cierre = generador.generar(
+tests/domain/services/test_generador_movimiento_cierre.py-        ejercicio=ejercicio,
+--
+tests/domain/services/test_generador_movimiento_cierre.py-#     ejercicio = crear_ejercicio()
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py:#     saldo_ingreso = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py-#         cuenta=crear_ventas(),
+tests/domain/services/test_generador_movimiento_cierre.py-#         saldo=Decimal("1000"),
+tests/domain/services/test_generador_movimiento_cierre.py-#     )
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py:#     saldo_gasto = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py-#         cuenta=crear_gastos(),
+tests/domain/services/test_generador_movimiento_cierre.py-#         saldo=Decimal("300"),
+tests/domain/services/test_generador_movimiento_cierre.py-#     )
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py-#     generador = GeneradorMovimientoCierre()
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py-#     cierre = generador.generar(
+tests/domain/services/test_generador_movimiento_cierre.py-#         ejercicio=ejercicio,
+--
+tests/domain/services/test_generador_movimiento_cierre.py-    ejercicio = crear_ejercicio()
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py:    saldo_ingreso = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py-        cuenta=crear_ventas(),
+tests/domain/services/test_generador_movimiento_cierre.py-        saldo=Decimal("1000"),
+tests/domain/services/test_generador_movimiento_cierre.py-    )
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py:    saldo_gasto = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py-        cuenta=crear_gastos(),
+tests/domain/services/test_generador_movimiento_cierre.py-        saldo=Decimal("300"),
+tests/domain/services/test_generador_movimiento_cierre.py-    )
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py-    generador = GeneradorMovimientoCierre()
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py-    cierre = generador.generar(
+tests/domain/services/test_generador_movimiento_cierre.py-        ejercicio=ejercicio,
+--
+tests/domain/services/test_generador_movimiento_cierre.py-    ejercicio = crear_ejercicio()
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py:    saldo_ingreso = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py-        cuenta=crear_ventas(),
+tests/domain/services/test_generador_movimiento_cierre.py-        saldo=Decimal("1000"),
+tests/domain/services/test_generador_movimiento_cierre.py-    )
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py:    saldo_gasto = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py-        cuenta=crear_gastos(),
+tests/domain/services/test_generador_movimiento_cierre.py-        saldo=Decimal("300"),
+tests/domain/services/test_generador_movimiento_cierre.py-    )
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py-    generador = GeneradorMovimientoCierre()
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py-    cierre = generador.generar(
+tests/domain/services/test_generador_movimiento_cierre.py-        ejercicio=ejercicio,
+--
+tests/domain/services/test_generador_movimiento_cierre.py-        ejercicio=ejercicio,
+tests/domain/services/test_generador_movimiento_cierre.py-        saldos=[
+tests/domain/services/test_generador_movimiento_cierre.py:            SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py-                cuenta=crear_ventas(),
+tests/domain/services/test_generador_movimiento_cierre.py-                saldo=Decimal("1000"),
+tests/domain/services/test_generador_movimiento_cierre.py-            ),
+tests/domain/services/test_generador_movimiento_cierre.py:            SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py-                cuenta=crear_gastos(),
+tests/domain/services/test_generador_movimiento_cierre.py-                saldo=Decimal("300"),
+tests/domain/services/test_generador_movimiento_cierre.py-            ),
+tests/domain/services/test_generador_movimiento_cierre.py-        ],
+tests/domain/services/test_generador_movimiento_cierre.py-    )
+tests/domain/services/test_generador_movimiento_cierre.py-
+tests/domain/services/test_generador_movimiento_cierre.py-    cierre.confirmar()
+tests/domain/services/test_generador_movimiento_cierre.py-
+--
+tests/domain/services/test_libro_diario.py-
+tests/domain/services/test_libro_diario.py-def crear_cuenta():
+tests/domain/services/test_libro_diario.py:    return Cuenta(
+tests/domain/services/test_libro_diario.py-        id=None,
+tests/domain/services/test_libro_diario.py-        empresa_id=1,
+tests/domain/services/test_libro_diario.py-        codigo="1.1.01",
+tests/domain/services/test_libro_diario.py-        nombre="Caja",
+tests/domain/services/test_libro_diario.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/services/test_libro_diario.py-    )
+tests/domain/services/test_libro_diario.py-
+tests/domain/services/test_libro_diario.py-
+tests/domain/services/test_libro_diario.py-def crear_otra_cuenta():
+tests/domain/services/test_libro_diario.py:    return Cuenta(
+tests/domain/services/test_libro_diario.py-        id=None,
+tests/domain/services/test_libro_diario.py-        empresa_id=1,
+tests/domain/services/test_libro_diario.py-        codigo="3.1.01",
+tests/domain/services/test_libro_diario.py-        nombre="Capital",
+tests/domain/services/test_libro_diario.py-        tipo=TipoCuenta.PATRIMONIO,
+tests/domain/services/test_libro_diario.py-    )
+tests/domain/services/test_libro_diario.py-
+tests/domain/services/test_libro_diario.py-
+--
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py-def crear_cuenta():
+tests/domain/services/test_libro_mayor.py:    return Cuenta(
+tests/domain/services/test_libro_mayor.py-        id=None,
+tests/domain/services/test_libro_mayor.py-        empresa_id=1,
+tests/domain/services/test_libro_mayor.py-        codigo="1.1.01",
+tests/domain/services/test_libro_mayor.py-        nombre="Caja",
+tests/domain/services/test_libro_mayor.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/services/test_libro_mayor.py-    )
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py-def crear_otra_cuenta():
+tests/domain/services/test_libro_mayor.py:    return Cuenta(
+tests/domain/services/test_libro_mayor.py-        id=None,
+tests/domain/services/test_libro_mayor.py-        empresa_id=1,
+tests/domain/services/test_libro_mayor.py-        codigo="1.1.02",
+tests/domain/services/test_libro_mayor.py-        nombre="Banco",
+tests/domain/services/test_libro_mayor.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/services/test_libro_mayor.py-    )
+tests/domain/services/test_libro_mayor.py-def test_libro_mayor_devuelve_las_lineas_de_una_cuenta():
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py-    caja = crear_cuenta()
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py:    banco = Cuenta(
+tests/domain/services/test_libro_mayor.py-        id=None,
+tests/domain/services/test_libro_mayor.py-        empresa_id=1,
+tests/domain/services/test_libro_mayor.py-        codigo="1.1.02",
+tests/domain/services/test_libro_mayor.py-        nombre="Banco",
+tests/domain/services/test_libro_mayor.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/services/test_libro_mayor.py-    )
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py-    movimiento = Movimiento(
+--
+tests/domain/services/test_libro_mayor.py-    caja = crear_cuenta()
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py:    banco = Cuenta(
+tests/domain/services/test_libro_mayor.py-        id=None,
+tests/domain/services/test_libro_mayor.py-        empresa_id=1,
+tests/domain/services/test_libro_mayor.py-        codigo="1.1.02",
+tests/domain/services/test_libro_mayor.py-        nombre="Banco",
+tests/domain/services/test_libro_mayor.py-        tipo=TipoCuenta.ACTIVO,
+tests/domain/services/test_libro_mayor.py-    )
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py-    movimiento_5 = Movimiento(
+--
+tests/domain/value_objects/test_estado_resultados_calculado.py-def test_se_puede_crear_un_estado_resultados_calculado():
+tests/domain/value_objects/test_estado_resultados_calculado.py-
+tests/domain/value_objects/test_estado_resultados_calculado.py:    saldo = SaldoCuenta(
+tests/domain/value_objects/test_estado_resultados_calculado.py-        cuenta=crear_ventas(),
+tests/domain/value_objects/test_estado_resultados_calculado.py-        saldo=Decimal("1000"),
+tests/domain/value_objects/test_estado_resultados_calculado.py-    )
+tests/domain/value_objects/test_estado_resultados_calculado.py-
+tests/domain/value_objects/test_estado_resultados_calculado.py-    estado = EstadoResultadosCalculado(
+tests/domain/value_objects/test_estado_resultados_calculado.py-        saldos=[saldo],
+tests/domain/value_objects/test_estado_resultados_calculado.py-        resultado=Decimal("1000"),
+tests/domain/value_objects/test_estado_resultados_calculado.py-    )
+--
+tests/domain/value_objects/test_saldo_cuenta.py-    ventas = crear_ventas()
+tests/domain/value_objects/test_saldo_cuenta.py-
+tests/domain/value_objects/test_saldo_cuenta.py:    saldo = SaldoCuenta(
+tests/domain/value_objects/test_saldo_cuenta.py-        cuenta=ventas,
+tests/domain/value_objects/test_saldo_cuenta.py-        saldo=Decimal("1000"),
+tests/domain/value_objects/test_saldo_cuenta.py-    )
+tests/domain/value_objects/test_saldo_cuenta.py-
+tests/domain/value_objects/test_saldo_cuenta.py-    assert saldo.cuenta == ventas
+tests/domain/value_objects/test_saldo_cuenta.py-    assert saldo.saldo == Decimal("1000")
+tests/domain/value_objects/test_saldo_cuenta.py-
+tests/domain/value_objects/test_saldo_cuenta.py-def test_estado_resultados_informa_los_saldos_de_las_cuentas():
+--
+tests/domain/value_objects/test_saldo_cuenta.py-    """
+tests/domain/value_objects/test_saldo_cuenta.py-
+tests/domain/value_objects/test_saldo_cuenta.py:    saldo = SaldoCuenta(
+tests/domain/value_objects/test_saldo_cuenta.py-        cuenta=crear_ventas(),
+tests/domain/value_objects/test_saldo_cuenta.py-        saldo=Decimal("1000"),
+tests/domain/value_objects/test_saldo_cuenta.py-    )
+tests/domain/value_objects/test_saldo_cuenta.py-
+tests/domain/value_objects/test_saldo_cuenta.py-    linea = saldo.generar_linea_de_cierre()
+tests/domain/value_objects/test_saldo_cuenta.py-
+tests/domain/value_objects/test_saldo_cuenta.py-    assert (
+tests/domain/value_objects/test_saldo_cuenta.py-        linea.tipo_afectacion
+--
+tests/domain/value_objects/test_saldo_cuenta.py-    """
+tests/domain/value_objects/test_saldo_cuenta.py-
+tests/domain/value_objects/test_saldo_cuenta.py:    saldo = SaldoCuenta(
+tests/domain/value_objects/test_saldo_cuenta.py-        cuenta=crear_gastos(),
+tests/domain/value_objects/test_saldo_cuenta.py-        saldo=Decimal("300"),
+tests/domain/value_objects/test_saldo_cuenta.py-    )
+tests/domain/value_objects/test_saldo_cuenta.py-
+tests/domain/value_objects/test_saldo_cuenta.py-    linea = saldo.generar_linea_de_cierre()
+tests/domain/value_objects/test_saldo_cuenta.py-
+tests/domain/value_objects/test_saldo_cuenta.py-    assert (
+tests/domain/value_objects/test_saldo_cuenta.py-        linea.tipo_afectacion
+--
+tests/factories/cuenta_factory.py-    ):
+tests/factories/cuenta_factory.py-
+tests/factories/cuenta_factory.py:        return Cuenta(
+tests/factories/cuenta_factory.py-            id=id,
+tests/factories/cuenta_factory.py-            empresa_id=empresa_id,
+tests/factories/cuenta_factory.py-            codigo=codigo,
+tests/factories/cuenta_factory.py-            nombre=nombre,
+tests/factories/cuenta_factory.py-            tipo=tipo,
+tests/factories/cuenta_factory.py-            activa=activa,
+tests/factories/cuenta_factory.py-        )
+tests/factories/cuenta_factory.py-
+--
+tests/infrastructure/mappers/test_cuenta_mapper.py-def test_mapper_convierte_entidad_a_dict():
+tests/infrastructure/mappers/test_cuenta_mapper.py-
+tests/infrastructure/mappers/test_cuenta_mapper.py:    cuenta = Cuenta(
+tests/infrastructure/mappers/test_cuenta_mapper.py-        id=1,
+tests/infrastructure/mappers/test_cuenta_mapper.py-        empresa_id=1,
+tests/infrastructure/mappers/test_cuenta_mapper.py-        codigo="1.1.01",
+tests/infrastructure/mappers/test_cuenta_mapper.py-        nombre="Caja",
+tests/infrastructure/mappers/test_cuenta_mapper.py-        tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/mappers/test_cuenta_mapper.py-    )
+tests/infrastructure/mappers/test_cuenta_mapper.py-
+tests/infrastructure/mappers/test_cuenta_mapper.py-    datos = CuentaMapper.to_dict(
+--
+tests/infrastructure/mappers/test_cuenta_mapper.py-def test_mapper_convierte_lista_de_entidades_a_lista_de_dict():
+tests/infrastructure/mappers/test_cuenta_mapper.py-
+tests/infrastructure/mappers/test_cuenta_mapper.py:    cuenta1 = Cuenta(
+tests/infrastructure/mappers/test_cuenta_mapper.py-        id=1,
+tests/infrastructure/mappers/test_cuenta_mapper.py-        empresa_id=1,
+tests/infrastructure/mappers/test_cuenta_mapper.py-        codigo="1.1.01",
+tests/infrastructure/mappers/test_cuenta_mapper.py-        nombre="Caja",
+tests/infrastructure/mappers/test_cuenta_mapper.py-        tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/mappers/test_cuenta_mapper.py-    )
+tests/infrastructure/mappers/test_cuenta_mapper.py-
+tests/infrastructure/mappers/test_cuenta_mapper.py:    cuenta2 = Cuenta(
+tests/infrastructure/mappers/test_cuenta_mapper.py-        id=2,
+tests/infrastructure/mappers/test_cuenta_mapper.py-        empresa_id=1,
+tests/infrastructure/mappers/test_cuenta_mapper.py-        codigo="2.1.01",
+tests/infrastructure/mappers/test_cuenta_mapper.py-        nombre="Proveedores",
+tests/infrastructure/mappers/test_cuenta_mapper.py-        tipo=TipoCuenta.PASIVO,
+tests/infrastructure/mappers/test_cuenta_mapper.py-    )
+tests/infrastructure/mappers/test_cuenta_mapper.py-
+tests/infrastructure/mappers/test_cuenta_mapper.py-    datos = CuentaMapper.to_dict_list(
+--
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-def test_mapper_convierte_entidad_a_dict():
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py:    cuenta = Cuenta(
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-        id=10,
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-        empresa_id=1,
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-        codigo="1.1.01",
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-        nombre="Caja",
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-        tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-    )
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-    linea = LineaMovimiento(
+--
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-    ):
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py:        return Cuenta(
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-            id=id_,
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-            empresa_id=1,
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-            codigo="1.1.01",
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-            nombre="Caja",
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-            tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-        )
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-
+--
+tests/infrastructure/mappers/test_movimiento_mapper.py-        id_,
+tests/infrastructure/mappers/test_movimiento_mapper.py-    ):
+tests/infrastructure/mappers/test_movimiento_mapper.py:        return Cuenta(
+tests/infrastructure/mappers/test_movimiento_mapper.py-            id=id_,
+tests/infrastructure/mappers/test_movimiento_mapper.py-            empresa_id=1,
+tests/infrastructure/mappers/test_movimiento_mapper.py-            codigo=f"{id_}",
+tests/infrastructure/mappers/test_movimiento_mapper.py-            nombre="Caja",
+tests/infrastructure/mappers/test_movimiento_mapper.py-            tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/mappers/test_movimiento_mapper.py-        )
+tests/infrastructure/mappers/test_movimiento_mapper.py-
+tests/infrastructure/mappers/test_movimiento_mapper.py-
+tests/infrastructure/mappers/test_movimiento_mapper.py-def test_mapper_convierte_entidad_a_dict():
+tests/infrastructure/mappers/test_movimiento_mapper.py-
+tests/infrastructure/mappers/test_movimiento_mapper.py:    cuenta = Cuenta(
+tests/infrastructure/mappers/test_movimiento_mapper.py-        id=10,
+tests/infrastructure/mappers/test_movimiento_mapper.py-        empresa_id=1,
+tests/infrastructure/mappers/test_movimiento_mapper.py-        codigo="1.1.01",
+tests/infrastructure/mappers/test_movimiento_mapper.py-        nombre="Caja",
+tests/infrastructure/mappers/test_movimiento_mapper.py-        tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/mappers/test_movimiento_mapper.py-    )
+tests/infrastructure/mappers/test_movimiento_mapper.py-
+tests/infrastructure/mappers/test_movimiento_mapper.py-    linea = LineaMovimiento.debito(
+--
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    )
+tests/infrastructure/repositories/json/test_cuenta_repository.py-
+tests/infrastructure/repositories/json/test_cuenta_repository.py:    # cuenta = Cuenta(
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    #     id=1,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    empresa_id=1,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    #     codigo="1.1.01",
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    #     nombre="Caja",
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    #     tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    # )
+tests/infrastructure/repositories/json/test_cuenta_repository.py-  
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    cuenta = CuentaFactory.crear()
+--
+tests/infrastructure/repositories/json/test_cuenta_repository.py-
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    repository.guardar(
+tests/infrastructure/repositories/json/test_cuenta_repository.py:        Cuenta(
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            id=1,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            empresa_id=1,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            codigo="1.1.01",
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            nombre="Caja",
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-        )
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    )
+tests/infrastructure/repositories/json/test_cuenta_repository.py-
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    repository.guardar(
+tests/infrastructure/repositories/json/test_cuenta_repository.py:        Cuenta(
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            id=1,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            empresa_id=1,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            codigo="1.1.01",
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            nombre="Caja Principal",
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-        )
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    )
+tests/infrastructure/repositories/json/test_cuenta_repository.py-
+--
+tests/infrastructure/repositories/json/test_cuenta_repository.py-
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    repository.guardar(
+tests/infrastructure/repositories/json/test_cuenta_repository.py:        Cuenta(
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            id=10,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            empresa_id=1,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            codigo="1.1.01",
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            nombre="Caja",
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-        )
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    )
+tests/infrastructure/repositories/json/test_cuenta_repository.py-
+--
+tests/infrastructure/repositories/json/test_cuenta_repository.py-
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    repository.guardar(
+tests/infrastructure/repositories/json/test_cuenta_repository.py:        Cuenta(
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            id=1,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            empresa_id=1,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            codigo="1.1.01",
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            nombre="Caja",
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-        )
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    )
+tests/infrastructure/repositories/json/test_cuenta_repository.py-
+--
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    )
+tests/infrastructure/repositories/json/test_cuenta_repository.py-
+tests/infrastructure/repositories/json/test_cuenta_repository.py:    # cuenta = Cuenta(
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    #     id=1,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    empresa_id=1,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    #     codigo="1.1.01",
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    #     nombre="Caja",
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    #     tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    # )
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    cuenta = CuentaFactory.crear()
+tests/infrastructure/repositories/json/test_cuenta_repository.py-
+--
+tests/infrastructure/repositories/json/test_cuenta_repository.py-
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    repository.guardar(
+tests/infrastructure/repositories/json/test_cuenta_repository.py:        Cuenta(
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            id=1,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            empresa_id=1,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            codigo="1.1.01",
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            nombre="Caja",
+tests/infrastructure/repositories/json/test_cuenta_repository.py-            tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/repositories/json/test_cuenta_repository.py-        )
+tests/infrastructure/repositories/json/test_cuenta_repository.py-    )
+tests/infrastructure/repositories/json/test_cuenta_repository.py-
+--
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        id_,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    ):
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:        return Cuenta(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            id=id_,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            empresa_id=1,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            codigo=f"{id_}",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            nombre="Caja",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+--
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:    cuenta = Cuenta(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        id=10,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        empresa_id=1,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        codigo="1.1.01",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        nombre="Caja",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    linea = LineaMovimiento(
+--
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:    cuenta = Cuenta(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        id=10,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        empresa_id=1,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        codigo="1.1.01",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        nombre="Caja",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    linea = LineaMovimiento(
+--
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:    cuenta = Cuenta(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        id=10,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        empresa_id=1,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        codigo="1.1.01",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        nombre="Caja",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    linea = LineaMovimiento(
+--
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:    cuenta = Cuenta(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        id=10,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        empresa_id=1,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        codigo="1.1.01",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        nombre="Caja",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        tipo=TipoCuenta.ACTIVO,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    linea = LineaMovimiento(
+--
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-    repo = PlanCuentaRepositoryJson()
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-
+tests/persistence/repositories/test_plan_cuenta_repository_json.py:    cuenta = Cuenta(
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        id=1,
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        empresa_id=1,
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        codigo="1.1.01",
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        nombre="Caja",
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        tipo=TipoCuenta.ACTIVO,
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-    )
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-    data = repo._to_dict(cuenta)
+--
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-    )
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-
+tests/persistence/repositories/test_plan_cuenta_repository_json.py:    cuenta = Cuenta(
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        id=1,
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        empresa_id=1,
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        codigo="1.1.01",
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        nombre="Caja",
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        tipo=TipoCuenta.ACTIVO,
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-    )
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-    repo.guardar(cuenta)
+--
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-    )
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-
+tests/persistence/repositories/test_plan_cuenta_repository_json.py:    cuenta = Cuenta(
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        id=1,
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        empresa_id=1,
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        codigo="1.1.01",
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        nombre="Caja",
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-        tipo=TipoCuenta.ACTIVO,
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-    )
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-
+tests/persistence/repositories/test_plan_cuenta_repository_json.py-    repo.guardar(cuenta)

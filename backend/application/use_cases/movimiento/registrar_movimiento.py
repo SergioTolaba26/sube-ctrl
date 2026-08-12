@@ -1,17 +1,17 @@
 from domain.entities.movimiento import (
-    Movimiento,
+Movimiento,
 )
 
 from domain.enums.estado_movimiento import (
-    EstadoMovimiento,
+EstadoMovimiento,
 )
 
 from domain.services.movimiento_service import (
-    MovimientoService,
+MovimientoService,
 )
 
-
 class RegistrarMovimiento:
+
 
     def __init__(
         self,
@@ -32,19 +32,19 @@ class RegistrarMovimiento:
         )
 
         if ejercicio is None:
-
             raise ValueError(
                 "No existe un ejercicio para esa fecha."
             )
 
         if ejercicio.esta_cerrado():
-
             raise ValueError(
                 "No se pueden registrar movimientos en un ejercicio cerrado."
             )
-        
+
         movimiento = Movimiento(
             id=None,
+            empresa_id=ejercicio.empresa_id,
+            ejercicio_id=ejercicio.id,
             fecha=fecha,
             descripcion=descripcion,
             estado=EstadoMovimiento.BORRADOR,
@@ -56,3 +56,4 @@ class RegistrarMovimiento:
         )
 
         return movimiento
+

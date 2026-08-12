@@ -26,6 +26,8 @@ def test_no_puede_confirmarse_un_movimiento_en_un_ejercicio_cerrado():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 7, 15),
         descripcion="Compra",
     )

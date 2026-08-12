@@ -2,17 +2,16 @@ from datetime import date
 from decimal import Decimal
 
 from domain.entities.movimiento import (
-    Movimiento,
+Movimiento,
 )
 
 from domain.entities.linea_movimiento import (
-    LineaMovimiento,
+LineaMovimiento,
 )
 
 from tests.factories.cuenta_factory import (
-    CuentaFactory,
+CuentaFactory,
 )
-
 
 class MovimientoFactory:
 
@@ -23,10 +22,14 @@ class MovimientoFactory:
         cls,
         descripcion: str = "Movimiento de prueba",
         fecha: date | None = None,
+        empresa_id: int = 1,
+        ejercicio_id: int = 1,
     ) -> Movimiento:
 
         movimiento = Movimiento(
             id=cls._id,
+            empresa_id=empresa_id,
+            ejercicio_id=ejercicio_id,
             fecha=fecha or date.today(),
             descripcion=descripcion,
         )
@@ -34,7 +37,6 @@ class MovimientoFactory:
         cls._id += 1
 
         return movimiento
-
     @classmethod
     def venta(
         cls,
@@ -98,3 +100,4 @@ class MovimientoFactory:
         movimiento.confirmar()
 
         return movimiento
+

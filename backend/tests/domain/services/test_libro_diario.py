@@ -39,6 +39,8 @@ def test_libro_diario_devuelve_movimientos_confirmados_ordenados_por_fecha():
 
     movimiento_5 = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 5),
         descripcion="Movimiento del día 5",
     )
@@ -61,6 +63,8 @@ def test_libro_diario_devuelve_movimientos_confirmados_ordenados_por_fecha():
 
     movimiento_2 = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Movimiento del día 2",
     )
@@ -106,6 +110,8 @@ def test_libro_diario_devuelve_asientos():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Apertura",
     )
@@ -150,6 +156,8 @@ def test_asiento_libro_diario_expone_la_fecha_del_movimiento():
     movimiento = Movimiento(
         
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 15),
         descripcion="Cobro"
     )

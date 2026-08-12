@@ -18,6 +18,7 @@ class EjercicioMapper:
 
         return {
             "id": ejercicio.id,
+            "empresa_id": ejercicio.empresa_id,
             "anio": ejercicio.anio,
             "fecha_apertura": (
                 ejercicio.fecha_apertura.isoformat()
@@ -39,6 +40,7 @@ class EjercicioMapper:
 
         return Ejercicio(
             id=datos["id"],
+            empresa_id=datos["empresa_id"],
             anio=datos["anio"],
             fecha_apertura=(
                 date.fromisoformat(

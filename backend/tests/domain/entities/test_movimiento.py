@@ -29,6 +29,8 @@ def test_agregar_una_linea():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra de medicamentos"
         
@@ -62,6 +64,8 @@ def test_cantidad_lineas():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra de medicamentos"
     )
@@ -81,6 +85,8 @@ def test_cantidad_lineas():
 def test_movimiento_tiene_lineas():
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra"
     )
@@ -105,6 +111,8 @@ def test_movimiento_nace_en_borrador():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra de medicamentos"
     )
@@ -114,6 +122,8 @@ def test_movimiento_nace_en_borrador():
 def test_confirmar_movimiento():
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra de medicamentos"
     )
@@ -141,6 +151,8 @@ def test_confirmar_movimiento():
 def test_no_se_puede_confirmar_un_movimiento_sin_lineas():
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra"
     )
@@ -152,6 +164,8 @@ def test_no_se_puede_confirmar_un_movimiento_sin_lineas():
 def test_no_se_pueden_agregar_lineas_a_un_movimiento_confirmado():
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra"
     )
@@ -190,6 +204,8 @@ def test_total_debitos():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra de medicamentos"
     )
@@ -228,6 +244,8 @@ def test_total_creditos():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra"
     )
@@ -266,6 +284,8 @@ def test_movimiento_balanceado():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra"
     )
@@ -295,6 +315,8 @@ def test_no_se_puede_confirmar_un_movimiento_desbalanceado():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra de medicamentos"
     )
@@ -329,6 +351,8 @@ def test_cambiar_descripcion():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra"
     )
@@ -347,6 +371,8 @@ def test_no_se_puede_cambiar_descripcion_de_un_movimiento_confirmado():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra"
     )
@@ -382,6 +408,8 @@ def test_anular_movimiento():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra"
     )
@@ -413,6 +441,8 @@ def test_no_se_puede_anular_un_movimiento_en_borrador():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra"
     )
@@ -431,6 +461,8 @@ def test_no_se_puede_confirmar_un_movimiento_anulado():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra"
     )
@@ -469,6 +501,8 @@ def test_no_se_puede_agregar_una_linea_con_cuenta_inactiva():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra"
     )
@@ -495,6 +529,8 @@ def test_no_se_pueden_agregar_lineas_a_una_cuenta_no_imputable():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra"
     )

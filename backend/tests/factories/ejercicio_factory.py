@@ -1,19 +1,20 @@
 from datetime import date
 
 from domain.entities.ejercicio import (
-    Ejercicio,
+Ejercicio,
 )
 
 from domain.enums.estado_ejercicio import (
-    EstadoEjercicio,
+EstadoEjercicio,
 )
 
-
 class EjercicioFactory:
+
 
     @staticmethod
     def crear(
         id: int = 1,
+        empresa_id: int = 1,
         anio: int = 2026,
         fecha_apertura: date | None = None,
         fecha_cierre: date | None = None,
@@ -21,7 +22,6 @@ class EjercicioFactory:
     ) -> Ejercicio:
 
         if fecha_apertura is None:
-
             fecha_apertura = date(
                 anio,
                 1,
@@ -30,8 +30,10 @@ class EjercicioFactory:
 
         return Ejercicio(
             id=id,
+            empresa_id=empresa_id,
             anio=anio,
             fecha_apertura=fecha_apertura,
             fecha_cierre=fecha_cierre,
             estado=estado,
         )
+

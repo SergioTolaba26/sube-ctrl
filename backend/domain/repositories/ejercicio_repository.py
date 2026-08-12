@@ -1,34 +1,56 @@
 from abc import ABC, abstractmethod
 
-from domain.entities.ejercicio_contable import (
-    EjercicioContable,
-)
-
+from domain.entities.ejercicio import Ejercicio
 
 class EjercicioRepository(ABC):
+
 
     @abstractmethod
     def guardar(
         self,
-        ejercicio: EjercicioContable,
+        ejercicio: Ejercicio,
     ) -> None:
         pass
 
     @abstractmethod
-    def obtener_todos(
+    def listar(
         self,
-    ) -> list[EjercicioContable]:
+    ) -> list[Ejercicio]:
         pass
 
     @abstractmethod
-    def obtener_abierto(
+    def buscar_por_id(
         self,
-    ) -> EjercicioContable | None:
+        ejercicio_id: int,
+    ) -> Ejercicio | None:
+        pass
+
+    @abstractmethod
+    def buscar_por_anio(
+        self,
+        empresa_id: int,
+        anio: int,
+    ) -> Ejercicio | None:
+        pass
+
+    @abstractmethod
+    def buscar_abierto(
+        self,
+        empresa_id: int,
+    ) -> Ejercicio | None:
         pass
 
     @abstractmethod
     def eliminar(
         self,
-        ejercicio: EjercicioContable,
+        id_: int,
     ) -> None:
         pass
+
+    @abstractmethod
+    def actualizar(
+        self,
+        ejercicio: Ejercicio,
+    ) -> None:
+        pass
+

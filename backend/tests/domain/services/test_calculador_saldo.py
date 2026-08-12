@@ -31,6 +31,8 @@ def test_saldo_cuenta_activo_con_un_debito():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Apertura"
     )
@@ -70,6 +72,8 @@ def test_saldo_cuenta_activo_con_un_credito():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Pago"
     )
@@ -115,6 +119,8 @@ def test_saldo_cuenta_pasivo_con_un_credito():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Compra a crédito"
     )
@@ -166,6 +172,8 @@ def test_saldo_cuenta_patrimonio_neto_con_un_credito():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Aporte de capital"
     )
@@ -217,6 +225,8 @@ def test_saldo_cuenta_ingreso_con_un_credito():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Venta de mercaderías"
     )
@@ -268,6 +278,8 @@ def test_saldo_cuenta_gasto_con_un_debito():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Pago de sueldos"
     )

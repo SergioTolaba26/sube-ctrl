@@ -1,0 +1,1071 @@
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py:    movimiento = Movimiento(
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-        id=1,
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-        fecha=date(2026, 7, 17),
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-        descripcion="Aporte inicial",
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py-    movimiento.agregar_linea(
+--
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py:    movimiento = Movimiento(
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-        id=1,
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-        fecha=date(2026, 7, 17),
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-        descripcion="Venta contado",
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py-    movimiento.agregar_linea(
+--
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py:    movimiento = Movimiento(
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-        id=1,
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-        fecha=date(2026, 7, 17),
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-        descripcion="Venta contado",
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py-    movimiento.agregar_linea(
+--
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py:    movimiento = Movimiento(
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-        id=1,
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-        fecha=date(2026, 7, 17),
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-        descripcion="Venta contado",
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py-    movimiento.agregar_linea(
+--
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py:    movimiento = Movimiento(
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-        id=1,
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-        fecha=date(2026, 7, 17),
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-        descripcion="Venta contado",
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-    )
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py-    movimiento.agregar_linea(
+--
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py:    movimiento = Movimiento(
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        id=1,
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        fecha=date(2026, 7, 17),
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        descripcion="Venta",
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-    movimiento.agregar_linea(
+--
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py:    use_case = AnularMovimiento(
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        repository,
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-    resultado = use_case.execute(
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-        1,
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py-    )
+--
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-    repository = MovimientoRepositoryStub()
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py:    movimiento = Movimiento(
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-        id=1,
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-        fecha=date(2026, 7, 17),
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-        descripcion="Venta contado",
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-    repository.guardar(
+--
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py:    use_case = BuscarMovimiento(
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-        repository,
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-    resultado = use_case.execute(
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-        1,
+tests/application/use_cases/movimiento/test_buscar_movimiento_use_case.py-    )
+--
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py:    movimiento = Movimiento(
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        id=1,
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        fecha=date(2026, 7, 17),
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        descripcion="Venta",
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-    movimiento.agregar_linea(
+--
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py:    use_case = ConfirmarMovimiento(
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        repository,
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-    resultado = use_case.execute(
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-        1,
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py-    )
+--
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-    repository.guardar(
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py:        Movimiento(
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-            id=1,
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-            fecha=date(2026, 7, 17),
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-            descripcion="Venta",
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-        )
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-    )
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-    repository.guardar(
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py:        Movimiento(
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-            id=2,
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-            fecha=date(2026, 7, 18),
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-            descripcion="Compra",
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-        )
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-    )
+tests/application/use_cases/movimiento/test_listar_movimientos_use_case.py-
+--
+tests/application/use_cases/movimiento/test_registrar_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_movimiento_use_case.py:    use_case = RegistrarMovimiento(
+tests/application/use_cases/movimiento/test_registrar_movimiento_use_case.py-        movimiento_service,
+tests/application/use_cases/movimiento/test_registrar_movimiento_use_case.py-        ejercicio_service,
+tests/application/use_cases/movimiento/test_registrar_movimiento_use_case.py-    )
+tests/application/use_cases/movimiento/test_registrar_movimiento_use_case.py-
+tests/application/use_cases/movimiento/test_registrar_movimiento_use_case.py-    resultado = use_case.execute(
+tests/application/use_cases/movimiento/test_registrar_movimiento_use_case.py-        fecha=date(2026, 7, 17),
+--
+tests/builders/entidades_builder.py-    ventas = crear_ventas()
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py:    movimiento = Movimiento(
+tests/builders/entidades_builder.py-        id=None,
+tests/builders/entidades_builder.py-        empresa_id=1,
+tests/builders/entidades_builder.py-        fecha=date(2026, 6, 1),
+tests/builders/entidades_builder.py-        descripcion="Venta",
+tests/builders/entidades_builder.py-    )
+tests/builders/entidades_builder.py-
+--
+tests/builders/entidades_builder.py-    gastos = crear_gastos()
+tests/builders/entidades_builder.py-
+tests/builders/entidades_builder.py:    movimiento = Movimiento(
+tests/builders/entidades_builder.py-        id=None,
+tests/builders/entidades_builder.py-        empresa_id=1,
+tests/builders/entidades_builder.py-        fecha=date(2026, 6, 1),
+tests/builders/entidades_builder.py-        descripcion="Pago de gastos",
+tests/builders/entidades_builder.py-    )
+tests/builders/entidades_builder.py-
+--
+tests/domain/entities/test_ejercicio_contable.py-    )
+tests/domain/entities/test_ejercicio_contable.py-
+tests/domain/entities/test_ejercicio_contable.py:    movimiento = Movimiento(
+tests/domain/entities/test_ejercicio_contable.py-        id=None,
+tests/domain/entities/test_ejercicio_contable.py-        fecha=date(2026, 7, 10),
+tests/domain/entities/test_ejercicio_contable.py-        descripcion="Compra",
+tests/domain/entities/test_ejercicio_contable.py-    )
+tests/domain/entities/test_ejercicio_contable.py-
+tests/domain/entities/test_ejercicio_contable.py-    cierre = CierreEjercicio()
+--
+tests/domain/entities/test_ejercicio_contable.py-    )
+tests/domain/entities/test_ejercicio_contable.py-
+tests/domain/entities/test_ejercicio_contable.py:    movimiento = Movimiento(
+tests/domain/entities/test_ejercicio_contable.py-        id=None,
+tests/domain/entities/test_ejercicio_contable.py-        fecha=date(2027, 1, 15),
+tests/domain/entities/test_ejercicio_contable.py-        descripcion="Movimiento futuro",
+tests/domain/entities/test_ejercicio_contable.py-    )
+tests/domain/entities/test_ejercicio_contable.py-
+tests/domain/entities/test_ejercicio_contable.py-    cierre = CierreEjercicio()
+--
+tests/domain/entities/test_linea_movimiento.py-    cuenta = crear_cuenta()
+tests/domain/entities/test_linea_movimiento.py-
+tests/domain/entities/test_linea_movimiento.py:    linea = LineaMovimiento(
+tests/domain/entities/test_linea_movimiento.py-        cuenta=cuenta,
+tests/domain/entities/test_linea_movimiento.py-        importe=Decimal("1500.00"),
+tests/domain/entities/test_linea_movimiento.py-        tipo_afectacion=TipoAfectacion.CREDITO
+tests/domain/entities/test_linea_movimiento.py-    )
+tests/domain/entities/test_linea_movimiento.py-
+tests/domain/entities/test_linea_movimiento.py-    assert linea.cuenta is cuenta
+--
+tests/domain/entities/test_linea_movimiento.py-
+tests/domain/entities/test_linea_movimiento.py-    with pytest.raises(ValueError, match="importe no puede ser cero"):
+tests/domain/entities/test_linea_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_linea_movimiento.py-            cuenta=cuenta,
+tests/domain/entities/test_linea_movimiento.py-            importe=Decimal("0"),
+tests/domain/entities/test_linea_movimiento.py-            tipo_afectacion=TipoAfectacion.DEBITO
+tests/domain/entities/test_linea_movimiento.py-        )
+tests/domain/entities/test_linea_movimiento.py-
+tests/domain/entities/test_linea_movimiento.py-def test_linea_movimiento_tiene_tipo_afectacion():
+--
+tests/domain/entities/test_linea_movimiento.py-    cuenta = crear_cuenta()
+tests/domain/entities/test_linea_movimiento.py-
+tests/domain/entities/test_linea_movimiento.py:    linea = LineaMovimiento(
+tests/domain/entities/test_linea_movimiento.py-        cuenta=cuenta,
+tests/domain/entities/test_linea_movimiento.py-        importe=Decimal("1000"),
+tests/domain/entities/test_linea_movimiento.py-        tipo_afectacion=TipoAfectacion.DEBITO
+tests/domain/entities/test_linea_movimiento.py-    )
+tests/domain/entities/test_linea_movimiento.py-
+tests/domain/entities/test_linea_movimiento.py-    assert linea.tipo_afectacion == TipoAfectacion.DEBITO
+--
+tests/domain/entities/test_movimiento.py-    """
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra de medicamentos"
+tests/domain/entities/test_movimiento.py-        
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    linea = LineaMovimiento(
+tests/domain/entities/test_movimiento.py-        cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-        importe=Decimal("1000"),
+tests/domain/entities/test_movimiento.py-        tipo_afectacion=TipoAfectacion.DEBITO
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(linea)
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:    LineaMovimiento(
+tests/domain/entities/test_movimiento.py-        cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-        importe=Decimal("1000"),
+tests/domain/entities/test_movimiento.py-        tipo_afectacion=TipoAfectacion.CREDITO
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-    assert len(movimiento.lineas) == 2
+--
+tests/domain/entities/test_movimiento.py-    """
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra de medicamentos"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    assert movimiento.cantidad_lineas() == 0
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("1000"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.DEBITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+--
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-def test_movimiento_tiene_lineas():
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    assert movimiento.tiene_lineas() is False
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("1000"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.DEBITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+--
+tests/domain/entities/test_movimiento.py-    """
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra de medicamentos"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    assert movimiento.esta_en_borrador() is True
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-def test_confirmar_movimiento():
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra de medicamentos"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("1000"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.DEBITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("1000"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.CREDITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+--
+tests/domain/entities/test_movimiento.py-    
+tests/domain/entities/test_movimiento.py-def test_no_se_puede_confirmar_un_movimiento_sin_lineas():
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    with pytest.raises(ValueError):
+--
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-def test_no_se_pueden_agregar_lineas_a_un_movimiento_confirmado():
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("1000"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.DEBITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:    LineaMovimiento(
+tests/domain/entities/test_movimiento.py-        cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-        importe=Decimal("1000"),
+tests/domain/entities/test_movimiento.py-        tipo_afectacion=TipoAfectacion.CREDITO
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-)
+tests/domain/entities/test_movimiento.py-
+--
+tests/domain/entities/test_movimiento.py-    with pytest.raises(ValueError):
+tests/domain/entities/test_movimiento.py-        movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:            LineaMovimiento(
+tests/domain/entities/test_movimiento.py-                cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-                importe=Decimal("500"),
+tests/domain/entities/test_movimiento.py-                tipo_afectacion=TipoAfectacion.DEBITO   
+tests/domain/entities/test_movimiento.py-            )
+tests/domain/entities/test_movimiento.py-        )        
+tests/domain/entities/test_movimiento.py-
+--
+tests/domain/entities/test_movimiento.py-    """
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra de medicamentos"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("1000"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.DEBITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("250"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.DEBITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("900"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.CREDITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+--
+tests/domain/entities/test_movimiento.py-    """
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("300"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.DEBITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("700"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.CREDITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("500"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.CREDITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+--
+tests/domain/entities/test_movimiento.py-    """
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("1000"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.DEBITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("1000"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.CREDITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+--
+tests/domain/entities/test_movimiento.py-    """
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra de medicamentos"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("1000"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.DEBITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+tests/domain/entities/test_movimiento.py:        LineaMovimiento(
+tests/domain/entities/test_movimiento.py-            cuenta=crear_cuenta(),
+tests/domain/entities/test_movimiento.py-            importe=Decimal("500"),
+tests/domain/entities/test_movimiento.py-            tipo_afectacion=TipoAfectacion.CREDITO
+tests/domain/entities/test_movimiento.py-        )
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+--
+tests/domain/entities/test_movimiento.py-    """
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.cambiar_descripcion(
+--
+tests/domain/entities/test_movimiento.py-    """
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+--
+tests/domain/entities/test_movimiento.py-    """
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+--
+tests/domain/entities/test_movimiento.py-    """
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    with pytest.raises(
+--
+tests/domain/entities/test_movimiento.py-    """
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    movimiento.agregar_linea(
+--
+tests/domain/entities/test_movimiento.py-    cuenta.desactivar()
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    with pytest.raises(
+--
+tests/domain/entities/test_movimiento.py-    cuenta.hacer_no_imputable()
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py:    movimiento = Movimiento(
+tests/domain/entities/test_movimiento.py-        id=None,
+tests/domain/entities/test_movimiento.py-        fecha=date.today(),
+tests/domain/entities/test_movimiento.py-        descripcion="Compra"
+tests/domain/entities/test_movimiento.py-    )
+tests/domain/entities/test_movimiento.py-
+tests/domain/entities/test_movimiento.py-    with pytest.raises(
+--
+tests/domain/services/test_balance_general.py-    capital = crear_capital()
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py:    movimiento = Movimiento(
+tests/domain/services/test_balance_general.py-        id=None,
+tests/domain/services/test_balance_general.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_balance_general.py-        descripcion="Apertura",
+tests/domain/services/test_balance_general.py-    )
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_balance_general.py-    proveedores = crear_proveedores()
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py:    movimiento = Movimiento(
+tests/domain/services/test_balance_general.py-        id=None,
+tests/domain/services/test_balance_general.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_balance_general.py-        descripcion="Compra a crédito",
+tests/domain/services/test_balance_general.py-    )
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_balance_general.py-    capital = crear_capital()
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py:    movimiento = Movimiento(
+tests/domain/services/test_balance_general.py-        id=None,
+tests/domain/services/test_balance_general.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_balance_general.py-        descripcion="Aporte inicial",
+tests/domain/services/test_balance_general.py-    )
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_balance_general.py-    capital = crear_capital()
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py:    movimiento = Movimiento(
+tests/domain/services/test_balance_general.py-        id=None,
+tests/domain/services/test_balance_general.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_balance_general.py-        descripcion="Apertura",
+tests/domain/services/test_balance_general.py-    )
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_balance_general.py-    proveedores = crear_proveedores()
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py:    movimiento = Movimiento(
+tests/domain/services/test_balance_general.py-        id=None,
+tests/domain/services/test_balance_general.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_balance_general.py-        descripcion="Compra a crédito",
+tests/domain/services/test_balance_general.py-    )
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_balance_general.py-    capital = crear_capital()
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py:    movimiento = Movimiento(
+tests/domain/services/test_balance_general.py-        id=None,
+tests/domain/services/test_balance_general.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_balance_general.py-        descripcion="Aporte inicial",
+tests/domain/services/test_balance_general.py-    )
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_balance_general.py-    capital = crear_capital()
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py:    movimiento = Movimiento(
+tests/domain/services/test_balance_general.py-        id=None,
+tests/domain/services/test_balance_general.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_balance_general.py-        descripcion="Aporte inicial",
+tests/domain/services/test_balance_general.py-    )
+tests/domain/services/test_balance_general.py-
+tests/domain/services/test_balance_general.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_balance_sumas_saldos.py-    capital = crear_otra_cuenta()
+tests/domain/services/test_balance_sumas_saldos.py-
+tests/domain/services/test_balance_sumas_saldos.py:    movimiento = Movimiento(
+tests/domain/services/test_balance_sumas_saldos.py-        id=None,
+tests/domain/services/test_balance_sumas_saldos.py-        
+tests/domain/services/test_balance_sumas_saldos.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_balance_sumas_saldos.py-        descripcion="Apertura"
+tests/domain/services/test_balance_sumas_saldos.py-    )
+tests/domain/services/test_balance_sumas_saldos.py-
+--
+tests/domain/services/test_balance_sumas_saldos.py-    capital = crear_otra_cuenta()
+tests/domain/services/test_balance_sumas_saldos.py-
+tests/domain/services/test_balance_sumas_saldos.py:    movimiento = Movimiento(
+tests/domain/services/test_balance_sumas_saldos.py-        id=None,
+tests/domain/services/test_balance_sumas_saldos.py-        
+tests/domain/services/test_balance_sumas_saldos.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_balance_sumas_saldos.py-        descripcion="Apertura"
+tests/domain/services/test_balance_sumas_saldos.py-    )
+tests/domain/services/test_balance_sumas_saldos.py-
+--
+tests/domain/services/test_balance_sumas_saldos.py-    capital = crear_otra_cuenta()
+tests/domain/services/test_balance_sumas_saldos.py-
+tests/domain/services/test_balance_sumas_saldos.py:    movimiento = Movimiento(
+tests/domain/services/test_balance_sumas_saldos.py-        id=None,
+tests/domain/services/test_balance_sumas_saldos.py-        
+tests/domain/services/test_balance_sumas_saldos.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_balance_sumas_saldos.py-        descripcion="Apertura",
+tests/domain/services/test_balance_sumas_saldos.py-    )
+tests/domain/services/test_balance_sumas_saldos.py-
+--
+tests/domain/services/test_balance_sumas_saldos.py-    capital = crear_otra_cuenta()
+tests/domain/services/test_balance_sumas_saldos.py-
+tests/domain/services/test_balance_sumas_saldos.py:    movimiento = Movimiento(
+tests/domain/services/test_balance_sumas_saldos.py-        id=None,
+tests/domain/services/test_balance_sumas_saldos.py-        
+tests/domain/services/test_balance_sumas_saldos.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_balance_sumas_saldos.py-        descripcion="Apertura",
+tests/domain/services/test_balance_sumas_saldos.py-    )
+tests/domain/services/test_balance_sumas_saldos.py-
+--
+tests/domain/services/test_balance_sumas_saldos.py-    capital = crear_otra_cuenta()
+tests/domain/services/test_balance_sumas_saldos.py-
+tests/domain/services/test_balance_sumas_saldos.py:    movimiento = Movimiento(
+tests/domain/services/test_balance_sumas_saldos.py-        id=None,
+tests/domain/services/test_balance_sumas_saldos.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_balance_sumas_saldos.py-        descripcion="Apertura",
+tests/domain/services/test_balance_sumas_saldos.py-    )
+tests/domain/services/test_balance_sumas_saldos.py-
+tests/domain/services/test_balance_sumas_saldos.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_calculador_saldo.py-    cuenta = crear_cuenta()
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py:    movimiento = Movimiento(
+tests/domain/services/test_calculador_saldo.py-        id=None,
+tests/domain/services/test_calculador_saldo.py-        fecha=date.today(),
+tests/domain/services/test_calculador_saldo.py-        descripcion="Apertura"
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_calculador_saldo.py-    cuenta = crear_cuenta()
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py:    movimiento = Movimiento(
+tests/domain/services/test_calculador_saldo.py-        id=None,
+tests/domain/services/test_calculador_saldo.py-        fecha=date.today(),
+tests/domain/services/test_calculador_saldo.py-        descripcion="Pago"
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py:    movimiento = Movimiento(
+tests/domain/services/test_calculador_saldo.py-        id=None,
+tests/domain/services/test_calculador_saldo.py-        fecha=date.today(),
+tests/domain/services/test_calculador_saldo.py-        descripcion="Compra a crédito"
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py:    movimiento = Movimiento(
+tests/domain/services/test_calculador_saldo.py-        id=None,
+tests/domain/services/test_calculador_saldo.py-        fecha=date.today(),
+tests/domain/services/test_calculador_saldo.py-        descripcion="Aporte de capital"
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py:    movimiento = Movimiento(
+tests/domain/services/test_calculador_saldo.py-        id=None,
+tests/domain/services/test_calculador_saldo.py-        fecha=date.today(),
+tests/domain/services/test_calculador_saldo.py-        descripcion="Venta de mercaderías"
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py:    movimiento = Movimiento(
+tests/domain/services/test_calculador_saldo.py-        id=None,
+tests/domain/services/test_calculador_saldo.py-        fecha=date.today(),
+tests/domain/services/test_calculador_saldo.py-        descripcion="Pago de sueldos"
+tests/domain/services/test_calculador_saldo.py-    )
+tests/domain/services/test_calculador_saldo.py-
+tests/domain/services/test_calculador_saldo.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_cierre_ejercicio.py-#     sueldos = crear_sueldos()
+tests/domain/services/test_cierre_ejercicio.py-
+tests/domain/services/test_cierre_ejercicio.py:#     movimiento = Movimiento(
+tests/domain/services/test_cierre_ejercicio.py-#         id=None,
+tests/domain/services/test_cierre_ejercicio.py-#         fecha=date(2026, 6, 1),
+tests/domain/services/test_cierre_ejercicio.py-#         descripcion="Operación",
+tests/domain/services/test_cierre_ejercicio.py-#     )
+tests/domain/services/test_cierre_ejercicio.py-
+tests/domain/services/test_cierre_ejercicio.py-#     movimiento.agregar_linea(
+--
+tests/domain/services/test_confirmador_movimiento.py-    ejercicio.cerrar()
+tests/domain/services/test_confirmador_movimiento.py-
+tests/domain/services/test_confirmador_movimiento.py:    movimiento = Movimiento(
+tests/domain/services/test_confirmador_movimiento.py-        id=None,
+tests/domain/services/test_confirmador_movimiento.py-        fecha=date(2026, 7, 15),
+tests/domain/services/test_confirmador_movimiento.py-        descripcion="Compra",
+tests/domain/services/test_confirmador_movimiento.py-    )
+tests/domain/services/test_confirmador_movimiento.py-
+tests/domain/services/test_confirmador_movimiento.py:    confirmador = ConfirmadorMovimiento()
+tests/domain/services/test_confirmador_movimiento.py-
+tests/domain/services/test_confirmador_movimiento.py-    with pytest.raises(ValueError):
+tests/domain/services/test_confirmador_movimiento.py-        confirmador.confirmar(
+tests/domain/services/test_confirmador_movimiento.py-            movimiento,
+tests/domain/services/test_confirmador_movimiento.py-            ejercicio,
+tests/domain/services/test_confirmador_movimiento.py-        )
+--
+tests/domain/services/test_estado_resultados.py-    ventas = crear_ventas()
+tests/domain/services/test_estado_resultados.py-
+tests/domain/services/test_estado_resultados.py:    movimiento = Movimiento(
+tests/domain/services/test_estado_resultados.py-        id=None,
+tests/domain/services/test_estado_resultados.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_estado_resultados.py-        descripcion="Venta contado",
+tests/domain/services/test_estado_resultados.py-    )
+tests/domain/services/test_estado_resultados.py-
+tests/domain/services/test_estado_resultados.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_estado_resultados.py-    gasto = crear_gastos()
+tests/domain/services/test_estado_resultados.py-
+tests/domain/services/test_estado_resultados.py:    movimiento = Movimiento(
+tests/domain/services/test_estado_resultados.py-        id=None,
+tests/domain/services/test_estado_resultados.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_estado_resultados.py-        descripcion="Pago de alquiler",
+tests/domain/services/test_estado_resultados.py-    )
+tests/domain/services/test_estado_resultados.py-
+tests/domain/services/test_estado_resultados.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_estado_resultados.py-    ventas = crear_ventas()
+tests/domain/services/test_estado_resultados.py-
+tests/domain/services/test_estado_resultados.py:    movimiento = Movimiento(
+tests/domain/services/test_estado_resultados.py-        id=None,
+tests/domain/services/test_estado_resultados.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_estado_resultados.py-        descripcion="Venta contado",
+tests/domain/services/test_estado_resultados.py-    )
+tests/domain/services/test_estado_resultados.py-
+tests/domain/services/test_estado_resultados.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_estado_resultados.py-    gasto = crear_gastos()
+tests/domain/services/test_estado_resultados.py-
+tests/domain/services/test_estado_resultados.py:    movimiento = Movimiento(
+tests/domain/services/test_estado_resultados.py-        id=None,
+tests/domain/services/test_estado_resultados.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_estado_resultados.py-        descripcion="Pago de alquiler",
+tests/domain/services/test_estado_resultados.py-    )
+tests/domain/services/test_estado_resultados.py-
+tests/domain/services/test_estado_resultados.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_estado_resultados.py-
+tests/domain/services/test_estado_resultados.py-#     # Venta: +1000
+tests/domain/services/test_estado_resultados.py:#     venta = Movimiento(
+tests/domain/services/test_estado_resultados.py-#         id=None,
+tests/domain/services/test_estado_resultados.py-#         fecha=date(2026, 1, 2),
+tests/domain/services/test_estado_resultados.py-#         descripcion="Venta contado",
+tests/domain/services/test_estado_resultados.py-#     )
+tests/domain/services/test_estado_resultados.py-
+tests/domain/services/test_estado_resultados.py-#     venta.agregar_linea(
+--
+tests/domain/services/test_estado_resultados.py-
+tests/domain/services/test_estado_resultados.py-#     # Gasto: -300
+tests/domain/services/test_estado_resultados.py:#     pago = Movimiento(
+tests/domain/services/test_estado_resultados.py-#         id=None,
+tests/domain/services/test_estado_resultados.py-#         fecha=date(2026, 1, 3),
+tests/domain/services/test_estado_resultados.py-#         descripcion="Pago alquiler",
+tests/domain/services/test_estado_resultados.py-#     )
+tests/domain/services/test_estado_resultados.py-
+tests/domain/services/test_estado_resultados.py-#     pago.agregar_linea(
+--
+tests/domain/services/test_estado_resultados.py-    ventas = crear_ventas()
+tests/domain/services/test_estado_resultados.py-
+tests/domain/services/test_estado_resultados.py:    movimiento = Movimiento(
+tests/domain/services/test_estado_resultados.py-        id=None,
+tests/domain/services/test_estado_resultados.py-        fecha=date(2026, 6, 1),
+tests/domain/services/test_estado_resultados.py-        descripcion="Venta",
+tests/domain/services/test_estado_resultados.py-    )
+tests/domain/services/test_estado_resultados.py-
+tests/domain/services/test_estado_resultados.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_libro_diario.py-    contrapartida = crear_otra_cuenta()
+tests/domain/services/test_libro_diario.py-
+tests/domain/services/test_libro_diario.py:    movimiento_5 = Movimiento(
+tests/domain/services/test_libro_diario.py-        id=None,
+tests/domain/services/test_libro_diario.py-        fecha=date(2026, 1, 5),
+tests/domain/services/test_libro_diario.py-        descripcion="Movimiento del día 5",
+tests/domain/services/test_libro_diario.py-    )
+tests/domain/services/test_libro_diario.py-
+tests/domain/services/test_libro_diario.py-    movimiento_5.agregar_linea(
+--
+tests/domain/services/test_libro_diario.py-    movimiento_5.confirmar()
+tests/domain/services/test_libro_diario.py-
+tests/domain/services/test_libro_diario.py:    movimiento_2 = Movimiento(
+tests/domain/services/test_libro_diario.py-        id=None,
+tests/domain/services/test_libro_diario.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_libro_diario.py-        descripcion="Movimiento del día 2",
+tests/domain/services/test_libro_diario.py-    )
+tests/domain/services/test_libro_diario.py-
+tests/domain/services/test_libro_diario.py-    movimiento_2.agregar_linea(
+--
+tests/domain/services/test_libro_diario.py-    contrapartida = crear_otra_cuenta()
+tests/domain/services/test_libro_diario.py-
+tests/domain/services/test_libro_diario.py:    movimiento = Movimiento(
+tests/domain/services/test_libro_diario.py-        id=None,
+tests/domain/services/test_libro_diario.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_libro_diario.py-        descripcion="Apertura",
+tests/domain/services/test_libro_diario.py-    )
+tests/domain/services/test_libro_diario.py-
+tests/domain/services/test_libro_diario.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_libro_diario.py-    """
+tests/domain/services/test_libro_diario.py-
+tests/domain/services/test_libro_diario.py:    movimiento = Movimiento(
+tests/domain/services/test_libro_diario.py-        
+tests/domain/services/test_libro_diario.py-        id=None,
+tests/domain/services/test_libro_diario.py-        fecha=date(2026, 1, 15),
+tests/domain/services/test_libro_diario.py-        descripcion="Cobro"
+tests/domain/services/test_libro_diario.py-    )
+tests/domain/services/test_libro_diario.py-
+--
+tests/domain/services/test_libro_mayor.py-    )
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py:    movimiento = Movimiento(
+tests/domain/services/test_libro_mayor.py-        id=None,
+tests/domain/services/test_libro_mayor.py-        fecha=date.today(),
+tests/domain/services/test_libro_mayor.py-        descripcion="Transferencia"
+tests/domain/services/test_libro_mayor.py-    )
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_libro_mayor.py-    )
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py:    movimiento_5 = Movimiento(
+tests/domain/services/test_libro_mayor.py-        id=None,
+tests/domain/services/test_libro_mayor.py-        fecha=date(2026, 1, 5),
+tests/domain/services/test_libro_mayor.py-        descripcion="Movimiento del día 5"
+tests/domain/services/test_libro_mayor.py-    )
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py-    movimiento_5.agregar_linea(
+--
+tests/domain/services/test_libro_mayor.py-    movimiento_5.confirmar()
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py:    movimiento_2 = Movimiento(
+tests/domain/services/test_libro_mayor.py-        id=None,
+tests/domain/services/test_libro_mayor.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_libro_mayor.py-        descripcion="Movimiento del día 2"
+tests/domain/services/test_libro_mayor.py-    )
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py-    movimiento_2.agregar_linea(
+--
+tests/domain/services/test_libro_mayor.py-    cuenta = crear_cuenta()
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py:    movimiento = Movimiento(
+tests/domain/services/test_libro_mayor.py-        id=None,
+tests/domain/services/test_libro_mayor.py-        fecha=date(2026, 1, 15),
+tests/domain/services/test_libro_mayor.py-        descripcion="Cobro de cliente"
+tests/domain/services/test_libro_mayor.py-    )
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py-    # Primer movimiento (+1000)
+tests/domain/services/test_libro_mayor.py:    apertura = Movimiento(
+tests/domain/services/test_libro_mayor.py-        id=None,
+tests/domain/services/test_libro_mayor.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_libro_mayor.py-        descripcion="Apertura"
+tests/domain/services/test_libro_mayor.py-    )
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py-    apertura.agregar_linea(
+--
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py-    # Segundo movimiento (-300)
+tests/domain/services/test_libro_mayor.py:    pago = Movimiento(
+tests/domain/services/test_libro_mayor.py-        id=None,
+tests/domain/services/test_libro_mayor.py-        fecha=date(2026, 1, 5),
+tests/domain/services/test_libro_mayor.py-        descripcion="Pago"
+tests/domain/services/test_libro_mayor.py-    )
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py-    pago.agregar_linea(
+--
+tests/domain/services/test_libro_mayor.py-    cuenta = crear_cuenta()
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py:    movimiento = Movimiento(
+tests/domain/services/test_libro_mayor.py-        id=None,
+tests/domain/services/test_libro_mayor.py-        fecha=date(2026, 1, 2),
+tests/domain/services/test_libro_mayor.py-        descripcion="Apertura"
+tests/domain/services/test_libro_mayor.py-    )
+tests/domain/services/test_libro_mayor.py-
+tests/domain/services/test_libro_mayor.py-    movimiento.agregar_linea(
+--
+tests/domain/services/test_movimiento_service.py-    ):
+tests/domain/services/test_movimiento_service.py-        return [
+tests/domain/services/test_movimiento_service.py:            Movimiento(
+tests/domain/services/test_movimiento_service.py-                id=1,
+tests/domain/services/test_movimiento_service.py-                fecha=date(
+tests/domain/services/test_movimiento_service.py-                    2026,
+tests/domain/services/test_movimiento_service.py-                    7,
+tests/domain/services/test_movimiento_service.py-                    20,
+tests/domain/services/test_movimiento_service.py-                ),
+--
+tests/domain/services/test_movimiento_service.py-                lineas=[],
+tests/domain/services/test_movimiento_service.py-            ),
+tests/domain/services/test_movimiento_service.py:            Movimiento(
+tests/domain/services/test_movimiento_service.py-                id=2,
+tests/domain/services/test_movimiento_service.py-                fecha=date(
+tests/domain/services/test_movimiento_service.py-                    2026,
+tests/domain/services/test_movimiento_service.py-                    7,
+tests/domain/services/test_movimiento_service.py-                    21,
+tests/domain/services/test_movimiento_service.py-                ),
+--
+tests/domain/services/test_movimiento_service.py-    )
+tests/domain/services/test_movimiento_service.py-
+tests/domain/services/test_movimiento_service.py:    movimiento = Movimiento(
+tests/domain/services/test_movimiento_service.py-        id=1,
+tests/domain/services/test_movimiento_service.py-        fecha=date(
+tests/domain/services/test_movimiento_service.py-            2026,
+tests/domain/services/test_movimiento_service.py-            7,
+tests/domain/services/test_movimiento_service.py-            20,
+tests/domain/services/test_movimiento_service.py-        ),
+--
+tests/factories/movimiento_factory.py-    ) -> Movimiento:
+tests/factories/movimiento_factory.py-
+tests/factories/movimiento_factory.py:        movimiento = Movimiento(
+tests/factories/movimiento_factory.py-            id=cls._id,
+tests/factories/movimiento_factory.py-            fecha=fecha or date.today(),
+tests/factories/movimiento_factory.py-            descripcion=descripcion,
+tests/factories/movimiento_factory.py-        )
+tests/factories/movimiento_factory.py-
+tests/factories/movimiento_factory.py-        cls._id += 1
+--
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-    )
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py:    linea = LineaMovimiento(
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-        cuenta=cuenta,
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-        importe=Decimal("1500.50"),
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-        tipo_afectacion=TipoAfectacion.DEBITO,
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-    )
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py-    datos = LineaMovimientoMapper.to_dict(
+--
+tests/infrastructure/mappers/test_movimiento_mapper.py-    )
+tests/infrastructure/mappers/test_movimiento_mapper.py-
+tests/infrastructure/mappers/test_movimiento_mapper.py:    movimiento = Movimiento(
+tests/infrastructure/mappers/test_movimiento_mapper.py-        id=1,
+tests/infrastructure/mappers/test_movimiento_mapper.py-        fecha=date(2026, 7, 1),
+tests/infrastructure/mappers/test_movimiento_mapper.py-        descripcion="Compra de mercadería",
+tests/infrastructure/mappers/test_movimiento_mapper.py-        estado=EstadoMovimiento.BORRADOR,
+tests/infrastructure/mappers/test_movimiento_mapper.py-        lineas=[linea],
+tests/infrastructure/mappers/test_movimiento_mapper.py-    )
+--
+tests/infrastructure/mappers/test_movimiento_mapper.py-
+tests/infrastructure/mappers/test_movimiento_mapper.py-    movimientos = [
+tests/infrastructure/mappers/test_movimiento_mapper.py:        Movimiento(
+tests/infrastructure/mappers/test_movimiento_mapper.py-            id=1,
+tests/infrastructure/mappers/test_movimiento_mapper.py-            fecha=date(2026, 7, 1),
+tests/infrastructure/mappers/test_movimiento_mapper.py-            descripcion="Compra",
+tests/infrastructure/mappers/test_movimiento_mapper.py-            estado=EstadoMovimiento.BORRADOR,
+tests/infrastructure/mappers/test_movimiento_mapper.py-            lineas=[],
+tests/infrastructure/mappers/test_movimiento_mapper.py-        ),
+tests/infrastructure/mappers/test_movimiento_mapper.py:        Movimiento(
+tests/infrastructure/mappers/test_movimiento_mapper.py-            id=2,
+tests/infrastructure/mappers/test_movimiento_mapper.py-            fecha=date(2026, 7, 2),
+tests/infrastructure/mappers/test_movimiento_mapper.py-            descripcion="Venta",
+tests/infrastructure/mappers/test_movimiento_mapper.py-            estado=EstadoMovimiento.CONFIRMADO,
+tests/infrastructure/mappers/test_movimiento_mapper.py-            lineas=[],
+tests/infrastructure/mappers/test_movimiento_mapper.py-        ),
+--
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:    linea = LineaMovimiento(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        cuenta=cuenta,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        importe=Decimal("1500.50"),
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        tipo_afectacion=TipoAfectacion.DEBITO,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:    movimiento = Movimiento(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        id=1,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        fecha=date(2026, 7, 1),
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        descripcion="Compra",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        estado=EstadoMovimiento.BORRADOR,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        lineas=[
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            linea,
+--
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:    linea = LineaMovimiento(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        cuenta=cuenta,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        importe=Decimal("1500.50"),
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        tipo_afectacion=TipoAfectacion.DEBITO,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    repository.guardar(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:        Movimiento(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            id=1,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            fecha=date(2026, 7, 1),
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            descripcion="Compra",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            estado=EstadoMovimiento.BORRADOR,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            lineas=[linea],
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        )
+--
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    repository.guardar(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:        Movimiento(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            id=1,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            fecha=date(2026, 7, 1),
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            descripcion="Compra Actualizada",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            estado=EstadoMovimiento.BORRADOR,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-            lineas=[linea],
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        )
+--
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:    linea = LineaMovimiento(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        cuenta=cuenta,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        importe=Decimal("1500.50"),
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        tipo_afectacion=TipoAfectacion.DEBITO,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:    movimiento = Movimiento(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        id=1,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        fecha=date(2026, 7, 1),
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        descripcion="Compra",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        estado=EstadoMovimiento.BORRADOR,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        lineas=[linea],
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+--
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:    linea = LineaMovimiento(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        cuenta=cuenta,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        importe=Decimal("1500.50"),
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        tipo_afectacion=TipoAfectacion.DEBITO,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:    movimiento = Movimiento(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        id=1,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        fecha=date(2026, 7, 1),
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        descripcion="Compra",
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        estado=EstadoMovimiento.BORRADOR,
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-        lineas=[linea],
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py-    )

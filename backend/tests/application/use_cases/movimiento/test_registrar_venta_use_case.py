@@ -32,9 +32,13 @@ def test_registrar_venta_genera_dos_lineas():
         tipo=TipoCuenta.INGRESO,
     )
 
-    use_case = RegistrarVenta(repository)
+    use_case = RegistrarVenta(
+        repository,
+    )
 
     movimiento = use_case.execute(
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 7, 17),
         descripcion="Venta contado",
         importe=1000,
@@ -45,5 +49,3 @@ def test_registrar_venta_genera_dos_lineas():
     assert len(
         movimiento.lineas
     ) == 2
-
-    

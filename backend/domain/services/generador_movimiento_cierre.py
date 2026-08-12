@@ -4,18 +4,20 @@ from domain.entities.movimiento import Movimiento
 from domain.enums.tipo_cuenta import TipoCuenta
 from domain.value_objects.resultado_ejercicio import ResultadoEjercicio
 
+
 class GeneradorMovimientoCierre:
 
     def generar(
         self,
         ejercicio,
         saldos,
-        ):
-
+    ):
         movimiento = Movimiento(
-        id=None,
-        fecha=ejercicio.fecha_fin,
-        descripcion="Cierre del ejercicio",
+            id=None,
+            empresa_id=ejercicio.empresa_id,
+            ejercicio_id=ejercicio.id,
+            fecha=ejercicio.fecha_fin,
+            descripcion="Cierre del ejercicio",
         )
 
         resultado = Decimal("0")

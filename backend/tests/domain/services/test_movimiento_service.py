@@ -1,23 +1,20 @@
-from domain.services.movimiento_service import (
-    MovimientoService,
-)
+from datetime import date
+
+from domain.entities.movimiento import Movimiento
+from domain.enums.estado_movimiento import EstadoMovimiento
+from domain.services.movimiento_service import MovimientoService
 
 
 class FakeMovimientoRepository:
 
-    # def listar(
-    #     self,
-    # ):
-    #     return [
-    #         "movimiento1",
-    #         "movimiento2",
-    #     ]
     def listar(
         self,
     ):
         return [
             Movimiento(
                 id=1,
+                empresa_id=1,
+                ejercicio_id=1,
                 fecha=date(
                     2026,
                     7,
@@ -29,6 +26,8 @@ class FakeMovimientoRepository:
             ),
             Movimiento(
                 id=2,
+                empresa_id=1,
+                ejercicio_id=1,
                 fecha=date(
                     2026,
                     7,
@@ -39,6 +38,7 @@ class FakeMovimientoRepository:
                 lineas=[],
             ),
         ]
+
     def buscar_por_id(
         self,
         id_,
@@ -46,16 +46,19 @@ class FakeMovimientoRepository:
         self.id_recibido = id_
 
         return f"movimiento-{id_}"
+
     def guardar(
         self,
         movimiento,
     ):
         self.movimiento_guardado = movimiento
+
     def eliminar(
         self,
         id_,
     ):
         self.id_eliminado = id_
+
 
 def test_crea_service():
 
@@ -69,16 +72,7 @@ def test_crea_service():
         service.repository
         is repository
     )
-# MODIFICACION TEST PARA QUE NO FALLE CON LA ARQUITECTURA NUEVA
-from datetime import date
 
-from domain.entities.movimiento import (
-    Movimiento,
-)
-
-from domain.enums.estado_movimiento import (
-    EstadoMovimiento,
-)
 
 def test_listar():
 
@@ -90,10 +84,6 @@ def test_listar():
 
     movimientos = service.listar()
 
-    # assert movimientos == [
-    #     "movimiento1",
-    #     "movimiento2",
-    # ]
     assert len(
         movimientos,
     ) == 2
@@ -101,6 +91,7 @@ def test_listar():
     assert movimientos[0].id == 1
 
     assert movimientos[1].id == 2
+
 
 def test_buscar_por_id():
 
@@ -121,15 +112,6 @@ def test_buscar_por_id():
 
     assert movimiento == "movimiento-25"
 
-from datetime import date
-
-from domain.entities.movimiento import (
-    Movimiento,
-)
-from domain.enums.estado_movimiento import (
-    EstadoMovimiento,
-)
-
 
 def test_guardar():
 
@@ -141,6 +123,8 @@ def test_guardar():
 
     movimiento = Movimiento(
         id=1,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(
             2026,
             7,
@@ -159,6 +143,7 @@ def test_guardar():
         repository.movimiento_guardado
         is movimiento
     )
+
 
 def test_eliminar():
 

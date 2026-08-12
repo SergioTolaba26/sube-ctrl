@@ -7,7 +7,12 @@ from domain.entities.movimiento import (
 from domain.enums.estado_movimiento import (
     EstadoMovimiento,
 )
-from infrastructure.mappers.linea_movimiento_mapper import LineaMovimientoMapper
+
+from infrastructure.mappers.linea_movimiento_mapper import (
+    LineaMovimientoMapper,
+)
+
+
 class MovimientoMapper:
 
     @staticmethod
@@ -17,7 +22,11 @@ class MovimientoMapper:
         return {
             "id": movimiento.id,
 
-            "numero_asiento": movimiento.numero_asiento,   # ← NUEVO
+            "empresa_id": movimiento.empresa_id,
+
+            "ejercicio_id": movimiento.ejercicio_id,
+
+            "numero_asiento": movimiento.numero_asiento,
 
             "fecha": movimiento.fecha.isoformat(),
 
@@ -29,7 +38,6 @@ class MovimientoMapper:
                 movimiento.lineas,
             ),
         }
-    
     @staticmethod
     def from_dict(
         datos,
@@ -40,7 +48,11 @@ class MovimientoMapper:
 
             id=datos["id"],
 
-            numero_asiento=datos.get(          # ← NUEVO
+            empresa_id=datos["empresa_id"],
+
+            ejercicio_id=datos["ejercicio_id"],
+
+            numero_asiento=datos.get(
                 "numero_asiento",
                 0,
             ),
@@ -60,18 +72,18 @@ class MovimientoMapper:
                 cuenta_repository,
             ),
         )
-    
+
     @staticmethod
     def to_dict_list(
         movimientos,
-    ):  
+    ):
         return [
             MovimientoMapper.to_dict(
                 movimiento,
             )
             for movimiento in movimientos
         ]
-    
+
     @staticmethod
     def from_dict_list(
         datos,

@@ -34,6 +34,8 @@ def test_estado_resultados_informa_las_cuentas_de_ingreso():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Venta contado",
     )
@@ -80,6 +82,8 @@ def test_estado_resultados_informa_las_cuentas_de_gasto():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Pago de alquiler",
     )
@@ -122,6 +126,8 @@ def test_estado_resultados_informa_el_total_de_ingresos():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Venta contado",
     )
@@ -159,6 +165,8 @@ def test_estado_resultados_informa_el_total_de_gastos():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Pago de alquiler",
     )
@@ -185,69 +193,6 @@ def test_estado_resultados_informa_el_total_de_gastos():
         movimientos=[movimiento]
     ) == Decimal("300")
 
-# def test_estado_resultados_calcula_el_resultado_del_ejercicio():
-#     """
-#     El Estado de Resultados calcula el resultado
-#     del ejercicio como:
-
-#         Ingresos - Gastos
-#     """
-
-#     caja = crear_caja()
-#     ventas = crear_ventas()
-#     gastos = crear_gastos()
-
-#     # Venta: +1000
-#     venta = Movimiento(
-#         id=None,
-#         fecha=date(2026, 1, 2),
-#         descripcion="Venta contado",
-#     )
-
-#     venta.agregar_linea(
-#         LineaMovimiento.debito(
-#             cuenta=caja,
-#             importe=Decimal("1000"),
-#         )
-#     )
-
-#     venta.agregar_linea(
-#         LineaMovimiento.credito(
-#             cuenta=ventas,
-#             importe=Decimal("1000"),
-#         )
-#     )
-
-#     venta.confirmar()
-
-#     # Gasto: -300
-#     pago = Movimiento(
-#         id=None,
-#         fecha=date(2026, 1, 3),
-#         descripcion="Pago alquiler",
-#     )
-
-#     pago.agregar_linea(
-#         LineaMovimiento.debito(
-#             cuenta=gastos,
-#             importe=Decimal("300"),
-#         )
-#     )
-
-#     pago.agregar_linea(
-#         LineaMovimiento.credito(
-#             cuenta=caja,
-#             importe=Decimal("300"),
-#         )
-#     )
-
-#     pago.confirmar()
-
-#     estado = EstadoResultados()
-
-#     assert estado.resultado(
-#         movimientos=[venta, pago]
-#     ) == Decimal("700")
 
 def test_estado_resultados_informa_los_saldos_de_las_cuentas():
     """
@@ -259,6 +204,8 @@ def test_estado_resultados_informa_los_saldos_de_las_cuentas():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 6, 1),
         descripcion="Venta",
     )

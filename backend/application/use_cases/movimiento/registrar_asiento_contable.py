@@ -39,6 +39,8 @@ class RegistrarAsientoContable:
 
         movimiento = Movimiento(
             id=None,
+            empresa_id=ejercicio.empresa_id,
+            ejercicio_id=ejercicio.id,
             fecha=fecha,
             descripcion=descripcion,
             estado=EstadoMovimiento.BORRADOR,

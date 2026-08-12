@@ -31,7 +31,8 @@ def test_registra_ejercicio():
         service,
     )
 
-    ejercicio = use_case.execute(
+    ejercicio =use_case.execute(
+        empresa_id=1,
         anio=2028,
         fecha_apertura=date(
             2028,
@@ -67,6 +68,7 @@ def test_no_registra_ejercicio_si_ya_existe_anio():
     )
 
     use_case.execute(
+        empresa_id=1,
         anio=2028,
         fecha_apertura=date(
             2028,
@@ -86,6 +88,7 @@ def test_no_registra_ejercicio_si_ya_existe_anio():
     ):
 
         use_case.execute(
+            empresa_id=1,
             anio=2028,
             fecha_apertura=date(
                 2028,
@@ -112,6 +115,7 @@ def test_no_registra_ejercicio_si_hay_otro_abierto():
     )
 
     use_case.execute(
+        empresa_id=1,
         anio=2028,
         fecha_apertura=date(
             2028,
@@ -131,6 +135,7 @@ def test_no_registra_ejercicio_si_hay_otro_abierto():
     ):
 
         use_case.execute(
+            empresa_id=1,
             anio=2029,
             fecha_apertura=date(
                 2029,

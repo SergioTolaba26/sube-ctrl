@@ -18,5 +18,11 @@ grep -R "/movimientos" -n frontend
 desde backend
 grep -R "movimiento_router" -n .
 0 (ningun archivo .py)
-
+-------------------------------------------------
 pytest tests/producto -v
+------------------------------------------
+pytest -q   pytest -x
+
+source .venv/Scripts/activate
+
+pytest tests/application/usecdcd_cases/movimiento/ -v

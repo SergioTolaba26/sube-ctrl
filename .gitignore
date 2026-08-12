@@ -15,11 +15,12 @@ backend/logs/
 
 # VSCode
 .vscode/
-# Arq vieja EjercicioContable - copia resguardo
-echo "*.bak" >> .gitignore
+
 
 # Sistema operativo
 .DS_Store
 Thumbs.dbcd
 # Base de datos local
 backend/data/erp.db
+# Arq vieja EjercicioContable - copia resguardo
+*.bak

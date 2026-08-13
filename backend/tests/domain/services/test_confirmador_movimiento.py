@@ -2,7 +2,7 @@ import pytest
 
 from datetime import date
 
-from domain.entities.ejercicio_contable import EjercicioContable
+from domain.entities.ejercicio import Ejercicio
 from domain.entities.movimiento import Movimiento
 from domain.services.confirmador_movimiento import (
     ConfirmadorMovimiento,
@@ -15,11 +15,11 @@ def test_no_puede_confirmarse_un_movimiento_en_un_ejercicio_cerrado():
     si pertenece a un ejercicio cerrado.
     """
 
-    ejercicio = EjercicioContable(
-        id=None,
-        empresa_id=1,
-        fecha_inicio=date(2026, 1, 1),
-        fecha_fin=date(2026, 12, 31),
+    ejercicio = Ejercicio(
+    id=1,
+    empresa_id=1,
+    anio=2026,
+    fecha_apertura=date(2026, 1, 1),
     )
 
     ejercicio.cerrar()

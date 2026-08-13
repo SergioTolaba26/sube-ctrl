@@ -3,7 +3,7 @@ from decimal import Decimal
 
 from domain.entities.linea_movimiento import LineaMovimiento
 from domain.entities.movimiento import Movimiento
-from domain.entities.ejercicio_contable import EjercicioContable
+from domain.entities.ejercicio import Ejercicio
 from domain.entities.cuenta import Cuenta
 from domain.enums.tipo_cuenta import TipoCuenta
 
@@ -79,13 +79,12 @@ def crear_clientes():
 
 
 def crear_ejercicio():
-    return EjercicioContable(
+    return Ejercicio(
         id=1,
         empresa_id=1,
-        fecha_inicio=date(2026, 1, 1),
-        fecha_fin=date(2026, 12, 31),
+        anio=2026,
+        fecha_apertura=date(2026, 1, 1),
     )
-
 
 def crear_movimiento_de_venta_confirmado(
     importe=Decimal("1000"),

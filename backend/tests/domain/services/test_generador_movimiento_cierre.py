@@ -5,7 +5,7 @@ from decimal import Decimal
 from domain.value_objects.saldo_cuenta import SaldoCuenta
 from domain.enums.tipo_afectacion import TipoAfectacion
 from domain.entities.cuenta import Cuenta
-from domain.entities.ejercicio_contable import EjercicioContable
+from domain.entities.ejercicio import Ejercicio
 from domain.entities.linea_movimiento import LineaMovimiento
 from domain.entities.movimiento import Movimiento
 from domain.enums.tipo_cuenta import TipoCuenta

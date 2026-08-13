@@ -1,3 +1,4 @@
+from datetime import date
 from decimal import Decimal
 
 from domain.entities.movimiento import Movimiento
@@ -12,11 +13,17 @@ class GeneradorMovimientoCierre:
         ejercicio,
         saldos,
     ):
+        fecha_cierre = date(
+            ejercicio.anio,
+            12,
+            31,
+        )
+
         movimiento = Movimiento(
             id=None,
             empresa_id=ejercicio.empresa_id,
             ejercicio_id=ejercicio.id,
-            fecha=ejercicio.fecha_fin,
+            fecha=fecha_cierre,
             descripcion="Cierre del ejercicio",
         )
 

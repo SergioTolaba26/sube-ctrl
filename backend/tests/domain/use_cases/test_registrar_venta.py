@@ -1,6 +1,5 @@
 from decimal import Decimal
 
-from domain.entities import movimiento
 from domain.entities.movimiento import Movimiento
 
 from domain.enums.tipo_afectacion import TipoAfectacion
@@ -9,9 +8,8 @@ from domain.use_cases.registrar_venta import RegistrarVenta
 from tests.builders.entidades_builder import (
     crear_caja,
     crear_ventas,
+    crear_ejercicio,
 )
-
-
 
 
 def test_registrar_venta_devuelve_un_movimiento():
@@ -26,12 +24,14 @@ def test_registrar_venta_devuelve_un_movimiento():
         caja=crear_caja(),
         ventas=crear_ventas(),
         importe=Decimal("1000"),
+        ejercicio=crear_ejercicio(),
     )
 
     assert isinstance(
         movimiento,
         Movimiento,
     )
+
 
 def test_registrar_venta_genera_dos_lineas():
     """
@@ -45,9 +45,11 @@ def test_registrar_venta_genera_dos_lineas():
         caja=crear_caja(),
         ventas=crear_ventas(),
         importe=Decimal("1000"),
+        ejercicio=crear_ejercicio(),
     )
 
     assert len(movimiento.lineas) == 2
+
 
 def test_la_primer_linea_debita_caja():
     """
@@ -64,6 +66,7 @@ def test_la_primer_linea_debita_caja():
         caja=caja,
         ventas=ventas,
         importe=Decimal("1000"),
+        ejercicio=crear_ejercicio(),
     )
 
     linea = movimiento.lineas[0]
@@ -75,11 +78,13 @@ def test_la_primer_linea_debita_caja():
         == TipoAfectacion.DEBITO
     )
 
+
 def test_la_segunda_linea_acredita_ventas():
     """
     La segunda línea del asiento
     acredita la cuenta Ventas.
     """
+
     ventas = crear_ventas()
     caja = crear_caja()
 
@@ -89,6 +94,7 @@ def test_la_segunda_linea_acredita_ventas():
         caja=caja,
         ventas=ventas,
         importe=Decimal("1000"),
+        ejercicio=crear_ejercicio(),
     )
 
     linea = movimiento.lineas[1]
@@ -99,6 +105,7 @@ def test_la_segunda_linea_acredita_ventas():
         linea.tipo_afectacion
         == TipoAfectacion.CREDITO
     )
+
 
 def test_ambas_lineas_tienen_el_mismo_importe():
     """
@@ -112,11 +119,13 @@ def test_ambas_lineas_tienen_el_mismo_importe():
         caja=crear_caja(),
         ventas=crear_ventas(),
         importe=Decimal("1000"),
+        ejercicio=crear_ejercicio(),
     )
 
     assert movimiento.lineas[0].importe == Decimal("1000")
 
     assert movimiento.lineas[1].importe == Decimal("1000")
+
 
 def test_el_asiento_de_venta_esta_balanceado():
     """
@@ -130,6 +139,7 @@ def test_el_asiento_de_venta_esta_balanceado():
         caja=crear_caja(),
         ventas=crear_ventas(),
         importe=Decimal("1000"),
+        ejercicio=crear_ejercicio(),
     )
 
     debitos = sum(
@@ -146,6 +156,7 @@ def test_el_asiento_de_venta_esta_balanceado():
 
     assert debitos == creditos
 
+
 def test_registrar_venta_confirma_el_movimiento():
     """
     Registrar una venta deja
@@ -158,7 +169,7 @@ def test_registrar_venta_confirma_el_movimiento():
         caja=crear_caja(),
         ventas=crear_ventas(),
         importe=Decimal("1000"),
+        ejercicio=crear_ejercicio(),
     )
 
     assert movimiento.esta_confirmado()
-

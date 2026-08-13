@@ -2,11 +2,11 @@ from datetime import date
 from decimal import Decimal
 
 from domain.entities.cuenta import Cuenta
-from domain.entities.ejercicio_contable import EjercicioContable
+
 from domain.entities.linea_movimiento import LineaMovimiento
 from domain.entities.movimiento import Movimiento
 from domain.enums.tipo_cuenta import TipoCuenta
-from domain.services.cierre_ejercicio import CierreEjercicio
+
 
 
 def crear_ventas():

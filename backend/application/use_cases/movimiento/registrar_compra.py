@@ -49,7 +49,7 @@ class RegistrarCompra:
                 Decimal(str(importe)),
             )
         )
-
+        movimiento.confirmar()
         self.repository.guardar(
             movimiento,
         )

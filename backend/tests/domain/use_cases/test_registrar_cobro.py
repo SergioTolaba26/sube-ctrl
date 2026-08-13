@@ -1,12 +1,12 @@
 from decimal import Decimal
 
-
 from domain.entities.movimiento import Movimiento
 from domain.use_cases.registrar_cobro import RegistrarCobro
 
 from tests.builders.entidades_builder import (
     crear_caja,
     crear_clientes,
+    crear_ejercicio,
 )
 
 
@@ -22,12 +22,14 @@ def test_registrar_cobro_devuelve_un_movimiento():
         caja=crear_caja(),
         clientes=crear_clientes(),
         importe=Decimal("300"),
+        ejercicio=crear_ejercicio(),
     )
 
     assert isinstance(
         movimiento,
         Movimiento,
     )
+
 
 def test_registrar_cobro_genera_dos_lineas():
     """
@@ -41,11 +43,13 @@ def test_registrar_cobro_genera_dos_lineas():
         caja=crear_caja(),
         clientes=crear_clientes(),
         importe=Decimal("300"),
+        ejercicio=crear_ejercicio(),
     )
 
     assert len(
         movimiento.lineas
     ) == 2
+
 
 def test_la_primera_linea_debita_caja():
     """
@@ -61,12 +65,14 @@ def test_la_primera_linea_debita_caja():
         caja=caja,
         clientes=crear_clientes(),
         importe=Decimal("300"),
+        ejercicio=crear_ejercicio(),
     )
 
     linea = movimiento.lineas[0]
 
     assert linea.cuenta == caja
     assert linea.es_debito()
+
 
 def test_la_segunda_linea_acredita_clientes():
     """
@@ -82,12 +88,14 @@ def test_la_segunda_linea_acredita_clientes():
         caja=crear_caja(),
         clientes=clientes,
         importe=Decimal("300"),
+        ejercicio=crear_ejercicio(),
     )
 
     linea = movimiento.lineas[1]
 
     assert linea.cuenta == clientes
     assert linea.es_credito()
+
 
 def test_ambas_lineas_tienen_el_mismo_importe():
     """
@@ -101,10 +109,12 @@ def test_ambas_lineas_tienen_el_mismo_importe():
         caja=crear_caja(),
         clientes=crear_clientes(),
         importe=Decimal("300"),
+        ejercicio=crear_ejercicio(),
     )
 
     assert movimiento.lineas[0].importe == Decimal("300")
     assert movimiento.lineas[1].importe == Decimal("300")
+
 
 def test_el_asiento_de_cobro_esta_balanceado():
     """
@@ -118,6 +128,7 @@ def test_el_asiento_de_cobro_esta_balanceado():
         caja=crear_caja(),
         clientes=crear_clientes(),
         importe=Decimal("300"),
+        ejercicio=crear_ejercicio(),
     )
 
     debitos = sum(
@@ -134,6 +145,7 @@ def test_el_asiento_de_cobro_esta_balanceado():
 
     assert debitos == creditos
 
+
 def test_registrar_cobro_confirma_el_movimiento():
     """
     Registrar un cobro deja
@@ -146,6 +158,7 @@ def test_registrar_cobro_confirma_el_movimiento():
         caja=crear_caja(),
         clientes=crear_clientes(),
         importe=Decimal("300"),
+        ejercicio=crear_ejercicio(),
     )
 
     assert movimiento.esta_confirmado()

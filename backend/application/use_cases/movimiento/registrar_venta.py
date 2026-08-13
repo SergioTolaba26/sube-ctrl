@@ -50,6 +50,8 @@ class RegistrarVenta:
             )
         )
 
+        movimiento.confirmar()
+
         self.repository.guardar(
             movimiento,
         )

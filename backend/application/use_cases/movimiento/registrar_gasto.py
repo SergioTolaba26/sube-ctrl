@@ -53,7 +53,7 @@ class RegistrarGasto:
                 Decimal(str(importe)),
             )
         )
-
+        movimiento.confirmar()
         self.repository.guardar(
             movimiento,
         )

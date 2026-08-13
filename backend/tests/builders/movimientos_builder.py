@@ -28,6 +28,7 @@ def crear_movimientos_del_ejercicio():
             caja=crear_caja(),
             ventas=crear_ventas(),
             importe=Decimal("1000"),
+            ejercicio=crear_ejercicio(),
         )
     )
 
@@ -35,9 +36,11 @@ def crear_movimientos_del_ejercicio():
 
     movimientos.append(
         registrar_compra.ejecutar(
+
             caja=crear_caja(),
             compras=crear_compras(),
             importe=Decimal("500"),
+            ejercicio=crear_ejercicio(),
         )
     )
 
@@ -48,6 +51,7 @@ def crear_movimientos_del_ejercicio():
             caja=crear_caja(),
             gastos=crear_gastos(),
             importe=Decimal("300"),
+            ejercicio=crear_ejercicio(),
         )
     )
 
@@ -55,9 +59,11 @@ def crear_movimientos_del_ejercicio():
 
     movimientos.append(
         registrar_pago.ejecutar(
+
             caja=crear_caja(),
             proveedores=crear_proveedores(),
             importe=Decimal("500"),
+            ejercicio=crear_ejercicio(),
         )
     )
 
@@ -68,6 +74,7 @@ def crear_movimientos_del_ejercicio():
             caja=crear_caja(),
             clientes=crear_clientes(),
             importe=Decimal("800"),
+            ejercicio=crear_ejercicio(),
         )
     )
 

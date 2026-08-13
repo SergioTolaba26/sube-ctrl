@@ -1,6 +1,6 @@
 
 from decimal import Decimal
-
+from datetime import date
 from application.use_cases.estado_resultados.listar_estado_resultados import (
     ListarEstadoResultados,
 )
@@ -126,7 +126,7 @@ class CierreContableService:
             id=0,
             empresa_id=ejercicio.empresa_id,
             ejercicio_id=ejercicio.id,
-            fecha=ejercicio.fecha_fin,
+            fecha=ejercicio.fecha_cierre or date.today(),
             descripcion=f"Cierre ejercicio {ejercicio.anio}",
         )
 

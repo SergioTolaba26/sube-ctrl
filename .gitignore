@@ -13,11 +13,43 @@ backend/.env
 backend/logs/
 *.log
 
-# VSCode
-.vscode/
+
 
 # Sistema operativo
 .DS_Store
 Thumbs.dbcd
 # Base de datos local
 backend/data/erp.db
+
+# Dependencias de Node
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# Archivos generados
+dist/
+build/
+coverage/
+
+# Cachés
+.npm/
+.cache/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Resguardo por borrado arquitectura vieja
+*.bak

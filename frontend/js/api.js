@@ -2,10 +2,10 @@
 // CONFIGURACIÃ“N
 // ======================================================
 
-// const API_URL = "http://192.168.0.9:8000";     // Casa
+const API_URL = "http://192.168.0.9:8000";     // Casa
 // const API_URL = "http://192.168.3.124:8000";   // Trabajo
 
-const API_URL = "http://127.0.0.1:8000";
+//const API_URL = "http://127.0.0.1:8000";
 
 async function procesarRespuesta(respuesta) {
 

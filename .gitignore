@@ -24,3 +24,6 @@ Thumbs.dbcd
 backend/data/erp.db
 # Arq vieja EjercicioContable - copia resguardo
 *.bak
+# npm init -y
+frontend/node_modules/
+

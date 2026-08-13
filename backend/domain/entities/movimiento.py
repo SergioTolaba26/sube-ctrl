@@ -12,13 +12,16 @@ from domain.enums.tipo_afectacion import TipoAfectacion
 
 
 class Movimiento(Entity):
-    """
-    Representa el registro de un hecho económico.
+    empresa_id: int = Field(
+            ...,
+            description="Empresa a la que pertenece el movimiento."
+        )
 
-    Es el Aggregate Root responsable de mantener la consistencia
-    de todas las afectaciones producidas por ese hecho.
-    """
-    # <<< NUEVO CAMPO >>>
+    ejercicio_id: int = Field(
+        ...,
+        description="Ejercicio contable al que pertenece el movimiento."
+    )
+
     numero_asiento: int = Field(
         default=0,
         description="Número correlativo del asiento."

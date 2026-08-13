@@ -1,17 +1,18 @@
-from domain.enums.estado_ejercicio import EstadoEjercicio
+
+from domain.enums.estado_ejercicio import (
+    EstadoEjercicio,
+)
 
 
 class EjercicioRepositoryStub:
 
     def __init__(self):
-
         self.ejercicios = []
 
     def guardar(
         self,
         ejercicio,
     ):
-
         self.ejercicios.append(
             ejercicio,
         )
@@ -34,36 +35,59 @@ class EjercicioRepositoryStub:
 
         return self.ejercicios
 
-    # Compatibilidad temporal
-    def obtener_todas(
-        self,
-    ):
-
-        return self.listar()
-    
     def buscar_por_anio(
         self,
+        empresa_id: int,
         anio: int,
     ):
 
         for ejercicio in self.ejercicios:
 
-            if ejercicio.anio == anio:
+            if (
+                ejercicio.empresa_id == empresa_id
+                and ejercicio.anio == anio
+            ):
                 return ejercicio
 
         return None
 
-
     def buscar_abierto(
         self,
+        empresa_id: int,
     ):
 
         for ejercicio in self.ejercicios:
 
             if (
-                ejercicio.estado
+                ejercicio.empresa_id == empresa_id
+                and ejercicio.estado
                 == EstadoEjercicio.ABIERTO
             ):
                 return ejercicio
 
         return None
+
+    def eliminar(
+        self,
+        id_,
+    ):
+
+        self.ejercicios = [
+            ejercicio
+            for ejercicio in self.ejercicios
+            if ejercicio.id != id_
+        ]
+
+    def actualizar(
+        self,
+        ejercicio,
+    ):
+
+        for indice, existente in enumerate(
+            self.ejercicios
+        ):
+
+            if existente.id == ejercicio.id:
+                self.ejercicios[indice] = ejercicio
+                return
+

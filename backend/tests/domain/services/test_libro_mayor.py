@@ -13,6 +13,7 @@ def crear_cuenta():
     return Cuenta(
         id=None,
         empresa_id=1,
+        ejercicio_id=1,
         codigo="1.1.01",
         nombre="Caja",
         tipo=TipoCuenta.ACTIVO,
@@ -22,6 +23,7 @@ def crear_otra_cuenta():
     return Cuenta(
         id=None,
         empresa_id=1,
+        ejercicio_id=1,
         codigo="1.1.02",
         nombre="Banco",
         tipo=TipoCuenta.ACTIVO,
@@ -33,6 +35,7 @@ def test_libro_mayor_devuelve_las_lineas_de_una_cuenta():
     banco = Cuenta(
         id=None,
         empresa_id=1,
+        ejercicio_id=1,
         codigo="1.1.02",
         nombre="Banco",
         tipo=TipoCuenta.ACTIVO,
@@ -40,6 +43,8 @@ def test_libro_mayor_devuelve_las_lineas_de_una_cuenta():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date.today(),
         descripcion="Transferencia"
     )
@@ -77,6 +82,7 @@ def test_libro_mayor_devuelve_las_lineas_ordenadas_por_fecha():
     banco = Cuenta(
         id=None,
         empresa_id=1,
+        ejercicio_id=1,
         codigo="1.1.02",
         nombre="Banco",
         tipo=TipoCuenta.ACTIVO,
@@ -84,6 +90,8 @@ def test_libro_mayor_devuelve_las_lineas_ordenadas_por_fecha():
 
     movimiento_5 = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 5),
         descripcion="Movimiento del día 5"
     )
@@ -106,6 +114,8 @@ def test_libro_mayor_devuelve_las_lineas_ordenadas_por_fecha():
 
     movimiento_2 = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Movimiento del día 2"
     )
@@ -150,6 +160,8 @@ def test_libro_mayor_conserva_fecha_y_descripcion_del_movimiento():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 15),
         descripcion="Cobro de cliente"
     )
@@ -195,6 +207,8 @@ def test_libro_mayor_calcula_el_saldo_acumulado():
     # Primer movimiento (+1000)
     apertura = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Apertura"
     )
@@ -218,6 +232,8 @@ def test_libro_mayor_calcula_el_saldo_acumulado():
     # Segundo movimiento (-300)
     pago = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 5),
         descripcion="Pago"
     )
@@ -257,6 +273,8 @@ def test_libro_mayor_devuelve_renglones():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Apertura"
     )

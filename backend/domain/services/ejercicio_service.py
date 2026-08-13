@@ -1,8 +1,6 @@
 from datetime import date
 
-from domain.entities.ejercicio import (
-    Ejercicio,
-)
+from domain.entities.ejercicio import Ejercicio
 
 
 class EjercicioService:
@@ -21,11 +19,11 @@ class EjercicioService:
 
     def buscar_por_id(
         self,
-        id_,
+        ejercicio_id: int,
     ):
 
         return self.repository.buscar_por_id(
-            id_,
+            ejercicio_id,
         )
 
     def buscar_por_fecha(
@@ -49,7 +47,7 @@ class EjercicioService:
 
     def guardar(
         self,
-        ejercicio,
+        ejercicio: Ejercicio,
     ):
 
         if ejercicio.id is None:
@@ -76,15 +74,16 @@ class EjercicioService:
 
     def eliminar(
         self,
-        id_,
+        id_: int,
     ):
 
         self.repository.eliminar(
             id_,
         )
+
     def actualizar(
         self,
-        ejercicio,
+        ejercicio: Ejercicio,
     ):
 
         self.repository.actualizar(
@@ -92,42 +91,23 @@ class EjercicioService:
         )
 
         return ejercicio
-    def guardar(
-        self,
-        ejercicio,
-    ):
-
-        if ejercicio.id is None:
-
-            ejercicios = self.repository.listar()
-
-            if not ejercicios:
-
-                ejercicio.id = 1
-
-            else:
-
-                ejercicio.id = max(
-                    e.id
-                    for e in ejercicios
-                ) + 1
-
-        self.repository.guardar(
-            ejercicio,
-        )
 
     def buscar_por_anio(
         self,
+        empresa_id: int,
         anio: int,
     ):
 
         return self.repository.buscar_por_anio(
+            empresa_id,
             anio,
         )
 
-
     def buscar_abierto(
         self,
+        empresa_id: int,
     ):
 
-        return self.repository.buscar_abierto()
+        return self.repository.buscar_abierto(
+            empresa_id,
+        )

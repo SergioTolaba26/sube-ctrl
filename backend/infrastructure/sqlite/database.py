@@ -27,6 +27,7 @@ class Database:
 
         self._connection = sqlite3.connect(
             database_path,
+            check_same_thread=False,
         )
 
         self._connection.row_factory = sqlite3.Row

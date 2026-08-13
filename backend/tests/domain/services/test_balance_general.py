@@ -46,6 +46,8 @@ def test_balance_general_informa_cuentas_de_activo():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Apertura",
     )
@@ -88,6 +90,8 @@ def test_balance_general_informa_cuentas_de_pasivo():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Compra a crédito",
     )
@@ -131,6 +135,8 @@ def test_balance_general_informa_cuentas_de_patrimonio():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Aporte inicial",
     )
@@ -173,6 +179,8 @@ def test_balance_general_informa_el_total_de_activos():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Apertura",
     )
@@ -210,6 +218,8 @@ def test_balance_general_informa_el_total_de_pasivos():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Compra a crédito",
     )
@@ -247,6 +257,8 @@ def test_balance_general_informa_el_total_de_patrimonio():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Aporte inicial",
     )
@@ -285,6 +297,8 @@ def test_balance_general_cumple_la_ecuacion_patrimonial():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Aporte inicial",
     )

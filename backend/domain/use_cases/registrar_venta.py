@@ -11,10 +11,13 @@ class RegistrarVenta:
         caja,
         ventas,
         importe,
+        ejercicio,
     ):
 
         movimiento = Movimiento(
             id=None,
+            empresa_id=ejercicio.empresa_id,
+            ejercicio_id=ejercicio.id,
             fecha=date.today(),
             descripcion="Venta",
         )

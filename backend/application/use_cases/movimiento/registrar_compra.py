@@ -1,10 +1,15 @@
 from decimal import Decimal
 
-from domain.entities.movimiento import Movimiento
-from domain.entities.linea_movimiento import LineaMovimiento
+from domain.entities.movimiento import (
+Movimiento,
+)
 
+from domain.entities.linea_movimiento import (
+LineaMovimiento,
+)
 
 class RegistrarCompra:
+
 
     def __init__(
         self,
@@ -14,6 +19,8 @@ class RegistrarCompra:
 
     def execute(
         self,
+        empresa_id: int,
+        ejercicio_id: int,
         fecha,
         descripcion,
         importe,
@@ -23,6 +30,8 @@ class RegistrarCompra:
 
         movimiento = Movimiento(
             id=None,
+            empresa_id=empresa_id,
+            ejercicio_id=ejercicio_id,
             fecha=fecha,
             descripcion=descripcion,
         )
@@ -40,9 +49,10 @@ class RegistrarCompra:
                 Decimal(str(importe)),
             )
         )
-
+        movimiento.confirmar()
         self.repository.guardar(
             movimiento,
         )
 
         return movimiento
+

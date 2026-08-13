@@ -37,9 +37,11 @@ def test_confirma_movimiento():
     )
 
     movimiento = Movimiento(
-        id=1,
-        fecha=date(2026, 7, 17),
-        descripcion="Venta",
+    id=1,
+    empresa_id=1,
+    ejercicio_id=1,
+    fecha=date(2026, 7, 17),
+    descripcion="Venta",
     )
 
     movimiento.agregar_linea(

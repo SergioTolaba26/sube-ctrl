@@ -15,11 +15,13 @@ backend/logs/
 
 
 
+
 # Sistema operativo
 .DS_Store
 Thumbs.dbcd
 # Base de datos local
 backend/data/erp.db
+
 
 # Dependencias de Node
 node_modules/
@@ -53,3 +55,10 @@ Thumbs.db
 
 # Resguardo por borrado arquitectura vieja
 *.bak
+=======
+# Arq vieja EjercicioContable - copia resguardo
+*.bak
+# npm init -y
+frontend/node_modules/
+
+

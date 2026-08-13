@@ -6,6 +6,7 @@ from domain.use_cases.registrar_compra import RegistrarCompra
 from tests.builders.entidades_builder import (
     crear_caja,
     crear_compras,
+    crear_ejercicio,
 )
 
 
@@ -21,12 +22,14 @@ def test_registrar_compra_devuelve_un_movimiento():
         caja=crear_caja(),
         compras=crear_compras(),
         importe=Decimal("500"),
+        ejercicio=crear_ejercicio(),
     )
 
     assert isinstance(
         movimiento,
         Movimiento,
     )
+
 
 def test_registrar_compra_genera_dos_lineas():
     """
@@ -40,11 +43,13 @@ def test_registrar_compra_genera_dos_lineas():
         caja=crear_caja(),
         compras=crear_compras(),
         importe=Decimal("500"),
+        ejercicio=crear_ejercicio(),
     )
 
     assert len(
         movimiento.lineas
     ) == 2
+
 
 def test_la_primera_linea_debita_compras():
     """
@@ -60,12 +65,14 @@ def test_la_primera_linea_debita_compras():
         caja=crear_caja(),
         compras=compras,
         importe=Decimal("500"),
+        ejercicio=crear_ejercicio(),
     )
 
     linea = movimiento.lineas[0]
 
     assert linea.cuenta == compras
     assert linea.es_debito()
+
 
 def test_la_segunda_linea_acredita_caja():
     """
@@ -81,12 +88,14 @@ def test_la_segunda_linea_acredita_caja():
         caja=caja,
         compras=crear_compras(),
         importe=Decimal("500"),
+        ejercicio=crear_ejercicio(),
     )
 
     linea = movimiento.lineas[1]
 
     assert linea.cuenta == caja
     assert linea.es_credito()
+
 
 def test_ambas_lineas_tienen_el_mismo_importe():
     """
@@ -100,14 +109,16 @@ def test_ambas_lineas_tienen_el_mismo_importe():
         caja=crear_caja(),
         compras=crear_compras(),
         importe=Decimal("500"),
+        ejercicio=crear_ejercicio(),
     )
 
     assert movimiento.lineas[0].importe == Decimal("500")
     assert movimiento.lineas[1].importe == Decimal("500")
 
+
 def test_el_asiento_de_compra_esta_balanceado():
     """
-    El asiento generado por una venta
+    El asiento generado por una compra
     queda balanceado.
     """
 
@@ -117,6 +128,7 @@ def test_el_asiento_de_compra_esta_balanceado():
         caja=crear_caja(),
         compras=crear_compras(),
         importe=Decimal("1000"),
+        ejercicio=crear_ejercicio(),
     )
 
     debitos = sum(
@@ -133,6 +145,7 @@ def test_el_asiento_de_compra_esta_balanceado():
 
     assert debitos == creditos
 
+
 def test_registrar_compra_confirma_el_movimiento():
     """
     Registrar una compra deja
@@ -145,6 +158,7 @@ def test_registrar_compra_confirma_el_movimiento():
         caja=crear_caja(),
         compras=crear_compras(),
         importe=Decimal("1000"),
+        ejercicio=crear_ejercicio(),
     )
 
     assert movimiento.esta_confirmado()

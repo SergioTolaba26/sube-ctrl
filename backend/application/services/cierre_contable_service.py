@@ -1,6 +1,6 @@
-from datetime import date
-from decimal import Decimal
 
+from decimal import Decimal
+from datetime import date
 from application.use_cases.estado_resultados.listar_estado_resultados import (
     ListarEstadoResultados,
 )
@@ -124,7 +124,9 @@ class CierreContableService:
 
         movimiento = Movimiento(
             id=0,
-            fecha=date.today(),
+            empresa_id=ejercicio.empresa_id,
+            ejercicio_id=ejercicio.id,
+            fecha=ejercicio.fecha_cierre or date.today(),
             descripcion=f"Cierre ejercicio {ejercicio.anio}",
         )
 
@@ -132,9 +134,6 @@ class CierreContableService:
 
         for dato in lineas:
 
-            #
-            # Ignorar líneas vacías
-            #
             if (
                 dato["debito"] == Decimal("0")
                 and

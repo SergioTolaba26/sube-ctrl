@@ -66,6 +66,8 @@ def test_listar_devuelve_lista_de_movimientos(
         [
             {
                 "id": 1,
+                "empresa_id": 1,
+                "ejercicio_id": 1,
                 "fecha": "2026-07-01",
                 "descripcion": "Compra",
                 "estado": "BORRADOR",
@@ -129,6 +131,8 @@ def test_buscar_por_id_devuelve_movimiento(
         [
             {
                 "id": 1,
+                "empresa_id": 1,
+                "ejercicio_id": 1,
                 "fecha": "2026-07-01",
                 "descripcion": "Compra",
                 "estado": "BORRADOR",
@@ -184,6 +188,8 @@ def test_buscar_por_id_devuelve_none_si_no_existe(
         [
             {
                 "id": 1,
+                "empresa_id": 1,
+                "ejercicio_id": 1,
                 "fecha": "2026-07-01",
                 "descripcion": "Compra",
                 "estado": "BORRADOR",
@@ -265,6 +271,8 @@ def test_guardar_agrega_un_movimiento(
 
     movimiento = Movimiento(
         id=1,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 7, 1),
         descripcion="Compra",
         estado=EstadoMovimiento.BORRADOR,
@@ -333,6 +341,8 @@ def test_guardar_actualiza_si_el_id_ya_existe(
     repository.guardar(
         Movimiento(
             id=1,
+            empresa_id=1,
+            ejercicio_id=1,
             fecha=date(2026, 7, 1),
             descripcion="Compra",
             estado=EstadoMovimiento.BORRADOR,
@@ -343,6 +353,8 @@ def test_guardar_actualiza_si_el_id_ya_existe(
     repository.guardar(
         Movimiento(
             id=1,
+            empresa_id=1,
+            ejercicio_id=1,
             fecha=date(2026, 7, 1),
             descripcion="Compra Actualizada",
             estado=EstadoMovimiento.BORRADOR,
@@ -390,6 +402,8 @@ def test_eliminar_quita_el_movimiento(
 
     movimiento = Movimiento(
         id=1,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 7, 1),
         descripcion="Compra",
         estado=EstadoMovimiento.BORRADOR,
@@ -437,6 +451,8 @@ def test_eliminar_id_inexistente_no_hace_nada(
 
     movimiento = Movimiento(
         id=1,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 7, 1),
         descripcion="Compra",
         estado=EstadoMovimiento.BORRADOR,

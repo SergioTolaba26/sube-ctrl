@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from datetime import date
 
+from pydantic import Field
+
 from domain.base.entity import Entity
 
 from domain.enums.estado_ejercicio import (
@@ -10,6 +12,11 @@ from domain.enums.estado_ejercicio import (
 
 
 class Ejercicio(Entity):
+
+    empresa_id: int = Field(
+        ...,
+        description="Empresa a la que pertenece el ejercicio.",
+    )
 
     anio: int
 
@@ -24,7 +31,9 @@ class Ejercicio(Entity):
     def cerrar(self):
 
         if self.estado == EstadoEjercicio.CERRADO:
-            raise ValueError("El ejercicio ya está cerrado.")
+            raise ValueError(
+                "El ejercicio ya está cerrado."
+            )
 
         self.estado = EstadoEjercicio.CERRADO
         self.fecha_cierre = date.today()

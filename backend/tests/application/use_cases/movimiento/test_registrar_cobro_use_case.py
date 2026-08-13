@@ -38,6 +38,8 @@ def test_registrar_cobro_genera_un_movimiento():
     )
 
     movimiento = use_case.execute(
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 7, 17),
         descripcion="Cobro contado",
         importe=1000,

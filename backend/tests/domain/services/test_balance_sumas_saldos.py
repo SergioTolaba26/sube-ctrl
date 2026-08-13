@@ -41,7 +41,8 @@ def test_balance_devuelve_una_fila_por_cuenta():
 
     movimiento = Movimiento(
         id=None,
-        
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Apertura"
     )
@@ -80,7 +81,8 @@ def test_balance_devuelve_filas():
 
     movimiento = Movimiento(
         id=None,
-        
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Apertura"
     )
@@ -125,7 +127,8 @@ def test_fila_balance_informa_total_debitos():
 
     movimiento = Movimiento(
         id=None,
-        
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Apertura",
     )
@@ -171,7 +174,8 @@ def test_fila_balance_informa_total_creditos():
 
     movimiento = Movimiento(
         id=None,
-        
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Apertura",
     )
@@ -217,6 +221,8 @@ def test_fila_balance_informa_el_saldo():
 
     movimiento = Movimiento(
         id=None,
+        empresa_id=1,
+        ejercicio_id=1,
         fecha=date(2026, 1, 2),
         descripcion="Apertura",
     )

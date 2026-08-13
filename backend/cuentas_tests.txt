@@ -1,0 +1,156 @@
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py:22:    caja = Cuenta(
+tests/application/use_cases/consultas/test_consultar_balance_general_use_case.py:30:    capital = Cuenta(
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py:22:    caja = Cuenta(
+tests/application/use_cases/consultas/test_consultar_balance_sumas_saldos_use_case.py:30:    ventas = Cuenta(
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py:22:    caja = Cuenta(
+tests/application/use_cases/consultas/test_consultar_estado_resultados_use_case.py:30:    ventas = Cuenta(
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py:22:    caja = Cuenta(
+tests/application/use_cases/consultas/test_consultar_libro_diario_use_case.py:30:    ventas = Cuenta(
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py:22:    caja = Cuenta(
+tests/application/use_cases/consultas/test_consultar_libro_mayor_use_case.py:30:    ventas = Cuenta(
+tests/application/use_cases/cuenta/test_buscar_cuenta.py:31:    cuenta = Cuenta(
+tests/application/use_cases/cuenta/test_buscar_cuenta.py:45:    use_case = BuscarCuenta(
+tests/application/use_cases/cuenta/test_buscar_cuenta.py:59:#     cuenta = Cuenta(
+tests/application/use_cases/cuenta/test_buscar_cuenta.py:69:#     use_case = BuscarCuenta(repository)
+tests/application/use_cases/cuenta/test_listar_cuentas.py:18:        Cuenta(
+tests/application/use_cases/cuenta/test_listar_cuentas.py:28:        Cuenta(
+tests/application/use_cases/cuenta/test_registrar_cuenta.py:16:    use_case = RegistrarCuenta(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py:48:        Cuenta(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py:58:        Cuenta(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py:147:        Cuenta(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py:157:        Cuenta(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py:252:        Cuenta(
+tests/application/use_cases/libro_diario/test_listar_libro_diario_use_case.py:262:        Cuenta(
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py:23:    cuenta_caja = Cuenta(
+tests/application/use_cases/movimiento/test_anular_movimiento_use_case.py:31:    cuenta_ventas = Cuenta(
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py:40:        Cuenta(
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py:50:        Cuenta(
+tests/application/use_cases/movimiento/test_confirmar_asiento_use_case.py:140:        Cuenta(
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py:23:    cuenta_caja = Cuenta(
+tests/application/use_cases/movimiento/test_confirmar_movimiento_use_case.py:31:    cuenta_ventas = Cuenta(
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py:48:        Cuenta(
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py:58:        Cuenta(
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py:129:        Cuenta(
+tests/application/use_cases/movimiento/test_eliminar_asiento_use_case.py:139:        Cuenta(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py:41:        Cuenta(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py:51:        Cuenta(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py:177:        Cuenta(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py:187:        Cuenta(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py:267:        Cuenta(
+tests/application/use_cases/movimiento/test_modificar_asiento_use_case.py:277:        Cuenta(
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py:54:        Cuenta(
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py:64:        Cuenta(
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py:136:        Cuenta(
+tests/application/use_cases/movimiento/test_registrar_asiento_contable_en_borrador_use_case.py:146:        Cuenta(
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py:20:    caja = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_cobro_use_case.py:28:    clientes = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py:20:    compras = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_compra_use_case.py:28:    caja = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py:20:    gastos = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_gasto_use_case.py:28:    caja = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py:20:    proveedores = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_pago_use_case.py:28:    caja = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py:19:    caja = Cuenta(
+tests/application/use_cases/movimiento/test_registrar_venta_use_case.py:27:    ventas = Cuenta(
+tests/builders/entidades_builder.py:12:    return Cuenta(
+tests/builders/entidades_builder.py:22:    return Cuenta(
+tests/builders/entidades_builder.py:32:    return Cuenta(
+tests/builders/entidades_builder.py:42:    return Cuenta(
+tests/builders/entidades_builder.py:52:    return Cuenta(
+tests/builders/entidades_builder.py:62:    return Cuenta(
+tests/builders/entidades_builder.py:72:    return Cuenta(
+tests/domain/entities/test_cuenta.py:14:    cuenta = Cuenta(
+tests/domain/entities/test_cuenta.py:29:    cuenta = Cuenta(
+tests/domain/entities/test_cuenta.py:44:    cuenta = Cuenta(
+tests/domain/entities/test_cuenta.py:61:    cuenta = Cuenta(
+tests/domain/entities/test_cuenta.py:79:    cuenta = Cuenta(
+tests/domain/entities/test_cuenta.py:98:    padre = Cuenta(
+tests/domain/entities/test_cuenta.py:106:    hija = Cuenta(
+tests/domain/entities/test_cuenta.py:119:    padre = Cuenta(
+tests/domain/entities/test_cuenta.py:127:    hija = Cuenta(
+tests/domain/entities/test_cuenta.py:147:    padre = Cuenta(
+tests/domain/entities/test_cuenta.py:155:    hija = Cuenta(
+tests/domain/entities/test_cuenta.py:172:    padre1 = Cuenta(
+tests/domain/entities/test_cuenta.py:180:    padre2 = Cuenta(
+tests/domain/entities/test_cuenta.py:188:    hija = Cuenta(
+tests/domain/entities/test_cuenta.py:210:    raiz = Cuenta(
+tests/domain/entities/test_cuenta.py:218:    padre = Cuenta(
+tests/domain/entities/test_cuenta.py:226:    hija = Cuenta(
+tests/domain/entities/test_cuenta.py:244:    raiz = Cuenta(
+tests/domain/entities/test_cuenta.py:252:    padre = Cuenta(
+tests/domain/entities/test_cuenta.py:260:    hija = Cuenta(
+tests/domain/entities/test_cuenta.py:283:    raiz = Cuenta(
+tests/domain/entities/test_cuenta.py:291:    bancos = Cuenta(
+tests/domain/entities/test_cuenta.py:299:    caja = Cuenta(
+tests/domain/entities/test_cuenta.py:307:    nacion = Cuenta(
+tests/domain/entities/test_cuenta.py:330:    cuenta = Cuenta(
+tests/domain/entities/test_cuenta.py:346:    raiz = Cuenta(
+tests/domain/entities/test_cuenta.py:354:    padre = Cuenta(
+tests/domain/entities/test_cuenta.py:362:    hija = Cuenta(
+tests/domain/entities/test_cuenta.py:383:    activo = Cuenta(
+tests/domain/entities/test_cuenta.py:391:    bancos = Cuenta(
+tests/domain/entities/test_cuenta.py:399:    nacion = Cuenta(
+tests/domain/entities/test_linea_movimiento.py:15:    return Cuenta(
+tests/domain/entities/test_movimiento.py:16:    return Cuenta(
+tests/domain/services/test_balance_general.py:12:    return Cuenta(
+tests/domain/services/test_balance_general.py:21:    return Cuenta(
+tests/domain/services/test_balance_general.py:29:    return Cuenta(
+tests/domain/services/test_balance_sumas_saldos.py:14:    return Cuenta(
+tests/domain/services/test_balance_sumas_saldos.py:24:    return Cuenta(
+tests/domain/services/test_calculador_saldo.py:15:    return Cuenta(
+tests/domain/services/test_calculador_saldo.py:108:    cuenta = Cuenta(
+tests/domain/services/test_calculador_saldo.py:131:            cuenta=Cuenta(
+tests/domain/services/test_calculador_saldo.py:159:    cuenta = Cuenta(
+tests/domain/services/test_calculador_saldo.py:182:            cuenta=Cuenta(
+tests/domain/services/test_calculador_saldo.py:210:    cuenta = Cuenta(
+tests/domain/services/test_calculador_saldo.py:233:            cuenta=Cuenta(
+tests/domain/services/test_calculador_saldo.py:261:    cuenta = Cuenta(
+tests/domain/services/test_calculador_saldo.py:284:            cuenta=Cuenta(
+tests/domain/services/test_cierre_ejercicio.py:13:    return Cuenta(
+tests/domain/services/test_cierre_ejercicio.py:23:    return Cuenta(
+tests/domain/services/test_generador_movimiento_cierre.py:50:    saldo = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py:83:    saldo = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py:111:    saldo = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py:162:    saldo = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py:189:    saldo = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py:213:#     saldo_ingreso = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py:218:#     saldo_gasto = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py:245:    saldo_ingreso = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py:250:    saldo_gasto = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py:275:    saldo_ingreso = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py:280:    saldo_gasto = SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py:311:            SaldoCuenta(
+tests/domain/services/test_generador_movimiento_cierre.py:315:            SaldoCuenta(
+tests/domain/services/test_libro_diario.py:12:    return Cuenta(
+tests/domain/services/test_libro_diario.py:22:    return Cuenta(
+tests/domain/services/test_libro_mayor.py:13:    return Cuenta(
+tests/domain/services/test_libro_mayor.py:22:    return Cuenta(
+tests/domain/services/test_libro_mayor.py:33:    banco = Cuenta(
+tests/domain/services/test_libro_mayor.py:77:    banco = Cuenta(
+tests/domain/value_objects/test_estado_resultados_calculado.py:12:    saldo = SaldoCuenta(
+tests/domain/value_objects/test_saldo_cuenta.py:23:    saldo = SaldoCuenta(
+tests/domain/value_objects/test_saldo_cuenta.py:44:    saldo = SaldoCuenta(
+tests/domain/value_objects/test_saldo_cuenta.py:62:    saldo = SaldoCuenta(
+tests/factories/cuenta_factory.py:17:        return Cuenta(
+tests/infrastructure/mappers/test_cuenta_mapper.py:11:    cuenta = Cuenta(
+tests/infrastructure/mappers/test_cuenta_mapper.py:59:    cuenta1 = Cuenta(
+tests/infrastructure/mappers/test_cuenta_mapper.py:67:    cuenta2 = Cuenta(
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py:21:    cuenta = Cuenta(
+tests/infrastructure/mappers/test_linea_movimiento_mapper.py:67:        return Cuenta(
+tests/infrastructure/mappers/test_movimiento_mapper.py:26:        return Cuenta(
+tests/infrastructure/mappers/test_movimiento_mapper.py:37:    cuenta = Cuenta(
+tests/infrastructure/repositories/json/test_cuenta_repository.py:162:    # cuenta = Cuenta(
+tests/infrastructure/repositories/json/test_cuenta_repository.py:200:        Cuenta(
+tests/infrastructure/repositories/json/test_cuenta_repository.py:210:        Cuenta(
+tests/infrastructure/repositories/json/test_cuenta_repository.py:238:        Cuenta(
+tests/infrastructure/repositories/json/test_cuenta_repository.py:270:        Cuenta(
+tests/infrastructure/repositories/json/test_cuenta_repository.py:297:    # cuenta = Cuenta(
+tests/infrastructure/repositories/json/test_cuenta_repository.py:331:        Cuenta(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:48:        return Cuenta(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:252:    cuenta = Cuenta(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:319:    cuenta = Cuenta(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:377:    cuenta = Cuenta(
+tests/infrastructure/repositories/json/test_movimiento_repository_json.py:424:    cuenta = Cuenta(
+tests/persistence/repositories/test_plan_cuenta_repository_json.py:13:    cuenta = Cuenta(
+tests/persistence/repositories/test_plan_cuenta_repository_json.py:51:    cuenta = Cuenta(
+tests/persistence/repositories/test_plan_cuenta_repository_json.py:84:    cuenta = Cuenta(

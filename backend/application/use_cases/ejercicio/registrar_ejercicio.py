@@ -1,3 +1,4 @@
+
 from domain.entities.ejercicio import (
     Ejercicio,
 )
@@ -21,25 +22,30 @@ class RegistrarEjercicio:
 
     def execute(
         self,
+        empresa_id: int,
         anio: int,
         fecha_apertura,
         fecha_cierre,
     ):
 
         if self.service.buscar_por_anio(
+            empresa_id,
             anio,
         ):
             raise ValueError(
                 "Ya existe un ejercicio para ese año.",
             )
 
-        if self.service.buscar_abierto():
+        if self.service.buscar_abierto(
+            empresa_id,
+        ):
             raise ValueError(
                 "Ya existe un ejercicio abierto.",
             )
 
         ejercicio = Ejercicio(
             id=None,
+            empresa_id=empresa_id,
             anio=anio,
             fecha_apertura=fecha_apertura,
             fecha_cierre=fecha_cierre,
@@ -51,3 +57,4 @@ class RegistrarEjercicio:
         )
 
         return ejercicio
+

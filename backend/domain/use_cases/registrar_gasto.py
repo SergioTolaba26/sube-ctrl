@@ -2,7 +2,6 @@ from datetime import date
 
 from domain.entities.movimiento import Movimiento
 from domain.entities.linea_movimiento import LineaMovimiento
-from domain.enums.tipo_afectacion import TipoAfectacion
 
 
 class RegistrarGasto:
@@ -12,28 +11,31 @@ class RegistrarGasto:
         caja,
         gastos,
         importe,
+        ejercicio,
     ):
 
         movimiento = Movimiento(
             id=None,
+            empresa_id=ejercicio.empresa_id,
+            ejercicio_id=ejercicio.id,
             fecha=date.today(),
             descripcion="Gasto",
         )
 
         movimiento.agregar_linea(
-            LineaMovimiento(
+            LineaMovimiento.debito(
                 cuenta=gastos,
                 importe=importe,
-                tipo_afectacion=TipoAfectacion.DEBITO,
             )
         )
 
         movimiento.agregar_linea(
-            LineaMovimiento(
+            LineaMovimiento.credito(
                 cuenta=caja,
                 importe=importe,
-                tipo_afectacion=TipoAfectacion.CREDITO,
             )
         )
+
         movimiento.confirmar()
+
         return movimiento

@@ -19,6 +19,8 @@ class RegistrarVenta:
 
     def execute(
         self,
+        empresa_id: int,
+        ejercicio_id: int,
         fecha,
         descripcion,
         importe,
@@ -28,6 +30,8 @@ class RegistrarVenta:
 
         movimiento = Movimiento(
             id=None,
+            empresa_id=empresa_id,
+            ejercicio_id=ejercicio_id,
             fecha=fecha,
             descripcion=descripcion,
         )
@@ -45,6 +49,8 @@ class RegistrarVenta:
                 Decimal(str(importe)),
             )
         )
+
+        movimiento.confirmar()
 
         self.repository.guardar(
             movimiento,

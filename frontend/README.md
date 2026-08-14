@@ -9,6 +9,7 @@ http://127.0.0.1:8000/ejercicios
 
 Cloud Conta en el celu con Server desde /frontend
 http-server . -p 05500 -a 0.0.0.
+
 API en el celu desde /backend
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 

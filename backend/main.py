@@ -81,13 +81,17 @@ def root():
 app.add_middleware(
     CORSMiddleware,
 
-    # allow_origins=[
-    #     "http://localhost:5500",
-    #     "http://127.0.0.1:5500",
-    #     "http://192.168.0.9:5500",  # IP de tu laptop en casa
-    #     "http://192.168.3.124:5500", # IP del trabajo
-    # ],
-    allow_origins=["*"], # Mejor aún sirve para cualquier IP, uso sólo en desarrollo
+    allow_origins=[
+        "http://localhost:5500",
+        "http://127.0.0.1:5173",
+        "http://localhost:5173",
+        "http://127.0.0.1:5500",
+
+        "http://192.168.0.9:5500",  # IP de tu laptop en casa
+        "http://192.168.3.124:5500", # IP del trabajo
+        "http://192.168.0.9:5173",
+    ],
+   # allow_origins=["*"], # Mejor aún sirve para cualquier IP, uso sólo en desarrollo
 
 
     allow_credentials=True,

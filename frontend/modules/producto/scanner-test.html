@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Prueba Scanner</title>
+
+    <title>
+        Prueba Scanner
+    </title>
+
 </head>
+
 <body>
 
-    <h1>Prueba Scanner</h1>
+    <h1>
+        Prueba Scanner
+    </h1>
 
     <button id="btn-escanear">
-        Escanear
+        📷 Escanear código
     </button>
 
-    <pre id="resultado"></pre>
+    <h2>
+        Resultado
+    </h2>
+
+    <pre id="resultado">
+Sin código.
+    </pre>
 
     <script type="module">
 
-        import { Scanner } from "./scanner.js";
+        import {
+            Scanner
+        } from "./scanner.js";
 
         const boton =
             document.getElementById(
@@ -32,6 +49,11 @@
             "click",
             async () => {
 
+                boton.disabled = true;
+
+                resultado.textContent =
+                    "Buscando código...";
+
                 try {
 
                     const scanner =
@@ -41,6 +63,7 @@
                         await scanner.escanear();
 
                     resultado.textContent =
+                        "Código detectado:\n\n" +
                         codigo;
 
                 }
@@ -52,7 +75,14 @@
                     );
 
                     resultado.textContent =
+                        "Error al escanear:\n\n" +
                         error.message;
+
+                }
+
+                finally {
+
+                    boton.disabled = false;
 
                 }
 
@@ -62,4 +92,5 @@
     </script>
 
 </body>
+
 </html>

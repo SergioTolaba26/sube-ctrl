@@ -2,6 +2,7 @@
     {
         "id": 1,
         "anio": 2026,
+        "empresa_id": 1,
         "fecha_apertura": "2026-01-01",
         "fecha_cierre": null,
         "estado": "ABIERTO"

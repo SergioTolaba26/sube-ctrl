@@ -4,34 +4,73 @@ export class Scanner {
 
     constructor() {
 
-        this.reader = new BrowserMultiFormatReader();
+        this.reader =
+            new BrowserMultiFormatReader();
 
+        this.video = null;
     }
 
     async escanear() {
 
-        const video = document.createElement(
-            "video",
-        );
+        this.video =
+            document.createElement("video");
 
-        video.setAttribute(
+        this.video.setAttribute(
             "playsinline",
             true,
         );
 
+        this.video.style.width = "100%";
+        this.video.style.maxWidth = "500px";
+        this.video.style.display = "block";
+        this.video.style.margin = "20px auto";
+
         document.body.appendChild(
-            video,
+            this.video,
         );
 
-        const resultado =
-            await this.reader.decodeOnceFromVideoDevice(
-                undefined,
-                video,
-            );
+        try {
 
-        video.remove();
+            const resultado =
+                await this.reader.decodeOnceFromVideoDevice(
+                    undefined,
+                    this.video,
+                );
 
-        return resultado.text;
+            return resultado.text;
+
+        }
+
+        finally {
+
+            this.detener();
+
+        }
+
+    }
+
+    detener() {
+
+        if (!this.video) {
+            return;
+        }
+
+        const stream =
+            this.video.srcObject;
+
+        if (stream) {
+
+            stream
+                .getTracks()
+                .forEach(
+                    track => track.stop(),
+                );
+
+        }
+
+        this.video.remove();
+
+        this.video = null;
 
     }
 

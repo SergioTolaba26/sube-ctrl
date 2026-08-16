@@ -8,69 +8,163 @@ export class Scanner {
             new BrowserMultiFormatReader();
 
         this.video = null;
+        this.controlador = null;
+
     }
 
-    async escanear() {
+
+    async escanear(
+        callback,
+    ) {
 
         this.video =
-            document.createElement("video");
+            document.createElement(
+                "video",
+            );
 
         this.video.setAttribute(
             "playsinline",
             true,
         );
 
-        this.video.style.width = "100%";
-        this.video.style.maxWidth = "500px";
-        this.video.style.display = "block";
-        this.video.style.margin = "20px auto";
+        this.video.setAttribute(
+            "autoplay",
+            true,
+        );
+
+        this.video.style.width =
+            "100%";
+
+        this.video.style.maxWidth =
+            "500px";
+
+        this.video.style.display =
+            "block";
+
+        this.video.style.margin =
+            "20px auto";
 
         document.body.appendChild(
             this.video,
         );
 
+
         try {
 
-            const resultado =
-                await this.reader.decodeOnceFromVideoDevice(
-                    undefined,
-                    this.video,
-                );
+            this.controlador =
+                await this.reader
+                    .decodeFromVideoDevice(
 
-            return resultado.text;
+                        undefined,
+
+                        this.video,
+
+                        (
+                            resultado,
+                            error,
+                        ) => {
+
+                            if (!resultado) {
+                                return;
+                            }
+
+
+                            const codigo =
+                                resultado.text;
+
+
+                            console.log(
+                                "SCANNER LEYÓ:",
+                                codigo,
+                            );
+
+
+                            this.detener();
+
+
+                            if (
+                                callback
+                            ) {
+
+                                callback(
+                                    codigo,
+                                );
+
+                            }
+
+                        },
+
+                    );
 
         }
+        catch (
+            error
+        ) {
 
-        finally {
+            console.error(
+                "SCANNER ERROR:",
+                error,
+            );
 
             this.detener();
+
+            throw error;
 
         }
 
     }
 
+
     detener() {
 
-        if (!this.video) {
-            return;
-        }
+        if (
+            this.controlador
+        ) {
 
-        const stream =
-            this.video.srcObject;
+            this.controlador.stop();
 
-        if (stream) {
-
-            stream
-                .getTracks()
-                .forEach(
-                    track => track.stop(),
-                );
+            this.controlador =
+                null;
 
         }
 
-        this.video.remove();
 
-        this.video = null;
+        if (
+            this.video
+        ) {
+
+            const stream =
+                this.video.srcObject;
+
+
+            if (
+                stream
+            ) {
+
+                stream
+                    .getTracks()
+                    .forEach(
+                        (
+                            track,
+                        ) => {
+
+                            track.stop();
+
+                        },
+                    );
+
+            }
+
+
+            this.video.remove();
+
+            this.video =
+                null;
+
+        }
+
+
+        this.reader.reset();
 
     }
 

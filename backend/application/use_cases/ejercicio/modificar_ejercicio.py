@@ -3,7 +3,7 @@ from domain.services.ejercicio_service import (
 )
 
 
-class ActualizarEjercicio:
+class ModificarEjercicio:
 
     def __init__(
         self,
@@ -33,7 +33,7 @@ class ActualizarEjercicio:
         ejercicio.fecha_apertura = fecha_apertura
         ejercicio.fecha_cierre = fecha_cierre
 
-        self.service.actualizar(
+        self.service.modificar(
             ejercicio,
         )
 

@@ -18,7 +18,7 @@ class ConsultarEstadoResultados:
     def execute(
         self,
     ):
-        movimientos = self.repository.obtener_todos()
+        movimientos = self.repository.listar()
 
         estado = EstadoResultados()
 

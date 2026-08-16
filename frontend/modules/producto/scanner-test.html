@@ -1,9 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 
 <head>
 
     <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>
         Prueba Scanner
@@ -11,23 +16,28 @@
 
 </head>
 
+
 <body>
 
     <h1>
         Prueba Scanner
     </h1>
 
+
     <button id="btn-escanear">
         📷 Escanear código
     </button>
+
 
     <h2>
         Resultado
     </h2>
 
+
     <pre id="resultado">
 Sin código.
     </pre>
+
 
     <script type="module">
 
@@ -35,58 +45,91 @@ Sin código.
             Scanner
         } from "./scanner.js";
 
+
         const boton =
             document.getElementById(
                 "btn-escanear",
             );
+
 
         const resultado =
             document.getElementById(
                 "resultado",
             );
 
+
         boton.addEventListener(
+
             "click",
+
             async () => {
 
-                boton.disabled = true;
+                boton.disabled =
+                    true;
+
 
                 resultado.textContent =
                     "Buscando código...";
 
+
+                const scanner =
+                    new Scanner();
+
+
                 try {
 
-                    const scanner =
-                        new Scanner();
+                    await scanner.escanear(
 
-                    const codigo =
-                        await scanner.escanear();
+                        (
+                            codigo,
+                        ) => {
 
-                    resultado.textContent =
-                        "Código detectado:\n\n" +
-                        codigo;
+                            console.log(
+                                "HTML RECIBIÓ:",
+                                codigo,
+                            );
+
+
+                            resultado.textContent =
+                                "Código detectado:\n\n" +
+                                codigo;
+
+
+                            alert(
+                                "HTML recibió: " +
+                                codigo,
+                            );
+
+
+                            boton.disabled =
+                                false;
+
+                        },
+
+                    );
 
                 }
-
-                catch (error) {
+                catch (
+                    error
+                ) {
 
                     console.error(
+                        "HTML ERROR:",
                         error,
                     );
 
+
                     resultado.textContent =
-                        "Error al escanear:\n\n" +
-                        error.message;
+                        "Error al escanear.";
 
-                }
 
-                finally {
-
-                    boton.disabled = false;
+                    boton.disabled =
+                        false;
 
                 }
 
             },
+
         );
 
     </script>

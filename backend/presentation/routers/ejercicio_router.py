@@ -41,8 +41,8 @@ from application.use_cases.ejercicio.cerrar_ejercicio_use_case import (
     CerrarEjercicio,
 )
 
-from application.use_cases.ejercicio.actualizar_ejercicio import (
-    ActualizarEjercicio,
+from application.use_cases.ejercicio.modificar_ejercicio import (
+    ModificarEjercicio,
 )
 
 from application.use_cases.ejercicio.eliminar_ejercicio import (
@@ -205,7 +205,7 @@ def actualizar(
 
 ):
 
-    use_case = ActualizarEjercicio(
+    use_case = ModificarEjercicio(
         service_ejercicios,
     )
 

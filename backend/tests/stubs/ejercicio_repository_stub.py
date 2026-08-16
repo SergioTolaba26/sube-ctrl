@@ -78,7 +78,7 @@ class EjercicioRepositoryStub:
             if ejercicio.id != id_
         ]
 
-    def actualizar(
+    def modificar(
         self,
         ejercicio,
     ):

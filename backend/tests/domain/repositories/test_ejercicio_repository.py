@@ -18,18 +18,18 @@ def test_define_guardar():
         "guardar",
     )
 
-def test_define_obtener_todos():
+def test_define_listar():
 
     assert hasattr(
         EjercicioRepository,
-        "obtener_todos",
+        "listar",
     )
 
-def test_define_obtener_abierto():
+def test_define_buscar_abierto():
 
     assert hasattr(
         EjercicioRepository,
-        "obtener_abierto",
+        "buscar_abierto",
     )
 
 def test_define_eliminar():

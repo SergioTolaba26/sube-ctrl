@@ -18,8 +18,7 @@ class ConsultarLibroDiario:
     def execute(
         self,
     ):
-        movimientos = self.repository.obtener_todos()
-        #movimientos = self.repository.listar()
+        movimientos = self.repository.listar()
         diario = LibroDiario()
 
         return diario.obtener(

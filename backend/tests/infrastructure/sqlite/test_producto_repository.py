@@ -124,7 +124,7 @@ def test_buscar_producto_por_id_inexistente(
     assert resultado is None
 
 
-def test_obtener_todos_sin_productos(
+def test_listar_sin_productos(
     database,
 ):
 
@@ -132,10 +132,10 @@ def test_obtener_todos_sin_productos(
         database.connection,
     )
 
-    assert repository.obtener_todos(1) == []
+    assert repository.listar(1) == []
 
 
-def test_obtener_todos(
+def test_listar(
     database,
 ):
 
@@ -161,7 +161,7 @@ def test_obtener_todos(
         )
     )
 
-    productos = repository.obtener_todos(1)
+    productos = repository.listar(1)
 
     assert len(productos) == 2
 
@@ -324,11 +324,11 @@ def test_permite_mismo_codigo_barras_en_empresas_distintas(
         )
     )
 
-    productos_empresa_1 = repository.obtener_todos(
+    productos_empresa_1 = repository.listar(
         1,
     )
 
-    productos_empresa_2 = repository.obtener_todos(
+    productos_empresa_2 = repository.listar(
         2,
     )
 

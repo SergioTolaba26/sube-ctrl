@@ -81,12 +81,12 @@ class EjercicioService:
             id_,
         )
 
-    def actualizar(
+    def modificar(
         self,
         ejercicio: Ejercicio,
     ):
 
-        self.repository.actualizar(
+        self.repository.modificar(
             ejercicio,
         )
 

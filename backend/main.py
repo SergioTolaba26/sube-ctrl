@@ -88,8 +88,9 @@ app.add_middleware(
         "http://127.0.0.1:5500",
 
         "http://192.168.0.9:5500",  # IP de tu laptop en casa
-        "http://192.168.3.124:5500", # IP del trabajo
+        "http://192.168.3.124:5173", # IP del trabajo
         "http://192.168.0.9:5173",
+        "http://192.168.0.13:5173",
     ],
    # allow_origins=["*"], # Mejor aún sirve para cualquier IP, uso sólo en desarrollo
 

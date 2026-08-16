@@ -162,7 +162,7 @@ class ProductoRepositorySQLite(
             fila,
         )
 
-    def obtener_todos(
+    def listar(
         self,
         empresa_id: int,
     ) -> list[Producto]:

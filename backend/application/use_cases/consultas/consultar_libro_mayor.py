@@ -15,7 +15,7 @@ class ConsultarLibroMayor:
         self,
         cuenta: Cuenta,
     ):
-        movimientos = self.repository.obtener_todos()
+        movimientos = self.repository.listar()
 
         libro = LibroMayor()
 

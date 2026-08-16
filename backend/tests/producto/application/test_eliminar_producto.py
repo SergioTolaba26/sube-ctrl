@@ -51,6 +51,6 @@ def test_eliminar_producto_inexistente():
         999,
     )
 
-    assert repository.obtener_todos(
+    assert repository.listar(
         1,
     ) == []

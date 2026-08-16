@@ -18,6 +18,6 @@ class ListarProductos:
         empresa_id: int,
     ) -> list[Producto]:
 
-        return self._repository.obtener_todos(
+        return self._repository.listar(
             empresa_id,
         )

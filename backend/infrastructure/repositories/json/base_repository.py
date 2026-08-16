@@ -60,7 +60,7 @@ class BaseRepositoryJson:
         self.storage.save(
             datos,
         )   
-    def actualizar(
+    def modificar(
         self,
         entidad,
     ):

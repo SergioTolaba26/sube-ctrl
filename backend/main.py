@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+
 from presentation.routers.empresa_router import (
     router as empresa_router,
 )
@@ -102,3 +103,41 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+import os
+import psycopg
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+app = FastAPI()
+
+
+@app.get("/test-db")
+def test_db():
+    database_url = os.getenv("DATABASE_URL")
+
+    if not database_url:
+        return {
+            "ok": False,
+            "error": "DATABASE_URL no está definida"
+        }
+
+    try:
+        with psycopg.connect(database_url) as conn:
+            with conn.cursor() as cursor:
+                cursor.execute("SELECT 1")
+                result = cursor.fetchone()
+
+        return {
+            "ok": True,
+            "database": "Supabase PostgreSQL",
+            "result": result[0]
+        }
+
+    except Exception as e:
+        return {
+            "ok": False,
+            "error": str(e)
+        }

@@ -12,7 +12,7 @@ import { abrirNuevoAsiento, abrirEditarAsiento } from './asientosFormulario.js';
 
 import {
 
-    obtenerCuentas,
+    listarCuentas,
 
 } from "../api.js";
 

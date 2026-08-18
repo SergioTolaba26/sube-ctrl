@@ -5,7 +5,7 @@
  ******************************************************************/
 
 import {
-    obtenerCuentas,
+    listarCuentas,
 } from "../api.js";
 
 let cuentas = [];
@@ -18,7 +18,7 @@ let lineas = [];
 
 export async function inicializarLineas() {
 
-    cuentas = await obtenerCuentas();
+    cuentas = await listarCuentas();
 
     lineas = [];
 

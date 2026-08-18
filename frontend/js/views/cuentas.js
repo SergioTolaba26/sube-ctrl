@@ -1,6 +1,6 @@
 import {
 
-    obtenerCuentas,
+    listarCuentas,
 
     crearCuenta,
 
@@ -62,7 +62,7 @@ export async function mostrarCuentas() {
     try {
 
         cuentas =
-            await obtenerCuentas();
+            await listarCuentas();
         //Agregado para ver por qué las acciones no se ven    
         console.log("CUENTAS:", cuentas);
 

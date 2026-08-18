@@ -5,7 +5,7 @@
  ******************************************************************/
 
 import {
-  obtenerCuentas,
+  listarCuentas,
   obtenerAsiento,
   crearAsiento,
   actualizarAsiento,
@@ -236,7 +236,7 @@ export async function abrirEditarAsiento(
  ******************************************************************/
 
 async function cargarComboCuentas() {
-  cuentas = await obtenerCuentas();
+  cuentas = await listarCuentas();
 
   const combo = document.querySelector('#cmbCuenta');
 

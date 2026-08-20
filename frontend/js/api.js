@@ -96,15 +96,18 @@ export async function eliminarEjercicio(id) {
 // PLAN DE CUENTAS
 // ======================================================
 
-export async function listarCuentas() {
-  const respuesta = await fetch(`${API_URL}/cuentas`);
+export async function listarCuentas(empresaId) {
+  const respuesta = await fetch(
+    `${API_URL}/cuentas/?empresa_id=${empresaId}`,
+  );
 
   return await procesarRespuesta(respuesta);
 }
 
-export async function crearCuenta(datos) {
+
+export async function crearCuenta(empresaId, datos) {
   const respuesta = await fetch(
-    `${API_URL}/cuentas/`,
+    `${API_URL}/cuentas/?empresa_id=${empresaId}`,
 
     {
       method: 'POST',
@@ -120,9 +123,14 @@ export async function crearCuenta(datos) {
   return await procesarRespuesta(respuesta);
 }
 
-export async function actualizarCuenta(id, datos) {
+
+export async function actualizarCuenta(
+  empresaId,
+  id,
+  datos,
+) {
   const respuesta = await fetch(
-    `${API_URL}/cuentas/${id}`,
+    `${API_URL}/cuentas/${id}?empresa_id=${empresaId}`,
 
     {
       method: 'PUT',
@@ -138,9 +146,13 @@ export async function actualizarCuenta(id, datos) {
   return await procesarRespuesta(respuesta);
 }
 
-export async function eliminarCuenta(id) {
+
+export async function eliminarCuenta(
+  empresaId,
+  id,
+) {
   const respuesta = await fetch(
-    `${API_URL}/cuentas/${id}`,
+    `${API_URL}/cuentas/${id}?empresa_id=${empresaId}`,
 
     {
       method: 'DELETE',

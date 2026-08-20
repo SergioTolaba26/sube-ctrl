@@ -1,188 +1,129 @@
 import {
-
-    listarCuentas,
-
-    crearCuenta,
-
-    actualizarCuenta,
-
-    eliminarCuenta,
-
-} from "../api.js";
+  listarCuentas,
+  crearCuenta,
+  actualizarCuenta,
+  eliminarCuenta,
+} from '../api.js';
 
 import {
+    obtenerEmpresaSeleccionada,
+} from "../estado.js";
 
-    crearPagina,
+import { crearPagina } from '../components/page.js';
 
-} from "../components/page.js";
+import { abrirModal, cerrarModal } from '../components/modal.js';
 
-import {
+import { conectarEventosTabla } from '../components/table.js';
 
-    abrirModal,
+import { crearFormularioCuenta } from '../forms/cuentaForm.js';
 
-    cerrarModal,
-
-} from "../components/modal.js";
-
-import {
-
-    conectarEventosTabla,
-
-} from "../components/table.js";
-
-import {
-
-    crearFormularioCuenta,
-
-} from "../forms/cuentaForm.js";
-
-import {
-
-    mostrarToast,
-
-} from "../components/toast.js";
-
+import { mostrarToast } from '../components/toast.js';
 
 let cuentas = [];
-
 
 /*********************************************
  * LISTAR
  *********************************************/
 
 export async function mostrarCuentas() {
+  const contenido = document.getElementById('contenido');
 
-    const contenido = document.getElementById(
-        "contenido",
-    );
-    
-    contenido.innerHTML =
-        "<h2>Plan de cuentas</h2><p>Cargando...</p>";
+  contenido.innerHTML = '<h2>Plan de cuentas</h2><p>Cargando...</p>';
 
-    try {
+  try {
+        const empresa =
+                obtenerEmpresaSeleccionada();
+
+        if (!empresa) {
+
+            contenido.innerHTML = `
+                <h2>Plan de cuentas</h2>
+                <p>Seleccione una empresa.</p>
+            `;
+
+            return;
+        }
 
         cuentas =
-            await listarCuentas();
-        //Agregado para ver por qué las acciones no se ven    
-        console.log("CUENTAS:", cuentas);
-
-        console.log("crearPagina");
-        contenido.innerHTML = crearPagina({
-
-            titulo: "Plan de cuentas",
-
-            botones: [
-
-                {
-
-                    id: "btn-nueva-cuenta",
-
-                    texto: "Nueva",
-
-                    icono: "➕",
-
-                },
-
-                {
-
-                    id: "btn-actualizar-cuentas",
-
-                    texto: "Actualizar",
-
-                    icono: "🔄",
-
-                },
-
-            ],
-
-            columnas: [
-
-                "Código",
-
-                "Nombre",
-
-                "Tipo",
-
-                "Activa",
-
-                "Imputable",
-
-            ],
-
-            filas: cuentas.map(
-
-                cuenta => [
-
-                    cuenta.codigo,
-
-                    cuenta.nombre,
-
-                    cuenta.tipo,
-
-                    cuenta.activa
-                        ? "Sí"
-                        : "No",
-
-                    cuenta.imputable
-                        ? "Sí"
-                        : "No",
-
-                ],
-
-            ),
-
-            acciones: true,
-
-        });
-
-
-        conectarEventosTabla({
-
-            onEditar: editarCuenta,
-
-            onEliminar: eliminarCuentaConfirm,
-
-        });
-
-
-        document
-
-            .getElementById(
-                "btn-nueva-cuenta",
-            )
-
-            ?.addEventListener(
-
-                "click",
-
-                nuevaCuenta,
-
+            await listarCuentas(
+                empresa.id,
             );
 
+        console.log(
+            "Empresa para Plan de Cuentas:",
+            empresa,
+        );
 
-        document
+        console.log(
+            "CUENTAS:",
+            cuentas,
+        );
+    console.log('crearPagina');
+    contenido.innerHTML = crearPagina({
+      titulo: 'Plan de cuentas',
 
-            .getElementById(
-                "btn-actualizar-cuentas",
-            )
+      botones: [
+        {
+          id: 'btn-nueva-cuenta',
 
-            ?.addEventListener(
+          texto: 'Nueva',
 
-                "click",
+          icono: '➕',
+        },
 
-                mostrarCuentas,
+        {
+          id: 'btn-actualizar-cuentas',
 
-            );
+          texto: 'Actualizar',
 
-    }
+          icono: '🔄',
+        },
+      ],
 
-    catch (
+      columnas: ['Código', 'Nombre', 'Tipo', 'Activa', 'Imputable'],
 
-        error
+      filas: cuentas.map((cuenta) => [
+        cuenta.codigo,
 
-    ) {
+        cuenta.nombre,
 
-        contenido.innerHTML = `
+        cuenta.tipo,
+
+        cuenta.activa ? 'Sí' : 'No',
+
+        cuenta.imputable ? 'Sí' : 'No',
+      ]),
+
+      acciones: true,
+    });
+
+    conectarEventosTabla({
+      onEditar: editarCuenta,
+
+      onEliminar: eliminarCuentaConfirm,
+    });
+
+    document
+
+      .getElementById('btn-nueva-cuenta')
+
+      ?.addEventListener(
+        'click',
+
+        nuevaCuenta,
+      );
+
+    document
+
+      .getElementById('btn-actualizar-cuentas')
+
+      ?.addEventListener(
+        'click',
+
+        mostrarCuentas,
+      );
+  } catch (error) {
+    contenido.innerHTML = `
 
             <h2>Plan de cuentas</h2>
 
@@ -190,259 +131,165 @@ export async function mostrarCuentas() {
 
         `;
 
-        console.error(
-
-            error,
-
-        );
-
-    }
-
+    console.error(error);
+  }
 }
-
 
 /*********************************************
  * NUEVA
  *********************************************/
 
 function nuevaCuenta() {
+  abrirModal({
+    titulo: 'Nueva cuenta',
 
-    abrirModal({
+    contenido: crearFormularioCuenta(),
 
-        titulo: "Nueva cuenta",
+    textoAceptar: 'Guardar',
 
-        contenido:
-            crearFormularioCuenta(),
+    textoCancelar: 'Cancelar',
 
-        textoAceptar: "Guardar",
-
-        textoCancelar: "Cancelar",
-
-        onAceptar:
-            guardarCuenta,
-
-    });
-
+    onAceptar: guardarCuenta,
+  });
 }
-
 
 /*********************************************
  * GUARDAR
  *********************************************/
 
 async function guardarCuenta() {
+  const formulario = document.getElementById('form-cuenta');
 
-    const formulario = document.getElementById(
+  const datos = {
+    codigo: formulario.codigo.value,
 
-        "form-cuenta",
+    nombre: formulario.nombre.value,
 
+    tipo: formulario.tipo.value,
+
+    activa: formulario.activa.checked,
+
+    imputable: formulario.imputable.checked,
+  };
+
+  try {
+    const empresa =
+        obtenerEmpresaSeleccionada();
+
+    if (!empresa) {
+        throw new Error(
+            "No hay una empresa seleccionada.",
+        );
+    }
+
+    await crearCuenta(
+        empresa.id,
+        datos,
+    );
+    
+
+    mostrarToast(
+      'Cuenta creada correctamente.',
+
+      'success',
     );
 
-    const datos = {
+    cerrarModal();
 
-        codigo:
-            formulario.codigo.value,
+    await mostrarCuentas();
+  } catch (error) {
+    mostrarToast(
+      error.message,
 
-        nombre:
-            formulario.nombre.value,
-
-        tipo:
-            formulario.tipo.value,
-
-        activa:
-            formulario.activa.checked,
-
-        imputable:
-            formulario.imputable.checked,
-
-    };
-
-    try {
-
-        await crearCuenta(
-
-            datos,
-
-        );
-
-        mostrarToast(
-
-            "Cuenta creada correctamente.",
-
-            "success",
-
-        );
-
-        cerrarModal();
-
-        await mostrarCuentas();
-
-    }
-
-    catch (
-
-        error
-
-    ) {
-
-        mostrarToast(
-
-            error.message,
-
-            "error",
-
-        );
-
-    }
-
+      'error',
+    );
+  }
 }
-
 
 /*********************************************
  * EDITAR
  *********************************************/
 
-function editarCuenta(
+function editarCuenta(indice) {
+  const cuenta = cuentas[indice];
 
-    indice,
+  abrirModal({
+    titulo: 'Editar cuenta',
 
-) {
+    contenido: crearFormularioCuenta(cuenta),
 
-    const cuenta =
+    textoAceptar: 'Guardar',
 
-        cuentas[indice];
+    textoCancelar: 'Cancelar',
 
-    abrirModal({
-
-        titulo:
-            "Editar cuenta",
-
-        contenido:
-            crearFormularioCuenta(
-
-                cuenta,
-
-            ),
-
-        textoAceptar:
-            "Guardar",
-
-        textoCancelar:
-            "Cancelar",
-
-        onAceptar: () =>
-
-            actualizar(
-
-                cuenta.id,
-
-            ),
-
-    });
-
+    onAceptar: () => actualizar(cuenta.id),
+  });
 }
-
 
 /*********************************************
  * ACTUALIZAR
  *********************************************/
 
-async function actualizar(
+async function actualizar(id) {
+  const formulario = document.getElementById('form-cuenta');
 
-    id,
+  const datos = {
+    codigo: formulario.codigo.value,
 
-) {
+    nombre: formulario.nombre.value,
 
-    const formulario =
+    tipo: formulario.tipo.value,
 
-        document.getElementById(
+    activa: formulario.activa.checked,
 
-            "form-cuenta",
+    imputable: formulario.imputable.checked,
+  };
 
+  try {
+    const empresa =
+        obtenerEmpresaSeleccionada();
+
+    if (!empresa) {
+        throw new Error(
+            "No hay una empresa seleccionada.",
         );
-
-    const datos = {
-
-        codigo:
-            formulario.codigo.value,
-
-        nombre:
-            formulario.nombre.value,
-
-        tipo:
-            formulario.tipo.value,
-
-        activa:
-            formulario.activa.checked,
-
-        imputable:
-            formulario.imputable.checked,
-
-    };
-
-    try {
-
-        await actualizarCuenta(
-
-            id,
-
-            datos,
-
-        );
-
-        mostrarToast(
-
-            "Cuenta actualizada.",
-
-            "success",
-
-        );
-
-        cerrarModal();
-
-        await mostrarCuentas();
-
     }
 
-    catch (
+    await actualizarCuenta(
+        empresa.id,
+        id,
+        datos,
+    );
 
-        error
+    mostrarToast(
+      'Cuenta actualizada.',
 
-    ) {
+      'success',
+    );
 
-        mostrarToast(
+    cerrarModal();
 
-            error.message,
+    await mostrarCuentas();
+  } catch (error) {
+    mostrarToast(
+      error.message,
 
-            "error",
-
-        );
-
-    }
-
+      'error',
+    );
+  }
 }
-
 
 /*********************************************
  * ELIMINAR
  *********************************************/
 
-function eliminarCuentaConfirm(
+function eliminarCuentaConfirm(indice) {
+  const cuenta = cuentas[indice];
 
-    indice,
+  abrirModal({
+    titulo: 'Eliminar cuenta',
 
-) {
-
-    const cuenta =
-
-        cuentas[indice];
-
-    abrirModal({
-
-        titulo:
-            "Eliminar cuenta",
-
-        contenido: `
+    contenido: `
 
             <p>
 
@@ -458,67 +305,44 @@ function eliminarCuentaConfirm(
 
         `,
 
-        textoAceptar:
-            "Eliminar",
+    textoAceptar: 'Eliminar',
 
-        textoCancelar:
-            "Cancelar",
+    textoCancelar: 'Cancelar',
 
-        onAceptar: () =>
-
-            eliminar(
-
-                cuenta.id,
-
-            ),
-
-    });
-
+    onAceptar: () => eliminar(cuenta.id),
+  });
 }
 
+async function eliminar(id) {
+  try {
+    const empresa =
+        obtenerEmpresaSeleccionada();
 
-async function eliminar(
-
-    id,
-
-) {
-
-    try {
-
-        await eliminarCuenta(
-
-            id,
-
+    if (!empresa) {
+        throw new Error(
+            "No hay una empresa seleccionada.",
         );
-
-        mostrarToast(
-
-            "Cuenta eliminada.",
-
-            "success",
-
-        );
-
-        cerrarModal();
-
-        await mostrarCuentas();
-
     }
 
-    catch (
+    await eliminarCuenta(
+        empresa.id,
+        id,
+    );
 
-        error
+    mostrarToast(
+      'Cuenta eliminada.',
 
-    ) {
+      'success',
+    );
 
-        mostrarToast(
+    cerrarModal();
 
-            error.message,
+    await mostrarCuentas();
+  } catch (error) {
+    mostrarToast(
+      error.message,
 
-            "error",
-
-        );
-
-    }
-
+      'error',
+    );
+  }
 }

@@ -24,48 +24,83 @@ class CuentaRepositoryPostgres:
 
         with self._connection.cursor() as cursor:
 
-            cursor.execute(
-                """
-                INSERT INTO cuentas (
-                    id,
-                    empresa_id,
-                    codigo,
-                    nombre,
-                    tipo,
-                    activa,
-                    imputable
+            if cuenta.id is None:
+
+                cursor.execute(
+                    """
+                    INSERT INTO cuentas (
+                        empresa_id,
+                        codigo,
+                        nombre,
+                        tipo,
+                        activa,
+                        imputable
+                    )
+                    VALUES (
+                        %s,
+                        %s,
+                        %s,
+                        %s,
+                        %s,
+                        %s
+                    )
+                    RETURNING id
+                    """,
+                    (
+                        cuenta.empresa_id,
+                        cuenta.codigo,
+                        cuenta.nombre,
+                        cuenta.tipo.name,
+                        cuenta.activa,
+                        cuenta.imputable,
+                    ),
                 )
-                VALUES (
-                    %s,
-                    %s,
-                    %s,
-                    %s,
-                    %s,
-                    %s,
-                    %s
+
+                cuenta.id = cursor.fetchone()[0]
+
+            else:
+
+                cursor.execute(
+                    """
+                    INSERT INTO cuentas (
+                        id,
+                        empresa_id,
+                        codigo,
+                        nombre,
+                        tipo,
+                        activa,
+                        imputable
+                    )
+                    VALUES (
+                        %s,
+                        %s,
+                        %s,
+                        %s,
+                        %s,
+                        %s,
+                        %s
+                    )
+                    ON CONFLICT (id)
+                    DO UPDATE SET
+                        empresa_id = EXCLUDED.empresa_id,
+                        codigo = EXCLUDED.codigo,
+                        nombre = EXCLUDED.nombre,
+                        tipo = EXCLUDED.tipo,
+                        activa = EXCLUDED.activa,
+                        imputable = EXCLUDED.imputable
+                    """,
+                    (
+                        cuenta.id,
+                        cuenta.empresa_id,
+                        cuenta.codigo,
+                        cuenta.nombre,
+                        cuenta.tipo.name,
+                        cuenta.activa,
+                        cuenta.imputable,
+                    ),
                 )
-                ON CONFLICT (id)
-                DO UPDATE SET
-                    empresa_id = EXCLUDED.empresa_id,
-                    codigo = EXCLUDED.codigo,
-                    nombre = EXCLUDED.nombre,
-                    tipo = EXCLUDED.tipo,
-                    activa = EXCLUDED.activa,
-                    imputable = EXCLUDED.imputable
-                """,
-                (
-                    cuenta.id,
-                    cuenta.empresa_id,
-                    cuenta.codigo,
-                    cuenta.nombre,
-                    cuenta.tipo.name,
-                    cuenta.activa,
-                    cuenta.imputable,
-                ),
-            )
 
         self._connection.commit()
-
     # =========================================================
     # LISTAR
     # =========================================================

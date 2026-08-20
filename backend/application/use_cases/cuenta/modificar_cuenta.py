@@ -19,11 +19,21 @@ class ModificarCuenta:
         tipo,
         activa: bool,
         imputable: bool,
+        empresa_id: int | None = None,
     ):
 
-        cuenta = self.service.buscar_por_id(
-            cuenta_id,
-        )
+        if empresa_id is None:
+
+            cuenta = self.service.buscar_por_id(
+                cuenta_id,
+            )
+
+        else:
+
+            cuenta = self.service.buscar_por_id(
+                empresa_id,
+                cuenta_id,
+            )
 
         if cuenta is None:
             return None

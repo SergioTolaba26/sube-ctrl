@@ -14,16 +14,20 @@ class EliminarCuenta:
     def execute(
         self,
         cuenta_id: int,
+        empresa_id: int = 1,
     ):
 
         cuenta = self.service.buscar_por_id(
+            empresa_id,
             cuenta_id,
         )
 
         if cuenta is None:
+
             return None
 
         self.service.eliminar(
+            empresa_id,
             cuenta_id,
         )
 

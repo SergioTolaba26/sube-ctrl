@@ -2,6 +2,10 @@ from application.use_cases.cuenta.listar_cuentas import (
     ListarCuentas,
 )
 
+from domain.services.cuenta_service import (
+    CuentaService,
+)
+
 from tests.stubs.cuenta_repository_stub import (
     CuentaRepositoryStub,
 )
@@ -34,7 +38,13 @@ def test_lista_cuentas():
         )
     )
 
-    use_case = ListarCuentas(repository)
+    service = CuentaService(
+        repository,
+    )
+
+    use_case = ListarCuentas(
+        service,
+    )
 
     cuentas = use_case.execute(
         1,

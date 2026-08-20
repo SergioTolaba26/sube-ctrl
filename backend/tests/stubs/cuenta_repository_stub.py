@@ -20,19 +20,26 @@ class CuentaRepositoryStub(PlanCuentaRepository):
                 return cuenta
         return None
 
-    def eliminar(self, cuenta):
-        self.cuentas.remove(cuenta)
-    # Agregado para que no de error el test con la nueva arquitectura    
-    def listar(
+    def eliminar(
         self,
         empresa_id,
+        cuenta_id,
     ):
-        return [
-            cuenta
-            for cuenta in self.cuentas
-            if cuenta.empresa_id == empresa_id
-        ]
-    
+
+        for cuenta in self.cuentas:
+
+            if (
+                cuenta.empresa_id == empresa_id
+                and cuenta.id == cuenta_id
+            ):
+
+                self.cuentas.remove(
+                    cuenta,
+                )
+
+                return cuenta
+
+        return None    
     def buscar_por_id(
         self,
         empresa_id,
@@ -59,3 +66,13 @@ class CuentaRepositoryStub(PlanCuentaRepository):
                 return cuenta
 
         return None
+    def listar(
+        self,
+        empresa_id,
+    ):
+
+        return [
+            cuenta
+            for cuenta in self.cuentas
+            if cuenta.empresa_id == empresa_id
+        ]

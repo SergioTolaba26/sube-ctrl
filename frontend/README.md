@@ -27,3 +27,10 @@ pytest -q   pytest -x
 source .venv/Scripts/activate
 
 pytest tests/application/usecdcd_cases/movimiento/ -v
+
+
+https://cloud-conta-backend.onrender.com/    idem/test-db
+
+https://localhost:8000/empresas/        localhost:8000/test-db
+
+https://cloud-conta-frontend.onrender.com/

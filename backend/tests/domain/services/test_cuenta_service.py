@@ -9,7 +9,9 @@ class FakeCuentaRepository:
 
     def listar(
         self,
+        empresa_id,
     ):
+        self.empresa_id_recibido = empresa_id
         return [
             CuentaFactory.crear(
                 id=1,
@@ -25,18 +27,22 @@ class FakeCuentaRepository:
 
     def buscar_por_id(
         self,
-        id_,
+        empresa_id,
+        cuenta_id,
     ):
-        self.id_recibido = id_
+        self.empresa_id_recibido = empresa_id
+        self.id_recibido = cuenta_id
 
-        return f"cuenta-{id_}"
+        return f"cuenta-{empresa_id}-{cuenta_id}"
     def buscar_por_codigo(
         self,
+        empresa_id,
         codigo,
     ):
+        self.empresa_id_recibido = empresa_id
         self.codigo_recibido = codigo
 
-        return f"cuenta-{codigo}"
+        return f"cuenta-{empresa_id}-{codigo}"
     def guardar(
         self,
         cuenta,
@@ -44,9 +50,11 @@ class FakeCuentaRepository:
         self.cuenta_guardada = cuenta
     def eliminar(
         self,
-        id_,
+        empresa_id,
+        cuenta_id,
     ):
-        self.id_eliminado = id_
+        self.empresa_id_eliminado = empresa_id
+        self.id_eliminado = cuenta_id
 
 def test_crea_service():
 
@@ -69,18 +77,20 @@ def test_listar():
         repository,
     )
 
-    cuentas = service.listar()
+    cuentas = service.listar(
+        1,
+    )
 
-    # assert cuentas == [
-    #     "cuenta1",
-    #     "cuenta2",
-    # ]
+    assert (
+        repository.empresa_id_recibido
+        == 1
+    )
+
     assert len(cuentas) == 2
 
     assert cuentas[0].codigo == "1.1.01"
 
     assert cuentas[1].codigo == "1.1.02"
-
 def test_buscar_por_id():
 
     repository = FakeCuentaRepository()
@@ -90,7 +100,13 @@ def test_buscar_por_id():
     )
 
     cuenta = service.buscar_por_id(
+        1,
         10,
+    )
+
+    assert (
+        repository.empresa_id_recibido
+        == 1
     )
 
     assert (
@@ -98,8 +114,7 @@ def test_buscar_por_id():
         == 10
     )
 
-    assert cuenta == "cuenta-10"
-
+    assert cuenta == "cuenta-1-10"
 def test_buscar_por_codigo():
 
     repository = FakeCuentaRepository()
@@ -109,7 +124,13 @@ def test_buscar_por_codigo():
     )
 
     cuenta = service.buscar_por_codigo(
+        1,
         "1.1.01",
+    )
+
+    assert (
+        repository.empresa_id_recibido
+        == 1
     )
 
     assert (
@@ -117,8 +138,7 @@ def test_buscar_por_codigo():
         == "1.1.01"
     )
 
-    assert cuenta == "cuenta-1.1.01"
-
+    assert cuenta == "cuenta-1-1.1.01"
 from domain.entities.cuenta import (
     Cuenta,
 )
@@ -159,7 +179,13 @@ def test_eliminar():
     )
 
     service.eliminar(
+        1,
         15,
+    )
+
+    assert (
+        repository.empresa_id_eliminado
+        == 1
     )
 
     assert (

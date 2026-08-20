@@ -13,37 +13,53 @@ class CuentaService:
 
     def listar(
         self,
+        empresa_id: int,
     ) -> list[Cuenta]:
 
-        return self.repository.listar()
+        return self.repository.listar(
+            empresa_id,
+        )
 
     def buscar_por_id(
         self,
-        id_,
+        empresa_id: int,
+        cuenta_id: int | None = None,
     ):
+
+        if cuenta_id is None:
+
+            cuenta_id = empresa_id
+
+            return self.repository.buscar_por_id(
+                cuenta_id,
+            )
 
         return self.repository.buscar_por_id(
-            id_,
+            empresa_id,
+            cuenta_id,
         )
-
+    # *****************************************************
     def buscar_por_codigo(
         self,
-        codigo,
-    ):
+        empresa_id: int,
+        codigo: str,
+    ) -> Cuenta | None:
 
         return self.repository.buscar_por_codigo(
+            empresa_id,
             codigo,
         )
 
-    
     def guardar(
         self,
-        cuenta,
-    ):
+        cuenta: Cuenta,
+    ) -> None:
 
         if cuenta.id is None:
 
-            cuentas = self.repository.listar()
+            cuentas = self.repository.listar(
+                cuenta.empresa_id,
+            )
 
             if not cuentas:
 
@@ -63,11 +79,24 @@ class CuentaService:
             cuenta,
         )
 
+    def modificar(
+        self,
+        empresa_id: int,
+        cuenta: Cuenta,
+    ) -> Cuenta | None:
+
+        return self.repository.modificar(
+            empresa_id,
+            cuenta,
+        )
+
     def eliminar(
         self,
-        id_,
-    ):
+        empresa_id: int,
+        cuenta_id: int,
+    ) -> Cuenta | None:
 
-        self.repository.eliminar(
-            id_,
+        return self.repository.eliminar(
+            empresa_id,
+            cuenta_id,
         )

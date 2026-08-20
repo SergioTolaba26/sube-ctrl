@@ -24,7 +24,16 @@ class MovimientoRepositoryJson(
             storage=storage,
             mapper=MovimientoMapper,
         )
+    def _listar_todas(
+        self,
+    ):
 
+        datos = self.storage.load()
+
+        return self.mapper.from_dict_list(
+            datos,
+            self.cuenta_repository,
+        )
     def listar(
         self,
     ):

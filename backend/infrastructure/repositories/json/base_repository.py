@@ -7,7 +7,13 @@ class BaseRepositoryJson:
     ):
         self.storage = storage
         self.mapper = mapper
+    def _listar_todas(self):
 
+        datos = self.storage.load()
+
+        return self.mapper.from_dict_list(
+            datos,
+        )
     def listar(
         self,
     ):
@@ -22,7 +28,7 @@ class BaseRepositoryJson:
         id_,
     ):
 
-        for entidad in self.listar():
+        for entidad in self._listar_todas():
 
             if entidad.id == id_:
                 return entidad
@@ -35,7 +41,7 @@ class BaseRepositoryJson:
         entidad,
     ):
 
-        entidades = self.listar()
+        entidades = self._listar_todas()
 
         reemplazada = False
 
@@ -76,7 +82,7 @@ class BaseRepositoryJson:
 
         entidades = [
             entidad
-            for entidad in self.listar()
+            for entidad in self._listar_todas()
             if entidad.id != id_
         ]
 

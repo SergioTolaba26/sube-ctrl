@@ -1,37 +1,29 @@
-"""
-Dependencias compartidas de la API.
-
-En este módulo se construirán los objetos
-que utilizarán los routers:
-
-Storage
-Repository
-Service
-UseCase
-"""
-
-from typing import Protocol
-
-from application.use_cases.empresa.registrar_empresa import (
-    RegistrarEmpresa,
-)
-#from persistence.storage import Storage
-
-from infrastructure.repositories.json.empresa_repository import (
-    EmpresaRepositoryJson,
+from infrastructure.postgres.database import (
+    DatabasePostgres,
 )
 
-from domain.services.empresa_service import (
-    EmpresaService,
+from infrastructure.postgres.empresa_repository import (
+    EmpresaRepositoryPostgres,
 )
 
-from application.use_cases.empresa.registrar_empresa import (
-    RegistrarEmpresa,
+from infrastructure.postgres.cuenta_repository import (
+    CuentaRepositoryPostgres,
 )
 
-class EmpresaDependencies(Protocol):
 
-    def registrar_empresa(
-        self,
-    ) -> RegistrarEmpresa:
-        ...
+def get_empresa_repository():
+
+    database = DatabasePostgres()
+
+    return EmpresaRepositoryPostgres(
+        database.connection,
+    )
+
+
+def get_cuenta_repository():
+
+    database = DatabasePostgres()
+
+    return CuentaRepositoryPostgres(
+        database.connection,
+    )

@@ -1,6 +1,7 @@
 from domain.entities.cuenta import Cuenta
 from domain.enums.tipo_cuenta import TipoCuenta
 
+
 class CuentaMapper:
 
     @staticmethod
@@ -16,7 +17,7 @@ class CuentaMapper:
             "tipo": cuenta.tipo.name,
             "activa": cuenta.activa,
         }
-    
+
     @staticmethod
     def from_dict(
         datos: dict,
@@ -32,7 +33,7 @@ class CuentaMapper:
             ],
             activa=datos["activa"],
         )
-    
+
     @staticmethod
     def to_dict_list(
         cuentas: list[Cuenta],
@@ -44,6 +45,7 @@ class CuentaMapper:
             )
             for cuenta in cuentas
         ]
+
     @staticmethod
     def from_dict_list(
         datos: list[dict],
@@ -55,4 +57,3 @@ class CuentaMapper:
             )
             for dato in datos
         ]
-    

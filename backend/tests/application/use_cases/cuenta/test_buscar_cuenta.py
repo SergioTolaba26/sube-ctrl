@@ -36,7 +36,9 @@ def test_busca_cuenta_por_id():
         tipo=TipoCuenta.ACTIVO,
     )
 
-    repository.guardar(cuenta)
+    repository.guardar(
+        cuenta,
+    )
 
     service = CuentaService(
         repository,
@@ -47,27 +49,8 @@ def test_busca_cuenta_por_id():
     )
 
     resultado = use_case.execute(
-        1,
+        empresa_id=1,
+        cuenta_id=1,
     )
 
     assert resultado == cuenta
-
-# def test_busca_cuenta_por_codigo():
-
-#     repository = CuentaRepositoryStub()
-
-#     cuenta = Cuenta(
-#         id=None,
-empresa_id=1,
-#         codigo="1.1.01",
-#         nombre="Caja",
-#         tipo=TipoCuenta.ACTIVO,
-#     )
-
-#     repository.guardar(cuenta)
-
-#     use_case = BuscarCuenta(repository)
-
-#     resultado = use_case.execute("1.1.01")
-
-#     assert resultado == cuenta

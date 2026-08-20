@@ -1,67 +1,59 @@
-from fastapi import APIRouter, HTTPException
-from pathlib import Path
+from fastapi import (
+    APIRouter,
+    Depends,
+    HTTPException,
+)
 
 from application.use_cases.empresa.registrar_empresa import (
     RegistrarEmpresa,
 )
+
+from application.use_cases.empresa.listar_empresas import (
+    ListarEmpresas,
+)
+
+from application.use_cases.empresa.buscar_empresa import (
+    BuscarEmpresa,
+)
+
+from application.use_cases.empresa.modificar_empresa import (
+    ModificarEmpresa,
+)
+
+from application.use_cases.empresa.eliminar_empresa import (
+    EliminarEmpresa,
+)
+
 from presentation.schemas.empresa_schema import (
     EmpresaCreate,
     EmpresaResponse,
     EmpresaUpdate,
 )
 
-from persistence.json_storage import JsonStorage
-
-from infrastructure.repositories.json.empresa_repository import (
-    EmpresaRepositoryJson,
+from presentation.dependencies import (
+    get_empresa_repository,
 )
 
 from domain.services.empresa_service import (
     EmpresaService,
 )
 
-from application.use_cases.empresa.listar_empresas import (
-    ListarEmpresas,
-)
-from application.use_cases.empresa.buscar_empresa import (
-    BuscarEmpresa,
-)
-from application.use_cases.empresa.modificar_empresa import (
-    ModificarEmpresa,
-)
-from application.use_cases.empresa.eliminar_empresa import (
-    EliminarEmpresa,
-)
+
 router = APIRouter(
     prefix="/empresas",
     tags=["Empresas"],
 )
 
 
-# @router.get("/")
-# def listar_empresas():
-
-#     return {
-#         "mensaje": "Listar empresas",
-#     }
-
 @router.get(
     "/",
     response_model=list[EmpresaResponse],
 )
-def listar_empresas():
-
-    storage = JsonStorage(
-        Path("data/empresas.json")
-    )
-
-    repository = EmpresaRepositoryJson(
-        storage,
-    )
-
-    # service = EmpresaService(
-    #     repository,
-    # )
+def listar_empresas(
+    repository=Depends(
+        get_empresa_repository,
+    ),
+):
 
     use_case = ListarEmpresas(
         repository,
@@ -72,30 +64,16 @@ def listar_empresas():
     return empresas
 
 
-# @router.get("/{empresa_id}")
-# def buscar_empresa(
-#     empresa_id: int,
-# ):
-
-#     return {
-#         "mensaje": f"Buscar empresa {empresa_id}",
-#     }
-
 @router.get(
     "/{empresa_id}",
     response_model=EmpresaResponse,
 )
 def buscar_empresa(
     empresa_id: int,
+    repository=Depends(
+        get_empresa_repository,
+    ),
 ):
-
-    storage = JsonStorage(
-        Path("data/empresas.json")
-    )
-
-    repository = EmpresaRepositoryJson(
-        storage,
-    )
 
     service = EmpresaService(
         repository,
@@ -105,14 +83,12 @@ def buscar_empresa(
         service,
     )
 
-    # empresa = use_case.execute(
-    #     empresa_id,
-    # )
-
-    # return empresa
-    empresa = use_case.execute(empresa_id)
+    empresa = use_case.execute(
+        empresa_id,
+    )
 
     if empresa is None:
+
         raise HTTPException(
             status_code=404,
             detail="Empresa no encontrada",
@@ -120,18 +96,6 @@ def buscar_empresa(
 
     return empresa
 
-#1
-# @router.post("/")
-# def registrar_empresa():
-
-#     return {
-#         "mensaje": "Registrar empresa",
-#     }
-#2
-# @router.post("/")
-# def registrar_empresa(
-#     empresa: EmpresaCreate,
-# ):
 
 @router.put(
     "/{empresa_id}",
@@ -140,15 +104,10 @@ def buscar_empresa(
 def modificar_empresa(
     empresa_id: int,
     empresa: EmpresaUpdate,
+    repository=Depends(
+        get_empresa_repository,
+    ),
 ):
-
-    storage = JsonStorage(
-        Path("data/empresas.json")
-    )
-
-    repository = EmpresaRepositoryJson(
-        storage,
-    )
 
     use_case = ModificarEmpresa(
         repository,
@@ -159,6 +118,7 @@ def modificar_empresa(
     )
 
     if empresa_actual is None:
+
         raise HTTPException(
             status_code=404,
             detail="Empresa no encontrada",
@@ -185,22 +145,18 @@ def modificar_empresa(
     )
 
     return empresa_modificada
-#@router.post("/")
+
+
 @router.post(
     "/",
     response_model=EmpresaResponse,
 )
 def registrar_empresa(
     empresa: EmpresaCreate,
+    repository=Depends(
+        get_empresa_repository,
+    ),
 ):
-
-    storage = JsonStorage(
-        Path("data/empresas.json")
-    )
-
-    repository = EmpresaRepositoryJson(
-        storage,
-    )
 
     service = EmpresaService(
         repository,
@@ -218,20 +174,16 @@ def registrar_empresa(
 
     return empresa_creada
 
+
 @router.delete(
     "/{empresa_id}",
 )
 def eliminar_empresa(
     empresa_id: int,
+    repository=Depends(
+        get_empresa_repository,
+    ),
 ):
-
-    storage = JsonStorage(
-        Path("data/empresas.json")
-    )
-
-    repository = EmpresaRepositoryJson(
-        storage,
-    )
 
     use_case = EliminarEmpresa(
         repository,

@@ -13,8 +13,11 @@ class BuscarCuenta:
 
     def execute(
         self,
+        empresa_id: int,
         cuenta_id: int,
     ):
+
         return self.service.buscar_por_id(
+            empresa_id,
             cuenta_id,
         )

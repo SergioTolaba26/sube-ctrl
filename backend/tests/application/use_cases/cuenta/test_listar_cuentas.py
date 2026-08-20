@@ -36,6 +36,8 @@ def test_lista_cuentas():
 
     use_case = ListarCuentas(repository)
 
-    cuentas = use_case.execute()
+    cuentas = use_case.execute(
+        1,
+    )
 
     assert len(cuentas) == 2

@@ -34,7 +34,8 @@ class RegistrarCuenta:
 
         cuenta = Cuenta(
             id=None,
-            empresa_id= 1,
+            #empresa_id= 1,
+            empresa_id=empresa_id,
             codigo=codigo,
             nombre=nombre,
             tipo=tipo,

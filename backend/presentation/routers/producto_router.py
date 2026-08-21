@@ -1,13 +1,43 @@
 from decimal import Decimal
 
-from fastapi import APIRouter, HTTPException
+from fastapi import (
+    APIRouter,
+    Depends,
+    HTTPException,
+)
 
-from application.container import ApplicationContainer
+from application.use_cases.producto.registrar_producto import (
+    RegistrarProducto,
+)
+
+from application.use_cases.producto.listar_productos import (
+    ListarProductos,
+)
+
+from application.use_cases.producto.buscar_producto import (
+    BuscarProducto,
+)
+
+from application.use_cases.producto.buscar_producto_por_codigo_barras import (
+    BuscarProductoPorCodigoBarras,
+)
+
+from application.use_cases.producto.modificar_producto import (
+    ModificarProducto,
+)
+
+from application.use_cases.producto.eliminar_producto import (
+    EliminarProducto,
+)
 
 from domain.entities.producto import Producto
 
 from domain.errors.producto_duplicado_error import (
     ProductoDuplicadoError,
+)
+
+from presentation.dependencies import (
+    get_producto_repository,
 )
 
 from presentation.schemas.producto_schema import (
@@ -21,8 +51,10 @@ router = APIRouter(
     tags=["Productos"],
 )
 
-container = ApplicationContainer()
 
+# =========================================================
+# REGISTRAR PRODUCTO
+# =========================================================
 
 @router.post(
     "/",
@@ -31,9 +63,14 @@ container = ApplicationContainer()
 )
 def registrar_producto(
     producto: ProductoCreate,
+    repository=Depends(
+        get_producto_repository,
+    ),
 ):
 
-    use_case = container.registrar_producto()
+    use_case = RegistrarProducto(
+        repository,
+    )
 
     entidad = Producto(
         empresa_id=producto.empresa_id,
@@ -61,21 +98,36 @@ def registrar_producto(
         )
 
 
+# =========================================================
+# LISTAR PRODUCTOS
+# =========================================================
+
 @router.get(
     "/",
     response_model=list[ProductoResponse],
     summary="Listar Productos",
 )
-def listar_productos():
+def listar_productos(
+    empresa_id: int,
+    repository=Depends(
+        get_producto_repository,
+    ),
+):
 
-    use_case = container.listar_productos()
+    use_case = ListarProductos(
+        repository,
+    )
 
     productos = use_case.execute(
-        1,
+        empresa_id,
     )
 
     return productos
 
+
+# =========================================================
+# BUSCAR PRODUCTO POR ID
+# =========================================================
 
 @router.get(
     "/{producto_id}",
@@ -83,13 +135,19 @@ def listar_productos():
     summary="Buscar Producto",
 )
 def buscar_producto(
+    empresa_id: int,
     producto_id: int,
+    repository=Depends(
+        get_producto_repository,
+    ),
 ):
 
-    use_case = container.buscar_producto()
+    use_case = BuscarProducto(
+        repository,
+    )
 
     producto = use_case.execute(
-        1,
+        empresa_id,
         producto_id,
     )
 
@@ -103,21 +161,31 @@ def buscar_producto(
     return producto
 
 
+# =========================================================
+# BUSCAR PRODUCTO POR CÓDIGO DE BARRAS
+# =========================================================
+
 @router.get(
     "/codigo/{codigo_barras}",
     response_model=ProductoResponse,
     summary="Buscar Producto por Código de Barras",
 )
 def buscar_producto_por_codigo_barras(
+    empresa_id: int,
     codigo_barras: str,
+    repository=Depends(
+        get_producto_repository,
+    ),
 ):
 
     use_case = (
-        container.buscar_producto_por_codigo_barras()
+        BuscarProductoPorCodigoBarras(
+            repository,
+        )
     )
 
     producto = use_case.execute(
-        1,
+        empresa_id,
         codigo_barras,
     )
 
@@ -131,21 +199,31 @@ def buscar_producto_por_codigo_barras(
     return producto
 
 
+# =========================================================
+# MODIFICAR PRODUCTO
+# =========================================================
+
 @router.put(
     "/{producto_id}",
     response_model=ProductoResponse,
     summary="Modificar Producto",
 )
 def modificar_producto(
+    empresa_id: int,
     producto_id: int,
     producto: ProductoCreate,
+    repository=Depends(
+        get_producto_repository,
+    ),
 ):
 
-    use_case = container.modificar_producto()
+    use_case = ModificarProducto(
+        repository,
+    )
 
     entidad = Producto(
         id=producto_id,
-        empresa_id=producto.empresa_id,
+        empresa_id=empresa_id,
         codigo_barras=producto.codigo_barras,
         nombre=producto.nombre,
         precio_compra=Decimal(
@@ -154,7 +232,7 @@ def modificar_producto(
     )
 
     resultado = use_case.execute(
-        producto.empresa_id,
+        empresa_id,
         entidad,
     )
 
@@ -168,18 +246,28 @@ def modificar_producto(
     return resultado
 
 
+# =========================================================
+# ELIMINAR PRODUCTO
+# =========================================================
+
 @router.delete(
     "/{producto_id}",
     summary="Eliminar Producto",
 )
 def eliminar_producto(
+    empresa_id: int,
     producto_id: int,
+    repository=Depends(
+        get_producto_repository,
+    ),
 ):
 
-    use_case = container.eliminar_producto()
+    use_case = EliminarProducto(
+        repository,
+    )
 
     eliminado = use_case.execute(
-        1,
+        empresa_id,
         producto_id,
     )
 
@@ -192,4 +280,4 @@ def eliminar_producto(
 
     return {
         "mensaje": "Producto eliminado correctamente",
-    }
+    }   

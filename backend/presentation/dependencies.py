@@ -19,24 +19,42 @@ def get_empresa_repository():
 
     database = DatabasePostgres()
 
-    return EmpresaRepositoryPostgres(
-        database.connection,
-    )
+    try:
+
+        yield EmpresaRepositoryPostgres(
+            database.connection,
+        )
+
+    finally:
+
+        database.connection.close()
 
 
 def get_cuenta_repository():
 
     database = DatabasePostgres()
 
-    return CuentaRepositoryPostgres(
-        database.connection,
-    )
+    try:
+
+        yield CuentaRepositoryPostgres(
+            database.connection,
+        )
+
+    finally:
+
+        database.connection.close()
 
 
 def get_producto_repository():
 
     database = DatabasePostgres()
 
-    return ProductoRepositoryPostgres(
-        database.connection,
-    )
+    try:
+
+        yield ProductoRepositoryPostgres(
+            database.connection,
+        )
+
+    finally:
+
+        database.connection.close()

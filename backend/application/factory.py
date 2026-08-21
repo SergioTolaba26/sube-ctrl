@@ -1,7 +1,4 @@
 from application.use_cases.ejercicio.buscar_ejercicio_use_case import BuscarEjercicio
-from infrastructure.repositories.json.ejercicio_repository import (
-    EjercicioRepositoryJson,
-)
 
 from domain.services.ejercicio_service import (
     EjercicioService,
@@ -123,9 +120,7 @@ class ApplicationFactory:
         self.movimiento_storage = JsonStorage(
             Path("data/movimientos.json"),
         )
-        self.ejercicio_storage = JsonStorage(
-            Path("data/ejercicios.json"),
-        )   
+   
         self.cuenta_repository = CuentaRepositoryJson(
             self.cuenta_storage,
         )
@@ -134,9 +129,7 @@ class ApplicationFactory:
             self.movimiento_storage,
             self.cuenta_repository,
         )
-        self.ejercicio_repository = EjercicioRepositoryJson(
-            self.ejercicio_storage,
-        )
+
         self.cuenta_service = CuentaService(
             self.cuenta_repository,
         )

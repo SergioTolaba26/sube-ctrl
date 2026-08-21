@@ -5,8 +5,12 @@ from fastapi import HTTPException
 
 from persistence.json_storage import JsonStorage
 
-from infrastructure.repositories.json.ejercicio_repository import (
-    EjercicioRepositoryJson,
+from infrastructure.postgres.database import (
+    DatabasePostgres,
+)
+
+from infrastructure.postgres.ejercicio_repository import (
+    EjercicioRepositoryPostgres,
 )
 
 from infrastructure.repositories.json.movimiento_repository import (
@@ -84,8 +88,10 @@ storage_movimientos = JsonStorage(
 # Repositories
 #
 
-repository_ejercicios = EjercicioRepositoryJson(
-    storage_ejercicios,
+database = DatabasePostgres()
+
+repository_ejercicios = EjercicioRepositoryPostgres(
+    database.connection,
 )
 
 repository_cuentas = CuentaRepositoryJson(

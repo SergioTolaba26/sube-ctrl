@@ -97,9 +97,24 @@ from application.use_cases.balance_general.listar_balance_general import (
 from application.use_cases.ejercicio.registrar_ejercicio import (
     RegistrarEjercicio,
 )
+
+from infrastructure.postgres.database import (
+    DatabasePostgres,
+)
+
+from infrastructure.postgres.ejercicio_repository import (
+    EjercicioRepositoryPostgres,
+)
+
 class ApplicationFactory:
 
     def __init__(self):
+
+        self.database = DatabasePostgres()
+
+        self.ejercicio_repository = EjercicioRepositoryPostgres(
+            self.database.connection,
+        )
 
         self.cuenta_storage = JsonStorage(
             Path("data/cuentas.json"),

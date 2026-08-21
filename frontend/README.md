@@ -34,3 +34,7 @@ https://cloud-conta-backend.onrender.com/    idem/test-db
 https://localhost:8000/empresas/        localhost:8000/test-db
 
 https://cloud-conta-frontend.onrender.com/
+
+Vemos si PostgreSQL está ok con este comando
+stolaba@INN-NB005 MINGW64 /c/sube-ctrl/backend (main)
+$ python -c "from dotenv import load_dotenv; load_dotenv(); from infrastructure.postgres.database import DatabasePostgres; db=DatabasePostgres(); print('POSTGRES OK')"

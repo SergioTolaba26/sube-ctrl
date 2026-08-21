@@ -149,3 +149,68 @@ def test_no_registra_ejercicio_si_hay_otro_abierto():
             ),
         )
 
+def test_registra_mismo_anio_para_empresas_diferentes():
+
+    repository = EjercicioRepositoryStub()
+
+    service = EjercicioService(
+        repository,
+    )
+
+    use_case = RegistrarEjercicio(
+        service,
+    )
+
+    ejercicio_empresa_1 = use_case.execute(
+        empresa_id=1,
+        anio=2026,
+        fecha_apertura=date(
+            2026,
+            1,
+            1,
+        ),
+        fecha_cierre=date(
+            2026,
+            12,
+            31,
+        ),
+    )
+
+    ejercicio_empresa_2 = use_case.execute(
+        empresa_id=2,
+        anio=2026,
+        fecha_apertura=date(
+            2026,
+            1,
+            1,
+        ),
+        fecha_cierre=date(
+            2026,
+            12,
+            31,
+        ),
+    )
+
+    assert ejercicio_empresa_1.id == 1
+
+    assert ejercicio_empresa_2.id == 2
+
+    assert (
+        ejercicio_empresa_1.empresa_id
+        == 1
+    )
+
+    assert (
+        ejercicio_empresa_2.empresa_id
+        == 2
+    )
+
+    assert (
+        ejercicio_empresa_1.anio
+        == 2026
+    )
+
+    assert (
+        ejercicio_empresa_2.anio
+        == 2026
+    )

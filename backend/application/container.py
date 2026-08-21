@@ -1,6 +1,9 @@
-from infrastructure.sqlite.database import Database
-from infrastructure.sqlite.producto_repository import (
-    ProductoRepositorySQLite,
+from infrastructure.postgres.database import (
+    DatabasePostgres,
+)
+
+from infrastructure.postgres.producto_repository import (
+    ProductoRepositoryPostgres,
 )
 
 from application.use_cases.producto.registrar_producto import (
@@ -36,10 +39,10 @@ class ApplicationContainer:
         # Infraestructura
         # -------------------------
 
-        self.database = Database()
+        self.database = DatabasePostgres()
 
         self.producto_repository = (
-            ProductoRepositorySQLite(
+            ProductoRepositoryPostgres(
                 self.database.connection,
             )
         )
@@ -97,7 +100,10 @@ class ApplicationContainer:
 
     def buscar_producto_por_codigo_barras(self):
 
-        if self._buscar_producto_por_codigo_barras is None:
+        if (
+            self._buscar_producto_por_codigo_barras
+            is None
+        ):
 
             self._buscar_producto_por_codigo_barras = (
                 BuscarProductoPorCodigoBarras(
@@ -105,7 +111,9 @@ class ApplicationContainer:
                 )
             )
 
-        return self._buscar_producto_por_codigo_barras
+        return (
+            self._buscar_producto_por_codigo_barras
+        )
 
     def modificar_producto(self):
 

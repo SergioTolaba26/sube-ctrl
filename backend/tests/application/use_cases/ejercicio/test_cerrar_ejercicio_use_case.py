@@ -295,3 +295,32 @@ def test_cerrar_ejercicio_genera_movimiento_de_cierre():
     assert len(
         movimiento_service.movimientos_guardados
     ) == 1
+
+
+def test_no_permite_cerrar_ejercicio_inexistente():
+
+    ejercicio = EjercicioFactory.crear()
+
+    repository = StubRepository(
+        ejercicio,
+    )
+
+    movimiento_service = MovimientoServiceStub()
+
+    cuenta_service = CuentaServiceStub()
+
+    use_case = CerrarEjercicio(
+        repository,
+        movimiento_service,
+        cuenta_service,
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="Ejercicio inexistente.",
+    ):
+
+        use_case.execute(
+            ejercicio_id=999,
+        )
+

@@ -13,7 +13,9 @@ from infrastructure.postgres.cuenta_repository import (
 from infrastructure.postgres.producto_repository import (
     ProductoRepositoryPostgres,
 )
-
+from application.factory import (
+    ApplicationFactory,
+)
 
 def get_empresa_repository():
 
@@ -52,6 +54,20 @@ def get_producto_repository():
     try:
 
         yield ProductoRepositoryPostgres(
+            database.connection,
+        )
+
+    finally:
+
+        database.connection.close()
+
+def get_application_factory():
+
+    database = DatabasePostgres()
+
+    try:
+
+        yield ApplicationFactory(
             database.connection,
         )
 

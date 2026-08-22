@@ -1,11 +1,13 @@
 from datetime import date
 
-from fastapi import APIRouter
-
-from application.factory import (
-ApplicationFactory,
+from fastapi import (
+    APIRouter,
+    Depends,
 )
 
+from presentation.dependencies import (
+    get_application_factory,
+)
 from presentation.schemas.movimiento_schema import (
 MovimientoResponse,
 )
@@ -19,17 +21,17 @@ prefix="/libro-diario",
 tags=["Libro Diario"],
 )
 
-factory = ApplicationFactory()
-
 @router.get(
-"/",
-response_model=list[MovimientoResponse],
+    "/",
+    response_model=list[MovimientoResponse],
 )
 def listar_libro_diario(
     desde: date | None = None,
     hasta: date | None = None,
-    ):
-
+    factory=Depends(
+        get_application_factory,
+    ),
+):
 
     use_case = factory.listar_libro_diario()
 
@@ -44,4 +46,3 @@ def listar_libro_diario(
         )
         for movimiento in movimientos
     ]
-

@@ -1,36 +1,11 @@
-from pathlib import Path
-
-from fastapi import APIRouter
-from fastapi import HTTPException
-
-from persistence.json_storage import JsonStorage
-
-from infrastructure.postgres.database import (
-    DatabasePostgres,
+from fastapi import (
+    APIRouter,
+    Depends,
+    HTTPException,
 )
 
-from infrastructure.postgres.ejercicio_repository import (
-    EjercicioRepositoryPostgres,
-)
-
-from infrastructure.repositories.json.movimiento_repository import (
-    MovimientoRepositoryJson,
-)
-
-from infrastructure.repositories.json.cuenta_repository import (
-    CuentaRepositoryJson,
-)
-
-from domain.services.ejercicio_service import (
-    EjercicioService,
-)
-
-from domain.services.movimiento_service import (
-    MovimientoService,
-)
-
-from domain.services.cuenta_service import (
-    CuentaService,
+from presentation.dependencies import (
+    get_application_factory,
 )
 
 from application.factory import (
@@ -61,75 +36,24 @@ from presentation.schemas.registrar_ejercicio_request import (
     RegistrarEjercicioRequest,
 )
 
+
 router = APIRouter(
     prefix="/ejercicios",
     tags=["Ejercicios"],
 )
 
-factory = ApplicationFactory()
-
-#
-# Storage
-#
-
-storage_ejercicios = JsonStorage(
-    Path("data/ejercicios.json"),
-)
-
-storage_cuentas = JsonStorage(
-    Path("data/cuentas.json"),
-)
-
-storage_movimientos = JsonStorage(
-    Path("data/movimientos.json"),
-)
-
-#
-# Repositories
-#
-
-database = DatabasePostgres()
-
-repository_ejercicios = EjercicioRepositoryPostgres(
-    database.connection,
-)
-
-repository_cuentas = CuentaRepositoryJson(
-    storage_cuentas,
-)
-
-repository_movimientos = MovimientoRepositoryJson(
-    storage_movimientos,
-    repository_cuentas,
-)
-
-#
-# Services
-#
-
-service_ejercicios = EjercicioService(
-    repository_ejercicios,
-)
-
-service_cuentas = CuentaService(
-    repository_cuentas,
-)
-
-service_movimientos = MovimientoService(
-    repository_movimientos,
-)
-
-#
-# Endpoints
-#
 
 @router.get(
     "/",
 )
-def listar():
+def listar(
+    factory: ApplicationFactory = Depends(
+        get_application_factory,
+    ),
+):
 
     use_case = ListarEjercicios(
-        service_ejercicios,
+        factory.ejercicio_service,
     )
 
     return use_case.execute()
@@ -141,6 +65,9 @@ def listar():
 )
 def buscar_ejercicio(
     id: int,
+    factory: ApplicationFactory = Depends(
+        get_application_factory,
+    ),
 ):
 
     use_case = factory.buscar_ejercicio()
@@ -164,6 +91,9 @@ def buscar_ejercicio(
 )
 def registrar(
     request: RegistrarEjercicioRequest,
+    factory: ApplicationFactory = Depends(
+        get_application_factory,
+    ),
 ):
 
     use_case = factory.registrar_ejercicio()
@@ -209,10 +139,14 @@ def actualizar(
 
     request: RegistrarEjercicioRequest,
 
+    factory: ApplicationFactory = Depends(
+        get_application_factory,
+    ),
+
 ):
 
     use_case = ModificarEjercicio(
-        service_ejercicios,
+        factory.ejercicio_service,
     )
 
     try:
@@ -245,10 +179,15 @@ def actualizar(
 )
 def eliminar(
     ejercicio_id: int,
+
+    factory: ApplicationFactory = Depends(
+        get_application_factory,
+    ),
+
 ):
 
     use_case = EliminarEjercicio(
-        service_ejercicios,
+        factory.ejercicio_service,
     )
 
     try:
@@ -279,15 +218,20 @@ def eliminar(
 )
 def cerrar(
     ejercicio_id: int,
+
+    factory: ApplicationFactory = Depends(
+        get_application_factory,
+    ),
+
 ):
 
     use_case = CerrarEjercicio(
 
-        repository_ejercicios,
+        factory.ejercicio_repository,
 
-        service_movimientos,
+        factory.movimiento_service,
 
-        service_cuentas,
+        factory.cuenta_service,
 
     )
 

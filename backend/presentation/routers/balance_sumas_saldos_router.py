@@ -1,9 +1,11 @@
-from fastapi import APIRouter
-
-from application.factory import (
-    ApplicationFactory,
+from fastapi import (
+    APIRouter,
+    Depends,
 )
 
+from presentation.dependencies import (
+    get_application_factory,
+)
 from presentation.schemas.balance_sumas_saldos_schema import (
     BalanceSumasSaldosResponse,
 )
@@ -13,7 +15,6 @@ router = APIRouter(
     tags=["Balance de Sumas y Saldos"],
 )
 
-factory = ApplicationFactory()
 
 
 @router.get(
@@ -22,7 +23,11 @@ factory = ApplicationFactory()
         BalanceSumasSaldosResponse
     ],
 )
-def listar_balance_sumas_saldos():
+def listar_balance_sumas_saldos(
+    factory=Depends(
+        get_application_factory,
+    ),
+):
 
     use_case = factory.listar_balance_sumas_saldos()
 

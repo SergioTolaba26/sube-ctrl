@@ -1,7 +1,10 @@
-from fastapi import APIRouter
+from fastapi import (
+    APIRouter,
+    Depends,
+)
 
-from application.factory import (
-    ApplicationFactory,
+from presentation.dependencies import (
+    get_application_factory,
 )
 
 from presentation.schemas.balance_general_schema import (
@@ -13,14 +16,16 @@ router = APIRouter(
     tags=["Balance General"],
 )
 
-factory = ApplicationFactory()
-
 
 @router.get(
     "/",
     response_model=BalanceGeneralResponse,
 )
-def listar_balance_general():
+def listar_balance_general(
+    factory=Depends(
+        get_application_factory,
+    ),
+):
 
     use_case = factory.listar_balance_general()
 

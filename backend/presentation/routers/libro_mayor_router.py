@@ -1,9 +1,11 @@
-from fastapi import APIRouter
-
-from application.factory import (
-    ApplicationFactory,
+from fastapi import (
+    APIRouter,
+    Depends,
 )
 
+from presentation.dependencies import (
+    get_application_factory,
+)
 from presentation.schemas.libro_mayor_schema import (
     LibroMayorResponse,
 )
@@ -13,8 +15,6 @@ router = APIRouter(
     tags=["Libro Mayor"],
 )
 
-factory = ApplicationFactory()
-
 
 @router.get(
     "/",
@@ -22,7 +22,11 @@ factory = ApplicationFactory()
         LibroMayorResponse
     ],
 )
-def listar_libro_mayor():
+def listar_libro_mayor(
+    factory=Depends(
+        get_application_factory,
+    ),
+):
 
     use_case = factory.listar_libro_mayor()
 

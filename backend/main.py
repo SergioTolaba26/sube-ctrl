@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 import psycopg
 from dotenv import load_dotenv
-load_dotenv()
+
 
 from presentation.routers.empresa_router import (
     router as empresa_router,
@@ -38,7 +38,7 @@ from presentation.routers.producto_router import (
 )
 
 
-load_dotenv()
+#load_dotenv()
 
 
 app = FastAPI(

@@ -1,9 +1,11 @@
-from fastapi import APIRouter
-
-from application.factory import (
-    ApplicationFactory,
+from fastapi import (
+    APIRouter,
+    Depends,
 )
 
+from presentation.dependencies import (
+    get_application_factory,
+)
 from presentation.schemas.estado_resultados_schema import (
     EstadoResultadosResponse,
 )
@@ -13,14 +15,16 @@ router = APIRouter(
     tags=["Estado de Resultados"],
 )
 
-factory = ApplicationFactory()
-
 
 @router.get(
     "/",
     response_model=EstadoResultadosResponse,
 )
-def listar_estado_resultados():
+def listar_estado_resultados(
+    factory=Depends(
+        get_application_factory,
+    ),
+):
 
     use_case = factory.listar_estado_resultados()
 

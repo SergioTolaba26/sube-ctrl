@@ -14,9 +14,29 @@ class EliminarEjercicio:
     def execute(
         self,
         ejercicio_id: int,
+        empresa_id: int | None = None,
     ):
 
+        if empresa_id is None:
+
+            ejercicio = self.service.buscar_por_id(
+                ejercicio_id,
+            )
+
+            if ejercicio is None:
+
+                raise ValueError(
+                    "Ejercicio no encontrado.",
+                )
+
+            self.service.eliminar(
+                ejercicio_id,
+            )
+
+            return
+
         ejercicio = self.service.buscar_por_id(
+            empresa_id,
             ejercicio_id,
         )
 
@@ -27,5 +47,6 @@ class EliminarEjercicio:
             )
 
         self.service.eliminar(
+            empresa_id,
             ejercicio_id,
         )

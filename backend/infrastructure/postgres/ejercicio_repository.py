@@ -61,37 +61,22 @@ class EjercicioRepositoryPostgres:
 
                 cursor.execute(
                     """
-                    INSERT INTO ejercicios (
-                        id,
-                        empresa_id,
-                        anio,
-                        fecha_apertura,
-                        fecha_cierre,
-                        estado
-                    )
-                    VALUES (
-                        %s,
-                        %s,
-                        %s,
-                        %s,
-                        %s,
-                        %s
-                    )
-                    ON CONFLICT (id)
-                    DO UPDATE SET
-                        empresa_id = EXCLUDED.empresa_id,
-                        anio = EXCLUDED.anio,
-                        fecha_apertura = EXCLUDED.fecha_apertura,
-                        fecha_cierre = EXCLUDED.fecha_cierre,
-                        estado = EXCLUDED.estado
+                    UPDATE ejercicios
+                    SET
+                        anio = %s,
+                        fecha_apertura = %s,
+                        fecha_cierre = %s,
+                        estado = %s
+                    WHERE id = %s
+                      AND empresa_id = %s
                     """,
                     (
-                        ejercicio.id,
-                        ejercicio.empresa_id,
                         ejercicio.anio,
                         ejercicio.fecha_apertura,
                         ejercicio.fecha_cierre,
                         ejercicio.estado.name,
+                        ejercicio.id,
+                        ejercicio.empresa_id,
                     ),
                 )
 
@@ -103,6 +88,7 @@ class EjercicioRepositoryPostgres:
 
     def listar(
         self,
+        empresa_id: int,
     ) -> list[Ejercicio]:
 
         with self._connection.cursor() as cursor:
@@ -117,8 +103,12 @@ class EjercicioRepositoryPostgres:
                     fecha_cierre,
                     estado
                 FROM ejercicios
-                ORDER BY empresa_id, anio
-                """
+                WHERE empresa_id = %s
+                ORDER BY anio
+                """,
+                (
+                    empresa_id,
+                ),
             )
 
             filas = cursor.fetchall()
@@ -136,6 +126,7 @@ class EjercicioRepositoryPostgres:
 
     def buscar_por_id(
         self,
+        empresa_id: int,
         ejercicio_id: int,
     ) -> Ejercicio | None:
 
@@ -152,15 +143,18 @@ class EjercicioRepositoryPostgres:
                     estado
                 FROM ejercicios
                 WHERE id = %s
+                  AND empresa_id = %s
                 """,
                 (
                     ejercicio_id,
+                    empresa_id,
                 ),
             )
 
             fila = cursor.fetchone()
 
         if fila is None:
+
             return None
 
         return self._fila_a_ejercicio(
@@ -201,6 +195,7 @@ class EjercicioRepositoryPostgres:
             fila = cursor.fetchone()
 
         if fila is None:
+
             return None
 
         return self._fila_a_ejercicio(
@@ -242,6 +237,7 @@ class EjercicioRepositoryPostgres:
             fila = cursor.fetchone()
 
         if fila is None:
+
             return None
 
         return self._fila_a_ejercicio(
@@ -254,7 +250,8 @@ class EjercicioRepositoryPostgres:
 
     def eliminar(
         self,
-        id_: int,
+        empresa_id: int,
+        ejercicio_id: int,
     ) -> None:
 
         with self._connection.cursor() as cursor:
@@ -263,9 +260,11 @@ class EjercicioRepositoryPostgres:
                 """
                 DELETE FROM ejercicios
                 WHERE id = %s
+                  AND empresa_id = %s
                 """,
                 (
-                    id_,
+                    ejercicio_id,
+                    empresa_id,
                 ),
             )
 
@@ -286,20 +285,20 @@ class EjercicioRepositoryPostgres:
                 """
                 UPDATE ejercicios
                 SET
-                    empresa_id = %s,
                     anio = %s,
                     fecha_apertura = %s,
                     fecha_cierre = %s,
                     estado = %s
                 WHERE id = %s
+                  AND empresa_id = %s
                 """,
                 (
-                    ejercicio.empresa_id,
                     ejercicio.anio,
                     ejercicio.fecha_apertura,
                     ejercicio.fecha_cierre,
                     ejercicio.estado.name,
                     ejercicio.id,
+                    ejercicio.empresa_id,
                 ),
             )
 
@@ -315,17 +314,11 @@ class EjercicioRepositoryPostgres:
     ) -> Ejercicio:
 
         return Ejercicio(
-
             id=fila[0],
-
             empresa_id=fila[1],
-
             anio=fila[2],
-
             fecha_apertura=fila[3],
-
             fecha_cierre=fila[4],
-
             estado=EstadoEjercicio[
                 fila[5]
             ],

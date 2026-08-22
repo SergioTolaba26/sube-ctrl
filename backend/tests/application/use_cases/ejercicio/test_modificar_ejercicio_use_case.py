@@ -1,4 +1,3 @@
-
 from datetime import date
 
 import pytest
@@ -58,6 +57,7 @@ def test_modifica_ejercicio_existente():
     )
 
     resultado = use_case.execute(
+        empresa_id=1,
         ejercicio_id=1,
         anio=2029,
         fecha_apertura=date(
@@ -73,6 +73,8 @@ def test_modifica_ejercicio_existente():
     )
 
     assert resultado.id == 1
+
+    assert resultado.empresa_id == 1
 
     assert resultado.anio == 2029
 
@@ -107,6 +109,7 @@ def test_no_modifica_ejercicio_inexistente():
     ):
 
         use_case.execute(
+            empresa_id=1,
             ejercicio_id=999,
             anio=2029,
             fecha_apertura=date(
@@ -121,3 +124,57 @@ def test_no_modifica_ejercicio_inexistente():
             ),
         )
 
+
+def test_no_modifica_ejercicio_de_otra_empresa():
+
+    repository = EjercicioRepositoryStub()
+
+    ejercicio = Ejercicio(
+        id=1,
+        empresa_id=1,
+        anio=2028,
+        fecha_apertura=date(
+            2028,
+            1,
+            1,
+        ),
+        fecha_cierre=date(
+            2028,
+            12,
+            31,
+        ),
+        estado=EstadoEjercicio.ABIERTO,
+    )
+
+    repository.guardar(
+        ejercicio,
+    )
+
+    service = EjercicioService(
+        repository,
+    )
+
+    use_case = ModificarEjercicio(
+        service,
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="Ejercicio no encontrado.",
+    ):
+
+        use_case.execute(
+            empresa_id=2,
+            ejercicio_id=1,
+            anio=2029,
+            fecha_apertura=date(
+                2029,
+                1,
+                1,
+            ),
+            fecha_cierre=date(
+                2029,
+                12,
+                31,
+            ),
+        )

@@ -47,6 +47,7 @@ router = APIRouter(
     "/",
 )
 def listar(
+    empresa_id: int,
     factory: ApplicationFactory = Depends(
         get_application_factory,
     ),
@@ -56,15 +57,17 @@ def listar(
         factory.ejercicio_service,
     )
 
-    return use_case.execute()
-
+    return use_case.execute(
+        empresa_id,
+    )
 
 @router.get(
-    "/{id}",
+    "/{ejercicio_id}",
     response_model=EjercicioResponse,
 )
 def buscar_ejercicio(
-    id: int,
+    ejercicio_id: int,
+    empresa_id: int,
     factory: ApplicationFactory = Depends(
         get_application_factory,
     ),
@@ -73,7 +76,8 @@ def buscar_ejercicio(
     use_case = factory.buscar_ejercicio()
 
     ejercicio = use_case.execute(
-        id,
+        empresa_id,
+        ejercicio_id,
     )
 
     if ejercicio is None:
@@ -84,13 +88,12 @@ def buscar_ejercicio(
         )
 
     return ejercicio
-
-
 @router.post(
     "/",
 )
 def registrar(
     request: RegistrarEjercicioRequest,
+    empresa_id: int,
     factory: ApplicationFactory = Depends(
         get_application_factory,
     ),
@@ -102,6 +105,8 @@ def registrar(
 
         ejercicio = use_case.execute(
 
+            empresa_id=empresa_id,
+
             anio=request.anio,
 
             fecha_apertura=request.fecha_apertura,
@@ -111,40 +116,29 @@ def registrar(
         )
 
         return {
-
             "mensaje": "Ejercicio creado correctamente.",
-
             "ejercicio": ejercicio,
-
         }
 
     except ValueError as error:
 
         raise HTTPException(
-
             status_code=400,
-
             detail=str(error),
-
         )
-
 
 @router.put(
     "/{ejercicio_id}",
     response_model=EjercicioResponse,
 )
 def actualizar(
-
     ejercicio_id: int,
-
+    empresa_id: int,
     request: RegistrarEjercicioRequest,
-
     factory: ApplicationFactory = Depends(
         get_application_factory,
     ),
-
 ):
-
     use_case = ModificarEjercicio(
         factory.ejercicio_service,
     )
@@ -152,15 +146,11 @@ def actualizar(
     try:
 
         return use_case.execute(
-
+            empresa_id=empresa_id,
             ejercicio_id=ejercicio_id,
-
             anio=request.anio,
-
             fecha_apertura=request.fecha_apertura,
-
             fecha_cierre=request.fecha_cierre,
-
         )
 
     except ValueError as error:
@@ -179,13 +169,11 @@ def actualizar(
 )
 def eliminar(
     ejercicio_id: int,
-
+    empresa_id: int,
     factory: ApplicationFactory = Depends(
         get_application_factory,
     ),
-
 ):
-
     use_case = EliminarEjercicio(
         factory.ejercicio_service,
     )
@@ -193,6 +181,7 @@ def eliminar(
     try:
 
         use_case.execute(
+            empresa_id,
             ejercicio_id,
         )
 

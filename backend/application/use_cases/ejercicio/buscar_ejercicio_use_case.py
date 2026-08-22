@@ -13,8 +13,11 @@ class BuscarEjercicio:
 
     def execute(
         self,
+        empresa_id: int,
         ejercicio_id: int,
     ):
+
         return self.repository.buscar_por_id(
-            ejercicio_id
+            empresa_id,
+            ejercicio_id,
         )

@@ -1,45 +1,34 @@
+
 import {
-
     obtenerEjercicios,
-
     crearEjercicio,
-
     actualizarEjercicio,
-
     eliminarEjercicio,
-
 } from "../api.js";
 
 import {
+    obtenerEmpresaSeleccionada,
+} from "../estado.js";
 
+import {
     crearPagina,
-
 } from "../components/page.js";
 
 import {
-
     abrirModal,
-
     cerrarModal,
-
 } from "../components/modal.js";
 
 import {
-
     conectarEventosTabla,
-
 } from "../components/table.js";
 
 import {
-
     crearFormularioEjercicio,
-
 } from "../forms/ejercicioForm.js";
 
 import {
-
     mostrarToast,
-
 } from "../components/toast.js";
 
 
@@ -52,139 +41,160 @@ let ejercicios = [];
 
 export async function mostrarEjercicios() {
 
-    const contenido = document.getElementById(
-        "contenido",
-    );
+    const contenido =
+        document.getElementById(
+            "contenido",
+        );
 
     contenido.innerHTML =
         "<h2>Ejercicios</h2><p>Cargando...</p>";
 
     try {
 
+        const empresa =
+            obtenerEmpresaSeleccionada();
+
+
+        if (!empresa) {
+
+            contenido.innerHTML = `
+                <h2>Ejercicios</h2>
+                <p>Seleccione una empresa.</p>
+            `;
+
+            return;
+        }
+
+
         ejercicios =
-            await obtenerEjercicios();
+            await obtenerEjercicios(
+                empresa.id,
+            );
 
-        contenido.innerHTML = crearPagina({
 
-            titulo: "Ejercicios",
+        console.log(
+            "Empresa para Ejercicios:",
+            empresa,
+        );
 
-            botones: [
+        console.log(
+            "EJERCICIOS:",
+            ejercicios,
+        );
 
-                {
 
-                    id: "btn-nuevo-ejercicio",
+        contenido.innerHTML =
+            crearPagina({
 
-                    texto: "Nuevo",
+                titulo:
+                    "Ejercicios",
 
-                    icono: "➕",
+                botones: [
 
-                },
+                    {
+                        id:
+                            "btn-nuevo-ejercicio",
 
-                {
+                        texto:
+                            "Nuevo",
 
-                    id: "btn-actualizar-ejercicio",
+                        icono:
+                            "➕",
+                    },
 
-                    texto: "Actualizar",
+                    {
+                        id:
+                            "btn-actualizar-ejercicio",
 
-                    icono: "🔄",
+                        texto:
+                            "Actualizar",
 
-                },
-
-            ],
-
-            columnas: [
-
-                "ID",
-
-                "Año",
-
-                "Estado",
-
-            ],
-
-            filas: ejercicios.map(
-
-                ejercicio => [
-
-                    ejercicio.id,
-
-                    ejercicio.anio,
-
-                    ejercicio.estado,
+                        icono:
+                            "🔄",
+                    },
 
                 ],
 
-            ),
+                columnas: [
 
-            acciones: true,
+                    "ID",
 
-        });
+                    "Año",
+
+                    "Estado",
+
+                ],
+
+                filas:
+                    ejercicios.map(
+
+                        ejercicio => [
+
+                            ejercicio.id,
+
+                            ejercicio.anio,
+
+                            ejercicio.estado,
+
+                        ],
+
+                    ),
+
+                acciones:
+                    true,
+
+            });
 
 
         conectarEventosTabla({
 
-            onEditar: editarEjercicio,
+            onEditar:
+                editarEjercicio,
 
-            onEliminar: eliminarEjercicioConfirm,
+            onEliminar:
+                eliminarEjercicioConfirm,
 
         });
 
 
         document
-
             .getElementById(
-
                 "btn-nuevo-ejercicio",
-
             )
-
             ?.addEventListener(
-
                 "click",
-
                 nuevoEjercicio,
-
             );
 
 
         document
-
             .getElementById(
-
                 "btn-actualizar-ejercicio",
-
             )
-
             ?.addEventListener(
-
                 "click",
-
                 mostrarEjercicios,
-
             );
 
     }
 
     catch (
-
         error
-
     ) {
 
         contenido.innerHTML = `
 
             <h2>Ejercicios</h2>
 
-            <p>Error al consultar la API.</p>
+            <p>
+                Error al consultar la API.
+            </p>
 
         `;
 
         console.error(
-
             error,
-
         );
-
     }
 
 }
@@ -198,14 +208,17 @@ function nuevoEjercicio() {
 
     abrirModal({
 
-        titulo: "Nuevo ejercicio",
+        titulo:
+            "Nuevo ejercicio",
 
         contenido:
             crearFormularioEjercicio(),
 
-        textoAceptar: "Guardar",
+        textoAceptar:
+            "Guardar",
 
-        textoCancelar: "Cancelar",
+        textoCancelar:
+            "Cancelar",
 
         onAceptar:
             guardarEjercicio,
@@ -223,69 +236,71 @@ async function guardarEjercicio() {
 
     const formulario =
         document.getElementById(
-
             "form-ejercicio",
-
         );
+
 
     const datos = {
 
-        anio: Number(
-
-            formulario.anio.value,
-
-        ),
+        anio:
+            Number(
+                formulario.anio.value,
+            ),
 
         fecha_apertura:
-
             formulario.fecha_apertura.value,
 
-        fecha_cierre: null,
+        fecha_cierre:
+            null,
 
     };
 
+
     try {
 
+        const empresa =
+            obtenerEmpresaSeleccionada();
+
+
+        if (!empresa) {
+
+            throw new Error(
+                "No hay una empresa seleccionada.",
+            );
+        }
+
+
         await crearEjercicio(
-
+            empresa.id,
             datos,
-
         );
+
 
         mostrarToast(
-
             "Ejercicio creado correctamente.",
-
             "success",
-
         );
 
+
         cerrarModal();
+
 
         await mostrarEjercicios();
 
     }
 
     catch (
-
         error
-
     ) {
 
         mostrarToast(
-
             error.message,
-
             "error",
-
         );
 
         console.error(
-
             error,
-
         );
-
     }
 
 }
@@ -296,48 +311,36 @@ async function guardarEjercicio() {
  *********************************************/
 
 function editarEjercicio(
-
     indice,
-
 ) {
 
     const ejercicio =
-
         ejercicios[
-
             indice
-
         ];
+
 
     abrirModal({
 
         titulo:
-
             "Editar ejercicio",
 
         contenido:
-
             crearFormularioEjercicio(
-
                 ejercicio,
-
             ),
 
         textoAceptar:
-
             "Guardar",
 
         textoCancelar:
-
             "Cancelar",
 
-        onAceptar: () =>
-
-            actualizar(
-
-                ejercicio.id,
-
-            ),
+        onAceptar:
+            () =>
+                actualizar(
+                    ejercicio.id,
+                ),
 
     });
 
@@ -349,73 +352,77 @@ function editarEjercicio(
  *********************************************/
 
 async function actualizar(
-
     id,
-
 ) {
 
     const formulario =
-
         document.getElementById(
-
             "form-ejercicio",
-
         );
+
 
     const datos = {
 
-        anio: Number(
-
-            formulario.anio.value,
-
-        ),
+        anio:
+            Number(
+                formulario.anio.value,
+            ),
 
         fecha_apertura:
-
             formulario.fecha_apertura.value,
 
-        fecha_cierre: null,
+        fecha_cierre:
+            null,
 
     };
 
+
     try {
 
+        const empresa =
+            obtenerEmpresaSeleccionada();
+
+
+        if (!empresa) {
+
+            throw new Error(
+                "No hay una empresa seleccionada.",
+            );
+        }
+
+
         await actualizarEjercicio(
-
+            empresa.id,
             id,
-
             datos,
-
         );
+
 
         mostrarToast(
-
             "Ejercicio actualizado.",
-
             "success",
-
         );
 
+
         cerrarModal();
+
 
         await mostrarEjercicios();
 
     }
 
     catch (
-
         error
-
     ) {
 
         mostrarToast(
-
             error.message,
-
             "error",
-
         );
 
+        console.error(
+            error,
+        );
     }
 
 }
@@ -426,23 +433,18 @@ async function actualizar(
  *********************************************/
 
 function eliminarEjercicioConfirm(
-
     indice,
-
 ) {
 
     const ejercicio =
-
         ejercicios[
-
             indice
-
         ];
+
 
     abrirModal({
 
         titulo:
-
             "Eliminar ejercicio",
 
         contenido: `
@@ -451,27 +453,25 @@ function eliminarEjercicioConfirm(
 
                 ¿Eliminar el ejercicio
 
-                <b>${ejercicio.anio}</b>?
+                <b>
+                    ${ejercicio.anio}
+                </b>?
 
             </p>
 
         `,
 
         textoAceptar:
-
             "Eliminar",
 
         textoCancelar:
-
             "Cancelar",
 
-        onAceptar: () =>
-
-            eliminar(
-
-                ejercicio.id,
-
-            ),
+        onAceptar:
+            () =>
+                eliminar(
+                    ejercicio.id,
+                ),
 
     });
 
@@ -479,47 +479,55 @@ function eliminarEjercicioConfirm(
 
 
 async function eliminar(
-
     id,
-
 ) {
 
     try {
 
+        const empresa =
+            obtenerEmpresaSeleccionada();
+
+
+        if (!empresa) {
+
+            throw new Error(
+                "No hay una empresa seleccionada.",
+            );
+        }
+
+
         await eliminarEjercicio(
-
+            empresa.id,
             id,
-
         );
+
 
         mostrarToast(
-
             "Ejercicio eliminado.",
-
             "success",
-
         );
 
+
         cerrarModal();
+
 
         await mostrarEjercicios();
 
     }
 
     catch (
-
         error
-
     ) {
 
         mostrarToast(
-
             error.message,
-
             "error",
-
         );
 
+        console.error(
+            error,
+        );
     }
 
 }
+

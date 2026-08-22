@@ -17,9 +17,11 @@ class ModificarEjercicio:
         anio: int,
         fecha_apertura,
         fecha_cierre,
+        empresa_id: int = 1,
     ):
 
         ejercicio = self.service.buscar_por_id(
+            empresa_id,
             ejercicio_id,
         )
 

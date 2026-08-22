@@ -34,63 +34,109 @@ export async function listarEmpresas() {
   return await procesarRespuesta(respuesta);
 }
 
+
 // ======================================================
 // EJERCICIOS
 // ======================================================
 
-export async function obtenerEjercicios() {
-  const respuesta = await fetch(`${API_URL}/ejercicios`);
+export async function obtenerEjercicios(
+    empresaId,
+) {
 
-  return await procesarRespuesta(respuesta);
+    const respuesta =
+        await fetch(
+            `${API_URL}/ejercicios/?empresa_id=${empresaId}`,
+        );
+
+    return await procesarRespuesta(
+        respuesta,
+    );
 }
 
-export async function crearEjercicio(datos) {
-  const respuesta = await fetch(
-    `${API_URL}/ejercicios/`,
 
-    {
-      method: 'POST',
+export async function crearEjercicio(
+    empresaId,
+    datos,
+) {
 
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    const respuesta =
+        await fetch(
+            `${API_URL}/ejercicios/?empresa_id=${empresaId}`,
 
-      body: JSON.stringify(datos),
-    },
-  );
+            {
+                method:
+                    "POST",
 
-  return await procesarRespuesta(respuesta);
+                headers: {
+                    "Content-Type":
+                        "application/json",
+                },
+
+                body:
+                    JSON.stringify(
+                        datos,
+                    ),
+            },
+        );
+
+    return await procesarRespuesta(
+        respuesta,
+    );
 }
 
-export async function actualizarEjercicio(id, datos) {
-  const respuesta = await fetch(
-    `${API_URL}/ejercicios/${id}`,
 
-    {
-      method: 'PUT',
+export async function actualizarEjercicio(
+    empresaId,
+    id,
+    datos,
+) {
 
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    const respuesta =
+        await fetch(
+            `${API_URL}/ejercicios/${id}?empresa_id=${empresaId}`,
 
-      body: JSON.stringify(datos),
-    },
-  );
+            {
+                method:
+                    "PUT",
 
-  return await procesarRespuesta(respuesta);
+                headers: {
+                    "Content-Type":
+                        "application/json",
+                },
+
+                body:
+                    JSON.stringify(
+                        datos,
+                    ),
+            },
+        );
+
+    return await procesarRespuesta(
+        respuesta,
+    );
 }
 
-export async function eliminarEjercicio(id) {
-  const respuesta = await fetch(
-    `${API_URL}/ejercicios/${id}`,
 
-    {
-      method: 'DELETE',
-    },
-  );
+export async function eliminarEjercicio(
+    empresaId,
+    id,
+) {
 
-  return await procesarRespuesta(respuesta);
+    const respuesta =
+        await fetch(
+            `${API_URL}/ejercicios/${id}?empresa_id=${empresaId}`,
+
+            {
+                method:
+                    "DELETE",
+            },
+        );
+
+    return await procesarRespuesta(
+        respuesta,
+    );
 }
+
 
 // ======================================================
 // PLAN DE CUENTAS

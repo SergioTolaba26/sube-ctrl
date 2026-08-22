@@ -13,5 +13,9 @@ class ListarEjercicios:
 
     def execute(
         self,
+        empresa_id: int | None = None,
     ):
-        return self.service.listar()
+
+        return self.service.listar(
+            empresa_id,
+        )

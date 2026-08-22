@@ -11,27 +11,64 @@ class EjercicioService:
     ):
         self.repository = repository
 
+    # =========================================================
+    # LISTAR
+    # =========================================================
+
     def listar(
         self,
+        empresa_id: int | None = None,
     ) -> list[Ejercicio]:
 
-        return self.repository.listar()
+        if empresa_id is None:
+            return self.repository.listar()
+
+        return self.repository.listar(
+            empresa_id,
+        )
+
+    # =========================================================
+    # BUSCAR POR ID
+    # =========================================================
 
     def buscar_por_id(
         self,
-        ejercicio_id: int,
-    ):
+        empresa_id_o_id: int,
+        ejercicio_id: int | None = None,
+    ) -> Ejercicio | None:
+
+        if ejercicio_id is None:
+
+            return self.repository.buscar_por_id(
+                empresa_id_o_id,
+            )
 
         return self.repository.buscar_por_id(
+            empresa_id_o_id,
             ejercicio_id,
         )
+    # =========================================================
+    # BUSCAR POR FECHA
+    # =========================================================
 
     def buscar_por_fecha(
         self,
-        fecha: date,
-    ):
+        empresa_id_o_fecha,
+        fecha: date | None = None,
+    ) -> Ejercicio | None:
 
-        for ejercicio in self.repository.listar():
+        if fecha is None:
+
+            empresa_id = 1
+            fecha = empresa_id_o_fecha
+
+        else:
+
+            empresa_id = empresa_id_o_fecha
+
+        for ejercicio in self.repository.listar(
+            empresa_id,
+        ):
 
             if (
                 ejercicio.fecha_apertura <= fecha
@@ -41,50 +78,55 @@ class EjercicioService:
                     or fecha <= ejercicio.fecha_cierre
                 )
             ):
+
                 return ejercicio
 
         return None
+    # =========================================================
+    # GUARDAR
+    #
+    # PostgreSQL genera el ID cuando ejercicio.id es None.
+    # =========================================================
 
     def guardar(
         self,
         ejercicio: Ejercicio,
-    ):
-
-        if ejercicio.id is None:
-
-            ejercicios = self.repository.listar()
-
-            if not ejercicios:
-
-                ejercicio.id = 1
-
-            else:
-
-                ejercicio.id = (
-                    max(
-                        e.id
-                        for e in ejercicios
-                    )
-                    + 1
-                )
+    ) -> None:
 
         self.repository.guardar(
             ejercicio,
         )
 
+    # =========================================================
+    # ELIMINAR
+    # =========================================================
+
     def eliminar(
         self,
-        id_: int,
-    ):
+        empresa_id_o_id: int,
+        ejercicio_id: int | None = None,
+    ) -> None:
+
+        if ejercicio_id is None:
+
+            self.repository.eliminar(
+                empresa_id_o_id,
+            )
+
+            return
 
         self.repository.eliminar(
-            id_,
+            empresa_id_o_id,
+            ejercicio_id,
         )
+    # =========================================================
+    # MODIFICAR
+    # =========================================================
 
     def modificar(
         self,
         ejercicio: Ejercicio,
-    ):
+    ) -> Ejercicio:
 
         self.repository.modificar(
             ejercicio,
@@ -92,21 +134,29 @@ class EjercicioService:
 
         return ejercicio
 
+    # =========================================================
+    # BUSCAR POR AÑO
+    # =========================================================
+
     def buscar_por_anio(
         self,
         empresa_id: int,
         anio: int,
-    ):
+    ) -> Ejercicio | None:
 
         return self.repository.buscar_por_anio(
             empresa_id,
             anio,
         )
 
+    # =========================================================
+    # BUSCAR ABIERTO
+    # =========================================================
+
     def buscar_abierto(
         self,
         empresa_id: int,
-    ):
+    ) -> Ejercicio | None:
 
         return self.repository.buscar_abierto(
             empresa_id,
